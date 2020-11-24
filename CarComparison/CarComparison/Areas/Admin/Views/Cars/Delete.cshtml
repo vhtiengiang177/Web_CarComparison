@@ -1,0 +1,225 @@
+﻿@model CarComparison.Areas.Admin.Models.Car
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Xóa xe</h2>
+
+<h3>Bạn có chắc chắn muốn xóa Xe này không?</h3>
+<div>
+    <hr />
+
+    <dl class="dl-horizontal">
+        <dt>
+            @*@Html.DisplayNameFor(model => model.overview_car)*@
+            Tổng quan
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.overview_car)
+        </dd>
+
+        <dt>
+            @*@Html.DisplayNameFor(model => model.length_car)*@
+            Chiều Dài Cơ Sở
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.length_car)
+        </dd>
+
+        <dt>
+            @*@Html.DisplayNameFor(model => model.wheels_car)*@
+            Mâm Xe
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.wheels_car)
+        </dd>
+
+        <dt>
+            @*@Html.DisplayNameFor(model => model.tireparameters_car)*@
+            Thông Số Lốp
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tireparameters_car)
+        </dd>
+
+        <dt>
+            @*@Html.DisplayNameFor(model => model.weight_car)*@
+            Trọng Lượng
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.weight_car)
+        </dd>
+
+        <dt>
+            @*@Html.DisplayNameFor(model => model.capacity_car)*@
+            Dung Tích Động Cơ
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.capacity_car)
+        </dd>
+
+        <dt>
+            @*@Html.DisplayNameFor(model => model.horsepower_car)*@
+            Mã Lực
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.horsepower_car)
+        </dd>
+
+        <dt>
+            @*@Html.DisplayNameFor(model => model.gear_car)*@
+            Hộp Số
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.gear_car)
+        </dd>
+
+        <dt>
+            @*@Html.DisplayNameFor(model => model.torque_car)*@
+            Momen Xoắn
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.torque_car)
+        </dd>
+
+        <dt>
+            @*@Html.DisplayNameFor(model => model.drivetype_car)*@
+            Hệ Dẫn Động
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.drivetype_car)
+
+        </dd>
+
+        <dt>
+            @*@Html.DisplayNameFor(model => model.frontbrakesystem_car)*@
+            Hệ Thống Thắng Trước
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.frontbrakesystem_car)
+        </dd>
+
+        <dt>
+            @*@Html.DisplayNameFor(model => model.rearbrakesystem_car)*@
+            Hệ Thống Thắng Sau
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.rearbrakesystem_car)
+        </dd>
+
+        <dt>
+            @*@Html.DisplayNameFor(model => model.maximumspeed_car)*@
+            Tốc Độ Tối Đa
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.maximumspeed_car)
+        </dd>
+
+        <dt>
+            @*@Html.DisplayNameFor(model => model.accelerationtime_car)*@
+            Tăng tốc từ 0-100km/h
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.accelerationtime_car)
+        </dd>
+
+        <dt>
+            @*@Html.DisplayNameFor(model => model.capacitytank_car)*@
+            Dung Tích Bình Xăng
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.capacitytank_car)
+        </dd>
+
+        <dt>
+            @*@Html.DisplayNameFor(model => model.numberseat_car)*@
+            Số Ghế
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.numberseat_car)
+        </dd>
+
+        <dt>
+            @*@Html.DisplayNameFor(model => model.seat_car)*@
+            Loại Ghế
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.seat_car)
+        </dd>
+
+        <dt>
+            @*@Html.DisplayNameFor(model => model.airconditioner_car)*@
+            Hệ Thống Điều Hòa
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.airconditioner_car)
+        </dd>
+
+        <dt>
+            @*@Html.DisplayNameFor(model => model.sunroof_car)*@
+            Cửa Sổ Trời
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sunroof_car)
+        </dd>
+
+        <dt>
+            @*@Html.DisplayNameFor(model => model.charge_car)*@
+            Giá Xe
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.charge_car)
+        </dd>
+
+        <dt>
+            @*@Html.DisplayNameFor(model => model.img_car)*@
+            Ảnh Xe
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.img_car)
+        </dd>
+
+        <dt>
+            @*@Html.DisplayNameFor(model => model.Version.name_version)*@
+            Phiên Bản
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Version.name_version)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Xóa" class="btn btn-primary" /> |
+            @Html.ActionLink("Quay lại", "Index")
+        </div>
+    }
+</div>
