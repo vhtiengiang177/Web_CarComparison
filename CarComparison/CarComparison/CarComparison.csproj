@@ -1998,10 +1998,44 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Total\Client\styles\easy-responsive-tabs.css" />
-    <Content Include="Total\Client\styles\global.css" />
-    <Content Include="Total\Client\styles\slider.css" />
-    <Content Include="Total\Client\styles\style.css" />
+    <Content Include="Total\Client\css\bootstrap.min.css" />
+    <Content Include="Total\Client\css\font-awesome.min.css" />
+    <Content Include="Total\Client\css\owl.carousel.css" />
+    <Content Include="Total\Client\css\owl.theme.default.min.css" />
+    <Content Include="Total\Client\css\style.css" />
+    <Content Include="Total\Client\font\fontawesome-webfont.svg" />
+    <Content Include="Total\Client\images\about-1-720x720.jpg" />
+    <Content Include="Total\Client\images\about-2-720x720.jpg" />
+    <Content Include="Total\Client\images\author-image-1-646x680.jpg" />
+    <Content Include="Total\Client\images\author-image-2-646x680.jpg" />
+    <Content Include="Total\Client\images\author-image-3-646x680.jpg" />
+    <Content Include="Total\Client\images\author-image-4-646x680.jpg" />
+    <Content Include="Total\Client\images\blog-1-720x480.jpg" />
+    <Content Include="Total\Client\images\blog-2-720x480.jpg" />
+    <Content Include="Total\Client\images\blog-3-720x480.jpg" />
+    <Content Include="Total\Client\images\blog-4-720x480.jpg" />
+    <Content Include="Total\Client\images\blog-5-720x480.jpg" />
+    <Content Include="Total\Client\images\blog-6-720x480.jpg" />
+    <Content Include="Total\Client\images\contact-1-600x400.jpg" />
+    <Content Include="Total\Client\images\other-image-fullscreen-1-1920x700.jpg" />
+    <Content Include="Total\Client\images\product-1-720x480.jpg" />
+    <Content Include="Total\Client\images\product-2-720x480.jpg" />
+    <Content Include="Total\Client\images\product-3-720x480.jpg" />
+    <Content Include="Total\Client\images\product-4-720x480.jpg" />
+    <Content Include="Total\Client\images\product-5-720x480.jpg" />
+    <Content Include="Total\Client\images\product-6-720x480.jpg" />
+    <Content Include="Total\Client\images\slider-image-1-1920x700.jpg" />
+    <Content Include="Total\Client\images\slider-image-2-1920x700.jpg" />
+    <Content Include="Total\Client\images\slider-image-3-1920x700.jpg" />
+    <Content Include="Total\Client\images\tst-image-1-200x216.jpg" />
+    <Content Include="Total\Client\images\tst-image-2-200x216.jpg" />
+    <Content Include="Total\Client\images\tst-image-3-200x216.jpg" />
+    <Content Include="Total\Client\images\tst-image-4-200x216.jpg" />
+    <Content Include="Total\Client\js\bootstrap.min.js" />
+    <Content Include="Total\Client\js\custom.js" />
+    <Content Include="Total\Client\js\jquery.js" />
+    <Content Include="Total\Client\js\owl.carousel.min.js" />
+    <Content Include="Total\Client\js\smoothscroll.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -2017,14 +2051,21 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Client\Index.cshtml" />
-    <Content Include="Total\Client\font\Amble-Regular-webfont.ttf" />
     <Content Include="Views\Client\Contact.cshtml" />
+    <Content Include="Total\Client\font\fontawesome-webfont.eot" />
+    <Content Include="Total\Client\font\fontawesome-webfont.ttf" />
+    <Content Include="Total\Client\font\fontawesome-webfont.woff" />
+    <Content Include="Total\Client\font\fontawesome-webfont.woff2" />
+    <Content Include="Total\Client\font\FontAwesome.otf" />
+    <Content Include="Views\Client\Team.cshtml" />
+    <Content Include="Views\Client\Comparing.cshtml" />
+    <Content Include="Views\Client\Review.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Models\" />
-    <Folder Include="Total\Client\images\" />
+    <Folder Include="Total\Client\styles\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

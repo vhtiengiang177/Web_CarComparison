@@ -3,15 +3,11 @@
     Layout = null;
 }
 
-@{
-    Layout = null;
-}
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 
-    <title>LTW | Web So sánh Xe mới nhất</title>
+    <title>LTW | Team</title>
 
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
@@ -57,7 +53,7 @@
             <!-- MENU LINKS -->
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-nav-first">
-                    <li ><a href="/Client/Index">Trang chủ</a></li>
+                    <li><a href="/Client/Index">Trang chủ</a></li>
                     <li><a href="cars.html">So sánh Xe</a></li>
                     @*<li><a href="about-us.html">Thông tin</a></li>*@
                     @*<li class="dropdown">
@@ -71,10 +67,10 @@
                             </ul>
                         </li>*@
                     <li><a href="blog-posts.html">Bài đánh giá</a></li>
-                    <li><a href="/Client/Team">Team</a></li>
+                    <li class="active"><a href="/Client/Team">Team</a></li>
 
                     <li><a href="testimonials.html">Video</a></li>
-                    <li class="active"><a href="/Client/Contact">Liên hệ</a></li>
+                    <li><a href="/Client/Contact">Liên hệ</a></li>
 
 
 
@@ -85,53 +81,89 @@
 
         </div>
     </section>
+
     <section>
         <div class="container">
             <div class="text-center">
-                <h1>Contact Us</h1>
+                <h1>Đội ngũ Website</h1>
 
                 <br>
 
-                <p class="lead">Nếu bạn cần hỗ trợ, liên hệ với chúng tôi qua thông tin bên dưới.</p>
+                <p class="lead">Các thành viên của chúng tôi luôn cố gắng mang đến sự trải nghiệm tốt nhất cho bạn.</p>
             </div>
         </div>
     </section>
 
-    <!-- CONTACT -->
-    <section id="contact">
+    <section id="team" class="section-background">
         <div class="container">
             <div class="row">
-
-                <div class="col-md-6 col-sm-12">
-                    <form id="contact-form" role="form" action="" method="post">
-                        <div class="section-title">
-                            <h2>Thông tin liên hệ <small>Mọi ý kiến đóng góp vui lòng điền thông tin bên dưới!</small></h2>
+                <div class="col-md-3 col-sm-6">
+                    <div class="team-thumb">
+                        <div class="team-image">
+                            <img src="~/Total/Client/images/giabao.jpg" class="img-responsive" alt="">
                         </div>
-
-                        <div class="col-md-12 col-sm-12">
-                            <input type="text" class="form-control" placeholder="Họ và tên" name="name" required>
-
-                            <input type="email" class="form-control" placeholder="Địa chỉ email" name="email" required>
-
-                            <textarea class="form-control" rows="6" placeholder="Nội dung" name="message" required></textarea>
+                        <div class="team-info">
+                            <h3>Gia Bảo</h3>
+                            <span>CEO</span>
                         </div>
-
-                        <div class="col-md-4 col-sm-12">
-                            <input type="submit" class="form-control" name="Gửi" value="Send Message">
-                        </div>
-
-                    </form>
-                </div>
-
-                <div class="col-md-6 col-sm-12">
-                    <div class="contact-image">
-                        <img src="~/Total/Client/images/contact-1-600x400.jpg" class="img-responsive" alt="Smiling Two Girls">
+                        <ul class="social-icon">
+                            <li><a href="#" class="fa fa-facebook-square" attr="facebook icon"></a></li>
+                            <li><a href="#" class="fa fa-twitter"></a></li>
+                            <li><a href="#" class="fa fa-instagram"></a></li>
+                        </ul>
                     </div>
                 </div>
-
+                <div class="col-md-3 col-sm-6">
+                    <div class="team-thumb">
+                        <div class="team-image">
+                            <img src="~/Total/Client/images/giang.jpg" class="img-responsive" alt="">
+                        </div>
+                        <div class="team-info">
+                            <h3>Tiên Giang</h3>
+                            <span>CTO</span>
+                        </div>
+                        <ul class="social-icon">
+                            <li><a href="#" class="fa fa-google"></a></li>
+                            <li><a href="#" class="fa fa-instagram"></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="team-thumb">
+                        <div class="team-image">
+                            <img src="~/Total/Client/images/thao.jpg" class="img-responsive" alt="">
+                        </div>
+                        <div class="team-info">
+                            <h3>Thảo Nguyễn</h3>
+                            <span>Marketing Expert</span>
+                        </div>
+                        <ul class="social-icon">
+                            <li><a href="#" class="fa fa-twitter"></a></li>
+                            <li><a href="#" class="fa fa-envelope-o"></a></li>
+                            <li><a href="#" class="fa fa-linkedin"></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="team-thumb">
+                        <div class="team-image">
+                            <img src="~/Total/Client/images/giabao.jpg" class="img-responsive" alt="">
+                        </div>
+                        <div class="team-info">
+                            <h3>Nam Hải</h3>
+                            <span>Customer Support</span>
+                        </div>
+                        <ul class="social-icon">
+                            <li><a href="#" class="fa fa-twitter"></a></li>
+                            <li><a href="#" class="fa fa-google"></a></li>
+                            <li><a href="#" class="fa fa-behance"></a></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
+
 
     <!-- FOOTER -->
     <footer id="footer">

@@ -11,8 +11,6 @@ namespace CarComparison.Controllers
         // GET: Client
         public ActionResult Index()
         {
-
-            ViewBag.mess = "https://www.youtube.com/embed/ABGSfMZOjUM";
             return View();
         }
 
@@ -41,42 +39,14 @@ namespace CarComparison.Controllers
             return View();
         }
 
-        //SqlConnection con = new SqlConnection();
-        //SqlCommand com = new SqlCommand();
-        //SqlDataReader dr;
-        // GET: Account
+       
         [HttpGet]
         public ActionResult Login()
         {
             return View();
         }
 
-        //void connectionString()
-        //{
-        //    con.ConnectionString = "data source=LAPTOP-GVT76T3A; database=Web2710; integrated security=SSPI";
-        //}
-
-        //bool Login(string username, string password)
-        //{
-        //    return LoginDAO.Instance.Login(username, password);
-        //}
-
-        //[HttpGet]
-        //public ActionResult Verify(string username, string password)
-        //{
-        //    //if (Login(username, password))
-        //    //{
-        //    //    return View("Index");
-        //    //}
-        //    //else
-        //    //{
-        //    //    return View("Login");
-
-        //    //}
-
-             
-        //}
-
+        
         public ActionResult Register(string username, string password, string password2)
         {
             //if (LoginDAO.Instance.Register(username, password, password2))
@@ -92,6 +62,16 @@ namespace CarComparison.Controllers
         public ActionResult RegisterView()
         {
             return View("Register");
+        }
+
+        public ActionResult Team()
+        {
+            return View();
+        }
+
+        public ActionResult Review()
+        {
+            return View();
         }
 
     }
