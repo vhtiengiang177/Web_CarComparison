@@ -45,10 +45,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -134,8 +142,62 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\CarsController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ClientController.cs" />
+    <Compile Include="Areas\Admin\Models\Article.cs">
+      <DependentUpon>CarModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Admin\Models\Automaker.cs">
+      <DependentUpon>CarModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Admin\Models\Car.cs">
+      <DependentUpon>CarModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Admin\Models\CarModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CarModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Admin\Models\CarModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CarModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Admin\Models\CarModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CarModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Admin\Models\CategoryArticle.cs">
+      <DependentUpon>CarModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Admin\Models\Comment.cs">
+      <DependentUpon>CarModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Admin\Models\Contact.cs">
+      <DependentUpon>CarModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Admin\Models\InfoAccount.cs">
+      <DependentUpon>CarModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Admin\Models\Model.cs">
+      <DependentUpon>CarModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Admin\Models\Permission.cs">
+      <DependentUpon>CarModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Admin\Models\TypeUser.cs">
+      <DependentUpon>CarModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Admin\Models\User_Permission.cs">
+      <DependentUpon>CarModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Admin\Models\Version.cs">
+      <DependentUpon>CarModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Admin\Models\XemTenXe_Result.cs">
+      <DependentUpon>CarModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -143,6 +205,16 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Admin\Models\CarModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>CarModel.Context.cs</LastGenOutput>
+      <DependentUpon>CarModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="Areas\Admin\Models\CarModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>CarModel.edmx</DependentUpon>
+      <LastGenOutput>CarModel.cs</LastGenOutput>
+    </Content>
     <Content Include="Asset\Admin\css\sb-admin-2.css" />
     <Content Include="Asset\Admin\img\undraw_posting_photo.svg" />
     <Content Include="Asset\Admin\img\undraw_profile.svg" />
@@ -1987,6 +2059,18 @@
     <Content Include="Asset\Admin\vendor\jquery\jquery.slim.min.map" />
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
+    <EntityDeploy Include="Areas\Admin\Models\CarModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>CarModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Areas\Admin\Models\CarModel.edmx.diagram">
+      <DependentUpon>CarModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="Areas\Admin\Views\Cars\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Cars\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Cars\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Cars\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Cars\Index.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -1998,44 +2082,6 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Total\Client\css\bootstrap.min.css" />
-    <Content Include="Total\Client\css\font-awesome.min.css" />
-    <Content Include="Total\Client\css\owl.carousel.css" />
-    <Content Include="Total\Client\css\owl.theme.default.min.css" />
-    <Content Include="Total\Client\css\style.css" />
-    <Content Include="Total\Client\font\fontawesome-webfont.svg" />
-    <Content Include="Total\Client\images\about-1-720x720.jpg" />
-    <Content Include="Total\Client\images\about-2-720x720.jpg" />
-    <Content Include="Total\Client\images\author-image-1-646x680.jpg" />
-    <Content Include="Total\Client\images\author-image-2-646x680.jpg" />
-    <Content Include="Total\Client\images\author-image-3-646x680.jpg" />
-    <Content Include="Total\Client\images\author-image-4-646x680.jpg" />
-    <Content Include="Total\Client\images\blog-1-720x480.jpg" />
-    <Content Include="Total\Client\images\blog-2-720x480.jpg" />
-    <Content Include="Total\Client\images\blog-3-720x480.jpg" />
-    <Content Include="Total\Client\images\blog-4-720x480.jpg" />
-    <Content Include="Total\Client\images\blog-5-720x480.jpg" />
-    <Content Include="Total\Client\images\blog-6-720x480.jpg" />
-    <Content Include="Total\Client\images\contact-1-600x400.jpg" />
-    <Content Include="Total\Client\images\other-image-fullscreen-1-1920x700.jpg" />
-    <Content Include="Total\Client\images\product-1-720x480.jpg" />
-    <Content Include="Total\Client\images\product-2-720x480.jpg" />
-    <Content Include="Total\Client\images\product-3-720x480.jpg" />
-    <Content Include="Total\Client\images\product-4-720x480.jpg" />
-    <Content Include="Total\Client\images\product-5-720x480.jpg" />
-    <Content Include="Total\Client\images\product-6-720x480.jpg" />
-    <Content Include="Total\Client\images\slider-image-1-1920x700.jpg" />
-    <Content Include="Total\Client\images\slider-image-2-1920x700.jpg" />
-    <Content Include="Total\Client\images\slider-image-3-1920x700.jpg" />
-    <Content Include="Total\Client\images\tst-image-1-200x216.jpg" />
-    <Content Include="Total\Client\images\tst-image-2-200x216.jpg" />
-    <Content Include="Total\Client\images\tst-image-3-200x216.jpg" />
-    <Content Include="Total\Client\images\tst-image-4-200x216.jpg" />
-    <Content Include="Total\Client\js\bootstrap.min.js" />
-    <Content Include="Total\Client\js\custom.js" />
-    <Content Include="Total\Client\js\jquery.js" />
-    <Content Include="Total\Client\js\owl.carousel.min.js" />
-    <Content Include="Total\Client\js\smoothscroll.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -2050,22 +2096,10 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Client\Index.cshtml" />
-    <Content Include="Views\Client\Contact.cshtml" />
-    <Content Include="Total\Client\font\fontawesome-webfont.eot" />
-    <Content Include="Total\Client\font\fontawesome-webfont.ttf" />
-    <Content Include="Total\Client\font\fontawesome-webfont.woff" />
-    <Content Include="Total\Client\font\fontawesome-webfont.woff2" />
-    <Content Include="Total\Client\font\FontAwesome.otf" />
-    <Content Include="Views\Client\Team.cshtml" />
-    <Content Include="Views\Client\Comparing.cshtml" />
-    <Content Include="Views\Client\Review.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Models\" />
-    <Folder Include="Total\Client\styles\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -2079,6 +2113,9 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

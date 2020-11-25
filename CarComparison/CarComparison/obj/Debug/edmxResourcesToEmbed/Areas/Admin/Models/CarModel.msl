@@ -1,0 +1,169 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="CompareCarModelStoreContainer" CdmEntityContainer="CompareCarEntities">
+    <EntitySetMapping Name="Article">
+      <EntityTypeMapping TypeName="CompareCarModel.Article">
+        <MappingFragment StoreEntitySet="Article">
+          <ScalarProperty Name="id_article" ColumnName="id_article" />
+          <ScalarProperty Name="id_category" ColumnName="id_category" />
+          <ScalarProperty Name="title_article" ColumnName="title_article" />
+          <ScalarProperty Name="alias_article" ColumnName="alias_article" />
+          <ScalarProperty Name="id_user" ColumnName="id_user" />
+          <ScalarProperty Name="description_article" ColumnName="description_article" />
+          <ScalarProperty Name="time_pulish_article" ColumnName="time_pulish_article" />
+          <ScalarProperty Name="time_write" ColumnName="time_write" />
+          <ScalarProperty Name="state_article" ColumnName="state_article" />
+          <ScalarProperty Name="img_article" ColumnName="img_article" />
+          <ScalarProperty Name="linkvideo_article" ColumnName="linkvideo_article" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Automaker">
+      <EntityTypeMapping TypeName="CompareCarModel.Automaker">
+        <MappingFragment StoreEntitySet="Automaker">
+          <ScalarProperty Name="id_automaker" ColumnName="id_automaker" />
+          <ScalarProperty Name="name_automaker" ColumnName="name_automaker" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Car">
+      <EntityTypeMapping TypeName="CompareCarModel.Car">
+        <MappingFragment StoreEntitySet="Car">
+          <ScalarProperty Name="id_car" ColumnName="id_car" />
+          <ScalarProperty Name="overview_car" ColumnName="overview_car" />
+          <ScalarProperty Name="length_car" ColumnName="length_car" />
+          <ScalarProperty Name="wheels_car" ColumnName="wheels_car" />
+          <ScalarProperty Name="tireparameters_car" ColumnName="tireparameters_car" />
+          <ScalarProperty Name="weight_car" ColumnName="weight_car" />
+          <ScalarProperty Name="capacity_car" ColumnName="capacity_car" />
+          <ScalarProperty Name="horsepower_car" ColumnName="horsepower_car" />
+          <ScalarProperty Name="gear_car" ColumnName="gear_car" />
+          <ScalarProperty Name="torque_car" ColumnName="torque_car" />
+          <ScalarProperty Name="drivetype_car" ColumnName="drivetype_car" />
+          <ScalarProperty Name="frontbrakesystem_car" ColumnName="frontbrakesystem_car" />
+          <ScalarProperty Name="rearbrakesystem_car" ColumnName="rearbrakesystem_car" />
+          <ScalarProperty Name="maximumspeed_car" ColumnName="maximumspeed_car" />
+          <ScalarProperty Name="accelerationtime_car" ColumnName="accelerationtime_car" />
+          <ScalarProperty Name="capacitytank_car" ColumnName="capacitytank_car" />
+          <ScalarProperty Name="numberseat_car" ColumnName="numberseat_car" />
+          <ScalarProperty Name="seat_car" ColumnName="seat_car" />
+          <ScalarProperty Name="airconditioner_car" ColumnName="airconditioner_car" />
+          <ScalarProperty Name="sunroof_car" ColumnName="sunroof_car" />
+          <ScalarProperty Name="charge_car" ColumnName="charge_car" />
+          <ScalarProperty Name="img_car" ColumnName="img_car" />
+          <ScalarProperty Name="id_version" ColumnName="id_version" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CategoryArticle">
+      <EntityTypeMapping TypeName="CompareCarModel.CategoryArticle">
+        <MappingFragment StoreEntitySet="CategoryArticle">
+          <ScalarProperty Name="id_category" ColumnName="id_category" />
+          <ScalarProperty Name="name_category" ColumnName="name_category" />
+          <ScalarProperty Name="description_category" ColumnName="description_category" />
+          <ScalarProperty Name="alias_category" ColumnName="alias_category" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Comment">
+      <EntityTypeMapping TypeName="CompareCarModel.Comment">
+        <MappingFragment StoreEntitySet="Comment">
+          <ScalarProperty Name="id_comment" ColumnName="id_comment" />
+          <ScalarProperty Name="id_reply_comment" ColumnName="id_reply_comment" />
+          <ScalarProperty Name="id_article" ColumnName="id_article" />
+          <ScalarProperty Name="id_commenter" ColumnName="id_commenter" />
+          <ScalarProperty Name="day_comment" ColumnName="day_comment" />
+          <ScalarProperty Name="count_like" ColumnName="count_like" />
+          <ScalarProperty Name="count_dislike" ColumnName="count_dislike" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Contact">
+      <EntityTypeMapping TypeName="CompareCarModel.Contact">
+        <MappingFragment StoreEntitySet="Contact">
+          <ScalarProperty Name="id_contact" ColumnName="id_contact" />
+          <ScalarProperty Name="name_contact" ColumnName="name_contact" />
+          <ScalarProperty Name="email_contact" ColumnName="email_contact" />
+          <ScalarProperty Name="namecompany_contact" ColumnName="namecompany_contact" />
+          <ScalarProperty Name="subject_contace" ColumnName="subject_contace" />
+          <ScalarProperty Name="state_contact" ColumnName="state_contact" />
+          <ScalarProperty Name="date_contact" ColumnName="date_contact" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="InfoAccount">
+      <EntityTypeMapping TypeName="CompareCarModel.InfoAccount">
+        <MappingFragment StoreEntitySet="InfoAccount">
+          <ScalarProperty Name="id_user" ColumnName="id_user" />
+          <ScalarProperty Name="name_user" ColumnName="name_user" />
+          <ScalarProperty Name="password_user" ColumnName="password_user" />
+          <ScalarProperty Name="id_typeuser" ColumnName="id_typeuser" />
+          <ScalarProperty Name="lname_user" ColumnName="lname_user" />
+          <ScalarProperty Name="fname_user" ColumnName="fname_user" />
+          <ScalarProperty Name="email_user" ColumnName="email_user" />
+          <ScalarProperty Name="avt_user" ColumnName="avt_user" />
+          <ScalarProperty Name="block_state_user" ColumnName="block_state_user" />
+          <ScalarProperty Name="registerdate_user" ColumnName="registerdate_user" />
+          <ScalarProperty Name="lastvisitdate_user" ColumnName="lastvisitdate_user" />
+          <ScalarProperty Name="phone_user" ColumnName="phone_user" />
+          <ScalarProperty Name="sex_user" ColumnName="sex_user" />
+          <ScalarProperty Name="birthday_user" ColumnName="birthday_user" />
+          <ScalarProperty Name="address_user" ColumnName="address_user" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Model">
+      <EntityTypeMapping TypeName="CompareCarModel.Model">
+        <MappingFragment StoreEntitySet="Model">
+          <ScalarProperty Name="id_model" ColumnName="id_model" />
+          <ScalarProperty Name="name_model" ColumnName="name_model" />
+          <ScalarProperty Name="id_automaker" ColumnName="id_automaker" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Permission">
+      <EntityTypeMapping TypeName="CompareCarModel.Permission">
+        <MappingFragment StoreEntitySet="Permission">
+          <ScalarProperty Name="id_permission" ColumnName="id_permission" />
+          <ScalarProperty Name="name_permission" ColumnName="name_permission" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TypeUser">
+      <EntityTypeMapping TypeName="CompareCarModel.TypeUser">
+        <MappingFragment StoreEntitySet="TypeUser">
+          <ScalarProperty Name="id_typeuser" ColumnName="id_typeuser" />
+          <ScalarProperty Name="name_typeuser" ColumnName="name_typeuser" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="User_Permission">
+      <EntityTypeMapping TypeName="CompareCarModel.User_Permission">
+        <MappingFragment StoreEntitySet="User_Permission">
+          <ScalarProperty Name="id_typeuser" ColumnName="id_typeuser" />
+          <ScalarProperty Name="id_permission" ColumnName="id_permission" />
+          <ScalarProperty Name="note_permission" ColumnName="note_permission" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Version">
+      <EntityTypeMapping TypeName="CompareCarModel.Version">
+        <MappingFragment StoreEntitySet="Version">
+          <ScalarProperty Name="id_version" ColumnName="id_version" />
+          <ScalarProperty Name="name_version" ColumnName="name_version" />
+          <ScalarProperty Name="id_model" ColumnName="id_model" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="XemTenXe" FunctionName="CompareCarModel.Store.XemTenXe">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CompareCarModel.XemTenXe_Result">
+          <ScalarProperty Name="name_automaker" ColumnName="name_automaker" />
+          <ScalarProperty Name="name_model" ColumnName="name_model" />
+          <ScalarProperty Name="name_version" ColumnName="name_version" />
+          <ScalarProperty Name="id_car" ColumnName="id_car" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

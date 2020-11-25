@@ -1,0 +1,902 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="CompareCarModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Article">
+          <Key>
+            <PropertyRef Name="id_article" />
+          </Key>
+          <Property Name="id_article" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="id_category" Type="nvarchar" MaxLength="10" />
+          <Property Name="title_article" Type="nvarchar" MaxLength="255" />
+          <Property Name="alias_article" Type="nvarchar" MaxLength="255" />
+          <Property Name="id_user" Type="nvarchar" MaxLength="10" />
+          <Property Name="description_article" Type="nvarchar" MaxLength="255" />
+          <Property Name="time_pulish_article" Type="datetime" />
+          <Property Name="time_write" Type="datetime" />
+          <Property Name="state_article" Type="nvarchar" MaxLength="50" />
+          <Property Name="img_article" Type="image" />
+          <Property Name="linkvideo_article" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Automaker">
+          <Key>
+            <PropertyRef Name="id_automaker" />
+          </Key>
+          <Property Name="id_automaker" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="name_automaker" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Car">
+          <Key>
+            <PropertyRef Name="id_car" />
+          </Key>
+          <Property Name="id_car" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="overview_car" Type="nvarchar" MaxLength="50" />
+          <Property Name="length_car" Type="nvarchar" MaxLength="50" />
+          <Property Name="wheels_car" Type="nvarchar" MaxLength="50" />
+          <Property Name="tireparameters_car" Type="nvarchar" MaxLength="50" />
+          <Property Name="weight_car" Type="nvarchar" MaxLength="50" />
+          <Property Name="capacity_car" Type="nvarchar" MaxLength="50" />
+          <Property Name="horsepower_car" Type="nvarchar" MaxLength="50" />
+          <Property Name="gear_car" Type="nvarchar" MaxLength="50" />
+          <Property Name="torque_car" Type="nvarchar" MaxLength="50" />
+          <Property Name="drivetype_car" Type="nvarchar" MaxLength="50" />
+          <Property Name="frontbrakesystem_car" Type="nvarchar" MaxLength="50" />
+          <Property Name="rearbrakesystem_car" Type="nvarchar" MaxLength="50" />
+          <Property Name="maximumspeed_car" Type="nvarchar" MaxLength="50" />
+          <Property Name="accelerationtime_car" Type="nvarchar" MaxLength="50" />
+          <Property Name="capacitytank_car" Type="nvarchar" MaxLength="50" />
+          <Property Name="numberseat_car" Type="nvarchar" MaxLength="10" />
+          <Property Name="seat_car" Type="nvarchar" MaxLength="50" />
+          <Property Name="airconditioner_car" Type="nvarchar" MaxLength="50" />
+          <Property Name="sunroof_car" Type="nvarchar" MaxLength="50" />
+          <Property Name="charge_car" Type="int" />
+          <Property Name="img_car" Type="image" />
+          <Property Name="id_version" Type="nvarchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="CategoryArticle">
+          <Key>
+            <PropertyRef Name="id_category" />
+          </Key>
+          <Property Name="id_category" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="name_category" Type="nvarchar" MaxLength="50" />
+          <Property Name="description_category" Type="nvarchar" MaxLength="50" />
+          <Property Name="alias_category" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="id_comment" />
+          </Key>
+          <Property Name="id_comment" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="id_reply_comment" Type="nvarchar" MaxLength="10" />
+          <Property Name="id_article" Type="nvarchar" MaxLength="10" />
+          <Property Name="id_commenter" Type="nvarchar" MaxLength="10" />
+          <Property Name="day_comment" Type="datetime" />
+          <Property Name="count_like" Type="int" />
+          <Property Name="count_dislike" Type="int" />
+        </EntityType>
+        <EntityType Name="Contact">
+          <Key>
+            <PropertyRef Name="id_contact" />
+          </Key>
+          <Property Name="id_contact" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="name_contact" Type="nvarchar" MaxLength="255" />
+          <Property Name="email_contact" Type="nvarchar" MaxLength="255" />
+          <Property Name="namecompany_contact" Type="nvarchar" MaxLength="255" />
+          <Property Name="subject_contace" Type="nvarchar" MaxLength="255" />
+          <Property Name="state_contact" Type="nvarchar" MaxLength="50" />
+          <Property Name="date_contact" Type="datetime" />
+        </EntityType>
+        <EntityType Name="InfoAccount">
+          <Key>
+            <PropertyRef Name="id_user" />
+          </Key>
+          <Property Name="id_user" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="name_user" Type="nvarchar" MaxLength="50" />
+          <Property Name="password_user" Type="varchar" MaxLength="50" />
+          <Property Name="id_typeuser" Type="nvarchar" MaxLength="10" />
+          <Property Name="lname_user" Type="nvarchar" MaxLength="50" />
+          <Property Name="fname_user" Type="nvarchar" MaxLength="50" />
+          <Property Name="email_user" Type="nvarchar" MaxLength="50" />
+          <Property Name="avt_user" Type="image" />
+          <Property Name="block_state_user" Type="nvarchar" MaxLength="50" />
+          <Property Name="registerdate_user" Type="datetime" />
+          <Property Name="lastvisitdate_user" Type="datetime" />
+          <Property Name="phone_user" Type="nvarchar" MaxLength="50" />
+          <Property Name="sex_user" Type="nvarchar" MaxLength="50" />
+          <Property Name="birthday_user" Type="date" />
+          <Property Name="address_user" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Model">
+          <Key>
+            <PropertyRef Name="id_model" />
+          </Key>
+          <Property Name="id_model" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="name_model" Type="nvarchar" MaxLength="50" />
+          <Property Name="id_automaker" Type="nvarchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Permission">
+          <Key>
+            <PropertyRef Name="id_permission" />
+          </Key>
+          <Property Name="id_permission" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="name_permission" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TypeUser">
+          <Key>
+            <PropertyRef Name="id_typeuser" />
+          </Key>
+          <Property Name="id_typeuser" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="name_typeuser" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="User_Permission">
+          <Key>
+            <PropertyRef Name="id_typeuser" />
+            <PropertyRef Name="id_permission" />
+          </Key>
+          <Property Name="id_typeuser" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="id_permission" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="note_permission" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Version">
+          <Key>
+            <PropertyRef Name="id_version" />
+          </Key>
+          <Property Name="id_version" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="name_version" Type="nvarchar" MaxLength="50" />
+          <Property Name="id_model" Type="nvarchar" MaxLength="10" />
+        </EntityType>
+        <Association Name="FK_Article_id_category">
+          <End Role="CategoryArticle" Type="Self.CategoryArticle" Multiplicity="0..1" />
+          <End Role="Article" Type="Self.Article" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CategoryArticle">
+              <PropertyRef Name="id_category" />
+            </Principal>
+            <Dependent Role="Article">
+              <PropertyRef Name="id_category" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Article_id_user">
+          <End Role="InfoAccount" Type="Self.InfoAccount" Multiplicity="0..1" />
+          <End Role="Article" Type="Self.Article" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InfoAccount">
+              <PropertyRef Name="id_user" />
+            </Principal>
+            <Dependent Role="Article">
+              <PropertyRef Name="id_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Car_id_version">
+          <End Role="Version" Type="Self.Version" Multiplicity="0..1" />
+          <End Role="Car" Type="Self.Car" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Version">
+              <PropertyRef Name="id_version" />
+            </Principal>
+            <Dependent Role="Car">
+              <PropertyRef Name="id_version" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comment_id_article">
+          <End Role="Article" Type="Self.Article" Multiplicity="0..1" />
+          <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Article">
+              <PropertyRef Name="id_article" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="id_article" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comment_id_commenter">
+          <End Role="InfoAccount" Type="Self.InfoAccount" Multiplicity="0..1" />
+          <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InfoAccount">
+              <PropertyRef Name="id_user" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="id_commenter" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comment_id_replycomment">
+          <End Role="Comment" Type="Self.Comment" Multiplicity="0..1" />
+          <End Role="Comment1" Type="Self.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Comment">
+              <PropertyRef Name="id_comment" />
+            </Principal>
+            <Dependent Role="Comment1">
+              <PropertyRef Name="id_reply_comment" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InfoAccount_id_typeuser">
+          <End Role="TypeUser" Type="Self.TypeUser" Multiplicity="0..1" />
+          <End Role="InfoAccount" Type="Self.InfoAccount" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeUser">
+              <PropertyRef Name="id_typeuser" />
+            </Principal>
+            <Dependent Role="InfoAccount">
+              <PropertyRef Name="id_typeuser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Model_id_automaker">
+          <End Role="Automaker" Type="Self.Automaker" Multiplicity="0..1" />
+          <End Role="Model" Type="Self.Model" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Automaker">
+              <PropertyRef Name="id_automaker" />
+            </Principal>
+            <Dependent Role="Model">
+              <PropertyRef Name="id_automaker" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserPermission_id_permisson">
+          <End Role="Permission" Type="Self.Permission" Multiplicity="1" />
+          <End Role="User_Permission" Type="Self.User_Permission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Permission">
+              <PropertyRef Name="id_permission" />
+            </Principal>
+            <Dependent Role="User_Permission">
+              <PropertyRef Name="id_permission" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserPermission_id_typeuser">
+          <End Role="TypeUser" Type="Self.TypeUser" Multiplicity="1" />
+          <End Role="User_Permission" Type="Self.User_Permission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeUser">
+              <PropertyRef Name="id_typeuser" />
+            </Principal>
+            <Dependent Role="User_Permission">
+              <PropertyRef Name="id_typeuser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Version_id_model">
+          <End Role="Model" Type="Self.Model" Multiplicity="0..1" />
+          <End Role="Version" Type="Self.Version" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Model">
+              <PropertyRef Name="id_model" />
+            </Principal>
+            <Dependent Role="Version">
+              <PropertyRef Name="id_model" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="XemTenXe" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="CompareCarModelStoreContainer">
+          <EntitySet Name="Article" EntityType="Self.Article" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Automaker" EntityType="Self.Automaker" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Car" EntityType="Self.Car" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CategoryArticle" EntityType="Self.CategoryArticle" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Comment" EntityType="Self.Comment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Contact" EntityType="Self.Contact" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InfoAccount" EntityType="Self.InfoAccount" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Model" EntityType="Self.Model" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Permission" EntityType="Self.Permission" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TypeUser" EntityType="Self.TypeUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User_Permission" EntityType="Self.User_Permission" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Version" EntityType="Self.Version" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Article_id_category" Association="Self.FK_Article_id_category">
+            <End Role="CategoryArticle" EntitySet="CategoryArticle" />
+            <End Role="Article" EntitySet="Article" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Article_id_user" Association="Self.FK_Article_id_user">
+            <End Role="InfoAccount" EntitySet="InfoAccount" />
+            <End Role="Article" EntitySet="Article" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Car_id_version" Association="Self.FK_Car_id_version">
+            <End Role="Version" EntitySet="Version" />
+            <End Role="Car" EntitySet="Car" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comment_id_article" Association="Self.FK_Comment_id_article">
+            <End Role="Article" EntitySet="Article" />
+            <End Role="Comment" EntitySet="Comment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comment_id_commenter" Association="Self.FK_Comment_id_commenter">
+            <End Role="InfoAccount" EntitySet="InfoAccount" />
+            <End Role="Comment" EntitySet="Comment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comment_id_replycomment" Association="Self.FK_Comment_id_replycomment">
+            <End Role="Comment" EntitySet="Comment" />
+            <End Role="Comment1" EntitySet="Comment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InfoAccount_id_typeuser" Association="Self.FK_InfoAccount_id_typeuser">
+            <End Role="TypeUser" EntitySet="TypeUser" />
+            <End Role="InfoAccount" EntitySet="InfoAccount" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Model_id_automaker" Association="Self.FK_Model_id_automaker">
+            <End Role="Automaker" EntitySet="Automaker" />
+            <End Role="Model" EntitySet="Model" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserPermission_id_permisson" Association="Self.FK_UserPermission_id_permisson">
+            <End Role="Permission" EntitySet="Permission" />
+            <End Role="User_Permission" EntitySet="User_Permission" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserPermission_id_typeuser" Association="Self.FK_UserPermission_id_typeuser">
+            <End Role="TypeUser" EntitySet="TypeUser" />
+            <End Role="User_Permission" EntitySet="User_Permission" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Version_id_model" Association="Self.FK_Version_id_model">
+            <End Role="Model" EntitySet="Model" />
+            <End Role="Version" EntitySet="Version" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CompareCarModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Article">
+          <Key>
+            <PropertyRef Name="id_article" />
+          </Key>
+          <Property Name="id_article" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="id_category" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="title_article" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="alias_article" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="id_user" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="description_article" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="time_pulish_article" Type="DateTime" Precision="3" />
+          <Property Name="time_write" Type="DateTime" Precision="3" />
+          <Property Name="state_article" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="img_article" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="linkvideo_article" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CategoryArticle" Relationship="Self.FK_Article_id_category" FromRole="Article" ToRole="CategoryArticle" />
+          <NavigationProperty Name="InfoAccount" Relationship="Self.FK_Article_id_user" FromRole="Article" ToRole="InfoAccount" />
+          <NavigationProperty Name="Comment" Relationship="Self.FK_Comment_id_article" FromRole="Article" ToRole="Comment" />
+        </EntityType>
+        <EntityType Name="Automaker">
+          <Key>
+            <PropertyRef Name="id_automaker" />
+          </Key>
+          <Property Name="id_automaker" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="name_automaker" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Model" Relationship="Self.FK_Model_id_automaker" FromRole="Automaker" ToRole="Model" />
+        </EntityType>
+        <EntityType Name="Car">
+          <Key>
+            <PropertyRef Name="id_car" />
+          </Key>
+          <Property Name="id_car" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="overview_car" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="length_car" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="wheels_car" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="tireparameters_car" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="weight_car" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="capacity_car" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="horsepower_car" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="gear_car" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="torque_car" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="drivetype_car" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="frontbrakesystem_car" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="rearbrakesystem_car" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="maximumspeed_car" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="accelerationtime_car" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="capacitytank_car" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="numberseat_car" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="seat_car" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="airconditioner_car" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="sunroof_car" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="charge_car" Type="Int32" />
+          <Property Name="img_car" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="id_version" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Version" Relationship="Self.FK_Car_id_version" FromRole="Car" ToRole="Version" />
+        </EntityType>
+        <EntityType Name="CategoryArticle">
+          <Key>
+            <PropertyRef Name="id_category" />
+          </Key>
+          <Property Name="id_category" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="name_category" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="description_category" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="alias_category" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Article" Relationship="Self.FK_Article_id_category" FromRole="CategoryArticle" ToRole="Article" />
+        </EntityType>
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="id_comment" />
+          </Key>
+          <Property Name="id_comment" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="id_reply_comment" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="id_article" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="id_commenter" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="day_comment" Type="DateTime" Precision="3" />
+          <Property Name="count_like" Type="Int32" />
+          <Property Name="count_dislike" Type="Int32" />
+          <NavigationProperty Name="Article" Relationship="Self.FK_Comment_id_article" FromRole="Comment" ToRole="Article" />
+          <NavigationProperty Name="InfoAccount" Relationship="Self.FK_Comment_id_commenter" FromRole="Comment" ToRole="InfoAccount" />
+          <NavigationProperty Name="Comment1" Relationship="Self.FK_Comment_id_replycomment" FromRole="Comment" ToRole="Comment1" />
+          <NavigationProperty Name="Comment2" Relationship="Self.FK_Comment_id_replycomment" FromRole="Comment1" ToRole="Comment" />
+        </EntityType>
+        <EntityType Name="Contact">
+          <Key>
+            <PropertyRef Name="id_contact" />
+          </Key>
+          <Property Name="id_contact" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="name_contact" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="email_contact" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="namecompany_contact" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="subject_contace" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="state_contact" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="date_contact" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="InfoAccount">
+          <Key>
+            <PropertyRef Name="id_user" />
+          </Key>
+          <Property Name="id_user" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="name_user" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="password_user" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="id_typeuser" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="lname_user" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="fname_user" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="email_user" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="avt_user" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="block_state_user" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="registerdate_user" Type="DateTime" Precision="3" />
+          <Property Name="lastvisitdate_user" Type="DateTime" Precision="3" />
+          <Property Name="phone_user" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="sex_user" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="birthday_user" Type="DateTime" Precision="0" />
+          <Property Name="address_user" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Article" Relationship="Self.FK_Article_id_user" FromRole="InfoAccount" ToRole="Article" />
+          <NavigationProperty Name="Comment" Relationship="Self.FK_Comment_id_commenter" FromRole="InfoAccount" ToRole="Comment" />
+          <NavigationProperty Name="TypeUser" Relationship="Self.FK_InfoAccount_id_typeuser" FromRole="InfoAccount" ToRole="TypeUser" />
+        </EntityType>
+        <EntityType Name="Model">
+          <Key>
+            <PropertyRef Name="id_model" />
+          </Key>
+          <Property Name="id_model" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="name_model" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="id_automaker" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Automaker" Relationship="Self.FK_Model_id_automaker" FromRole="Model" ToRole="Automaker" />
+          <NavigationProperty Name="Version" Relationship="Self.FK_Version_id_model" FromRole="Model" ToRole="Version" />
+        </EntityType>
+        <EntityType Name="Permission">
+          <Key>
+            <PropertyRef Name="id_permission" />
+          </Key>
+          <Property Name="id_permission" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="name_permission" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="User_Permission" Relationship="Self.FK_UserPermission_id_permisson" FromRole="Permission" ToRole="User_Permission" />
+        </EntityType>
+        <EntityType Name="TypeUser">
+          <Key>
+            <PropertyRef Name="id_typeuser" />
+          </Key>
+          <Property Name="id_typeuser" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="name_typeuser" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="InfoAccount" Relationship="Self.FK_InfoAccount_id_typeuser" FromRole="TypeUser" ToRole="InfoAccount" />
+          <NavigationProperty Name="User_Permission" Relationship="Self.FK_UserPermission_id_typeuser" FromRole="TypeUser" ToRole="User_Permission" />
+        </EntityType>
+        <EntityType Name="User_Permission">
+          <Key>
+            <PropertyRef Name="id_typeuser" />
+            <PropertyRef Name="id_permission" />
+          </Key>
+          <Property Name="id_typeuser" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="id_permission" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="note_permission" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Permission" Relationship="Self.FK_UserPermission_id_permisson" FromRole="User_Permission" ToRole="Permission" />
+          <NavigationProperty Name="TypeUser" Relationship="Self.FK_UserPermission_id_typeuser" FromRole="User_Permission" ToRole="TypeUser" />
+        </EntityType>
+        <EntityType Name="Version">
+          <Key>
+            <PropertyRef Name="id_version" />
+          </Key>
+          <Property Name="id_version" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="name_version" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="id_model" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Car" Relationship="Self.FK_Car_id_version" FromRole="Version" ToRole="Car" />
+          <NavigationProperty Name="Model" Relationship="Self.FK_Version_id_model" FromRole="Version" ToRole="Model" />
+        </EntityType>
+        <Association Name="FK_Article_id_category">
+          <End Role="CategoryArticle" Type="Self.CategoryArticle" Multiplicity="0..1" />
+          <End Role="Article" Type="Self.Article" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CategoryArticle">
+              <PropertyRef Name="id_category" />
+            </Principal>
+            <Dependent Role="Article">
+              <PropertyRef Name="id_category" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Article_id_user">
+          <End Role="InfoAccount" Type="Self.InfoAccount" Multiplicity="0..1" />
+          <End Role="Article" Type="Self.Article" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InfoAccount">
+              <PropertyRef Name="id_user" />
+            </Principal>
+            <Dependent Role="Article">
+              <PropertyRef Name="id_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comment_id_article">
+          <End Role="Article" Type="Self.Article" Multiplicity="0..1" />
+          <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Article">
+              <PropertyRef Name="id_article" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="id_article" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Model_id_automaker">
+          <End Role="Automaker" Type="Self.Automaker" Multiplicity="0..1" />
+          <End Role="Model" Type="Self.Model" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Automaker">
+              <PropertyRef Name="id_automaker" />
+            </Principal>
+            <Dependent Role="Model">
+              <PropertyRef Name="id_automaker" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Car_id_version">
+          <End Role="Version" Type="Self.Version" Multiplicity="0..1" />
+          <End Role="Car" Type="Self.Car" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Version">
+              <PropertyRef Name="id_version" />
+            </Principal>
+            <Dependent Role="Car">
+              <PropertyRef Name="id_version" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comment_id_commenter">
+          <End Role="InfoAccount" Type="Self.InfoAccount" Multiplicity="0..1" />
+          <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InfoAccount">
+              <PropertyRef Name="id_user" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="id_commenter" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comment_id_replycomment">
+          <End Role="Comment" Type="Self.Comment" Multiplicity="0..1" />
+          <End Role="Comment1" Type="Self.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Comment">
+              <PropertyRef Name="id_comment" />
+            </Principal>
+            <Dependent Role="Comment1">
+              <PropertyRef Name="id_reply_comment" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InfoAccount_id_typeuser">
+          <End Role="TypeUser" Type="Self.TypeUser" Multiplicity="0..1" />
+          <End Role="InfoAccount" Type="Self.InfoAccount" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeUser">
+              <PropertyRef Name="id_typeuser" />
+            </Principal>
+            <Dependent Role="InfoAccount">
+              <PropertyRef Name="id_typeuser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Version_id_model">
+          <End Role="Model" Type="Self.Model" Multiplicity="0..1" />
+          <End Role="Version" Type="Self.Version" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Model">
+              <PropertyRef Name="id_model" />
+            </Principal>
+            <Dependent Role="Version">
+              <PropertyRef Name="id_model" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserPermission_id_permisson">
+          <End Role="Permission" Type="Self.Permission" Multiplicity="1" />
+          <End Role="User_Permission" Type="Self.User_Permission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Permission">
+              <PropertyRef Name="id_permission" />
+            </Principal>
+            <Dependent Role="User_Permission">
+              <PropertyRef Name="id_permission" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserPermission_id_typeuser">
+          <End Role="TypeUser" Type="Self.TypeUser" Multiplicity="1" />
+          <End Role="User_Permission" Type="Self.User_Permission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeUser">
+              <PropertyRef Name="id_typeuser" />
+            </Principal>
+            <Dependent Role="User_Permission">
+              <PropertyRef Name="id_typeuser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CompareCarEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Article" EntityType="Self.Article" />
+          <EntitySet Name="Automaker" EntityType="Self.Automaker" />
+          <EntitySet Name="Car" EntityType="Self.Car" />
+          <EntitySet Name="CategoryArticle" EntityType="Self.CategoryArticle" />
+          <EntitySet Name="Comment" EntityType="Self.Comment" />
+          <EntitySet Name="Contact" EntityType="Self.Contact" />
+          <EntitySet Name="InfoAccount" EntityType="Self.InfoAccount" />
+          <EntitySet Name="Model" EntityType="Self.Model" />
+          <EntitySet Name="Permission" EntityType="Self.Permission" />
+          <EntitySet Name="TypeUser" EntityType="Self.TypeUser" />
+          <EntitySet Name="User_Permission" EntityType="Self.User_Permission" />
+          <EntitySet Name="Version" EntityType="Self.Version" />
+          <AssociationSet Name="FK_Article_id_category" Association="Self.FK_Article_id_category">
+            <End Role="CategoryArticle" EntitySet="CategoryArticle" />
+            <End Role="Article" EntitySet="Article" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Article_id_user" Association="Self.FK_Article_id_user">
+            <End Role="InfoAccount" EntitySet="InfoAccount" />
+            <End Role="Article" EntitySet="Article" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comment_id_article" Association="Self.FK_Comment_id_article">
+            <End Role="Article" EntitySet="Article" />
+            <End Role="Comment" EntitySet="Comment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Model_id_automaker" Association="Self.FK_Model_id_automaker">
+            <End Role="Automaker" EntitySet="Automaker" />
+            <End Role="Model" EntitySet="Model" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Car_id_version" Association="Self.FK_Car_id_version">
+            <End Role="Version" EntitySet="Version" />
+            <End Role="Car" EntitySet="Car" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comment_id_commenter" Association="Self.FK_Comment_id_commenter">
+            <End Role="InfoAccount" EntitySet="InfoAccount" />
+            <End Role="Comment" EntitySet="Comment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comment_id_replycomment" Association="Self.FK_Comment_id_replycomment">
+            <End Role="Comment" EntitySet="Comment" />
+            <End Role="Comment1" EntitySet="Comment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InfoAccount_id_typeuser" Association="Self.FK_InfoAccount_id_typeuser">
+            <End Role="TypeUser" EntitySet="TypeUser" />
+            <End Role="InfoAccount" EntitySet="InfoAccount" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Version_id_model" Association="Self.FK_Version_id_model">
+            <End Role="Model" EntitySet="Model" />
+            <End Role="Version" EntitySet="Version" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserPermission_id_permisson" Association="Self.FK_UserPermission_id_permisson">
+            <End Role="Permission" EntitySet="Permission" />
+            <End Role="User_Permission" EntitySet="User_Permission" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserPermission_id_typeuser" Association="Self.FK_UserPermission_id_typeuser">
+            <End Role="TypeUser" EntitySet="TypeUser" />
+            <End Role="User_Permission" EntitySet="User_Permission" />
+          </AssociationSet>
+          <FunctionImport Name="XemTenXe" ReturnType="Collection(CompareCarModel.XemTenXe_Result)" />
+        </EntityContainer>
+        <ComplexType Name="XemTenXe_Result">
+          <Property Type="String" Name="name_automaker" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="name_model" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="name_version" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="id_car" Nullable="false" MaxLength="10" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CompareCarModelStoreContainer" CdmEntityContainer="CompareCarEntities">
+          <EntitySetMapping Name="Article">
+            <EntityTypeMapping TypeName="CompareCarModel.Article">
+              <MappingFragment StoreEntitySet="Article">
+                <ScalarProperty Name="id_article" ColumnName="id_article" />
+                <ScalarProperty Name="id_category" ColumnName="id_category" />
+                <ScalarProperty Name="title_article" ColumnName="title_article" />
+                <ScalarProperty Name="alias_article" ColumnName="alias_article" />
+                <ScalarProperty Name="id_user" ColumnName="id_user" />
+                <ScalarProperty Name="description_article" ColumnName="description_article" />
+                <ScalarProperty Name="time_pulish_article" ColumnName="time_pulish_article" />
+                <ScalarProperty Name="time_write" ColumnName="time_write" />
+                <ScalarProperty Name="state_article" ColumnName="state_article" />
+                <ScalarProperty Name="img_article" ColumnName="img_article" />
+                <ScalarProperty Name="linkvideo_article" ColumnName="linkvideo_article" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Automaker">
+            <EntityTypeMapping TypeName="CompareCarModel.Automaker">
+              <MappingFragment StoreEntitySet="Automaker">
+                <ScalarProperty Name="id_automaker" ColumnName="id_automaker" />
+                <ScalarProperty Name="name_automaker" ColumnName="name_automaker" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Car">
+            <EntityTypeMapping TypeName="CompareCarModel.Car">
+              <MappingFragment StoreEntitySet="Car">
+                <ScalarProperty Name="id_car" ColumnName="id_car" />
+                <ScalarProperty Name="overview_car" ColumnName="overview_car" />
+                <ScalarProperty Name="length_car" ColumnName="length_car" />
+                <ScalarProperty Name="wheels_car" ColumnName="wheels_car" />
+                <ScalarProperty Name="tireparameters_car" ColumnName="tireparameters_car" />
+                <ScalarProperty Name="weight_car" ColumnName="weight_car" />
+                <ScalarProperty Name="capacity_car" ColumnName="capacity_car" />
+                <ScalarProperty Name="horsepower_car" ColumnName="horsepower_car" />
+                <ScalarProperty Name="gear_car" ColumnName="gear_car" />
+                <ScalarProperty Name="torque_car" ColumnName="torque_car" />
+                <ScalarProperty Name="drivetype_car" ColumnName="drivetype_car" />
+                <ScalarProperty Name="frontbrakesystem_car" ColumnName="frontbrakesystem_car" />
+                <ScalarProperty Name="rearbrakesystem_car" ColumnName="rearbrakesystem_car" />
+                <ScalarProperty Name="maximumspeed_car" ColumnName="maximumspeed_car" />
+                <ScalarProperty Name="accelerationtime_car" ColumnName="accelerationtime_car" />
+                <ScalarProperty Name="capacitytank_car" ColumnName="capacitytank_car" />
+                <ScalarProperty Name="numberseat_car" ColumnName="numberseat_car" />
+                <ScalarProperty Name="seat_car" ColumnName="seat_car" />
+                <ScalarProperty Name="airconditioner_car" ColumnName="airconditioner_car" />
+                <ScalarProperty Name="sunroof_car" ColumnName="sunroof_car" />
+                <ScalarProperty Name="charge_car" ColumnName="charge_car" />
+                <ScalarProperty Name="img_car" ColumnName="img_car" />
+                <ScalarProperty Name="id_version" ColumnName="id_version" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CategoryArticle">
+            <EntityTypeMapping TypeName="CompareCarModel.CategoryArticle">
+              <MappingFragment StoreEntitySet="CategoryArticle">
+                <ScalarProperty Name="id_category" ColumnName="id_category" />
+                <ScalarProperty Name="name_category" ColumnName="name_category" />
+                <ScalarProperty Name="description_category" ColumnName="description_category" />
+                <ScalarProperty Name="alias_category" ColumnName="alias_category" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Comment">
+            <EntityTypeMapping TypeName="CompareCarModel.Comment">
+              <MappingFragment StoreEntitySet="Comment">
+                <ScalarProperty Name="id_comment" ColumnName="id_comment" />
+                <ScalarProperty Name="id_reply_comment" ColumnName="id_reply_comment" />
+                <ScalarProperty Name="id_article" ColumnName="id_article" />
+                <ScalarProperty Name="id_commenter" ColumnName="id_commenter" />
+                <ScalarProperty Name="day_comment" ColumnName="day_comment" />
+                <ScalarProperty Name="count_like" ColumnName="count_like" />
+                <ScalarProperty Name="count_dislike" ColumnName="count_dislike" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Contact">
+            <EntityTypeMapping TypeName="CompareCarModel.Contact">
+              <MappingFragment StoreEntitySet="Contact">
+                <ScalarProperty Name="id_contact" ColumnName="id_contact" />
+                <ScalarProperty Name="name_contact" ColumnName="name_contact" />
+                <ScalarProperty Name="email_contact" ColumnName="email_contact" />
+                <ScalarProperty Name="namecompany_contact" ColumnName="namecompany_contact" />
+                <ScalarProperty Name="subject_contace" ColumnName="subject_contace" />
+                <ScalarProperty Name="state_contact" ColumnName="state_contact" />
+                <ScalarProperty Name="date_contact" ColumnName="date_contact" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InfoAccount">
+            <EntityTypeMapping TypeName="CompareCarModel.InfoAccount">
+              <MappingFragment StoreEntitySet="InfoAccount">
+                <ScalarProperty Name="id_user" ColumnName="id_user" />
+                <ScalarProperty Name="name_user" ColumnName="name_user" />
+                <ScalarProperty Name="password_user" ColumnName="password_user" />
+                <ScalarProperty Name="id_typeuser" ColumnName="id_typeuser" />
+                <ScalarProperty Name="lname_user" ColumnName="lname_user" />
+                <ScalarProperty Name="fname_user" ColumnName="fname_user" />
+                <ScalarProperty Name="email_user" ColumnName="email_user" />
+                <ScalarProperty Name="avt_user" ColumnName="avt_user" />
+                <ScalarProperty Name="block_state_user" ColumnName="block_state_user" />
+                <ScalarProperty Name="registerdate_user" ColumnName="registerdate_user" />
+                <ScalarProperty Name="lastvisitdate_user" ColumnName="lastvisitdate_user" />
+                <ScalarProperty Name="phone_user" ColumnName="phone_user" />
+                <ScalarProperty Name="sex_user" ColumnName="sex_user" />
+                <ScalarProperty Name="birthday_user" ColumnName="birthday_user" />
+                <ScalarProperty Name="address_user" ColumnName="address_user" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Model">
+            <EntityTypeMapping TypeName="CompareCarModel.Model">
+              <MappingFragment StoreEntitySet="Model">
+                <ScalarProperty Name="id_model" ColumnName="id_model" />
+                <ScalarProperty Name="name_model" ColumnName="name_model" />
+                <ScalarProperty Name="id_automaker" ColumnName="id_automaker" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Permission">
+            <EntityTypeMapping TypeName="CompareCarModel.Permission">
+              <MappingFragment StoreEntitySet="Permission">
+                <ScalarProperty Name="id_permission" ColumnName="id_permission" />
+                <ScalarProperty Name="name_permission" ColumnName="name_permission" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TypeUser">
+            <EntityTypeMapping TypeName="CompareCarModel.TypeUser">
+              <MappingFragment StoreEntitySet="TypeUser">
+                <ScalarProperty Name="id_typeuser" ColumnName="id_typeuser" />
+                <ScalarProperty Name="name_typeuser" ColumnName="name_typeuser" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User_Permission">
+            <EntityTypeMapping TypeName="CompareCarModel.User_Permission">
+              <MappingFragment StoreEntitySet="User_Permission">
+                <ScalarProperty Name="id_typeuser" ColumnName="id_typeuser" />
+                <ScalarProperty Name="id_permission" ColumnName="id_permission" />
+                <ScalarProperty Name="note_permission" ColumnName="note_permission" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Version">
+            <EntityTypeMapping TypeName="CompareCarModel.Version">
+              <MappingFragment StoreEntitySet="Version">
+                <ScalarProperty Name="id_version" ColumnName="id_version" />
+                <ScalarProperty Name="name_version" ColumnName="name_version" />
+                <ScalarProperty Name="id_model" ColumnName="id_model" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="XemTenXe" FunctionName="CompareCarModel.Store.XemTenXe">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CompareCarModel.XemTenXe_Result">
+                <ScalarProperty Name="name_automaker" ColumnName="name_automaker" />
+                <ScalarProperty Name="name_model" ColumnName="name_model" />
+                <ScalarProperty Name="name_version" ColumnName="name_version" />
+                <ScalarProperty Name="id_car" ColumnName="id_car" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
