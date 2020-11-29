@@ -44,5 +44,25 @@ namespace CarComparison.Areas.Admin.Models
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<XemTenXe_Result>("XemTenXe");
         }
+    
+        [DbFunction("CompareCarEntities", "fc_loadModel")]
+        public virtual IQueryable<fc_loadModel_Result> fc_loadModel(string id)
+        {
+            var idParameter = id != null ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<fc_loadModel_Result>("[CompareCarEntities].[fc_loadModel](@id)", idParameter);
+        }
+    
+        [DbFunction("CompareCarEntities", "fc_LoadModel1")]
+        public virtual IQueryable<fc_LoadModel1_Result> fc_LoadModel1(string id)
+        {
+            var idParameter = id != null ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<fc_LoadModel1_Result>("[CompareCarEntities].[fc_LoadModel1](@id)", idParameter);
+        }
     }
 }

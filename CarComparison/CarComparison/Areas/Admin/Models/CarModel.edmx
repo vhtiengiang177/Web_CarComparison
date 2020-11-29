@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="CompareCarModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="CompareCarModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Article">
           <Key>
             <PropertyRef Name="id_article" />
@@ -280,7 +280,17 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Function Name="XemTenXe" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="fc_LoadModel" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="nvarchar" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="id_model" Type="nvarchar" MaxLength="10" Nullable="false" />
+                <Property Name="name_model" Type="nvarchar" MaxLength="50" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
         <EntityContainer Name="CompareCarModelStoreContainer">
           <EntitySet Name="Article" EntityType="Self.Article" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Automaker" EntityType="Self.Automaker" Schema="dbo" store:Type="Tables" />
@@ -339,8 +349,7 @@
             <End Role="Version" EntitySet="Version" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="CompareCarModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -699,12 +708,26 @@
             <End Role="User_Permission" EntitySet="User_Permission" />
           </AssociationSet>
           <FunctionImport Name="XemTenXe" ReturnType="Collection(CompareCarModel.XemTenXe_Result)" />
+          <FunctionImport Name="fc_loadModel" IsComposable="true" ReturnType="Collection(CompareCarModel.fc_loadModel_Result)">
+          <Parameter Name="id" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="fc_LoadModel1" IsComposable="true" ReturnType="Collection(CompareCarModel.fc_LoadModel1_Result)">
+            <Parameter Name="id" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="XemTenXe_Result">
           <Property Type="String" Name="name_automaker" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="name_model" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="name_version" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="id_car" Nullable="false" MaxLength="10" />
+        </ComplexType>
+        <ComplexType Name="fc_loadModel_Result">
+          <Property Type="String" Name="id_model" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="name_model" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="fc_LoadModel1_Result">
+          <Property Type="String" Name="id_model" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="name_model" Nullable="true" MaxLength="50" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -866,13 +889,11 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="XemTenXe" FunctionName="CompareCarModel.Store.XemTenXe">
+          <FunctionImportMapping FunctionImportName="fc_LoadModel1" FunctionName="CompareCarModel.Store.fc_LoadModel">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="CompareCarModel.XemTenXe_Result">
-                <ScalarProperty Name="name_automaker" ColumnName="name_automaker" />
+              <ComplexTypeMapping TypeName="CompareCarModel.fc_LoadModel1_Result">
+                <ScalarProperty Name="id_model" ColumnName="id_model" />
                 <ScalarProperty Name="name_model" ColumnName="name_model" />
-                <ScalarProperty Name="name_version" ColumnName="name_version" />
-                <ScalarProperty Name="id_car" ColumnName="id_car" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

@@ -79,7 +79,7 @@ https://templatemo.com/tm-516-known
   }
 
   a:hover, a:active, a:focus {
-    color: #e53012;
+    color: #b81d22;
     outline: none;
   }
 
@@ -266,11 +266,11 @@ https://templatemo.com/tm-516-known
       MENU              
   -----------------------------------------*/
   
-  .text-primary { color: #e53012; }
+  .text-primary { color: #b81d22; }
 
 .custom-navbar {
     background: #ffffff;
-    border-top: 5px solid #e53012;
+    border-top: 5px solid #b81d22;
     border-bottom: 0;
     -webkit-box-shadow: 0 1px 30px rgba(0, 0, 0, 0.1);
     -moz-box-shadow: 0 1px 30px rgba(0, 0, 0, 0.1);
@@ -297,7 +297,7 @@ https://templatemo.com/tm-516-known
   }
 
   .custom-navbar .navbar-nav.navbar-right li a .fa {
-    background: #e53012;
+    background: #b81d22;
     border-radius: 100%;
     color: #ffffff;
     width: 30px;
@@ -317,16 +317,16 @@ https://templatemo.com/tm-516-known
 
     .custom-navbar .navbar-nav > li > a:hover,
     .custom-navbar .navbar-nav > li > a:focus {
-        background-color: #e53012;
+        background-color: #b81d22;
     }
 
   .custom-navbar .nav li a:hover {
-    background-color: #e53012;
+    background-color: #b81d22;
     color: #ffffff;
   }
 
     .custom-navbar .nav li.active > a {
-        background-color: #e53012;
+        background-color: #b81d22;
         color: #ffffff;
     }
 
@@ -336,12 +336,12 @@ https://templatemo.com/tm-516-known
   }
 
     .custom-navbar .navbar-toggle {
-        background-color: #e53012;
+        background-color: #b81d22;
     }
 
     .custom-navbar .navbar-toggle .icon-bar {
-        background: #e53012;
-        border-color: #e53012;
+        background: #b81d22;
+        border-color: #b81d22;
     }
 
 
@@ -456,7 +456,7 @@ https://templatemo.com/tm-516-known
   }
 
   #about figure span i {
-    background: #e53012;
+    background: #b81d22;
     border-radius: 50px;
     color: #ffffff;
     font-size: 25px;
@@ -598,7 +598,7 @@ https://templatemo.com/tm-516-known
   }
 
   .courses-price span {
-    background: #e53012;
+    background: #b81d22;
     border-radius: 2px;
     color: #ffffff;
     display: block;
@@ -700,7 +700,7 @@ https://templatemo.com/tm-516-known
   -----------------------------------------*/
 
   #contact {
-    background: #e53012;
+    background: #b81d22;
   }
 
   #contact h2 {
@@ -834,7 +834,7 @@ https://templatemo.com/tm-516-known
   }
 
   .newsletter-form input[type="submit"]:hover {
-    background: #e53012;
+    background: #b81d22;
     border-color: transparent;
   }
 
@@ -865,7 +865,7 @@ https://templatemo.com/tm-516-known
 
   .social-icon li a {
     border-radius: 100px;
-    color: #e53012;
+    color: #b81d22;
     font-size: 15px;
     width: 35px;
     height: 35px;
@@ -878,7 +878,7 @@ https://templatemo.com/tm-516-known
   }
 
   .social-icon li a:hover {
-    background: #e53012;
+    background: #b81d22;
     color: #ffffff;
   }
 
@@ -1018,17 +1018,17 @@ https://templatemo.com/tm-516-known
 
   .team-thumb-actions { padding: 10px; border-top: 1px solid rgba(0,0,0,.05); }
 
-  .section-btn.btn-primary { border-color: #e53012; color: #e53012; }
+  .section-btn.btn-primary { border-color: #b81d22; color: #b81d22; }
   .section-btn.btn-primary:focus,
   .section-btn.btn-primary:active,
   .section-btn.btn-primary:focus:active,
-  .section-btn.btn-primary:hover {background: #e53012; color: #fff; border-color: #e53012; }
+  .section-btn.btn-primary:hover {background: #b81d22; color: #fff; border-color: #b81d22; }
 
   .courses-thumb .lead,
   .team-info .lead { margin-bottom: 10px; }
 
   .courses-thumb .lead strong,
-  .team-info .lead strong { color: #e53012;}
+  .team-info .lead strong { color: #b81d22;}
 
   section,
   .section-background .item,

@@ -177,6 +177,12 @@
     <Compile Include="Areas\Admin\Models\Contact.cs">
       <DependentUpon>CarModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Areas\Admin\Models\fc_LoadModel1_Result.cs">
+      <DependentUpon>CarModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Admin\Models\fc_loadModel_Result.cs">
+      <DependentUpon>CarModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Areas\Admin\Models\InfoAccount.cs">
       <DependentUpon>CarModel.tt</DependentUpon>
     </Compile>
@@ -198,10 +204,15 @@
     <Compile Include="Areas\Admin\Models\XemTenXe_Result.cs">
       <DependentUpon>CarModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\ClientController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="obj\Debug\.NETFramework,Version=v4.7.2.AssemblyAttributes.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -1876,6 +1887,76 @@
     <Content Include="Asset\Admin\vendor\jquery\jquery.min.js" />
     <Content Include="Asset\Admin\vendor\jquery\jquery.slim.js" />
     <Content Include="Asset\Admin\vendor\jquery\jquery.slim.min.js" />
+    <Content Include="bin\Antlr3.Runtime.dll" />
+    <Content Include="bin\Antlr3.Runtime.pdb" />
+    <Content Include="bin\CarComparison.dll" />
+    <Content Include="bin\CarComparison.pdb" />
+    <Content Include="bin\EntityFramework.dll" />
+    <Content Include="bin\EntityFramework.SqlServer.dll" />
+    <Content Include="bin\EntityFramework.SqlServer.xml" />
+    <Content Include="bin\EntityFramework.xml" />
+    <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll" />
+    <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml" />
+    <Content Include="bin\Microsoft.Web.Infrastructure.dll" />
+    <Content Include="bin\Newtonsoft.Json.dll" />
+    <Content Include="bin\Newtonsoft.Json.xml" />
+    <Content Include="bin\roslyn\csc.exe" />
+    <Content Include="bin\roslyn\csi.exe" />
+    <Content Include="bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll" />
+    <Content Include="bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll" />
+    <Content Include="bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll" />
+    <Content Include="bin\roslyn\Microsoft.CodeAnalysis.dll" />
+    <Content Include="bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll" />
+    <Content Include="bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll" />
+    <Content Include="bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll" />
+    <Content Include="bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll" />
+    <Content Include="bin\roslyn\System.AppContext.dll" />
+    <Content Include="bin\roslyn\System.Collections.Immutable.dll" />
+    <Content Include="bin\roslyn\System.Console.dll" />
+    <Content Include="bin\roslyn\System.Diagnostics.FileVersionInfo.dll" />
+    <Content Include="bin\roslyn\System.Diagnostics.StackTrace.dll" />
+    <Content Include="bin\roslyn\System.IO.Compression.dll" />
+    <Content Include="bin\roslyn\System.IO.FileSystem.dll" />
+    <Content Include="bin\roslyn\System.IO.FileSystem.Primitives.dll" />
+    <Content Include="bin\roslyn\System.IO.Pipes.AccessControl.dll" />
+    <Content Include="bin\roslyn\System.IO.Pipes.dll" />
+    <Content Include="bin\roslyn\System.Reflection.Metadata.dll" />
+    <Content Include="bin\roslyn\System.Security.AccessControl.dll" />
+    <Content Include="bin\roslyn\System.Security.Claims.dll" />
+    <Content Include="bin\roslyn\System.Security.Cryptography.Algorithms.dll" />
+    <Content Include="bin\roslyn\System.Security.Cryptography.Encoding.dll" />
+    <Content Include="bin\roslyn\System.Security.Cryptography.Primitives.dll" />
+    <Content Include="bin\roslyn\System.Security.Cryptography.X509Certificates.dll" />
+    <Content Include="bin\roslyn\System.Security.Principal.Windows.dll" />
+    <Content Include="bin\roslyn\System.Text.Encoding.CodePages.dll" />
+    <Content Include="bin\roslyn\System.ValueTuple.dll" />
+    <Content Include="bin\roslyn\System.Xml.ReaderWriter.dll" />
+    <Content Include="bin\roslyn\System.Xml.XmlDocument.dll" />
+    <Content Include="bin\roslyn\System.Xml.XPath.dll" />
+    <Content Include="bin\roslyn\System.Xml.XPath.XDocument.dll" />
+    <Content Include="bin\roslyn\vbc.exe" />
+    <Content Include="bin\roslyn\VBCSCompiler.exe" />
+    <Content Include="bin\System.Net.Http.Formatting.dll" />
+    <Content Include="bin\System.Net.Http.Formatting.xml" />
+    <Content Include="bin\System.Web.Helpers.dll" />
+    <Content Include="bin\System.Web.Helpers.xml" />
+    <Content Include="bin\System.Web.Http.dll" />
+    <Content Include="bin\System.Web.Http.WebHost.dll" />
+    <Content Include="bin\System.Web.Http.WebHost.xml" />
+    <Content Include="bin\System.Web.Http.xml" />
+    <Content Include="bin\System.Web.Mvc.dll" />
+    <Content Include="bin\System.Web.Mvc.xml" />
+    <Content Include="bin\System.Web.Optimization.dll" />
+    <Content Include="bin\System.Web.Optimization.xml" />
+    <Content Include="bin\System.Web.Razor.dll" />
+    <Content Include="bin\System.Web.Razor.xml" />
+    <Content Include="bin\System.Web.WebPages.Deployment.dll" />
+    <Content Include="bin\System.Web.WebPages.Deployment.xml" />
+    <Content Include="bin\System.Web.WebPages.dll" />
+    <Content Include="bin\System.Web.WebPages.Razor.dll" />
+    <Content Include="bin\System.Web.WebPages.Razor.xml" />
+    <Content Include="bin\System.Web.WebPages.xml" />
+    <Content Include="bin\WebGrease.dll" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -1884,6 +1965,12 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="obj\Debug\CarComparison.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\CarComparison.dll" />
+    <Content Include="obj\Debug\CarComparison.pdb" />
+    <Content Include="obj\Debug\TempPE\Areas.Admin.Models.CarModel.Context.cs.dll" />
+    <Content Include="obj\Debug\TempPE\Areas.Admin.Models.CarModel.cs.dll" />
+    <Content Include="obj\Debug\TempPE\Areas.Admin.Models.CarModel.Designer.cs.dll" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\Admin\Views\web.config" />
@@ -2071,6 +2158,25 @@
     <Content Include="Areas\Admin\Views\Cars\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Cars\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Cars\Index.cshtml" />
+    <Content Include="libman.json" />
+    <Content Include="bin\CarComparison.dll.config" />
+    <Content Include="bin\roslyn\csc.exe.config" />
+    <Content Include="bin\roslyn\csc.rsp" />
+    <Content Include="bin\roslyn\csi.exe.config" />
+    <Content Include="bin\roslyn\csi.rsp" />
+    <Content Include="bin\roslyn\Microsoft.CSharp.Core.targets" />
+    <Content Include="bin\roslyn\Microsoft.Managed.Core.targets" />
+    <Content Include="bin\roslyn\Microsoft.VisualBasic.Core.targets" />
+    <Content Include="bin\roslyn\vbc.exe.config" />
+    <Content Include="bin\roslyn\vbc.rsp" />
+    <Content Include="bin\roslyn\VBCSCompiler.exe.config" />
+    <Content Include="obj\Debug\CarComparison.csproj.CopyComplete" />
+    <Content Include="obj\Debug\CarComparison.csproj.CoreCompileInputs.cache" />
+    <Content Include="obj\Debug\CarComparison.csprojAssemblyReference.cache" />
+    <Content Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <Content Include="obj\Debug\edmxResourcesToEmbed\Areas\Admin\Models\CarModel.csdl" />
+    <Content Include="obj\Debug\edmxResourcesToEmbed\Areas\Admin\Models\CarModel.msl" />
+    <Content Include="obj\Debug\edmxResourcesToEmbed\Areas\Admin\Models\CarModel.ssdl" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -2082,6 +2188,49 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Total\Client\css\bootstrap.min.css" />
+    <Content Include="Total\Client\css\font-awesome.min.css" />
+    <Content Include="Total\Client\css\owl.carousel.css" />
+    <Content Include="Total\Client\css\owl.theme.default.min.css" />
+    <Content Include="Total\Client\css\style.css" />
+    <Content Include="Total\Client\font\fontawesome-webfont.svg" />
+    <Content Include="Total\Client\images\about-1-720x720.jpg" />
+    <Content Include="Total\Client\images\about-2-720x720.jpg" />
+    <Content Include="Total\Client\images\author-image-1-646x680.jpg" />
+    <Content Include="Total\Client\images\author-image-2-646x680.jpg" />
+    <Content Include="Total\Client\images\author-image-3-646x680.jpg" />
+    <Content Include="Total\Client\images\author-image-4-646x680.jpg" />
+    <Content Include="Total\Client\images\blog-1-720x480.jpg" />
+    <Content Include="Total\Client\images\blog-2-720x480.jpg" />
+    <Content Include="Total\Client\images\blog-3-720x480.jpg" />
+    <Content Include="Total\Client\images\blog-4-720x480.jpg" />
+    <Content Include="Total\Client\images\blog-5-720x480.jpg" />
+    <Content Include="Total\Client\images\blog-6-720x480.jpg" />
+    <Content Include="Total\Client\images\brand.PNG" />
+    <Content Include="Total\Client\images\contact-1-600x400.jpg" />
+    <Content Include="Total\Client\images\giabao.jpg" />
+    <Content Include="Total\Client\images\giang.jpg" />
+    <Content Include="Total\Client\images\namhai.jpg" />
+    <Content Include="Total\Client\images\other-image-fullscreen-1-1920x700.jpg" />
+    <Content Include="Total\Client\images\product-1-720x480.jpg" />
+    <Content Include="Total\Client\images\product-2-720x480.jpg" />
+    <Content Include="Total\Client\images\product-3-720x480.jpg" />
+    <Content Include="Total\Client\images\product-4-720x480.jpg" />
+    <Content Include="Total\Client\images\product-5-720x480.jpg" />
+    <Content Include="Total\Client\images\product-6-720x480.jpg" />
+    <Content Include="Total\Client\images\slider-image-1-1920x700.jpg" />
+    <Content Include="Total\Client\images\slider-image-2-1920x700.jpg" />
+    <Content Include="Total\Client\images\slider-image-3-1920x700.jpg" />
+    <Content Include="Total\Client\images\thao.jpg" />
+    <Content Include="Total\Client\images\tst-image-1-200x216.jpg" />
+    <Content Include="Total\Client\images\tst-image-2-200x216.jpg" />
+    <Content Include="Total\Client\images\tst-image-3-200x216.jpg" />
+    <Content Include="Total\Client\images\tst-image-4-200x216.jpg" />
+    <Content Include="Total\Client\js\bootstrap.min.js" />
+    <Content Include="Total\Client\js\custom.js" />
+    <Content Include="Total\Client\js\jquery.js" />
+    <Content Include="Total\Client\js\owl.carousel.min.js" />
+    <Content Include="Total\Client\js\smoothscroll.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -2096,10 +2245,21 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Total\Client\font\fontawesome-webfont.eot" />
+    <Content Include="Total\Client\font\fontawesome-webfont.ttf" />
+    <Content Include="Total\Client\font\fontawesome-webfont.woff" />
+    <Content Include="Total\Client\font\fontawesome-webfont.woff2" />
+    <Content Include="Total\Client\font\FontAwesome.otf" />
+    <Content Include="Views\Client\Comparing.cshtml" />
+    <Content Include="Views\Client\Contact.cshtml" />
+    <Content Include="Views\Client\Index.cshtml" />
+    <Content Include="Views\Client\Review.cshtml" />
+    <Content Include="Views\Client\Team.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+    <Folder Include="Total\Client\styles\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

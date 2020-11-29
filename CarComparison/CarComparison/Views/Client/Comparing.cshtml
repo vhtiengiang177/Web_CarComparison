@@ -1,5 +1,6 @@
 ﻿@{
     Layout = null;
+
 }
 
 <!DOCTYPE html>
@@ -101,17 +102,14 @@
                     <div class="form">
                         <form action="#">
                             <div class="form-group">
-                                <label>Used/New:</label>
+                                <label>Hãng xe</label>
 
-                                <select class="form-control">
-                                    <option value="">All</option>
-                                    <option value="new">New vehicle</option>
-                                    <option value="used">Used vehicle</option>
-                                </select>
+                                    @Html.DropDownList("AtomakerList", ViewBag.automakerlistname as SelectList, "All", new { @class = "form-control" })
+                                    
                             </div>
 
                             <div class="form-group">
-                                <label>Vehicle Type:</label>
+                                <label>Dòng xe</label>
 
                                 <select class="form-control">
                                     <option value="">--All --</option>
@@ -123,7 +121,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label>Make:</label>
+                                <label>Phiên bản</label>
 
                                 <select class="form-control">
                                     <option value="">-- All --</option>
