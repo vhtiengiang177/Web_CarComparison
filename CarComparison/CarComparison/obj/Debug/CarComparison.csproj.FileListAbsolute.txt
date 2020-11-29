@@ -47,21 +47,6 @@ E:\TienGiang\Nam3Ky1\Lập trình Web\Web_CarComparison\CarComparison\CarCompari
 E:\TienGiang\Nam3Ky1\Lập trình Web\Web_CarComparison\CarComparison\CarComparison\bin\roslyn\vbc.rsp
 E:\TienGiang\Nam3Ky1\Lập trình Web\Web_CarComparison\CarComparison\CarComparison\bin\roslyn\VBCSCompiler.exe
 E:\TienGiang\Nam3Ky1\Lập trình Web\Web_CarComparison\CarComparison\CarComparison\bin\roslyn\VBCSCompiler.exe.config
-E:\TienGiang\Nam3Ky1\Lập trình Web\Web_CarComparison\CarComparison\CarComparison\bin\Antlr3.Runtime.dll
-E:\TienGiang\Nam3Ky1\Lập trình Web\Web_CarComparison\CarComparison\CarComparison\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
-E:\TienGiang\Nam3Ky1\Lập trình Web\Web_CarComparison\CarComparison\CarComparison\bin\Microsoft.Web.Infrastructure.dll
-E:\TienGiang\Nam3Ky1\Lập trình Web\Web_CarComparison\CarComparison\CarComparison\bin\Newtonsoft.Json.dll
-E:\TienGiang\Nam3Ky1\Lập trình Web\Web_CarComparison\CarComparison\CarComparison\bin\System.Net.Http.Formatting.dll
-E:\TienGiang\Nam3Ky1\Lập trình Web\Web_CarComparison\CarComparison\CarComparison\bin\System.Web.Helpers.dll
-E:\TienGiang\Nam3Ky1\Lập trình Web\Web_CarComparison\CarComparison\CarComparison\bin\System.Web.Http.dll
-E:\TienGiang\Nam3Ky1\Lập trình Web\Web_CarComparison\CarComparison\CarComparison\bin\System.Web.Http.WebHost.dll
-E:\TienGiang\Nam3Ky1\Lập trình Web\Web_CarComparison\CarComparison\CarComparison\bin\System.Web.Mvc.dll
-E:\TienGiang\Nam3Ky1\Lập trình Web\Web_CarComparison\CarComparison\CarComparison\bin\System.Web.Optimization.dll
-E:\TienGiang\Nam3Ky1\Lập trình Web\Web_CarComparison\CarComparison\CarComparison\bin\System.Web.Razor.dll
-E:\TienGiang\Nam3Ky1\Lập trình Web\Web_CarComparison\CarComparison\CarComparison\bin\System.Web.WebPages.Deployment.dll
-E:\TienGiang\Nam3Ky1\Lập trình Web\Web_CarComparison\CarComparison\CarComparison\bin\System.Web.WebPages.dll
-E:\TienGiang\Nam3Ky1\Lập trình Web\Web_CarComparison\CarComparison\CarComparison\bin\System.Web.WebPages.Razor.dll
-E:\TienGiang\Nam3Ky1\Lập trình Web\Web_CarComparison\CarComparison\CarComparison\bin\WebGrease.dll
 E:\TienGiang\Nam3Ky1\Lập trình Web\Web_CarComparison\CarComparison\CarComparison\bin\System.Web.Helpers.xml
 E:\TienGiang\Nam3Ky1\Lập trình Web\Web_CarComparison\CarComparison\CarComparison\bin\System.Web.Mvc.xml
 E:\TienGiang\Nam3Ky1\Lập trình Web\Web_CarComparison\CarComparison\CarComparison\bin\System.Web.Optimization.xml
@@ -80,8 +65,6 @@ E:\TienGiang\Nam3Ky1\Lập trình Web\Web_CarComparison\CarComparison\CarCompari
 E:\TienGiang\Nam3Ky1\Lập trình Web\Web_CarComparison\CarComparison\CarComparison\obj\Debug\CarComparison.csproj.CopyComplete
 E:\TienGiang\Nam3Ky1\Lập trình Web\Web_CarComparison\CarComparison\CarComparison\obj\Debug\CarComparison.dll
 E:\TienGiang\Nam3Ky1\Lập trình Web\Web_CarComparison\CarComparison\CarComparison\obj\Debug\CarComparison.pdb
-E:\TienGiang\Nam3Ky1\Lập trình Web\Web_CarComparison\CarComparison\CarComparison\bin\EntityFramework.dll
-E:\TienGiang\Nam3Ky1\Lập trình Web\Web_CarComparison\CarComparison\CarComparison\bin\EntityFramework.SqlServer.dll
 E:\TienGiang\Nam3Ky1\Lập trình Web\Web_CarComparison\CarComparison\CarComparison\bin\EntityFramework.xml
 E:\TienGiang\Nam3Ky1\Lập trình Web\Web_CarComparison\CarComparison\CarComparison\bin\EntityFramework.SqlServer.xml
 D:\TÀI LIỆU NĂM 3\Lập trình web\CarProject\Web_CarComparison\CarComparison\CarComparison\bin\CarComparison.dll.config

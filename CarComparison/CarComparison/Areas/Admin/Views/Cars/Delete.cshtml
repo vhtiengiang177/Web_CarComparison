@@ -5,13 +5,13 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Xóa xe</h2>
+<h1 class="h3 mb-2 text-gray-800">Xóa xe</h1>
 
-<h3>Bạn có chắc chắn muốn xóa Xe này không?</h3>
+<h6>Bạn có chắc chắn muốn xóa xe này không?</h6>
 <div>
     <hr />
 
-    <dl class="dl-horizontal">
+    <dl class="detail-car">
         <dt>
             @*@Html.DisplayNameFor(model => model.overview_car)*@
             Tổng quan
@@ -83,7 +83,9 @@
         <dd>
             @Html.DisplayFor(model => model.gear_car)
         </dd>
-
+       
+    </dl>
+    <dl class="detail-car">
         <dt>
             @*@Html.DisplayNameFor(model => model.torque_car)*@
             Momen Xoắn
@@ -111,7 +113,6 @@
         <dd>
             @Html.DisplayFor(model => model.frontbrakesystem_car)
         </dd>
-
         <dt>
             @*@Html.DisplayNameFor(model => model.rearbrakesystem_car)*@
             Hệ Thống Thắng Sau
@@ -129,7 +130,6 @@
         <dd>
             @Html.DisplayFor(model => model.maximumspeed_car)
         </dd>
-
         <dt>
             @*@Html.DisplayNameFor(model => model.accelerationtime_car)*@
             Tăng tốc từ 0-100km/h
@@ -157,6 +157,8 @@
             @Html.DisplayFor(model => model.numberseat_car)
         </dd>
 
+    </dl>
+    <dl class="detail-car">
         <dt>
             @*@Html.DisplayNameFor(model => model.seat_car)*@
             Loại Ghế
@@ -195,7 +197,7 @@
 
         <dt>
             @*@Html.DisplayNameFor(model => model.img_car)*@
-            Ảnh Xe
+            Ảnh
         </dt>
 
         <dd>
@@ -210,7 +212,6 @@
         <dd>
             @Html.DisplayFor(model => model.Version.name_version)
         </dd>
-
     </dl>
 
     @using (Html.BeginForm())
