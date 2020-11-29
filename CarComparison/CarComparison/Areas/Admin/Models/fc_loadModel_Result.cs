@@ -11,7 +11,7 @@ namespace CarComparison.Areas.Admin.Models
 {
     using System;
     
-    public partial class fc_loadModel_Result
+    public partial class fc_LoadModel_Result
     {
         public string id_model { get; set; }
         public string name_model { get; set; }

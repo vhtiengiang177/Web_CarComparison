@@ -44,7 +44,7 @@ namespace CarComparison.Controllers
         public ActionResult Comparing()
         {
             CompareCarEntities db = new CompareCarEntities();
-            var getAutomakerList = db.Automaker.ToList();
+            var getAutomakerList = db.Automakers.ToList();
             SelectList list = new SelectList(getAutomakerList, "id_automaker", "name_automaker");
             ViewBag.automakerlistname = list;
             return View();

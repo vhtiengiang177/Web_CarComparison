@@ -28,7 +28,7 @@ namespace CarComparison.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Car car = db.Car.Find(id);
+            Car car = db.Cars.Find(id);
             if (car == null)
             {
                 return HttpNotFound();
@@ -39,7 +39,7 @@ namespace CarComparison.Areas.Admin.Controllers
         // GET: Admin/Cars/Create
         public ActionResult Create()
         {
-            ViewBag.id_version = new SelectList(db.Version, "id_version", "name_version");
+            ViewBag.id_version = new SelectList(db.Versions, "id_version", "name_version");
             return View();
         }
 
@@ -52,12 +52,12 @@ namespace CarComparison.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Car.Add(car);
+                db.Cars.Add(car);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.id_version = new SelectList(db.Version, "id_version", "name_version", car.id_version);
+            ViewBag.id_version = new SelectList(db.Versions, "id_version", "name_version", car.id_version);
             return View(car);
         }
 
@@ -68,12 +68,12 @@ namespace CarComparison.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Car car = db.Car.Find(id);
+            Car car = db.Cars.Find(id);
             if (car == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.id_version = new SelectList(db.Version, "id_version", "name_version", car.id_version);
+            ViewBag.id_version = new SelectList(db.Versions, "id_version", "name_version", car.id_version);
             return View(car);
         }
 
@@ -90,7 +90,7 @@ namespace CarComparison.Areas.Admin.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.id_version = new SelectList(db.Version, "id_version", "name_version", car.id_version);
+            ViewBag.id_version = new SelectList(db.Versions, "id_version", "name_version", car.id_version);
             return View(car);
         }
 
@@ -101,7 +101,7 @@ namespace CarComparison.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Car car = db.Car.Find(id);
+            Car car = db.Cars.Find(id);
             if (car == null)
             {
                 return HttpNotFound();
@@ -114,8 +114,8 @@ namespace CarComparison.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
-            Car car = db.Car.Find(id);
-            db.Car.Remove(car);
+            Car car = db.Cars.Find(id);
+            db.Cars.Remove(car);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

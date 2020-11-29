@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="CompareCarModelStoreContainer" CdmEntityContainer="CompareCarEntities">
-    <EntitySetMapping Name="Article">
+    <EntitySetMapping Name="Articles">
       <EntityTypeMapping TypeName="CompareCarModel.Article">
         <MappingFragment StoreEntitySet="Article">
           <ScalarProperty Name="id_article" ColumnName="id_article" />
@@ -18,7 +18,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Automaker">
+    <EntitySetMapping Name="Automakers">
       <EntityTypeMapping TypeName="CompareCarModel.Automaker">
         <MappingFragment StoreEntitySet="Automaker">
           <ScalarProperty Name="id_automaker" ColumnName="id_automaker" />
@@ -26,7 +26,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Car">
+    <EntitySetMapping Name="Cars">
       <EntityTypeMapping TypeName="CompareCarModel.Car">
         <MappingFragment StoreEntitySet="Car">
           <ScalarProperty Name="id_car" ColumnName="id_car" />
@@ -55,7 +55,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="CategoryArticle">
+    <EntitySetMapping Name="CategoryArticles">
       <EntityTypeMapping TypeName="CompareCarModel.CategoryArticle">
         <MappingFragment StoreEntitySet="CategoryArticle">
           <ScalarProperty Name="id_category" ColumnName="id_category" />
@@ -65,7 +65,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Comment">
+    <EntitySetMapping Name="Comments">
       <EntityTypeMapping TypeName="CompareCarModel.Comment">
         <MappingFragment StoreEntitySet="Comment">
           <ScalarProperty Name="id_comment" ColumnName="id_comment" />
@@ -78,7 +78,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Contact">
+    <EntitySetMapping Name="Contacts">
       <EntityTypeMapping TypeName="CompareCarModel.Contact">
         <MappingFragment StoreEntitySet="Contact">
           <ScalarProperty Name="id_contact" ColumnName="id_contact" />
@@ -91,7 +91,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="InfoAccount">
+    <EntitySetMapping Name="InfoAccounts">
       <EntityTypeMapping TypeName="CompareCarModel.InfoAccount">
         <MappingFragment StoreEntitySet="InfoAccount">
           <ScalarProperty Name="id_user" ColumnName="id_user" />
@@ -112,7 +112,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Model">
+    <EntitySetMapping Name="Models">
       <EntityTypeMapping TypeName="CompareCarModel.Model">
         <MappingFragment StoreEntitySet="Model">
           <ScalarProperty Name="id_model" ColumnName="id_model" />
@@ -121,7 +121,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Permission">
+    <EntitySetMapping Name="Permissions">
       <EntityTypeMapping TypeName="CompareCarModel.Permission">
         <MappingFragment StoreEntitySet="Permission">
           <ScalarProperty Name="id_permission" ColumnName="id_permission" />
@@ -129,7 +129,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="TypeUser">
+    <EntitySetMapping Name="TypeUsers">
       <EntityTypeMapping TypeName="CompareCarModel.TypeUser">
         <MappingFragment StoreEntitySet="TypeUser">
           <ScalarProperty Name="id_typeuser" ColumnName="id_typeuser" />
@@ -146,7 +146,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Version">
+    <EntitySetMapping Name="Versions">
       <EntityTypeMapping TypeName="CompareCarModel.Version">
         <MappingFragment StoreEntitySet="Version">
           <ScalarProperty Name="id_version" ColumnName="id_version" />
@@ -155,6 +155,14 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <FunctionImportMapping FunctionName="CompareCarModel.Store.fc_LoadModel" FunctionImportName="fc_LoadModel">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CompareCarModel.fc_LoadModel_Result">
+          <ScalarProperty Name="id_model" ColumnName="id_model" />
+          <ScalarProperty Name="name_model" ColumnName="name_model" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="XemTenXe" FunctionName="CompareCarModel.Store.XemTenXe">
       <ResultMapping>
         <ComplexTypeMapping TypeName="CompareCarModel.XemTenXe_Result">

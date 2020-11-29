@@ -275,6 +275,17 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Function Name="fc_LoadModel" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="nvarchar" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="id_model" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="name_model" Type="nvarchar" MaxLength="50" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
   <Function Name="XemTenXe" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <EntityContainer Name="CompareCarModelStoreContainer">
     <EntitySet Name="Article" EntityType="Self.Article" Schema="dbo" store:Type="Tables" />

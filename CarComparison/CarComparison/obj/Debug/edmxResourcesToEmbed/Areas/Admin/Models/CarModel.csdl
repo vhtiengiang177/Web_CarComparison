@@ -1,5 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="CompareCarModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <ComplexType Name="fc_LoadModel_Result">
+    <Property Name="id_model" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="name_model" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </ComplexType>
   <EntityType Name="Article">
     <Key>
       <PropertyRef Name="id_article" />
@@ -17,7 +21,7 @@
     <Property Name="linkvideo_article" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="CategoryArticle" Relationship="Self.FK_Article_id_category" FromRole="Article" ToRole="CategoryArticle" />
     <NavigationProperty Name="InfoAccount" Relationship="Self.FK_Article_id_user" FromRole="Article" ToRole="InfoAccount" />
-    <NavigationProperty Name="Comment" Relationship="Self.FK_Comment_id_article" FromRole="Article" ToRole="Comment" />
+    <NavigationProperty Name="Comments" Relationship="Self.FK_Comment_id_article" FromRole="Article" ToRole="Comment" />
   </EntityType>
   <EntityType Name="Automaker">
     <Key>
@@ -25,7 +29,7 @@
     </Key>
     <Property Name="id_automaker" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="name_automaker" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="Model" Relationship="Self.FK_Model_id_automaker" FromRole="Automaker" ToRole="Model" />
+    <NavigationProperty Name="Models" Relationship="Self.FK_Model_id_automaker" FromRole="Automaker" ToRole="Model" />
   </EntityType>
   <EntityType Name="Car">
     <Key>
@@ -64,7 +68,7 @@
     <Property Name="name_category" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="description_category" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="alias_category" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="Article" Relationship="Self.FK_Article_id_category" FromRole="CategoryArticle" ToRole="Article" />
+    <NavigationProperty Name="Articles" Relationship="Self.FK_Article_id_category" FromRole="CategoryArticle" ToRole="Article" />
   </EntityType>
   <EntityType Name="Comment">
     <Key>
@@ -113,8 +117,8 @@
     <Property Name="sex_user" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="birthday_user" Type="DateTime" Precision="0" />
     <Property Name="address_user" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="Article" Relationship="Self.FK_Article_id_user" FromRole="InfoAccount" ToRole="Article" />
-    <NavigationProperty Name="Comment" Relationship="Self.FK_Comment_id_commenter" FromRole="InfoAccount" ToRole="Comment" />
+    <NavigationProperty Name="Articles" Relationship="Self.FK_Article_id_user" FromRole="InfoAccount" ToRole="Article" />
+    <NavigationProperty Name="Comments" Relationship="Self.FK_Comment_id_commenter" FromRole="InfoAccount" ToRole="Comment" />
     <NavigationProperty Name="TypeUser" Relationship="Self.FK_InfoAccount_id_typeuser" FromRole="InfoAccount" ToRole="TypeUser" />
   </EntityType>
   <EntityType Name="Model">
@@ -125,7 +129,7 @@
     <Property Name="name_model" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="id_automaker" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Automaker" Relationship="Self.FK_Model_id_automaker" FromRole="Model" ToRole="Automaker" />
-    <NavigationProperty Name="Version" Relationship="Self.FK_Version_id_model" FromRole="Model" ToRole="Version" />
+    <NavigationProperty Name="Versions" Relationship="Self.FK_Version_id_model" FromRole="Model" ToRole="Version" />
   </EntityType>
   <EntityType Name="Permission">
     <Key>
@@ -141,7 +145,7 @@
     </Key>
     <Property Name="id_typeuser" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="name_typeuser" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="InfoAccount" Relationship="Self.FK_InfoAccount_id_typeuser" FromRole="TypeUser" ToRole="InfoAccount" />
+    <NavigationProperty Name="InfoAccounts" Relationship="Self.FK_InfoAccount_id_typeuser" FromRole="TypeUser" ToRole="InfoAccount" />
     <NavigationProperty Name="User_Permission" Relationship="Self.FK_UserPermission_id_typeuser" FromRole="TypeUser" ToRole="User_Permission" />
   </EntityType>
   <EntityType Name="User_Permission">
@@ -162,7 +166,7 @@
     <Property Name="id_version" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="name_version" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="id_model" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="Car" Relationship="Self.FK_Car_id_version" FromRole="Version" ToRole="Car" />
+    <NavigationProperty Name="Cars" Relationship="Self.FK_Car_id_version" FromRole="Version" ToRole="Car" />
     <NavigationProperty Name="Model" Relationship="Self.FK_Version_id_model" FromRole="Version" ToRole="Model" />
   </EntityType>
   <Association Name="FK_Article_id_category">
@@ -298,62 +302,65 @@
     </ReferentialConstraint>
   </Association>
   <EntityContainer Name="CompareCarEntities" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="Article" EntityType="Self.Article" />
-    <EntitySet Name="Automaker" EntityType="Self.Automaker" />
-    <EntitySet Name="Car" EntityType="Self.Car" />
-    <EntitySet Name="CategoryArticle" EntityType="Self.CategoryArticle" />
-    <EntitySet Name="Comment" EntityType="Self.Comment" />
-    <EntitySet Name="Contact" EntityType="Self.Contact" />
-    <EntitySet Name="InfoAccount" EntityType="Self.InfoAccount" />
-    <EntitySet Name="Model" EntityType="Self.Model" />
-    <EntitySet Name="Permission" EntityType="Self.Permission" />
-    <EntitySet Name="TypeUser" EntityType="Self.TypeUser" />
+    <EntitySet Name="Articles" EntityType="Self.Article" />
+    <EntitySet Name="Automakers" EntityType="Self.Automaker" />
+    <EntitySet Name="Cars" EntityType="Self.Car" />
+    <EntitySet Name="CategoryArticles" EntityType="Self.CategoryArticle" />
+    <EntitySet Name="Comments" EntityType="Self.Comment" />
+    <EntitySet Name="Contacts" EntityType="Self.Contact" />
+    <EntitySet Name="InfoAccounts" EntityType="Self.InfoAccount" />
+    <EntitySet Name="Models" EntityType="Self.Model" />
+    <EntitySet Name="Permissions" EntityType="Self.Permission" />
+    <EntitySet Name="TypeUsers" EntityType="Self.TypeUser" />
     <EntitySet Name="User_Permission" EntityType="Self.User_Permission" />
-    <EntitySet Name="Version" EntityType="Self.Version" />
+    <EntitySet Name="Versions" EntityType="Self.Version" />
     <AssociationSet Name="FK_Article_id_category" Association="Self.FK_Article_id_category">
-      <End Role="CategoryArticle" EntitySet="CategoryArticle" />
-      <End Role="Article" EntitySet="Article" />
+      <End Role="CategoryArticle" EntitySet="CategoryArticles" />
+      <End Role="Article" EntitySet="Articles" />
     </AssociationSet>
     <AssociationSet Name="FK_Article_id_user" Association="Self.FK_Article_id_user">
-      <End Role="InfoAccount" EntitySet="InfoAccount" />
-      <End Role="Article" EntitySet="Article" />
+      <End Role="InfoAccount" EntitySet="InfoAccounts" />
+      <End Role="Article" EntitySet="Articles" />
     </AssociationSet>
     <AssociationSet Name="FK_Comment_id_article" Association="Self.FK_Comment_id_article">
-      <End Role="Article" EntitySet="Article" />
-      <End Role="Comment" EntitySet="Comment" />
+      <End Role="Article" EntitySet="Articles" />
+      <End Role="Comment" EntitySet="Comments" />
     </AssociationSet>
     <AssociationSet Name="FK_Model_id_automaker" Association="Self.FK_Model_id_automaker">
-      <End Role="Automaker" EntitySet="Automaker" />
-      <End Role="Model" EntitySet="Model" />
+      <End Role="Automaker" EntitySet="Automakers" />
+      <End Role="Model" EntitySet="Models" />
     </AssociationSet>
     <AssociationSet Name="FK_Car_id_version" Association="Self.FK_Car_id_version">
-      <End Role="Version" EntitySet="Version" />
-      <End Role="Car" EntitySet="Car" />
+      <End Role="Version" EntitySet="Versions" />
+      <End Role="Car" EntitySet="Cars" />
     </AssociationSet>
     <AssociationSet Name="FK_Comment_id_commenter" Association="Self.FK_Comment_id_commenter">
-      <End Role="InfoAccount" EntitySet="InfoAccount" />
-      <End Role="Comment" EntitySet="Comment" />
+      <End Role="InfoAccount" EntitySet="InfoAccounts" />
+      <End Role="Comment" EntitySet="Comments" />
     </AssociationSet>
     <AssociationSet Name="FK_Comment_id_replycomment" Association="Self.FK_Comment_id_replycomment">
-      <End Role="Comment" EntitySet="Comment" />
-      <End Role="Comment1" EntitySet="Comment" />
+      <End Role="Comment" EntitySet="Comments" />
+      <End Role="Comment1" EntitySet="Comments" />
     </AssociationSet>
     <AssociationSet Name="FK_InfoAccount_id_typeuser" Association="Self.FK_InfoAccount_id_typeuser">
-      <End Role="TypeUser" EntitySet="TypeUser" />
-      <End Role="InfoAccount" EntitySet="InfoAccount" />
+      <End Role="TypeUser" EntitySet="TypeUsers" />
+      <End Role="InfoAccount" EntitySet="InfoAccounts" />
     </AssociationSet>
     <AssociationSet Name="FK_Version_id_model" Association="Self.FK_Version_id_model">
-      <End Role="Model" EntitySet="Model" />
-      <End Role="Version" EntitySet="Version" />
+      <End Role="Model" EntitySet="Models" />
+      <End Role="Version" EntitySet="Versions" />
     </AssociationSet>
     <AssociationSet Name="FK_UserPermission_id_permisson" Association="Self.FK_UserPermission_id_permisson">
-      <End Role="Permission" EntitySet="Permission" />
+      <End Role="Permission" EntitySet="Permissions" />
       <End Role="User_Permission" EntitySet="User_Permission" />
     </AssociationSet>
     <AssociationSet Name="FK_UserPermission_id_typeuser" Association="Self.FK_UserPermission_id_typeuser">
-      <End Role="TypeUser" EntitySet="TypeUser" />
+      <End Role="TypeUser" EntitySet="TypeUsers" />
       <End Role="User_Permission" EntitySet="User_Permission" />
     </AssociationSet>
+    <FunctionImport Name="fc_LoadModel" IsComposable="true" ReturnType="Collection(CompareCarModel.fc_LoadModel_Result)">
+      <Parameter Name="id" Mode="In" Type="String" />
+    </FunctionImport>
     <FunctionImport Name="XemTenXe" ReturnType="Collection(CompareCarModel.XemTenXe_Result)" />
   </EntityContainer>
   <ComplexType Name="XemTenXe_Result">

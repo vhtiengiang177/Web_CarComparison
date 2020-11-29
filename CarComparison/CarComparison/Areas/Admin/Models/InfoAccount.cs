@@ -17,8 +17,8 @@ namespace CarComparison.Areas.Admin.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public InfoAccount()
         {
-            this.Article = new HashSet<Article>();
-            this.Comment = new HashSet<Comment>();
+            this.Articles = new HashSet<Article>();
+            this.Comments = new HashSet<Comment>();
         }
     
         public string id_user { get; set; }
@@ -38,9 +38,9 @@ namespace CarComparison.Areas.Admin.Models
         public string address_user { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Article> Article { get; set; }
+        public virtual ICollection<Article> Articles { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Comment> Comment { get; set; }
+        public virtual ICollection<Comment> Comments { get; set; }
         public virtual TypeUser TypeUser { get; set; }
     }
 }

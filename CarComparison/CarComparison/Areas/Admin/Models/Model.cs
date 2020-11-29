@@ -17,7 +17,7 @@ namespace CarComparison.Areas.Admin.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Model()
         {
-            this.Version = new HashSet<Version>();
+            this.Versions = new HashSet<Version>();
         }
     
         public string id_model { get; set; }
@@ -26,6 +26,6 @@ namespace CarComparison.Areas.Admin.Models
     
         public virtual Automaker Automaker { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Version> Version { get; set; }
+        public virtual ICollection<Version> Versions { get; set; }
     }
 }

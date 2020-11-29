@@ -17,7 +17,7 @@ namespace CarComparison.Areas.Admin.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public TypeUser()
         {
-            this.InfoAccount = new HashSet<InfoAccount>();
+            this.InfoAccounts = new HashSet<InfoAccount>();
             this.User_Permission = new HashSet<User_Permission>();
         }
     
@@ -25,7 +25,7 @@ namespace CarComparison.Areas.Admin.Models
         public string name_typeuser { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<InfoAccount> InfoAccount { get; set; }
+        public virtual ICollection<InfoAccount> InfoAccounts { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<User_Permission> User_Permission { get; set; }
     }

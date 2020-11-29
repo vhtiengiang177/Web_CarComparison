@@ -17,13 +17,13 @@ namespace CarComparison.Areas.Admin.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Automaker()
         {
-            this.Model = new HashSet<Model>();
+            this.Models = new HashSet<Model>();
         }
     
         public string id_automaker { get; set; }
         public string name_automaker { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Model> Model { get; set; }
+        public virtual ICollection<Model> Models { get; set; }
     }
 }

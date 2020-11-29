@@ -177,10 +177,7 @@
     <Compile Include="Areas\Admin\Models\Contact.cs">
       <DependentUpon>CarModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Areas\Admin\Models\fc_LoadModel1_Result.cs">
-      <DependentUpon>CarModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Areas\Admin\Models\fc_loadModel_Result.cs">
+    <Compile Include="Areas\Admin\Models\fc_LoadModel_Result.cs">
       <DependentUpon>CarModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Areas\Admin\Models\InfoAccount.cs">
@@ -218,8 +215,8 @@
   <ItemGroup>
     <Content Include="Areas\Admin\Models\CarModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>CarModel.Context.cs</LastGenOutput>
       <DependentUpon>CarModel.edmx</DependentUpon>
+      <LastGenOutput>CarModel.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Areas\Admin\Models\CarModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -2146,13 +2143,6 @@
     <Content Include="Asset\Admin\vendor\jquery\jquery.slim.min.map" />
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
-    <EntityDeploy Include="Areas\Admin\Models\CarModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>CarModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Areas\Admin\Models\CarModel.edmx.diagram">
-      <DependentUpon>CarModel.edmx</DependentUpon>
-    </Content>
     <Content Include="Areas\Admin\Views\Cars\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Cars\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\Cars\Details.cshtml" />
@@ -2177,6 +2167,13 @@
     <Content Include="obj\Debug\edmxResourcesToEmbed\Areas\Admin\Models\CarModel.csdl" />
     <Content Include="obj\Debug\edmxResourcesToEmbed\Areas\Admin\Models\CarModel.msl" />
     <Content Include="obj\Debug\edmxResourcesToEmbed\Areas\Admin\Models\CarModel.ssdl" />
+    <EntityDeploy Include="Areas\Admin\Models\CarModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>CarModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Areas\Admin\Models\CarModel.edmx.diagram">
+      <DependentUpon>CarModel.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />

@@ -17,7 +17,7 @@ namespace CarComparison.Areas.Admin.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public CategoryArticle()
         {
-            this.Article = new HashSet<Article>();
+            this.Articles = new HashSet<Article>();
         }
     
         public string id_category { get; set; }
@@ -26,6 +26,6 @@ namespace CarComparison.Areas.Admin.Models
         public string alias_category { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Article> Article { get; set; }
+        public virtual ICollection<Article> Articles { get; set; }
     }
 }
