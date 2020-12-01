@@ -13,13 +13,12 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-
     <div class="form-horizontal">
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-car">
             <div class="form-group">
-                <label>ID CAR</label>
+                <label>Mã xe</label>
                 @*@Html.LabelFor(model => model.id_car, htmlAttributes: new { @class = "control-label col-md-2" })*@
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.id_car, new { htmlAttributes = new { @class = "form-control" } })
@@ -228,7 +227,7 @@
 
         <div class="form-car">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Sửa" class="btn btn-primary" />|
+                <input type="submit" value="Lưu" class="btn btn-primary" /> |
                  @Html.ActionLink("Quay lại", "Index")
             </div>
         </div>

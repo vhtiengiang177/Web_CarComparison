@@ -1,0 +1,32 @@
+﻿@model CarComparison.Areas.Admin.Models.TypeUser
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h1 class="h3 mb-2 text-gray-800">Xóa thể loại</h1>
+
+<h6>Bạn có chắc chắn muốn xóa thể loại này không?</h6>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            <label>Tên thể loại</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name_typeuser)
+        </dd>
+
+    </dl>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Xóa" class="btn btn-primary" /> |
+            @Html.ActionLink("Quay lại", "Index")
+        </div>
+    }
+</div>

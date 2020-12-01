@@ -144,6 +144,7 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\CarsController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\TypeUsersController.cs" />
     <Compile Include="Areas\Admin\Models\Article.cs">
       <DependentUpon>CarModel.tt</DependentUpon>
     </Compile>
@@ -233,6 +234,7 @@
     <Content Include="Asset\Admin\js\demo\chart-bar-demo.js" />
     <Content Include="Asset\Admin\js\demo\chart-pie-demo.js" />
     <Content Include="Asset\Admin\js\demo\datatables-demo.js" />
+    <Content Include="Asset\Admin\js\type-user.js" />
     <Content Include="Asset\Admin\js\sb-admin-2.js" />
     <Content Include="Asset\Admin\vendor\bootstrap\js\bootstrap.bundle.js" />
     <Content Include="Asset\Admin\vendor\bootstrap\js\bootstrap.js" />
@@ -2173,6 +2175,10 @@
     <Content Include="Areas\Admin\Models\CarModel.edmx.diagram">
       <DependentUpon>CarModel.edmx</DependentUpon>
     </Content>
+    <Content Include="Areas\Admin\Views\TypeUsers\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\TypeUsers\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\TypeUsers\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\TypeUsers\Index.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
