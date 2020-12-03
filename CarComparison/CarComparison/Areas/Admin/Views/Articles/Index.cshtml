@@ -1,0 +1,88 @@
+﻿@model IEnumerable<CarComparison.Areas.Admin.Models.Article>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.title_article)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.alias_article)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.description_article)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.time_pulish_article)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.time_write)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.state_article)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.img_article)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.linkvideo_article)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CategoryArticle.name_category)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.InfoAccount.name_user)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.title_article)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.alias_article)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.description_article)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.time_pulish_article)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.time_write)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.state_article)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.img_article)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.linkvideo_article)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CategoryArticle.name_category)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.InfoAccount.name_user)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id_article }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id_article }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id_article })
+        </td>
+    </tr>
+}
+
+</table>

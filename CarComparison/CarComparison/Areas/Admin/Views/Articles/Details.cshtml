@@ -1,0 +1,99 @@
+﻿@model CarComparison.Areas.Admin.Models.Article
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Article</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.title_article)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.title_article)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.alias_article)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.alias_article)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.description_article)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.description_article)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.time_pulish_article)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.time_pulish_article)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.time_write)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.time_write)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.state_article)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.state_article)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.img_article)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.img_article)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.linkvideo_article)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.linkvideo_article)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CategoryArticle.name_category)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CategoryArticle.name_category)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.InfoAccount.name_user)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InfoAccount.name_user)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id_article }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
