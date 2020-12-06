@@ -1,4 +1,6 @@
-﻿@{
+﻿@model CarComparison.Areas.Admin.Models.cascadingmodel
+
+@{
     Layout = null;
 
 }
@@ -93,326 +95,306 @@
             </div>
         </div>
     </section>
+    @using (Html.BeginForm("Comparing", "Client", FormMethod.Post))
+    {
+        <section class="section-background">
+            <div class="container">
 
-    <section class="section-background">
-        <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-xs-12">
+                        <div class="form">
 
-            <div class="row">
-                <div class="col-lg-3 col-xs-12">
-                    <div class="form">
-                        <form action="#">
-                            <div class="form-group">
-                                <label>Hãng xe</label>
 
-                                    @Html.DropDownList("AtomakerList", ViewBag.automakerlistname as SelectList, "All", new { @class = "form-control" })
-                                    
-                            </div>
+                            <form action="#">
+                                <div class="form-group">
+                                    <label>Hãng xe</label>
 
-                            <div class="form-group">
-                                <label>Dòng xe</label>
 
-                                <select class="form-control">
-                                    <option value="">--All --</option>
-                                    <option value="">option 1</option>
-                                    <option value="">option 2</option>
-                                    <option value="">option 3</option>
-                                    <option value="">option 4</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <label>Phiên bản</label>
-
-                                <select class="form-control">
-                                    <option value="">-- All --</option>
-                                    <option value="">option 1</option>
-                                    <option value="">option 2</option>
-                                    <option value="">option 3</option>
-                                    <option value="">option 4</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <label>Model:</label>
-
-                                <select class="form-control">
-                                    <option value="">-- All --</option>
-                                    <option value="">option 1</option>
-                                    <option value="">option 2</option>
-                                    <option value="">option 3</option>
-                                    <option value="">option 4</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <label>Price:</label>
-
-                                <select class="form-control">
-                                    <option value="">-- All --</option>
-                                    <option value="">option 1</option>
-                                    <option value="">option 2</option>
-                                    <option value="">option 3</option>
-                                    <option value="">option 4</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <label>Mileage:</label>
-
-                                <select class="form-control">
-                                    <option value="">-- All --</option>
-                                    <option value="">option 1</option>
-                                    <option value="">option 2</option>
-                                    <option value="">option 3</option>
-                                    <option value="">option 4</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <label>Engine size:</label>
-
-                                <select class="form-control">
-                                    <option value="">-- All --</option>
-                                    <option value="">option 1</option>
-                                    <option value="">option 2</option>
-                                    <option value="">option 3</option>
-                                    <option value="">option 4</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <label>Power:</label>
-
-                                <select class="form-control">
-                                    <option value="">-- All --</option>
-                                    <option value="">option 1</option>
-                                    <option value="">option 2</option>
-                                    <option value="">option 3</option>
-                                    <option value="">option 4</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <label>Fuel:</label>
-
-                                <select class="form-control">
-                                    <option value="">-- All --</option>
-                                    <option value="">option 1</option>
-                                    <option value="">option 2</option>
-                                    <option value="">option 3</option>
-                                    <option value="">option 4</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <label>Gearbox:</label>
-
-                                <select class="form-control">
-                                    <option value="">-- All --</option>
-                                    <option value="">option 1</option>
-                                    <option value="">option 2</option>
-                                    <option value="">option 3</option>
-                                    <option value="">option 4</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <label>Doors:</label>
-
-                                <select class="form-control">
-                                    <option value="">-- All --</option>
-                                    <option value="">option 1</option>
-                                    <option value="">option 2</option>
-                                    <option value="">option 3</option>
-                                    <option value="">option 4</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <label>Number of seats:</label>
-
-                                <select class="form-control">
-                                    <option value="">-- All --</option>
-                                    <option value="">option 1</option>
-                                    <option value="">option 2</option>
-                                    <option value="">option 3</option>
-                                    <option value="">option 4</option>
-                                </select>
-                            </div>
-
-                            <button type="submit" class="section-btn btn btn-primary btn-block">Search</button>
-                        </form>
-                    </div>
-                </div>
-
-                <div class="col-lg-9 col-xs-12">
-                    <div class="row">
-                        <div class="col-lg-6 col-md-4 col-sm-6">
-                            <div class="courses-thumb courses-thumb-secondary">
-                                <div class="courses-top">
-                                    <div class="courses-image">
-                                        <img src="~/Total/Client/images/product-1-720x480.jpg" class="img-responsive" alt="">
-                                    </div>
-                                    <div class="courses-date">
-                                        <span title="Author"><i class="fa fa-dashboard"></i> 130 000km</span>
-                                        <span title="Author"><i class="fa fa-cube"></i> 1800cc</span>
-                                        <span title="Views"><i class="fa fa-cog"></i> Manual</span>
-                                    </div>
+                                    @Html.DropDownListFor(m => m.automakerId, Model.Automaker, "Please select", new { onchange = "document.forms[0].submit();", @class = "form-control" })
                                 </div>
 
-                                <div class="courses-detail">
-                                    <h3><a href="car-details.html">Lorem ipsum dolor sit amet</a></h3>
+                                <div class="form-group">
+                                    <label>Dòng xe</label>
+                                    @Html.DropDownListFor(m => m.modelId, Model.Model, "Please select", new { onchange = "document.forms[0].submit();", disabled = "disabled", @class = "form-control" })
 
-                                    <p class="lead"><small><del> $11199.00</del></small> <strong>$11179.00</strong></p>
-
-                                    <p>190 hp &nbsp;&nbsp;/&nbsp;&nbsp; Petrol &nbsp;&nbsp;/&nbsp;&nbsp; 2008 &nbsp;&nbsp;/&nbsp;&nbsp; Used vehicle</p>
                                 </div>
 
-                                <div class="courses-info">
-                                    <a href="car-details.html" class="section-btn btn btn-primary btn-block">View More</a>
-                                </div>
-                            </div>
-                        </div>
+                                <div class="form-group">
+                                    <label>Phiên bản</label>
+                                    @Html.DropDownListFor(m => m.versionId, Model.Version, "Please select", new { disabled = "disabled", @class = "form-control" })
 
-                        <div class="col-lg-6 col-md-4 col-sm-6">
-                            <div class="courses-thumb courses-thumb-secondary">
-                                <div class="courses-top">
-                                    <div class="courses-image">
-                                        <img src="~/Total/Client/images/product-2-720x480.jpg" class="img-responsive" alt="">
-                                    </div>
-                                    <div class="courses-date">
-                                        <span title="Author"><i class="fa fa-dashboard"></i> 130 000km</span>
-                                        <span title="Author"><i class="fa fa-cube"></i> 1800cc</span>
-                                        <span title="Views"><i class="fa fa-cog"></i> Manual</span>
-                                    </div>
                                 </div>
 
-                                <div class="courses-detail">
-                                    <h3><a href="car-details.html">Lorem ipsum dolor sit amet</a></h3>
 
-                                    <p class="lead"><small><del> $11199.00</del></small> <strong>$11179.00</strong></p>
 
-                                    <p>190 hp &nbsp;&nbsp;/&nbsp;&nbsp; Petrol &nbsp;&nbsp;/&nbsp;&nbsp; 2008 &nbsp;&nbsp;/&nbsp;&nbsp; New vehicle</p>
-                                </div>
-
-                                <div class="courses-info">
-                                    <a href="car-details.html" class="section-btn btn btn-primary btn-block">View More</a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-6 col-md-4 col-sm-6">
-                            <div class="courses-thumb courses-thumb-secondary">
-                                <div class="courses-top">
-                                    <div class="courses-image">
-                                        <img src="~/Total/Client/images/product-3-720x480.jpg" class="img-responsive" alt="">
-                                    </div>
-                                    <div class="courses-date">
-                                        <span title="Author"><i class="fa fa-dashboard"></i> 130 000km</span>
-                                        <span title="Author"><i class="fa fa-cube"></i> 1800cc</span>
-                                        <span title="Views"><i class="fa fa-cog"></i> Manual</span>
-                                    </div>
-                                </div>
-
-                                <div class="courses-detail">
-                                    <h3><a href="car-details.html">Lorem ipsum dolor sit amet</a></h3>
-
-                                    <p class="lead"><small><del> $11199.00</del></small> <strong>$11179.00</strong></p>
-
-                                    <p>190 hp &nbsp;&nbsp;/&nbsp;&nbsp; Petrol &nbsp;&nbsp;/&nbsp;&nbsp; 2008 &nbsp;&nbsp;/&nbsp;&nbsp; Used vehicle</p>
-                                </div>
-
-                                <div class="courses-info">
-                                    <a href="car-details.html" class="section-btn btn btn-primary btn-block">View More</a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-6 col-md-4 col-sm-6">
-                            <div class="courses-thumb courses-thumb-secondary">
-                                <div class="courses-top">
-                                    <div class="courses-image">
-                                        <img src="~/Total/Client/images/product-4-720x480.jpg" class="img-responsive" alt="">
-                                    </div>
-                                    <div class="courses-date">
-                                        <span title="Author"><i class="fa fa-dashboard"></i> 130 000km</span>
-                                        <span title="Author"><i class="fa fa-cube"></i> 1800cc</span>
-                                        <span title="Views"><i class="fa fa-cog"></i> Manual</span>
-                                    </div>
-                                </div>
-
-                                <div class="courses-detail">
-                                    <h3><a href="car-details.html">Lorem ipsum dolor sit amet</a></h3>
-
-                                    <p class="lead"><small><del> $11199.00</del></small> <strong>$11179.00</strong></p>
-
-                                    <p>190 hp &nbsp;&nbsp;/&nbsp;&nbsp; Petrol &nbsp;&nbsp;/&nbsp;&nbsp; 2008 &nbsp;&nbsp;/&nbsp;&nbsp; Used vehicle</p>
-                                </div>
-
-                                <div class="courses-info">
-                                    <a href="car-details.html" class="section-btn btn btn-primary btn-block">View More</a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-6 col-md-4 col-sm-6">
-                            <div class="courses-thumb courses-thumb-secondary">
-                                <div class="courses-top">
-                                    <div class="courses-image">
-                                        <img src="~/Total/Client/images/product-5-720x480.jpg" class="img-responsive" alt="">
-                                    </div>
-                                    <div class="courses-date">
-                                        <span title="Author"><i class="fa fa-dashboard"></i> 130 000km</span>
-                                        <span title="Author"><i class="fa fa-cube"></i> 1800cc</span>
-                                        <span title="Views"><i class="fa fa-cog"></i> Manual</span>
-                                    </div>
-                                </div>
-
-                                <div class="courses-detail">
-                                    <h3><a href="car-details.html">Lorem ipsum dolor sit amet</a></h3>
-
-                                    <p class="lead"><small><del> $11199.00</del></small> <strong>$11179.00</strong></p>
-
-                                    <p>190 hp &nbsp;&nbsp;/&nbsp;&nbsp; Petrol &nbsp;&nbsp;/&nbsp;&nbsp; 2008 &nbsp;&nbsp;/&nbsp;&nbsp; New vehicle</p>
-                                </div>
-
-                                <div class="courses-info">
-                                    <a href="car-details.html" class="section-btn btn btn-primary btn-block">View More</a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-6 col-md-4 col-sm-6">
-                            <div class="courses-thumb courses-thumb-secondary">
-                                <div class="courses-top">
-                                    <div class="courses-image">
-                                        <img src="~/Total/Client/images/product-6-720x480.jpg" class="img-responsive" alt="">
-                                    </div>
-                                    <div class="courses-date">
-                                        <span title="Author"><i class="fa fa-dashboard"></i> 130 000km</span>
-                                        <span title="Author"><i class="fa fa-cube"></i> 1800cc</span>
-                                        <span title="Views"><i class="fa fa-cog"></i> Manual</span>
-                                    </div>
-                                </div>
-
-                                <div class="courses-detail">
-                                    <h3><a href="car-details.html">Lorem ipsum dolor sit amet</a></h3>
-
-                                    <p class="lead"><small><del> $11199.00</del></small> <strong>$11179.00</strong></p>
-
-                                    <p>190 hp &nbsp;&nbsp;/&nbsp;&nbsp; Petrol &nbsp;&nbsp;/&nbsp;&nbsp; 2008 &nbsp;&nbsp;/&nbsp;&nbsp; New vehicle</p>
-                                </div>
-
-                                <div class="courses-info">
-                                    <a href="car-details.html" class="section-btn btn btn-primary btn-block">View More</a>
-                                </div>
-                            </div>
+                                <button type="submit" class="section-btn btn btn-primary btn-block">Search</button>
+                            </form>
                         </div>
                     </div>
+
+                    <div class="col-lg-3 col-xs-12">
+                        <div class="form">
+
+
+                            <form action="#">
+                                <div class="form-group">
+                                    <label>Hãng xe</label>
+
+
+                                    @Html.DropDownListFor(m => m.automakerId, Model.Automaker, "Please select", new { onchange = "document.forms[0].submit();", @class = "form-control" })
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Dòng xe</label>
+                                    @Html.DropDownListFor(m => m.modelId, Model.Model, "Please select", new { onchange = "document.forms[0].submit();", disabled = "disabled", @class = "form-control" })
+
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Phiên bản</label>
+                                    @Html.DropDownListFor(m => m.versionId, Model.Version, "Please select", new { disabled = "disabled", @class = "form-control" })
+
+                                </div>
+
+
+
+                                <button type="submit" class="section-btn btn btn-primary btn-block">Search</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-xs-12">
+                        <div class="form">
+
+
+                            <form action="#">
+                                <div class="form-group">
+                                    <label>Hãng xe</label>
+
+
+                                    @Html.DropDownListFor(m => m.automakerId, Model.Automaker, "Please select", new { onchange = "document.forms[0].submit();", @class = "form-control" })
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Dòng xe</label>
+                                    @Html.DropDownListFor(m => m.modelId, Model.Model, "Please select", new { onchange = "document.forms[0].submit();", disabled = "disabled", @class = "form-control" })
+
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Phiên bản</label>
+                                    @Html.DropDownListFor(m => m.versionId, Model.Version, "Please select", new { disabled = "disabled", @class = "form-control" })
+
+                                </div>
+
+
+
+                                <button type="submit" class="section-btn btn btn-primary btn-block">Search</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-xs-12">
+                        <div class="form">
+
+
+                            <form action="#">
+                                <div class="form-group">
+                                    <label>Hãng xe</label>
+
+
+                                    @Html.DropDownListFor(m => m.automakerId, Model.Automaker, "Please select", new { onchange = "document.forms[0].submit();", @class = "form-control" })
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Dòng xe</label>
+                                    @Html.DropDownListFor(m => m.modelId, Model.Model, "Please select", new { onchange = "document.forms[0].submit();", disabled = "disabled", @class = "form-control" })
+
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Phiên bản</label>
+                                    @Html.DropDownListFor(m => m.versionId, Model.Version, "Please select", new { disabled = "disabled", @class = "form-control" })
+
+                                </div>
+
+
+
+                                <button type="submit" class="section-btn btn btn-primary btn-block">Search</button>
+                            </form>
+                        </div>
+                    </div>
+                    <br />
+                    <br />
+
+                    @*<div class="col-lg-9 col-xs-12">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-4 col-sm-6">
+                                <div class="courses-thumb courses-thumb-secondary">
+                                    <div class="courses-top">
+                                        <div class="courses-image">
+                                            <img src="~/Total/Client/images/product-1-720x480.jpg" class="img-responsive" alt="">
+                                        </div>
+                                        <div class="courses-date">
+                                            <span title="Author"><i class="fa fa-dashboard"></i> 130 000km</span>
+                                            <span title="Author"><i class="fa fa-cube"></i> 1800cc</span>
+                                            <span title="Views"><i class="fa fa-cog"></i> Manual</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="courses-detail">
+                                        <h3><a href="car-details.html">Lorem ipsum dolor sit amet</a></h3>
+
+                                        <p class="lead"><small><del> $11199.00</del></small> <strong>$11179.00</strong></p>
+
+                                        <p>190 hp &nbsp;&nbsp;/&nbsp;&nbsp; Petrol &nbsp;&nbsp;/&nbsp;&nbsp; 2008 &nbsp;&nbsp;/&nbsp;&nbsp; Used vehicle</p>
+                                    </div>
+
+                                    <div class="courses-info">
+                                        <a href="car-details.html" class="section-btn btn btn-primary btn-block">View More</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-4 col-sm-6">
+                                <div class="courses-thumb courses-thumb-secondary">
+                                    <div class="courses-top">
+                                        <div class="courses-image">
+                                            <img src="~/Total/Client/images/product-2-720x480.jpg" class="img-responsive" alt="">
+                                        </div>
+                                        <div class="courses-date">
+                                            <span title="Author"><i class="fa fa-dashboard"></i> 130 000km</span>
+                                            <span title="Author"><i class="fa fa-cube"></i> 1800cc</span>
+                                            <span title="Views"><i class="fa fa-cog"></i> Manual</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="courses-detail">
+                                        <h3><a href="car-details.html">Lorem ipsum dolor sit amet</a></h3>
+
+                                        <p class="lead"><small><del> $11199.00</del></small> <strong>$11179.00</strong></p>
+
+                                        <p>190 hp &nbsp;&nbsp;/&nbsp;&nbsp; Petrol &nbsp;&nbsp;/&nbsp;&nbsp; 2008 &nbsp;&nbsp;/&nbsp;&nbsp; New vehicle</p>
+                                    </div>
+
+                                    <div class="courses-info">
+                                        <a href="car-details.html" class="section-btn btn btn-primary btn-block">View More</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-4 col-sm-6">
+                                <div class="courses-thumb courses-thumb-secondary">
+                                    <div class="courses-top">
+                                        <div class="courses-image">
+                                            <img src="~/Total/Client/images/product-3-720x480.jpg" class="img-responsive" alt="">
+                                        </div>
+                                        <div class="courses-date">
+                                            <span title="Author"><i class="fa fa-dashboard"></i> 130 000km</span>
+                                            <span title="Author"><i class="fa fa-cube"></i> 1800cc</span>
+                                            <span title="Views"><i class="fa fa-cog"></i> Manual</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="courses-detail">
+                                        <h3><a href="car-details.html">Lorem ipsum dolor sit amet</a></h3>
+
+                                        <p class="lead"><small><del> $11199.00</del></small> <strong>$11179.00</strong></p>
+
+                                        <p>190 hp &nbsp;&nbsp;/&nbsp;&nbsp; Petrol &nbsp;&nbsp;/&nbsp;&nbsp; 2008 &nbsp;&nbsp;/&nbsp;&nbsp; Used vehicle</p>
+                                    </div>
+
+                                    <div class="courses-info">
+                                        <a href="car-details.html" class="section-btn btn btn-primary btn-block">View More</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-4 col-sm-6">
+                                <div class="courses-thumb courses-thumb-secondary">
+                                    <div class="courses-top">
+                                        <div class="courses-image">
+                                            <img src="~/Total/Client/images/product-4-720x480.jpg" class="img-responsive" alt="">
+                                        </div>
+                                        <div class="courses-date">
+                                            <span title="Author"><i class="fa fa-dashboard"></i> 130 000km</span>
+                                            <span title="Author"><i class="fa fa-cube"></i> 1800cc</span>
+                                            <span title="Views"><i class="fa fa-cog"></i> Manual</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="courses-detail">
+                                        <h3><a href="car-details.html">Lorem ipsum dolor sit amet</a></h3>
+
+                                        <p class="lead"><small><del> $11199.00</del></small> <strong>$11179.00</strong></p>
+
+                                        <p>190 hp &nbsp;&nbsp;/&nbsp;&nbsp; Petrol &nbsp;&nbsp;/&nbsp;&nbsp; 2008 &nbsp;&nbsp;/&nbsp;&nbsp; Used vehicle</p>
+                                    </div>
+
+                                    <div class="courses-info">
+                                        <a href="car-details.html" class="section-btn btn btn-primary btn-block">View More</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-4 col-sm-6">
+                                <div class="courses-thumb courses-thumb-secondary">
+                                    <div class="courses-top">
+                                        <div class="courses-image">
+                                            <img src="~/Total/Client/images/product-5-720x480.jpg" class="img-responsive" alt="">
+                                        </div>
+                                        <div class="courses-date">
+                                            <span title="Author"><i class="fa fa-dashboard"></i> 130 000km</span>
+                                            <span title="Author"><i class="fa fa-cube"></i> 1800cc</span>
+                                            <span title="Views"><i class="fa fa-cog"></i> Manual</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="courses-detail">
+                                        <h3><a href="car-details.html">Lorem ipsum dolor sit amet</a></h3>
+
+                                        <p class="lead"><small><del> $11199.00</del></small> <strong>$11179.00</strong></p>
+
+                                        <p>190 hp &nbsp;&nbsp;/&nbsp;&nbsp; Petrol &nbsp;&nbsp;/&nbsp;&nbsp; 2008 &nbsp;&nbsp;/&nbsp;&nbsp; New vehicle</p>
+                                    </div>
+
+                                    <div class="courses-info">
+                                        <a href="car-details.html" class="section-btn btn btn-primary btn-block">View More</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-4 col-sm-6">
+                                <div class="courses-thumb courses-thumb-secondary">
+                                    <div class="courses-top">
+                                        <div class="courses-image">
+                                            <img src="~/Total/Client/images/product-6-720x480.jpg" class="img-responsive" alt="">
+                                        </div>
+                                        <div class="courses-date">
+                                            <span title="Author"><i class="fa fa-dashboard"></i> 130 000km</span>
+                                            <span title="Author"><i class="fa fa-cube"></i> 1800cc</span>
+                                            <span title="Views"><i class="fa fa-cog"></i> Manual</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="courses-detail">
+                                        <h3><a href="car-details.html">Lorem ipsum dolor sit amet</a></h3>
+
+                                        <p class="lead"><small><del> $11199.00</del></small> <strong>$11179.00</strong></p>
+
+                                        <p>190 hp &nbsp;&nbsp;/&nbsp;&nbsp; Petrol &nbsp;&nbsp;/&nbsp;&nbsp; 2008 &nbsp;&nbsp;/&nbsp;&nbsp; New vehicle</p>
+                                    </div>
+
+                                    <div class="courses-info">
+                                        <a href="car-details.html" class="section-btn btn btn-primary btn-block">View More</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>*@
+                    @*</div>*@
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+     }
 
     <!-- FOOTER -->
     <footer id="footer">
@@ -490,6 +472,26 @@
     <script src="~/Total/Client/js/owl.carousel.min.js"></script>
     <script src="~/Total/Client/js/smoothscroll.js"></script>
     <script src="~/Total/Client/js/custom.js"></script>
+
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            if ($("#modelId option").length > 1) {
+                $("#modelId").removeAttr("disabled");
+            }
+
+            if ($("#versionId option").length > 1) {
+                $("#versionId").removeAttr("disabled");
+            }
+
+            if ($("#automakerId").val() != "" && $("#modelId").val() != "" && $("#versionId").val() != "") {
+                var message = "Hãng xe: " + $("#automakerId option:selected").text();
+                message += "\nDòng: " + $("#modelId option:selected").text();
+                message += "\nPhiên bản: " + $("#versionId option:selected").text();
+                alert(message);
+            }
+        });
+    </script>
 
 </body>
 </html>

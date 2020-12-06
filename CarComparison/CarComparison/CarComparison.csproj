@@ -168,6 +168,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CarModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Areas\Admin\Models\cascadingmodel.cs" />
     <Compile Include="Areas\Admin\Models\CategoryArticle.cs">
       <DependentUpon>CarModel.tt</DependentUpon>
     </Compile>
