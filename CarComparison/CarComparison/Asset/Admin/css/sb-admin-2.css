@@ -11252,3 +11252,7 @@ body.sidebar-toggled footer.sticky-footer {
     width:300px;
     float:left;
 }
+
+.form-group-typeuser {
+    margin-bottom: 1rem;
+}
