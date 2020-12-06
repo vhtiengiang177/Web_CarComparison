@@ -7,18 +7,22 @@ using System.Text;
 using System.Web;
 using System.Web.Mvc;
 
-namespace CarComparison.Controllers
+namespace CarComparison.Areas.Admin.Controllers
 {
     public class AccountController : Controller
     {
-        private CompareCarEntities db = new CompareCarEntities();
 
-        // GET: Account
+        private CompareCarEntities db = new CompareCarEntities();
+        // GET: Admin/Account
         public ActionResult Index()
         {
             return View();
         }
 
+        public ActionResult Login()
+        {
+            return View();
+        }
         public string GetMD5(string str)
         {
             str = str + "md5";
@@ -36,6 +40,7 @@ namespace CarComparison.Controllers
             }
             return sbHash.ToString();
         }
+
         [HttpPost]
         //xử lý đăng nhập
         public ActionResult DangNhap(FormCollection f)
@@ -50,7 +55,7 @@ namespace CarComparison.Controllers
             {
                 //Global.SetGlobalUser(us);
                 //return Redirect("Home", "Areas/Admin/")
-                return View("~/Areas/Admin/Views/Home/Index.cshtml", us);
+                return View("~/Areas/Admin/Views/Home/Index.cshtml");
                 //    if (us.block == false && us.usertype != "1")
                 //    {
                 //        return Content("er_block");

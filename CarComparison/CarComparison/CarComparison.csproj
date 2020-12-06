@@ -142,6 +142,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\AccountController.cs" />
     <Compile Include="Areas\Admin\Controllers\ArticlesController.cs" />
     <Compile Include="Areas\Admin\Controllers\CarsController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
@@ -1888,6 +1889,10 @@
     <Content Include="Asset\Admin\vendor\jquery\jquery.min.js" />
     <Content Include="Asset\Admin\vendor\jquery\jquery.slim.js" />
     <Content Include="Asset\Admin\vendor\jquery\jquery.slim.min.js" />
+    <Content Include="Asset\Login\css\font-awesome.min.css" />
+    <Content Include="Asset\Login\css\style.css" />
+    <Content Include="Asset\Login\images\image.jpg" />
+    <Content Include="Asset\Login\images\tick.png" />
     <Content Include="bin\Antlr3.Runtime.dll" />
     <Content Include="bin\Antlr3.Runtime.pdb" />
     <Content Include="bin\CarComparison.dll" />
@@ -2187,6 +2192,12 @@
     <Content Include="Areas\Admin\Views\Articles\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Articles\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Articles\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Account\Login.cshtml" />
+    <Content Include="Asset\Login\fonts\fontawesome-webfont.eot" />
+    <Content Include="Asset\Login\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Asset\Login\fonts\fontawesome-webfont.woff" />
+    <Content Include="Asset\Login\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Asset\Login\fonts\FontAwesome.otf" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
