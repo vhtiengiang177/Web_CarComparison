@@ -55,26 +55,58 @@
                     <li><a href="/Client/Comparing">So sánh Xe</a></li>
                     @*<li><a href="about-us.html">Thông tin</a></li>*@
                     @*<li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">More <span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">More <span class="caret"></span></a>
 
-            <ul class="dropdown-menu">
-                <li><a href="blog-posts.html">Bài đánh giá</a></li>
-                <li><a href="/Client/Team">Team</a></li>
+                    <ul class="dropdown-menu">
+                        <li><a href="blog-posts.html">Bài đánh giá</a></li>
+                        <li><a href="/Client/Team">Team</a></li>
 
-                <li><a href="testimonials.html">Video</a></li>
-            </ul>
-        </li>*@
+                        <li><a href="testimonials.html">Video</a></li>
+                    </ul>
+                </li>*@
                     <li><a href="/Client/Review">Bài đánh giá</a></li>
                     <li><a href="/Client/Team">Team</a></li>
 
                     <li><a href="testimonials.html">Video</a></li>
                     <li><a href="/Client/Contact">Liên hệ</a></li>
+                    <li><button onclick="document.getElementById('id01').style.display='block'" style="width:auto; margin:9px" class="section-btn btn btn-primary btn-block">Đăng Nhập</button></li>
 
-                   
 
-                    
+
+
+
 
                 </ul>
+            </div>
+
+            <div id="id01" class="modal">
+
+                <form class="modal-content animate" action="~/Account/DangNhap" method="post">
+                    <div class="imgcontainer">
+                        <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+                        <img src="~/Total/Login1/images/man.jpg" alt="Avatar" class="avatar">
+
+                    </div>
+
+                    <div class="container">
+                        <label for="uname"><b>Username</b></label>
+                        <input type="text" placeholder="Enter Username" name="username" required>
+
+                        <label for="psw"><b>Password</b></label>
+                        <input type="password" placeholder="Enter Password" name="password" required>
+
+                        <button type="submit">Sign In</button>
+                        <button onclick="document.getElementById('id02').style.display='block'" style="width:100%; height:100%">Sign Up</button>
+                        <label>
+                            <input type="checkbox" checked="checked" name="remember"> Remember me
+                        </label>
+                    </div>
+
+                    <div class="container" style="background-color:#f1f1f1">
+                        <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Đây là nút tao vừa sửa</button>
+                        <span class="psw">Forgot <a href="#">password?</a></span>
+                    </div>
+                </form>
             </div>
 
         </div>
