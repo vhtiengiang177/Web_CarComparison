@@ -19,6 +19,7 @@ namespace CarComparison.Controllers
             return View();
         }
 
+        // Hash mật khẩu
         public string GetMD5(string str)
         {
             str = str + "md5";
@@ -37,7 +38,8 @@ namespace CarComparison.Controllers
             return sbHash.ToString();
         }
 
-        public ActionResult Login()
+        // View đăng nhập
+        public ActionResult LoginView()
         {
             return View();
         }
@@ -56,7 +58,7 @@ namespace CarComparison.Controllers
             {
                 //Global.SetGlobalUser(us);
                 //return Redirect("Home", "Areas/Admin/")
-                return View("~/Areas/Admin/Views/Home/Index.cshtml", us);
+                return View("~/Areas/Admin/Views/Home/Index.cshtml");
                 //    if (us.block == false && us.usertype != "1")
                 //    {
                 //        return Content("er_block");
@@ -91,6 +93,12 @@ namespace CarComparison.Controllers
                 //}
             }
             return View("~/Views/Client/Index.cshtml");
+        }
+
+        // View đăng ký
+        public ActionResult RegisterView()
+        {
+            return View();
         }
     }
 }

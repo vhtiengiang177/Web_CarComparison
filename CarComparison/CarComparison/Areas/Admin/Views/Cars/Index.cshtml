@@ -1,10 +1,9 @@
 ﻿@model IEnumerable<CarComparison.Areas.Admin.Models.XemTenXe_Result>
-
 @{
-                /**/
+    /**/
 
-                ViewBag.Title = "Index";
-                Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
 @section sidebar{
@@ -118,6 +117,8 @@
     </ul>
 }
 
+
+
 <h1 class="h3 mb-2 text-gray-800">Danh sách xe</h1>
 
 <div class="card shadow mb-4">
@@ -130,6 +131,22 @@
         </div>
 
     </div>
+    @section search{
+        @using (Html.BeginForm("Index", "Cars", FormMethod.Get))
+        {
+            <!-- Topbar Search -->
+            <div class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                <div class="input-group">
+                    @Html.TextBox("searchname")
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="submit" value="submit">
+                            <i class="fas fa-search fa-sm"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        }
+    }
     <div class="card-body">
         <div class="table-responsive">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -164,40 +181,5 @@
                 }
             </table>
         </div>
-        @*
-            <div class="row">
-                <!-- Hiển thị số trang-->
-                <div class="col-sm-12 col-md-7">
-                    <div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate">
-                        <ul class="pagination">
-                            <li class="paginate_button page-item previous disabled" id="dataTable_previous">
-                                <a href="#" aria-controls="dataTable" data-dt-idx="0" tabindex="0" class="page-link">
-                                    Previous
-                                </a>
-                            </li>
-                            <li class="paginate_button page-item active">
-                                <a href="#" aria-controls="dataTable" data-dt-idx="1" tabindex="0" class="page-link">
-                                    1
-                                </a>
-                            </li>
-                            <li class="paginate_button page-item ">
-                                <a href="#" aria-controls="dataTable" data-dt-idx="2" tabindex="0" class="page-link">
-                                    2
-                                </a>
-                            </li>
-                            <li class="paginate_button page-item ">
-                                <a href="#" aria-controls="dataTable" data-dt-idx="3" tabindex="0" class="page-link">
-                                    3
-                                </a>
-                            </li>
-                            <li class="paginate_button page-item next" id="dataTable_next">
-                                <a href="#" aria-controls="dataTable" data-dt-idx="7" tabindex="0" class="page-link">
-                                    Next
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>*@
     </div>
 </div>

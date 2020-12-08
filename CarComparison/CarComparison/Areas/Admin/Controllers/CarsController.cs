@@ -4,9 +4,11 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Web;
 using System.Web.Mvc;
 using CarComparison.Areas.Admin.Models;
+using Newtonsoft.Json;
 
 namespace CarComparison.Areas.Admin.Controllers
 {
@@ -15,9 +17,15 @@ namespace CarComparison.Areas.Admin.Controllers
         private CompareCarEntities db = new CompareCarEntities();
 
         // GET: Admin/Cars
-        public ActionResult Index()
+        public ActionResult Index(string searchname)
         {
-            var car = db.XemTenXe();
+            var car = from c in db.XemTenXe()
+                      select c;
+            if(!String.IsNullOrEmpty(searchname))
+            {
+                car = car.Where(c => (c.name_automaker.ToString() + " " + c.name_model.ToString() + " " + c.name_version.ToString()).Contains(searchname));
+            }
+
             return View(car.ToList());
         }
 

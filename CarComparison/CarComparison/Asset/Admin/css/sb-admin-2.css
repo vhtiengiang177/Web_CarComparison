@@ -488,7 +488,7 @@ mark,
   background-color: #fff;
   border: 1px solid #dddfeb;
   border-radius: 0.35rem;
-  max-width: 100%;
+  max-width: 90%;
   height: auto;
 }
 
@@ -11251,6 +11251,7 @@ body.sidebar-toggled footer.sticky-footer {
 .detail-car{
     width:300px;
     float:left;
+    margin-right: 15px;
 }
 
 .form-group-typeuser {
