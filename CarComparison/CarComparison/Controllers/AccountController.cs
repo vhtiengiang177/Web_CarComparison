@@ -36,9 +36,15 @@ namespace CarComparison.Controllers
             }
             return sbHash.ToString();
         }
+
+        public ActionResult Login()
+        {
+            return View();
+        }
+
         [HttpPost]
         //xử lý đăng nhập
-        public ActionResult DangNhap(FormCollection f)
+        public ActionResult Login(FormCollection f)
         {
 
             string taikhoan = f["username"].ToString();

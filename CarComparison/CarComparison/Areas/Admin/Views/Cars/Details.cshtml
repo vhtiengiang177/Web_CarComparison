@@ -120,6 +120,7 @@
 <div>
     @Html.DisplayFor(model => model.Version.Model.Automaker.name_automaker)  @Html.DisplayFor(model => model.Version.Model.name_model) @Html.DisplayFor(model => model.Version.name_version)
 </div>
+<div><img class="img-thumbnail" src="@Url.Content(@Model.img_car)" alt="" />  </div>
 <div>
     <hr />
     <dl class="detail-car">
@@ -312,7 +313,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.img_car)
+            
         </dd>
 
         <dt>

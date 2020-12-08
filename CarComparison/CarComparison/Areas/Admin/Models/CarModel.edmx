@@ -53,7 +53,7 @@
           <Property Name="airconditioner_car" Type="nvarchar" MaxLength="50" />
           <Property Name="sunroof_car" Type="nvarchar" MaxLength="50" />
           <Property Name="charge_car" Type="int" />
-          <Property Name="img_car" Type="image" />
+          <Property Name="img_car" Type="nvarchar" MaxLength="255" />
           <Property Name="id_version" Type="nvarchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="CategoryArticle">
@@ -280,17 +280,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Function Name="fc_LoadModel" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="id" Type="nvarchar" Mode="In" />
-          <ReturnType>
-            <CollectionType>
-              <RowType>
-                <Property Name="id_model" Type="nvarchar" MaxLength="10" Nullable="false" />
-                <Property Name="name_model" Type="nvarchar" MaxLength="50" />
-              </RowType>
-            </CollectionType>
-          </ReturnType>
-        </Function>
         <Function Name="XemTenXe" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="CompareCarModelStoreContainer">
           <EntitySet Name="Article" EntityType="Self.Article" Schema="dbo" store:Type="Tables" />
@@ -355,10 +344,6 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="CompareCarModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <ComplexType Name="fc_LoadModel_Result">
-          <Property Name="id_model" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="name_model" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-        </ComplexType>
         <EntityType Name="Article">
           <Key>
             <PropertyRef Name="id_article" />
@@ -411,7 +396,7 @@
           <Property Name="airconditioner_car" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="sunroof_car" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="charge_car" Type="Int32" />
-          <Property Name="img_car" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="img_car" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="id_version" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Version" Relationship="Self.FK_Car_id_version" FromRole="Car" ToRole="Version" />
         </EntityType>
@@ -713,9 +698,6 @@
             <End Role="TypeUser" EntitySet="TypeUsers" />
             <End Role="User_Permission" EntitySet="User_Permission" />
           </AssociationSet>
-          <FunctionImport Name="fc_LoadModel" IsComposable="true" ReturnType="Collection(CompareCarModel.fc_LoadModel_Result)">
-            <Parameter Name="id" Mode="In" Type="String" />
-          </FunctionImport>
           <FunctionImport Name="XemTenXe" ReturnType="Collection(CompareCarModel.XemTenXe_Result)" />
         </EntityContainer>
         <ComplexType Name="XemTenXe_Result">
@@ -884,14 +866,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionName="CompareCarModel.Store.fc_LoadModel" FunctionImportName="fc_LoadModel">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="CompareCarModel.fc_LoadModel_Result">
-                <ScalarProperty Name="id_model" ColumnName="id_model" />
-                <ScalarProperty Name="name_model" ColumnName="name_model" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="XemTenXe" FunctionName="CompareCarModel.Store.XemTenXe">
             <ResultMapping>
               <ComplexTypeMapping TypeName="CompareCarModel.XemTenXe_Result">

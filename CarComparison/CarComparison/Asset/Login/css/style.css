@@ -107,7 +107,7 @@ img{
     font-weight: 700;
 }
 
-input[type="email"] {
+input[type="text"] {
 	font-size: 15px;
 	color: #333;
     text-align: left;
@@ -121,7 +121,7 @@ input[type="email"] {
     background: transparent;
 	font-family: 'Raleway', sans-serif;
 }
-input[type="Password"] {
+input[type="password"] {
 	font-size: 15px;
 	color: #333;
     text-align: left;
@@ -136,6 +136,23 @@ input[type="Password"] {
     background: transparent;
 	font-family: 'Raleway', sans-serif;
 }
+
+input[type="date"] {
+    font-size: 15px;
+    color: #333;
+    text-align: left;
+    text-transform: capitalize;
+    letter-spacing: 1px;
+    padding: 14px 10px;
+    width: 93%;
+    display: inline-block;
+    box-sizing: border-box;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-family: 'Raleway', sans-serif;
+}
+
 .input-group {
     margin-top: 10px;
     margin-bottom: 20px;
@@ -143,6 +160,28 @@ input[type="Password"] {
 	border: 1px solid #ddd;
 	background: #fff;
 }
+.input-birth-group {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    padding: 3px 10px;
+    background: #fff;
+}
+
+.input-group-span-radio {
+    font-size: 15px;
+    color: #333;
+    text-transform: capitalize;
+    letter-spacing: 1px;
+    padding: 14px 10px;
+    width: 93%;
+    display: inline-block;
+    box-sizing: border-box;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-family: 'Raleway', sans-serif;
+}
+
 .btn-block {
     background: #ff4040;
     border: none;
@@ -550,5 +589,6 @@ h5 {
 	}
 }
 /** /Responsive **/
+
 
 

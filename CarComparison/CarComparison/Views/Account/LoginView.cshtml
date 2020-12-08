@@ -1,8 +1,7 @@
-﻿
-@*@{
-    ViewBag.Title = "Login";
-    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
-}*@
+﻿@{
+        ViewBag.Title = "Login";
+        Layout = null;
+}
 
 <!--
 Author: W3layouts
@@ -13,11 +12,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Business Login Form Responsive Widget Template :: w3layouts</title>
+    <title>Đăng ký/Đăng nhập | Car Comparison</title>
     <!-- Meta-Tags -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
-    <meta name="keywords" content="Business Login Form a Responsive Web Template, Bootstrap Web Templates, Flat Web Templates, Android Compatible Web Template, Smartphone Compatible Web Template, Free Webdesigns for Nokia, Samsung, LG, Sony Ericsson, Motorola Web Design">
+    <meta name="keywords" content="">
     <script>
         addEventListener("load", function () {
             setTimeout(hideURLbar, 0);
@@ -45,47 +44,43 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             <div class="agile_info">
                 <div class="w3l_form">
                     <div class="left_grid_info">
-                        <h1>Manage Your Business Account</h1>
-                        <p>Donec dictum nisl nec mi lacinia, sed maximus tellus eleifend. Proin molestie cursus sapien ac eleifend.</p>
+                        <h1>CAR COMPARISON</h1>
+                        <p></p>
                         <img src="~/Asset/Login/images/image.jpg" alt="" />
                     </div>
                 </div>
                 <div class="w3_info">
-                    <h2>Login to your Account</h2>
-                    <p>Enter your details to login.</p>
-                    <form action="~/Admin/Account/DangNhap" method="post">
-                        @*<label>Email Address</label>*@
+                    <h2>ĐĂNG NHẬP</h2>
+                    <br />
+                    <form action="Account/Login" method="post">
+                        <label>Username</label>
                         <div class="input-group">
-                            <label for="uname"><b>Username</b></label>
+                            <span class="fa fa-user" aria-hidden="true"></span>
                             <input type="text" placeholder="Enter Username" name="username" required>
-                            <br />
-
-                            <label for="psw"><b>Password</b></label>
-                            <input type="password" placeholder="Enter Password" name="password" required>
-
                         </div>
-                        @*<label>Password</label>
+                        <label>Password</label>
                         <div class="input-group">
                             <span class="fa fa-lock" aria-hidden="true"></span>
-                            <input type="Password" placeholder="Enter Password" required="">
-                        </div>*@
-                        <div class="login-check">
-                            <label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i> </i> Remember me</label>
+                            <input type="password" placeholder="Enter Password" name="password" required="">
                         </div>
-                        <button class="btn btn-danger btn-block" type="submit">Login</button>
+                        <div class="login-check">
+                            <label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i> </i> Ghi nhớ đăng nhập</label>
+                        </div>
+                        <button class="btn btn-danger btn-block" type="submit">Đăng nhập</button>
                     </form>
-                    <p class="account">By clicking login, you agree to our <a href="#">Terms & Conditions!</a></p>
-                    <p class="account1">Dont have an account? <a href="#">Register here</a></p>
+                    @*<p class="account">By clicking login, you agree to our <a href="#">Terms & Conditions!</a></p>*@
+                    <p class="account1">Bạn chưa có tài khoản? <a href="/Account/RegisterView">Đăng ký ở đây</a></p>
                 </div>
             </div>
             <!-- //main content -->
         </div>
         <!-- footer -->
         <div class="footer">
-            @*<p>&copy; 2019 Business login form. All Rights Reserved | Design by <a href="https://w3layouts.com/" target="blank">W3layouts</a></p>*@
+            <p>&copy; 2020 Car Comparison Team 6. All Rights Reserved | Design by <a href="https://w3layouts.com/" target="blank">W3layouts</a></p>
         </div>
         <!-- footer -->
     </div>
 
 </body>
 </html>
+

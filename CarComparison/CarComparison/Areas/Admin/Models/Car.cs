@@ -35,7 +35,7 @@ namespace CarComparison.Areas.Admin.Models
         public string airconditioner_car { get; set; }
         public string sunroof_car { get; set; }
         public Nullable<int> charge_car { get; set; }
-        public byte[] img_car { get; set; }
+        public string img_car { get; set; }
         public string id_version { get; set; }
     
         public virtual Version Version { get; set; }

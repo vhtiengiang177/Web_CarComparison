@@ -40,16 +40,6 @@ namespace CarComparison.Areas.Admin.Models
         public virtual DbSet<User_Permission> User_Permission { get; set; }
         public virtual DbSet<Version> Versions { get; set; }
     
-        [DbFunction("CompareCarEntities", "fc_LoadModel")]
-        public virtual IQueryable<fc_LoadModel_Result> fc_LoadModel(string id)
-        {
-            var idParameter = id != null ?
-                new ObjectParameter("id", id) :
-                new ObjectParameter("id", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<fc_LoadModel_Result>("[CompareCarEntities].[fc_LoadModel](@id)", idParameter);
-        }
-    
         public virtual ObjectResult<XemTenXe_Result> XemTenXe()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<XemTenXe_Result>("XemTenXe");
