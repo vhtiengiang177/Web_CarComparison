@@ -11,6 +11,7 @@ using System.Web;
 using System.Web.Mvc;
 using CarComparison.Areas.Admin.Models;
 using Version = CarComparison.Areas.Admin.Models.Version;
+using PagedList;
 
 namespace CarComparison.Controllers
 {
@@ -175,12 +176,14 @@ namespace CarComparison.Controllers
             return View();
         }
 
-        public ActionResult Review()
+        public ActionResult Review(int? page)
         {
+
+            
             return View();
         }
 
-        
+        //không biết ai viết code này
         public ActionResult Details(string id)
         {
             if (id == null)
@@ -194,6 +197,8 @@ namespace CarComparison.Controllers
             }
             return View(car);
         }
+
+        //
 
 
     }
