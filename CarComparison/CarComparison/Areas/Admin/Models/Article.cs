@@ -29,7 +29,6 @@ namespace CarComparison.Areas.Admin.Models
         public Nullable<System.DateTime> time_pulish_article { get; set; }
         public Nullable<System.DateTime> time_write { get; set; }
         public string state_article { get; set; }
-        public byte[] img_article { get; set; }
         public string linkvideo_article { get; set; }
     
         public virtual CategoryArticle CategoryArticle { get; set; }

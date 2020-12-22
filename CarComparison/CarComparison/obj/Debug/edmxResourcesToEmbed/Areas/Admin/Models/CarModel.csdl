@@ -13,7 +13,6 @@
     <Property Name="time_pulish_article" Type="DateTime" Precision="3" />
     <Property Name="time_write" Type="DateTime" Precision="3" />
     <Property Name="state_article" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="img_article" Type="Binary" MaxLength="Max" FixedLength="false" />
     <Property Name="linkvideo_article" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="CategoryArticle" Relationship="Self.FK_Article_id_category" FromRole="Article" ToRole="CategoryArticle" />
     <NavigationProperty Name="InfoAccount" Relationship="Self.FK_Article_id_user" FromRole="Article" ToRole="InfoAccount" />
