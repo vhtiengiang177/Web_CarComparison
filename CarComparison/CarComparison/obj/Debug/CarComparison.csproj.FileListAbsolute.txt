@@ -101,21 +101,6 @@ D:\TÀI LIỆU NĂM 3\Lập trình web\CarProject\Web_CarComparison\CarCompariso
 D:\TÀI LIỆU NĂM 3\Lập trình web\CarProject\Web_CarComparison\CarComparison\CarComparison\bin\roslyn\vbc.rsp
 D:\TÀI LIỆU NĂM 3\Lập trình web\CarProject\Web_CarComparison\CarComparison\CarComparison\bin\roslyn\VBCSCompiler.exe
 D:\TÀI LIỆU NĂM 3\Lập trình web\CarProject\Web_CarComparison\CarComparison\CarComparison\bin\roslyn\VBCSCompiler.exe.config
-D:\TÀI LIỆU NĂM 3\Lập trình web\CarProject\Web_CarComparison\CarComparison\CarComparison\bin\EntityFramework.xml
-D:\TÀI LIỆU NĂM 3\Lập trình web\CarProject\Web_CarComparison\CarComparison\CarComparison\bin\EntityFramework.SqlServer.xml
-D:\TÀI LIỆU NĂM 3\Lập trình web\CarProject\Web_CarComparison\CarComparison\CarComparison\bin\System.Web.Helpers.xml
-D:\TÀI LIỆU NĂM 3\Lập trình web\CarProject\Web_CarComparison\CarComparison\CarComparison\bin\System.Web.Mvc.xml
-D:\TÀI LIỆU NĂM 3\Lập trình web\CarProject\Web_CarComparison\CarComparison\CarComparison\bin\System.Web.Optimization.xml
-D:\TÀI LIỆU NĂM 3\Lập trình web\CarProject\Web_CarComparison\CarComparison\CarComparison\bin\System.Web.Razor.xml
-D:\TÀI LIỆU NĂM 3\Lập trình web\CarProject\Web_CarComparison\CarComparison\CarComparison\bin\System.Web.WebPages.xml
-D:\TÀI LIỆU NĂM 3\Lập trình web\CarProject\Web_CarComparison\CarComparison\CarComparison\bin\System.Web.WebPages.Deployment.xml
-D:\TÀI LIỆU NĂM 3\Lập trình web\CarProject\Web_CarComparison\CarComparison\CarComparison\bin\System.Web.WebPages.Razor.xml
-D:\TÀI LIỆU NĂM 3\Lập trình web\CarProject\Web_CarComparison\CarComparison\CarComparison\bin\Newtonsoft.Json.xml
-D:\TÀI LIỆU NĂM 3\Lập trình web\CarProject\Web_CarComparison\CarComparison\CarComparison\bin\Antlr3.Runtime.pdb
-D:\TÀI LIỆU NĂM 3\Lập trình web\CarProject\Web_CarComparison\CarComparison\CarComparison\bin\System.Net.Http.Formatting.xml
-D:\TÀI LIỆU NĂM 3\Lập trình web\CarProject\Web_CarComparison\CarComparison\CarComparison\bin\System.Web.Http.xml
-D:\TÀI LIỆU NĂM 3\Lập trình web\CarProject\Web_CarComparison\CarComparison\CarComparison\bin\System.Web.Http.WebHost.xml
-D:\TÀI LIỆU NĂM 3\Lập trình web\CarProject\Web_CarComparison\CarComparison\CarComparison\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 D:\TÀI LIỆU NĂM 3\Lập trình web\CarProject\Web_CarComparison\CarComparison\CarComparison\obj\Debug\CarComparison.csprojAssemblyReference.cache
 D:\TÀI LIỆU NĂM 3\Lập trình web\CarProject\Web_CarComparison\CarComparison\CarComparison\obj\Debug\CarComparison.csproj.CoreCompileInputs.cache
 D:\TÀI LIỆU NĂM 3\Lập trình web\CarProject\Web_CarComparison\CarComparison\CarComparison\obj\Debug\CarComparison.csproj.CopyComplete
@@ -175,3 +160,57 @@ E:\3-1\LapTrinhWeb\Car_Cua_Bao\Web_CarComparison\CarComparison\CarComparison\obj
 E:\3-1\LapTrinhWeb\Car_Cua_Bao\Web_CarComparison\CarComparison\CarComparison\obj\Debug\CarComparison.csproj.CopyComplete
 E:\3-1\LapTrinhWeb\Car_Cua_Bao\Web_CarComparison\CarComparison\CarComparison\obj\Debug\CarComparison.dll
 E:\3-1\LapTrinhWeb\Car_Cua_Bao\Web_CarComparison\CarComparison\CarComparison\obj\Debug\CarComparison.pdb
+E:\3-1\LapTrinhWeb\CarCompation\Web_CarComparison\CarComparison\CarComparison\bin\CarComparison.dll.config
+E:\3-1\LapTrinhWeb\CarCompation\Web_CarComparison\CarComparison\CarComparison\bin\CarComparison.dll
+E:\3-1\LapTrinhWeb\CarCompation\Web_CarComparison\CarComparison\CarComparison\bin\CarComparison.pdb
+E:\3-1\LapTrinhWeb\CarCompation\Web_CarComparison\CarComparison\CarComparison\bin\roslyn\csc.exe
+E:\3-1\LapTrinhWeb\CarCompation\Web_CarComparison\CarComparison\CarComparison\bin\roslyn\csc.exe.config
+E:\3-1\LapTrinhWeb\CarCompation\Web_CarComparison\CarComparison\CarComparison\bin\roslyn\csc.rsp
+E:\3-1\LapTrinhWeb\CarCompation\Web_CarComparison\CarComparison\CarComparison\bin\roslyn\csi.exe
+E:\3-1\LapTrinhWeb\CarCompation\Web_CarComparison\CarComparison\CarComparison\bin\roslyn\csi.exe.config
+E:\3-1\LapTrinhWeb\CarCompation\Web_CarComparison\CarComparison\CarComparison\bin\roslyn\csi.rsp
+E:\3-1\LapTrinhWeb\CarCompation\Web_CarComparison\CarComparison\CarComparison\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+E:\3-1\LapTrinhWeb\CarCompation\Web_CarComparison\CarComparison\CarComparison\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+E:\3-1\LapTrinhWeb\CarCompation\Web_CarComparison\CarComparison\CarComparison\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+E:\3-1\LapTrinhWeb\CarCompation\Web_CarComparison\CarComparison\CarComparison\bin\roslyn\Microsoft.CodeAnalysis.dll
+E:\3-1\LapTrinhWeb\CarCompation\Web_CarComparison\CarComparison\CarComparison\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+E:\3-1\LapTrinhWeb\CarCompation\Web_CarComparison\CarComparison\CarComparison\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+E:\3-1\LapTrinhWeb\CarCompation\Web_CarComparison\CarComparison\CarComparison\bin\roslyn\Microsoft.CSharp.Core.targets
+E:\3-1\LapTrinhWeb\CarCompation\Web_CarComparison\CarComparison\CarComparison\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+E:\3-1\LapTrinhWeb\CarCompation\Web_CarComparison\CarComparison\CarComparison\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+E:\3-1\LapTrinhWeb\CarCompation\Web_CarComparison\CarComparison\CarComparison\bin\roslyn\Microsoft.Managed.Core.targets
+E:\3-1\LapTrinhWeb\CarCompation\Web_CarComparison\CarComparison\CarComparison\bin\roslyn\Microsoft.VisualBasic.Core.targets
+E:\3-1\LapTrinhWeb\CarCompation\Web_CarComparison\CarComparison\CarComparison\bin\roslyn\System.AppContext.dll
+E:\3-1\LapTrinhWeb\CarCompation\Web_CarComparison\CarComparison\CarComparison\bin\roslyn\System.Collections.Immutable.dll
+E:\3-1\LapTrinhWeb\CarCompation\Web_CarComparison\CarComparison\CarComparison\bin\roslyn\System.Console.dll
+E:\3-1\LapTrinhWeb\CarCompation\Web_CarComparison\CarComparison\CarComparison\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+E:\3-1\LapTrinhWeb\CarCompation\Web_CarComparison\CarComparison\CarComparison\bin\roslyn\System.Diagnostics.StackTrace.dll
+E:\3-1\LapTrinhWeb\CarCompation\Web_CarComparison\CarComparison\CarComparison\bin\roslyn\System.IO.Compression.dll
+E:\3-1\LapTrinhWeb\CarCompation\Web_CarComparison\CarComparison\CarComparison\bin\roslyn\System.IO.FileSystem.dll
+E:\3-1\LapTrinhWeb\CarCompation\Web_CarComparison\CarComparison\CarComparison\bin\roslyn\System.IO.FileSystem.Primitives.dll
+E:\3-1\LapTrinhWeb\CarCompation\Web_CarComparison\CarComparison\CarComparison\bin\roslyn\System.IO.Pipes.AccessControl.dll
+E:\3-1\LapTrinhWeb\CarCompation\Web_CarComparison\CarComparison\CarComparison\bin\roslyn\System.IO.Pipes.dll
+E:\3-1\LapTrinhWeb\CarCompation\Web_CarComparison\CarComparison\CarComparison\bin\roslyn\System.Reflection.Metadata.dll
+E:\3-1\LapTrinhWeb\CarCompation\Web_CarComparison\CarComparison\CarComparison\bin\roslyn\System.Security.AccessControl.dll
+E:\3-1\LapTrinhWeb\CarCompation\Web_CarComparison\CarComparison\CarComparison\bin\roslyn\System.Security.Claims.dll
+E:\3-1\LapTrinhWeb\CarCompation\Web_CarComparison\CarComparison\CarComparison\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+E:\3-1\LapTrinhWeb\CarCompation\Web_CarComparison\CarComparison\CarComparison\bin\roslyn\System.Security.Cryptography.Encoding.dll
+E:\3-1\LapTrinhWeb\CarCompation\Web_CarComparison\CarComparison\CarComparison\bin\roslyn\System.Security.Cryptography.Primitives.dll
+E:\3-1\LapTrinhWeb\CarCompation\Web_CarComparison\CarComparison\CarComparison\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+E:\3-1\LapTrinhWeb\CarCompation\Web_CarComparison\CarComparison\CarComparison\bin\roslyn\System.Security.Principal.Windows.dll
+E:\3-1\LapTrinhWeb\CarCompation\Web_CarComparison\CarComparison\CarComparison\bin\roslyn\System.Text.Encoding.CodePages.dll
+E:\3-1\LapTrinhWeb\CarCompation\Web_CarComparison\CarComparison\CarComparison\bin\roslyn\System.ValueTuple.dll
+E:\3-1\LapTrinhWeb\CarCompation\Web_CarComparison\CarComparison\CarComparison\bin\roslyn\System.Xml.ReaderWriter.dll
+E:\3-1\LapTrinhWeb\CarCompation\Web_CarComparison\CarComparison\CarComparison\bin\roslyn\System.Xml.XmlDocument.dll
+E:\3-1\LapTrinhWeb\CarCompation\Web_CarComparison\CarComparison\CarComparison\bin\roslyn\System.Xml.XPath.dll
+E:\3-1\LapTrinhWeb\CarCompation\Web_CarComparison\CarComparison\CarComparison\bin\roslyn\System.Xml.XPath.XDocument.dll
+E:\3-1\LapTrinhWeb\CarCompation\Web_CarComparison\CarComparison\CarComparison\bin\roslyn\vbc.exe
+E:\3-1\LapTrinhWeb\CarCompation\Web_CarComparison\CarComparison\CarComparison\bin\roslyn\vbc.exe.config
+E:\3-1\LapTrinhWeb\CarCompation\Web_CarComparison\CarComparison\CarComparison\bin\roslyn\vbc.rsp
+E:\3-1\LapTrinhWeb\CarCompation\Web_CarComparison\CarComparison\CarComparison\bin\roslyn\VBCSCompiler.exe
+E:\3-1\LapTrinhWeb\CarCompation\Web_CarComparison\CarComparison\CarComparison\bin\roslyn\VBCSCompiler.exe.config
+E:\3-1\LapTrinhWeb\CarCompation\Web_CarComparison\CarComparison\CarComparison\obj\Debug\CarComparison.csprojAssemblyReference.cache
+E:\3-1\LapTrinhWeb\CarCompation\Web_CarComparison\CarComparison\CarComparison\obj\Debug\CarComparison.csproj.CoreCompileInputs.cache
+E:\3-1\LapTrinhWeb\CarCompation\Web_CarComparison\CarComparison\CarComparison\obj\Debug\CarComparison.csproj.CopyComplete
+E:\3-1\LapTrinhWeb\CarCompation\Web_CarComparison\CarComparison\CarComparison\obj\Debug\CarComparison.dll
+E:\3-1\LapTrinhWeb\CarCompation\Web_CarComparison\CarComparison\CarComparison\obj\Debug\CarComparison.pdb

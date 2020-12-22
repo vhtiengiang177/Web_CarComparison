@@ -19,115 +19,114 @@
     <link rel="stylesheet" href="~/Asset/Client/css/owl.carousel.css">
     <link rel="stylesheet" href="~/Asset/Client/css/owl.theme.default.min.css">
     <link href="~/Asset/Client/css/bootstrap.min.css" rel="stylesheet" />
-    <!-- MAIN CSS -->
+    <script src="~/Asset/Client/js/custom.js"></script>
+    @*MAIN CSS--!>*@
     <link rel="stylesheet" href="~/Asset/Client/css/style.css">
-
+    @*<link href="~/total/client/css/bootstrap.min.css" rel="stylesheet" />*@
 </head>
-<body id="top" data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
+    <body id="top" data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
 
-    <!-- PRE LOADER -->
-    <section class="preloader">
-        <div class="spinner">
-            <span class="spinner-rotate"></span>
-        </div>
-    </section>
-
-
-    <!-- MENU -->
-    <section class="navbar custom-navbar navbar-fixed-top" role="navigation">
-        <div class="container">
-
-            <div class="navbar-header">
-                <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon icon-bar"></span>
-                    <span class="icon icon-bar"></span>
-                    <span class="icon icon-bar"></span>
-                </button>
-
-                <!-- lOGO TEXT HERE -->
-                <a href="#" class="navbar-brand">Car Comparing Website</a>
+         @*PRE LOADER*@
+        <section class="preloader">
+            <div class="spinner">
+                <span class="spinner-rotate"></span>
             </div>
+        </section>
 
-            <!-- MENU LINKS -->
-            <div class="collapse navbar-collapse">
-                <ul class="nav navbar-nav navbar-nav-first">
-                    <li class="active"><a href="/Client/Index">Trang chủ</a></li>
-                    <li><a href="/Client/Comparing">So sánh Xe</a></li>
-                    @*<li><a href="about-us.html">Thông tin</a></li>*@
-                    @*<li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">More <span class="caret"></span></a>
 
-                    <ul class="dropdown-menu">
-                        <li><a href="blog-posts.html">Bài đánh giá</a></li>
+         @*MENU*@
+        <section class="navbar custom-navbar navbar-fixed-top" role="navigation">
+            <div class="container">
+
+                <div class="navbar-header">
+                    <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon icon-bar"></span>
+                        <span class="icon icon-bar"></span>
+                        <span class="icon icon-bar"></span>
+                    </button>
+
+                     @*lOGO TEXT HERE*@
+                    <a href="#" class="navbar-brand">Car Comparing Website</a>
+                </div>
+
+                 @*MENU LINKS*@
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav navbar-nav-first">
+                        <li class="active"><a href="/Client/Index">Trang chủ</a></li>
+                        <li><a href="/Client/Comparing">So sánh Xe</a></li>
+                       
+                        
+
+                        <ul class="dropdown-menu">
+                            <li><a href="blog-posts.html">Bài đánh giá</a></li>
+                            <li><a href="/Client/Team">Team</a></li>
+
+                            <li><a href="testimonials.html">Video</a></li>
+                        </ul>
+                    </li>
+                        <li><a href="/Client/Review">Bài đánh giá</a></li>
                         <li><a href="/Client/Team">Team</a></li>
 
                         <li><a href="testimonials.html">Video</a></li>
+                        <li><a href="/Client/Contact">Liên hệ</a></li>
+                        @*<li><button onclick="document.getElementById('id01').style.display='block'" style="width:auto; margin:9px" class="section-btn btn btn-primary btn-block">Đăng Nhập</button></li>*@
+                        <li>@Html.ActionLink("Đăng Nhập", "LoginView", "Account")</li>
+
+
+
+
+
                     </ul>
-                </li>*@
-                    <li><a href="/Client/Review">Bài đánh giá</a></li>
-                    <li><a href="/Client/Team">Team</a></li>
+                </div>
 
-                    <li><a href="testimonials.html">Video</a></li>
-                    <li><a href="/Client/Contact">Liên hệ</a></li>
-                    @*<li><button onclick="document.getElementById('id01').style.display='block'" style="width:auto; margin:9px" class="section-btn btn btn-primary btn-block">Đăng Nhập</button></li>*@
-                    <li><a href="~/Admin/Account/Login">Đăng Nhập</a></li>
+                <div id="id01" class="modal">
 
+                    <form class="modal-content animate" action="~/Account/DangNhap" method="post">
+                        <div class="imgcontainer">
+                            <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+                            <img src="~/Asset/Login1/images/man.jpg" alt="Avatar" class="avatar">
 
+                        </div>
 
+                        <div class="container">
+                            <label for="uname"><b>Username</b></label>
+                            <input type="text" placeholder="Enter Username" name="username" required>
 
+                            <label for="psw"><b>Password</b></label>
+                            <input type="password" placeholder="Enter Password" name="password" required>
 
-                </ul>
+                            <button type="submit">Sign In</button>
+                            <button onclick="document.getElementById('id02').style.display='block'" style="width:100%; height:100%">Sign Up</button>
+                            <label>
+                                <input type="checkbox" checked="checked" name="remember"> Remember me
+                            </label>
+                        </div>
+
+                        <div class="container" style="background-color:#f1f1f1">
+                            <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Đây là nút tao vừa sửa</button>
+                            <span class="psw">Forgot <a href="#">password?</a></span>
+                        </div>
+                    </form>
+                </div>
+
             </div>
-
-            <div id="id01" class="modal">
-
-                <form class="modal-content animate" action="~/Account/DangNhap" method="post">
-                    <div class="imgcontainer">
-                        <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
-                        <img src="~/Asset/Login1/images/man.jpg" alt="Avatar" class="avatar">
-
-                    </div>
-
-                    <div class="container">
-                        <label for="uname"><b>Username</b></label>
-                        <input type="text" placeholder="Enter Username" name="username" required>
-
-                        <label for="psw"><b>Password</b></label>
-                        <input type="password" placeholder="Enter Password" name="password" required>
-
-                        <button type="submit">Sign In</button>
-                        <button onclick="document.getElementById('id02').style.display='block'" style="width:100%; height:100%">Sign Up</button>
-                        <label>
-                            <input type="checkbox" checked="checked" name="remember"> Remember me
-                        </label>
-                    </div>
-
-                    <div class="container" style="background-color:#f1f1f1">
-                        <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Đây là nút tao vừa sửa</button>
-                        <span class="psw">Forgot <a href="#">password?</a></span>
-                    </div>
-                </form>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- HOME -->
+        </section>
+    @*HOME*@
     <section id="home">
-        <!--chạy ảnh-->
+       
         <div class="row">
             <div class="owl-carousel owl-theme home-slider">
-                <!--<div class="item item-first">
-                     <div class="caption">
-                          <div class="container">
-                               <div class="col-md-6 col-sm-12">
-                                    <h1>COMPARING CAR NOW!!!!!</h1>
-                                    <h3>Tối ưu hóa sự ựa chọn của bạn, đảm bảo chất lượng trong từng bài viết</h3>
-                                    <a href="cars.html" class="section-btn btn btn-default">Compare now</a>
-                               </div>
-                          </div>
-                     </div>
-                </div>-->
+                @*<div class="item item-first">
+                    <div class="caption">
+                        <div class="container">
+                            <div class="col-md-6 col-sm-12">
+                                <h1>COMPARING CAR NOW!!!!!</h1>
+                                <h3>Tối ưu hóa sự ựa chọn của bạn, đảm bảo chất lượng trong từng bài viết</h3>
+                                <a href="/Client/Comparing" class="section-btn btn btn-default">Compare now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>*@
 
                 <div class="item item-second">
                     <div class="caption">
@@ -137,23 +136,23 @@
 
                                 <h1>Compare cars side-by-side</h1>
                                 <h3>So sánh sự khác biệt về giá, tính năng, hiệu suất và hơn thế nữa...</h3>
-                                <a href="cars.html" class="section-btn btn btn-default">Get Started</a>
+                                <a href="/Client/Comparing" class="section-btn btn btn-default">Get Started</a>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!--<div class="item item-third">
-                     <div class="caption">
-                          <div class="container">
-                               <div class="col-md-6 col-sm-12">
-                                    <h1>Efficient Learning Methods</h1>
-                                    <h3>Nam eget sapien vel nibh euismod vulputate in vel nibh. Quisque eu ex eu urna venenatis sollicitudin ut at libero.</h3>
-                                    <a href="cars.html" class="section-btn btn btn-default">Browse Cars</a>
-                               </div>
-                          </div>
-                     </div>
-                </div>-->
+                @*<div class="item item-third">
+                    <div class="caption">
+                        <div class="container">
+                            <div class="col-md-6 col-sm-12">
+                                <h1>Efficient Learning Methods</h1>
+                                <h3>Nam eget sapien vel nibh euismod vulputate in vel nibh. Quisque eu ex eu urna venenatis sollicitudin ut at libero.</h3>
+                                <a href="cars.html" class="section-btn btn btn-default">Browse Cars</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>*@
             </div>
         </div>
     </section>
@@ -525,7 +524,7 @@
         </section>
     </main>
 
-    <!-- CONTACT -->
+    CONTACT
     <section id="contact">
         <div class="container">
             <div class="row">
@@ -561,7 +560,7 @@
         </div>
     </section>
 
-    <!-- FOOTER -->
+    FOOTER
     <footer id="footer">
         <div class="container">
             <div class="row">
@@ -631,12 +630,12 @@
         </div>
     </footer>
 
-    <!-- SCRIPTS -->
+    SCRIPTS
     <script src="~/Asset/Client/js/jquery.js"></script>
     <script src="~/Asset/Client/js/bootstrap.min.js"></script>
     <script src="~/Asset/Client/js/owl.carousel.min.js"></script>
     <script src="~/Asset/Client/js/smoothscroll.js"></script>
     <script src="~/Asset/Client/js/custom.js"></script>
 
-</body>
+    </body>
 </html>
