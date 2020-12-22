@@ -13,7 +13,6 @@
           <ScalarProperty Name="time_pulish_article" ColumnName="time_pulish_article" />
           <ScalarProperty Name="time_write" ColumnName="time_write" />
           <ScalarProperty Name="state_article" ColumnName="state_article" />
-          <ScalarProperty Name="img_article" ColumnName="img_article" />
           <ScalarProperty Name="linkvideo_article" ColumnName="linkvideo_article" />
         </MappingFragment>
       </EntityTypeMapping>

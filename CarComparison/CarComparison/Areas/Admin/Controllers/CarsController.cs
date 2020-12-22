@@ -47,15 +47,52 @@ namespace CarComparison.Areas.Admin.Controllers
         // GET: Admin/Cars/Create
         public ActionResult Create()
         {
+            // SINH ID XE TỰ ĐỘNG
+            var cars = (from c in db.Cars select c.id_car).ToList();
+            string id = "";
+            if (cars.Count == 0) // nếu danh sách rỗng
+            {
+                id = "Ca01";
+            }
+            else
+            {
+                for (int i = 0; i < cars.Count(); i++)
+                {
+                    if (int.Parse(cars[i].Substring(2, 2)) != (i + 1))
+                    {
+                        if (i + 1 >= 0 && i + 1 < 9)
+                            id = "Ca0" + (i + 1).ToString();
+                        else if (i + 1 > 9)
+                            id = "Ca" + (i + 1).ToString();
+                        break;
+                    }
+                }
+                if(id == "")
+                {
+                    id = cars[cars.Count - 1].Substring(2, 2);
+                    if (int.Parse(id) >= 0 && int.Parse(id) < 9)
+                    {
+                        id = "Ca0" + (int.Parse(id) + 1).ToString();
+                    }
+                    if (int.Parse(id) >= 9)
+                    {
+                        id = "Ca" + (int.Parse(id) + 1).ToString();
+                    }
+                }
+            }
+            Car car = new Car
+            {
+                id_car = id
+            };
             ViewBag.id_version = new SelectList(db.Versions, "id_version", "name_version");
-            return View();
+            return View(car);
         }
 
         // POST: Admin/Cars/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        [ValidateInput(false)]
         public ActionResult Create([Bind(Include = "id_car,overview_car,length_car,wheels_car,tireparameters_car,weight_car,capacity_car,horsepower_car,gear_car,torque_car,drivetype_car,frontbrakesystem_car,rearbrakesystem_car,maximumspeed_car,accelerationtime_car,capacitytank_car,numberseat_car,seat_car,airconditioner_car,sunroof_car,charge_car,img_car,id_version")] Car car)
         {
             if (ModelState.IsValid)

@@ -1983,7 +1983,6 @@ textarea.form-control {
 
 .form-group {
   margin-bottom: 1rem;
-  float:left;
 }
 
 .form-text {
@@ -11244,8 +11243,8 @@ body.sidebar-toggled footer.sticky-footer {
   width: 100%;
 }
 
-.form-car{
-    width: 100%;
+.form-car {
+    width: 500px;
 }
 
 .detail-car{
@@ -11256,4 +11255,9 @@ body.sidebar-toggled footer.sticky-footer {
 
 .form-group-typeuser {
     margin-bottom: 1rem;
+}
+
+.content-edit {
+    display: flex;
+    flex-wrap: wrap;
 }

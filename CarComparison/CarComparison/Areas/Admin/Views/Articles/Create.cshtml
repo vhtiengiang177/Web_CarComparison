@@ -5,23 +5,22 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Create</h2>
+<h2>Tạo bài đăng video</h2>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
-        <h4>Article</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
+        @*<div class="form-group">
             @Html.LabelFor(model => model.id_article, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.id_article, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.id_article, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", disabled = "disabled" } })
                 @Html.ValidationMessageFor(model => model.id_article, "", new { @class = "text-danger" })
             </div>
-        </div>
+        </div>*@
 
         <div class="form-group">
             @Html.LabelFor(model => model.id_category, "id_category", htmlAttributes: new { @class = "control-label col-md-2" })
@@ -40,7 +39,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.alias_article, htmlAttributes: new { @class = "control-label col-md-2" })
+             Bí danh
             <div class="col-md-10">
                 @Html.EditorFor(model => model.alias_article, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.alias_article, "", new { @class = "text-danger" })
@@ -48,7 +47,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.id_user, "id_user", htmlAttributes: new { @class = "control-label col-md-2" })
+            Người viết
             <div class="col-md-10">
                 @Html.DropDownList("id_user", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.id_user, "", new { @class = "text-danger" })
@@ -56,47 +55,41 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.description_article, htmlAttributes: new { @class = "control-label col-md-2" })
+            Nội dung
             <div class="col-md-10">
-                @Html.EditorFor(model => model.description_article, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.description_article, "", new { @class = "text-danger" })
+                @Html.TextAreaFor(model => model.description_article, new { @id = "ckeDescription" })
+                @*@Html.ValidationMessageFor(model => model.description_article, "", new { @class = "text-danger" })*@
+
+
             </div>
         </div>
 
-        <div class="form-group">
+        @*<div class="form-group">
             @Html.LabelFor(model => model.time_pulish_article, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.time_pulish_article, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.time_pulish_article, new { htmlAttributes = new { @class = "form-control"} })
                 @Html.ValidationMessageFor(model => model.time_pulish_article, "", new { @class = "text-danger" })
             </div>
-        </div>
+        </div>*@
 
-        <div class="form-group">
+        @*<div class="form-group">
             @Html.LabelFor(model => model.time_write, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.time_write, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.time_write, "", new { @class = "text-danger" })
             </div>
-        </div>
+        </div>*@
 
-        <div class="form-group">
+        @*<div class="form-group">
             @Html.LabelFor(model => model.state_article, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.state_article, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.state_article, "", new { @class = "text-danger" })
             </div>
-        </div>
+        </div>*@
 
         <div class="form-group">
-            @Html.LabelFor(model => model.img_article, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.img_article, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.img_article, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.linkvideo_article, htmlAttributes: new { @class = "control-label col-md-2" })
+            Link video xe
             <div class="col-md-10">
                 @Html.EditorFor(model => model.linkvideo_article, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.linkvideo_article, "", new { @class = "text-danger" })
@@ -114,3 +107,8 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
+
+<script src="~/Asset/Admin/js/ckeditor/ckeditor.js"></script>
+<script type="text/javascript">
+    CKEDITOR.replace("ckeDescription");
+</script>
