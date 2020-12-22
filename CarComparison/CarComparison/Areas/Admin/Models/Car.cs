@@ -39,5 +39,21 @@ namespace CarComparison.Areas.Admin.Models
         public string id_version { get; set; }
     
         public virtual Version Version { get; set; }
+
+        public string automakerId { get; set; }
+        public string modelId { get; set; }
+        public string versionId { get; set; }
+
+        public string automakerId1 { get; set; }
+        public string modelId1 { get; set; }
+        public string versionId1 { get; set; }
+
+        public string automakerId2 { get; set; }
+        public string modelId2 { get; set; }
+        public string versionId2 { get; set; }
+
+        public string automakerId3 { get; set; }
+        public string modelId3 { get; set; }
+        public string versionId3 { get; set; }
     }
 }

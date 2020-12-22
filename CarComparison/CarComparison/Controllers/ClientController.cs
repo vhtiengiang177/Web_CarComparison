@@ -80,14 +80,32 @@ namespace CarComparison.Controllers
 
         }
 
-        public JsonResult GetCarlList(string idVersion)
+        public JsonResult GetCarList(string idVersion)
         {
            
             db.Configuration.ProxyCreationEnabled = false;
-            List<Car> CarList = db.Cars.Where(x =>x.id_version  == idVersion).ToList();
+            List<Car> CarList = db.Cars.Where(x => x.id_version == idVersion).ToList();
+
+            //from a in db.Models
+            //join c in db.Versions on a.id_model equals c.id_model
+            //join b in db.Automakers on a.id_automaker equals b.id_automaker
+            //join d in db.Cars on c.id_version equals d.id_version
+            //where d.id_car == idCar
+            //select new
+            //{
+            //    tenxe = a.name_model + " " + c.name_version,
+
+            //};
             return Json(CarList, JsonRequestBehavior.AllowGet);
 
         }
+
+        //public JsonResult getCar(string idver)
+        //{
+        //    List<Car> CarList = new List<Car>();
+        //    CarList = db.Cars.ToList();
+        //    return Json(CarList, JsonRequestBehavior.AllowGet);
+        //}
         //[HttpPost]
         //public ActionResult Comparing(string automakerId, string modelId, string versionId)
         //{

@@ -37,7 +37,7 @@ namespace CarComparison.Controllers
             return sbHash.ToString();
         }
         [HttpPost]
-        //xử lý đăng nhập
+        //xử lý đăng nhậps
         public ActionResult DangNhap(FormCollection f)
         {
 
@@ -49,7 +49,7 @@ namespace CarComparison.Controllers
             if (us != null)
             {
                 Global.SetGlobalUser(us);
-                return Redirect("Home", "Areas/Admin/")
+                //return Redirect("Home", "Areas/Admin/");
                 return View("~/Areas/Admin/Views/Home/Index.cshtml");
                 //    if (us.block == false && us.usertype != "1")
                 //    {

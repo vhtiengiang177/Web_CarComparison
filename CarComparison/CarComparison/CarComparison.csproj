@@ -2200,6 +2200,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Total\Client\css\bootstrap.min.css" />
+    <Content Include="Total\Client\css\btn_top.css" />
     <Content Include="Total\Client\css\font-awesome.min.css" />
     <Content Include="Total\Client\css\owl.carousel.css" />
     <Content Include="Total\Client\css\owl.theme.default.min.css" />
@@ -2238,6 +2239,7 @@
     <Content Include="Total\Client\images\tst-image-3-200x216.jpg" />
     <Content Include="Total\Client\images\tst-image-4-200x216.jpg" />
     <Content Include="Total\Client\js\bootstrap.min.js" />
+    <Content Include="Total\Client\js\btn_top.js" />
     <Content Include="Total\Client\js\custom.js" />
     <Content Include="Total\Client\js\jquery.js" />
     <Content Include="Total\Client\js\owl.carousel.min.js" />
