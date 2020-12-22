@@ -11,23 +11,23 @@
         <EntityTypeShape EntityType="CompareCarModel.CategoryArticle" Width="1.5" PointX="3" PointY="8.75" IsExpanded="true" />
         <EntityTypeShape EntityType="CompareCarModel.Comment" Width="1.5" PointX="7.5" PointY="4.125" IsExpanded="true" />
         <EntityTypeShape EntityType="CompareCarModel.Contact" Width="1.5" PointX="9.75" PointY="1.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CompareCarModel.InfoAccount" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
         <EntityTypeShape EntityType="CompareCarModel.Model" Width="1.5" PointX="8" PointY="10.875" IsExpanded="true" />
         <EntityTypeShape EntityType="CompareCarModel.Permission" Width="1.5" PointX="0.75" PointY="2.125" IsExpanded="true" />
         <EntityTypeShape EntityType="CompareCarModel.TypeUser" Width="1.5" PointX="0.75" PointY="4.875" IsExpanded="true" />
         <EntityTypeShape EntityType="CompareCarModel.User_Permission" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="CompareCarModel.Version" Width="1.5" PointX="10.25" PointY="10.875" IsExpanded="true" />
         <AssociationConnector Association="CompareCarModel.FK_Article_id_category" ManuallyRouted="false" />
-        <AssociationConnector Association="CompareCarModel.FK_Article_id_user" ManuallyRouted="false" />
         <AssociationConnector Association="CompareCarModel.FK_Comment_id_article" ManuallyRouted="false" />
         <AssociationConnector Association="CompareCarModel.FK_Model_id_automaker" ManuallyRouted="false" />
         <AssociationConnector Association="CompareCarModel.FK_Car_id_version" ManuallyRouted="false" />
-        <AssociationConnector Association="CompareCarModel.FK_Comment_id_commenter" ManuallyRouted="false" />
         <AssociationConnector Association="CompareCarModel.FK_Comment_id_replycomment" ManuallyRouted="false" />
-        <AssociationConnector Association="CompareCarModel.FK_InfoAccount_id_typeuser" ManuallyRouted="false" />
         <AssociationConnector Association="CompareCarModel.FK_Version_id_model" ManuallyRouted="false" />
         <AssociationConnector Association="CompareCarModel.FK_UserPermission_id_permisson" ManuallyRouted="false" />
         <AssociationConnector Association="CompareCarModel.FK_UserPermission_id_typeuser" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="CompareCarModel.User_" Width="1.5" PointX="3.125" PointY="3.5" />
+        <AssociationConnector Association="CompareCarModel.FK_Article_id_user" />
+        <AssociationConnector Association="CompareCarModel.FK_Comment_id_commenter" />
+        <AssociationConnector Association="CompareCarModel.FK_User_id_typeuser" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

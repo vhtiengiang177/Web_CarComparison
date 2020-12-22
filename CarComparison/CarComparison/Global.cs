@@ -8,9 +8,9 @@ namespace CarComparison
 {
     public class Global
     {
-        public static InfoAccount GlobalUser { get; private set; }
+        public static User_ GlobalUser { get; private set; }
 
-        public static void SetGlobalUser(InfoAccount user)
+        public static void SetGlobalUser(User_ user)
         {
             GlobalUser = user;
         }

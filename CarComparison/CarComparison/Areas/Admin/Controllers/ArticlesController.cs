@@ -18,7 +18,7 @@ namespace CarComparison.Areas.Admin.Controllers
         // GET: Admin/Articles
         public ActionResult Index()
         {
-            var articles = db.Articles.Include(a => a.CategoryArticle).Include(a => a.InfoAccount);
+            var articles = db.Articles.Include(a => a.CategoryArticle).Include(a => a.User_);
             return View(articles.ToList());
         }
 
@@ -40,7 +40,7 @@ namespace CarComparison.Areas.Admin.Controllers
         // GET: Admin/Articles/Create
         public ActionResult Create()
         {
-            var articles = db.Articles.Include(a => a.CategoryArticle).Include(a => a.InfoAccount).ToList();
+            var articles = db.Articles.Include(a => a.CategoryArticle).Include(a => a.User_).ToList();
             string json = Newtonsoft.Json.JsonConvert.SerializeObject(articles);
             DataTable dt = JsonConvert.DeserializeObject<DataTable>(json);
             string id;
@@ -65,7 +65,7 @@ namespace CarComparison.Areas.Admin.Controllers
                 id_article = id
             };
             ViewBag.id_category = new SelectList(db.CategoryArticles, "id_category", "name_category");
-            ViewBag.id_user = new SelectList(db.InfoAccounts, "id_user", "name_user");
+            ViewBag.id_user = new SelectList(db.User_, "id_user", "name_user");
             return View(art);
         }
 
@@ -84,7 +84,7 @@ namespace CarComparison.Areas.Admin.Controllers
             }
 
             ViewBag.id_category = new SelectList(db.CategoryArticles, "id_category", "name_category", article.id_category);
-            ViewBag.id_user = new SelectList(db.InfoAccounts, "id_user", "name_user", article.id_user);
+            ViewBag.id_user = new SelectList(db.User_, "id_user", "name_user", article.id_user);
             return View(article);
         }
 
@@ -101,7 +101,7 @@ namespace CarComparison.Areas.Admin.Controllers
                 return HttpNotFound();
             }
             ViewBag.id_category = new SelectList(db.CategoryArticles, "id_category", "name_category", article.id_category);
-            ViewBag.id_user = new SelectList(db.InfoAccounts, "id_user", "name_user", article.id_user);
+            ViewBag.id_user = new SelectList(db.User_, "id_user", "name_user", article.id_user);
             return View(article);
         }
 
@@ -119,7 +119,7 @@ namespace CarComparison.Areas.Admin.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.id_category = new SelectList(db.CategoryArticles, "id_category", "name_category", article.id_category);
-            ViewBag.id_user = new SelectList(db.InfoAccounts, "id_user", "name_user", article.id_user);
+            ViewBag.id_user = new SelectList(db.User_, "id_user", "name_user", article.id_user);
             return View(article);
         }
 

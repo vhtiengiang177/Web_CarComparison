@@ -67,6 +67,7 @@
     <EntitySetMapping Name="Comments">
       <EntityTypeMapping TypeName="CompareCarModel.Comment">
         <MappingFragment StoreEntitySet="Comment">
+          <ScalarProperty Name="text_comment" ColumnName="text_comment" />
           <ScalarProperty Name="id_comment" ColumnName="id_comment" />
           <ScalarProperty Name="id_reply_comment" ColumnName="id_reply_comment" />
           <ScalarProperty Name="id_article" ColumnName="id_article" />
@@ -87,27 +88,6 @@
           <ScalarProperty Name="subject_contace" ColumnName="subject_contace" />
           <ScalarProperty Name="state_contact" ColumnName="state_contact" />
           <ScalarProperty Name="date_contact" ColumnName="date_contact" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="InfoAccounts">
-      <EntityTypeMapping TypeName="CompareCarModel.InfoAccount">
-        <MappingFragment StoreEntitySet="InfoAccount">
-          <ScalarProperty Name="id_user" ColumnName="id_user" />
-          <ScalarProperty Name="name_user" ColumnName="name_user" />
-          <ScalarProperty Name="password_user" ColumnName="password_user" />
-          <ScalarProperty Name="id_typeuser" ColumnName="id_typeuser" />
-          <ScalarProperty Name="lname_user" ColumnName="lname_user" />
-          <ScalarProperty Name="fname_user" ColumnName="fname_user" />
-          <ScalarProperty Name="email_user" ColumnName="email_user" />
-          <ScalarProperty Name="avt_user" ColumnName="avt_user" />
-          <ScalarProperty Name="block_state_user" ColumnName="block_state_user" />
-          <ScalarProperty Name="registerdate_user" ColumnName="registerdate_user" />
-          <ScalarProperty Name="lastvisitdate_user" ColumnName="lastvisitdate_user" />
-          <ScalarProperty Name="phone_user" ColumnName="phone_user" />
-          <ScalarProperty Name="sex_user" ColumnName="sex_user" />
-          <ScalarProperty Name="birthday_user" ColumnName="birthday_user" />
-          <ScalarProperty Name="address_user" ColumnName="address_user" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -164,5 +144,26 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <EntitySetMapping Name="User_">
+      <EntityTypeMapping TypeName="CompareCarModel.User_">
+        <MappingFragment StoreEntitySet="User_">
+          <ScalarProperty Name="address_user" ColumnName="address_user" />
+          <ScalarProperty Name="birthday_user" ColumnName="birthday_user" />
+          <ScalarProperty Name="sex_user" ColumnName="sex_user" />
+          <ScalarProperty Name="phone_user" ColumnName="phone_user" />
+          <ScalarProperty Name="lastvisitdate_user" ColumnName="lastvisitdate_user" />
+          <ScalarProperty Name="registerdate_user" ColumnName="registerdate_user" />
+          <ScalarProperty Name="block_state_user" ColumnName="block_state_user" />
+          <ScalarProperty Name="avt_user" ColumnName="avt_user" />
+          <ScalarProperty Name="email_user" ColumnName="email_user" />
+          <ScalarProperty Name="fname_user" ColumnName="fname_user" />
+          <ScalarProperty Name="lname_user" ColumnName="lname_user" />
+          <ScalarProperty Name="id_typeuser" ColumnName="id_typeuser" />
+          <ScalarProperty Name="password_user" ColumnName="password_user" />
+          <ScalarProperty Name="name_user" ColumnName="name_user" />
+          <ScalarProperty Name="id_user" ColumnName="id_user" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

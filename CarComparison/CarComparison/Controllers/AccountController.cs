@@ -52,7 +52,7 @@ namespace CarComparison.Controllers
             string taikhoan = f["username"].ToString();
             string matkhau = f["password"].ToString();
             string matkhaumd5 = GetMD5(matkhau);
-            InfoAccount us = db.InfoAccounts.SingleOrDefault(n => n.name_user == taikhoan && n.password_user == matkhau);
+            User_ us = db.User_.SingleOrDefault(n => n.name_user == taikhoan && n.password_user == matkhau);
             //nếu user nhập đúng mật khẩu
             if (us != null)
             {

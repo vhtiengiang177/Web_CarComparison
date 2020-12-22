@@ -12,10 +12,10 @@ namespace CarComparison.Areas.Admin.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class InfoAccount
+    public partial class User_
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public InfoAccount()
+        public User_()
         {
             this.Articles = new HashSet<Article>();
             this.Comments = new HashSet<Comment>();
@@ -28,7 +28,7 @@ namespace CarComparison.Areas.Admin.Models
         public string lname_user { get; set; }
         public string fname_user { get; set; }
         public string email_user { get; set; }
-        public byte[] avt_user { get; set; }
+        public string avt_user { get; set; }
         public string block_state_user { get; set; }
         public Nullable<System.DateTime> registerdate_user { get; set; }
         public Nullable<System.DateTime> lastvisitdate_user { get; set; }

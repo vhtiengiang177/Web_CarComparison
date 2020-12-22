@@ -9,12 +9,12 @@ namespace CarComparison.Areas.Admin.Controllers
 {
     public class HomeController : Controller
     {
-        public static InfoAccount adminLogin;
+        public static User_ adminLogin;
 
         // GET: Admin/Home
         public ActionResult Index()
         {
-            InfoAccount user = Global.GlobalUser;
+            User_ user = Global.GlobalUser;
             return View();
         }
     }

@@ -9,12 +9,11 @@
     <Property Name="title_article" Type="nvarchar" MaxLength="255" />
     <Property Name="alias_article" Type="nvarchar" MaxLength="255" />
     <Property Name="id_user" Type="nvarchar" MaxLength="10" />
-    <Property Name="description_article" Type="nvarchar" MaxLength="255" />
+    <Property Name="description_article" Type="ntext" />
     <Property Name="time_pulish_article" Type="datetime" />
     <Property Name="time_write" Type="datetime" />
     <Property Name="state_article" Type="nvarchar" MaxLength="50" />
-    <Property Name="img_article" Type="image" />
-    <Property Name="linkvideo_article" Type="nvarchar" MaxLength="50" />
+    <Property Name="linkvideo_article" Type="nvarchar(max)" />
   </EntityType>
   <EntityType Name="Automaker">
     <Key>
@@ -57,7 +56,7 @@
     </Key>
     <Property Name="id_category" Type="nvarchar" MaxLength="10" Nullable="false" />
     <Property Name="name_category" Type="nvarchar" MaxLength="50" />
-    <Property Name="description_category" Type="nvarchar" MaxLength="50" />
+    <Property Name="description_category" Type="ntext" />
     <Property Name="alias_category" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="Comment">
@@ -68,6 +67,7 @@
     <Property Name="id_reply_comment" Type="nvarchar" MaxLength="10" />
     <Property Name="id_article" Type="nvarchar" MaxLength="10" />
     <Property Name="id_commenter" Type="nvarchar" MaxLength="10" />
+    <Property Name="text_comment" Type="ntext" />
     <Property Name="day_comment" Type="datetime" />
     <Property Name="count_like" Type="int" />
     <Property Name="count_dislike" Type="int" />
@@ -80,29 +80,9 @@
     <Property Name="name_contact" Type="nvarchar" MaxLength="255" />
     <Property Name="email_contact" Type="nvarchar" MaxLength="255" />
     <Property Name="namecompany_contact" Type="nvarchar" MaxLength="255" />
-    <Property Name="subject_contace" Type="nvarchar" MaxLength="255" />
+    <Property Name="subject_contace" Type="ntext" />
     <Property Name="state_contact" Type="nvarchar" MaxLength="50" />
     <Property Name="date_contact" Type="datetime" />
-  </EntityType>
-  <EntityType Name="InfoAccount">
-    <Key>
-      <PropertyRef Name="id_user" />
-    </Key>
-    <Property Name="id_user" Type="nvarchar" MaxLength="10" Nullable="false" />
-    <Property Name="name_user" Type="nvarchar" MaxLength="50" />
-    <Property Name="password_user" Type="varchar" MaxLength="50" />
-    <Property Name="id_typeuser" Type="nvarchar" MaxLength="10" />
-    <Property Name="lname_user" Type="nvarchar" MaxLength="50" />
-    <Property Name="fname_user" Type="nvarchar" MaxLength="50" />
-    <Property Name="email_user" Type="nvarchar" MaxLength="50" />
-    <Property Name="avt_user" Type="image" />
-    <Property Name="block_state_user" Type="nvarchar" MaxLength="50" />
-    <Property Name="registerdate_user" Type="datetime" />
-    <Property Name="lastvisitdate_user" Type="datetime" />
-    <Property Name="phone_user" Type="nvarchar" MaxLength="50" />
-    <Property Name="sex_user" Type="nvarchar" MaxLength="50" />
-    <Property Name="birthday_user" Type="date" />
-    <Property Name="address_user" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="Model">
     <Key>
@@ -125,6 +105,26 @@
     </Key>
     <Property Name="id_typeuser" Type="nvarchar" MaxLength="10" Nullable="false" />
     <Property Name="name_typeuser" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="User_">
+    <Key>
+      <PropertyRef Name="id_user" />
+    </Key>
+    <Property Name="id_user" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="name_user" Type="nvarchar" MaxLength="50" />
+    <Property Name="password_user" Type="varchar" MaxLength="50" />
+    <Property Name="id_typeuser" Type="nvarchar" MaxLength="10" />
+    <Property Name="lname_user" Type="nvarchar" MaxLength="50" />
+    <Property Name="fname_user" Type="nvarchar(max)" />
+    <Property Name="email_user" Type="nvarchar" MaxLength="50" />
+    <Property Name="avt_user" Type="nvarchar" MaxLength="255" />
+    <Property Name="block_state_user" Type="nvarchar" MaxLength="50" />
+    <Property Name="registerdate_user" Type="datetime" />
+    <Property Name="lastvisitdate_user" Type="datetime" />
+    <Property Name="phone_user" Type="nvarchar" MaxLength="50" />
+    <Property Name="sex_user" Type="nvarchar" MaxLength="50" />
+    <Property Name="birthday_user" Type="date" />
+    <Property Name="address_user" Type="ntext" />
   </EntityType>
   <EntityType Name="User_Permission">
     <Key>
@@ -156,10 +156,10 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Article_id_user">
-    <End Role="InfoAccount" Type="Self.InfoAccount" Multiplicity="0..1" />
+    <End Role="User_" Type="Self.User_" Multiplicity="0..1" />
     <End Role="Article" Type="Self.Article" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="InfoAccount">
+      <Principal Role="User_">
         <PropertyRef Name="id_user" />
       </Principal>
       <Dependent Role="Article">
@@ -192,10 +192,10 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Comment_id_commenter">
-    <End Role="InfoAccount" Type="Self.InfoAccount" Multiplicity="0..1" />
+    <End Role="User_" Type="Self.User_" Multiplicity="0..1" />
     <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="InfoAccount">
+      <Principal Role="User_">
         <PropertyRef Name="id_user" />
       </Principal>
       <Dependent Role="Comment">
@@ -215,18 +215,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_InfoAccount_id_typeuser">
-    <End Role="TypeUser" Type="Self.TypeUser" Multiplicity="0..1" />
-    <End Role="InfoAccount" Type="Self.InfoAccount" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="TypeUser">
-        <PropertyRef Name="id_typeuser" />
-      </Principal>
-      <Dependent Role="InfoAccount">
-        <PropertyRef Name="id_typeuser" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Model_id_automaker">
     <End Role="Automaker" Type="Self.Automaker" Multiplicity="0..1" />
     <End Role="Model" Type="Self.Model" Multiplicity="*" />
@@ -236,6 +224,18 @@
       </Principal>
       <Dependent Role="Model">
         <PropertyRef Name="id_automaker" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_id_typeuser">
+    <End Role="TypeUser" Type="Self.TypeUser" Multiplicity="0..1" />
+    <End Role="User_" Type="Self.User_" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TypeUser">
+        <PropertyRef Name="id_typeuser" />
+      </Principal>
+      <Dependent Role="User_">
+        <PropertyRef Name="id_typeuser" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -283,10 +283,10 @@
     <EntitySet Name="CategoryArticle" EntityType="Self.CategoryArticle" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Comment" EntityType="Self.Comment" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Contact" EntityType="Self.Contact" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="InfoAccount" EntityType="Self.InfoAccount" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Model" EntityType="Self.Model" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Permission" EntityType="Self.Permission" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TypeUser" EntityType="Self.TypeUser" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User_" EntityType="Self.User_" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="User_Permission" EntityType="Self.User_Permission" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Version" EntityType="Self.Version" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_Article_id_category" Association="Self.FK_Article_id_category">
@@ -294,7 +294,7 @@
       <End Role="Article" EntitySet="Article" />
     </AssociationSet>
     <AssociationSet Name="FK_Article_id_user" Association="Self.FK_Article_id_user">
-      <End Role="InfoAccount" EntitySet="InfoAccount" />
+      <End Role="User_" EntitySet="User_" />
       <End Role="Article" EntitySet="Article" />
     </AssociationSet>
     <AssociationSet Name="FK_Car_id_version" Association="Self.FK_Car_id_version">
@@ -306,20 +306,20 @@
       <End Role="Comment" EntitySet="Comment" />
     </AssociationSet>
     <AssociationSet Name="FK_Comment_id_commenter" Association="Self.FK_Comment_id_commenter">
-      <End Role="InfoAccount" EntitySet="InfoAccount" />
+      <End Role="User_" EntitySet="User_" />
       <End Role="Comment" EntitySet="Comment" />
     </AssociationSet>
     <AssociationSet Name="FK_Comment_id_replycomment" Association="Self.FK_Comment_id_replycomment">
       <End Role="Comment" EntitySet="Comment" />
       <End Role="Comment1" EntitySet="Comment" />
     </AssociationSet>
-    <AssociationSet Name="FK_InfoAccount_id_typeuser" Association="Self.FK_InfoAccount_id_typeuser">
-      <End Role="TypeUser" EntitySet="TypeUser" />
-      <End Role="InfoAccount" EntitySet="InfoAccount" />
-    </AssociationSet>
     <AssociationSet Name="FK_Model_id_automaker" Association="Self.FK_Model_id_automaker">
       <End Role="Automaker" EntitySet="Automaker" />
       <End Role="Model" EntitySet="Model" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_id_typeuser" Association="Self.FK_User_id_typeuser">
+      <End Role="TypeUser" EntitySet="TypeUser" />
+      <End Role="User_" EntitySet="User_" />
     </AssociationSet>
     <AssociationSet Name="FK_UserPermission_id_permisson" Association="Self.FK_UserPermission_id_permisson">
       <End Role="Permission" EntitySet="Permission" />

@@ -27,11 +27,12 @@ namespace CarComparison.Areas.Admin.Models
         public Nullable<System.DateTime> day_comment { get; set; }
         public Nullable<int> count_like { get; set; }
         public Nullable<int> count_dislike { get; set; }
+        public string text_comment { get; set; }
     
         public virtual Article Article { get; set; }
-        public virtual InfoAccount InfoAccount { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Comment> Comment1 { get; set; }
         public virtual Comment Comment2 { get; set; }
+        public virtual User_ User_ { get; set; }
     }
 }
