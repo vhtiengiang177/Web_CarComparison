@@ -155,14 +155,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <FunctionImportMapping FunctionName="CompareCarModel.Store.fc_LoadModel" FunctionImportName="fc_LoadModel">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="CompareCarModel.fc_LoadModel_Result">
-          <ScalarProperty Name="id_model" ColumnName="id_model" />
-          <ScalarProperty Name="name_model" ColumnName="name_model" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="XemTenXe" FunctionName="CompareCarModel.Store.XemTenXe">
       <ResultMapping>
         <ComplexTypeMapping TypeName="CompareCarModel.XemTenXe_Result">

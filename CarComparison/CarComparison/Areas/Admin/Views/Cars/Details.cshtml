@@ -116,6 +116,7 @@
     </ul>
 }
 
+
 <h1 class="h3 mb-2 text-gray-800">Chi tiết xe</h1>
 <div>
     @Html.DisplayFor(model => model.Version.Model.Automaker.name_automaker)  @Html.DisplayFor(model => model.Version.Model.name_model) @Html.DisplayFor(model => model.Version.name_version)
@@ -123,6 +124,15 @@
 <div>
     <hr />
     <dl class="detail-car">
+        <dt>
+            @*@Html.DisplayNameFor(model => model.img_car)*@
+            Ảnh
+        </dt>
+
+        <dd>
+            <img class="img-thumbnail" src="@Url.Content(@Model.img_car)" alt="" />
+        </dd>
+
         <dt>
             @*@Html.DisplayNameFor(model => model.overview_car)*@
             Tổng quan
@@ -150,6 +160,9 @@
             @Html.DisplayFor(model => model.wheels_car)
         </dd>
 
+
+    </dl>
+    <dl class="detail-car">
         <dt>
             @*@Html.DisplayNameFor(model => model.tireparameters_car)*@
             Thông Số Lốp
@@ -185,7 +198,6 @@
         <dd>
             @Html.DisplayFor(model => model.horsepower_car)
         </dd>
-
         <dt>
             @*@Html.DisplayNameFor(model => model.gear_car)*@
             Hộp Số
@@ -195,8 +207,6 @@
             @Html.DisplayFor(model => model.gear_car)
         </dd>
 
-    </dl>
-    <dl class="detail-car">
         <dt>
             @*@Html.DisplayNameFor(model => model.torque_car)*@
             Momen Xoắn
@@ -246,6 +256,9 @@
             Tăng tốc từ 0-100km/h
         </dt>
 
+    </dl>
+    <dl class="detail-car">
+
         <dd>
             @Html.DisplayFor(model => model.accelerationtime_car)
         </dd>
@@ -268,8 +281,6 @@
             @Html.DisplayFor(model => model.numberseat_car)
         </dd>
 
-    </dl>
-    <dl class="detail-car">
         <dt>
             @*@Html.DisplayNameFor(model => model.seat_car)*@
             Loại Ghế
@@ -304,15 +315,6 @@
 
         <dd>
             @Html.DisplayFor(model => model.charge_car)
-        </dd>
-
-        <dt>
-            @*@Html.DisplayNameFor(model => model.img_car)*@
-            Ảnh
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.img_car)
         </dd>
 
         <dt>

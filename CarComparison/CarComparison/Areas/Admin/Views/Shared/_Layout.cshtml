@@ -43,18 +43,7 @@
                         <i class="fa fa-bars"></i>
                     </button>
 
-                    <!-- Topbar Search -->
-                    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                        <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Tìm kiếm..."
-                                   aria-label="Search" aria-describedby="basic-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">
-                                    <i class="fas fa-search fa-sm"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+                    @RenderSection("search", required: false)
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -308,7 +297,9 @@
     <!-- Page level custom scripts -->
     <script src="~/Asset/Admin/js/demo/chart-area-demo.js"></script>
     <script src="~/Asset/Admin/js/demo/chart-pie-demo.js"></script>
+    <script src="~/Asset/Admin/js/ckeditor/ckeditor.js"></script>
 
+    @Scripts.Render("~/bundles/ckeditor");
 </body>
 
 </html>

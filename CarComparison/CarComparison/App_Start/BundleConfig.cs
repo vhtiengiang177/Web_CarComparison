@@ -25,6 +25,8 @@ namespace CarComparison
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+            bundles.Add(new StyleBundle("~/bundles/ckeditor").Include(
+                "~/Asset/Admin/js/ckeditor/ckeditor.js"));
         }
     }
 }
