@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using CarComparison.Areas.Admin.Models;
+using Newtonsoft.Json;
 
 namespace CarComparison.Areas.Admin.Controllers
 {
@@ -39,16 +40,40 @@ namespace CarComparison.Areas.Admin.Controllers
         // GET: Admin/Articles/Create
         public ActionResult Create()
         {
+            var articles = db.Articles.Include(a => a.CategoryArticle).Include(a => a.InfoAccount).ToList();
+            string json = Newtonsoft.Json.JsonConvert.SerializeObject(articles);
+            DataTable dt = JsonConvert.DeserializeObject<DataTable>(json);
+            string id;
+            if (dt.Rows.Count == 0) // nếu danh sách rỗng
+            {
+                id = "0";
+            }
+            else
+            {
+                id = dt.Rows[dt.Rows.Count][0].ToString().Substring(2, 3);
+            }
+            if(int.Parse(id) >= 0 && int.Parse(id) < 9)
+            {
+                id = "Ar00" + (int.Parse(id) + 1).ToString();
+            }
+            else if (int.Parse(id) >= 9)
+            {
+                id = "Ar0" + (int.Parse(id) + 1).ToString();
+            }
+            Article art = new Article
+            {
+                id_article = id
+            };
             ViewBag.id_category = new SelectList(db.CategoryArticles, "id_category", "name_category");
             ViewBag.id_user = new SelectList(db.InfoAccounts, "id_user", "name_user");
-            return View();
+            return View(art);
         }
 
         // POST: Admin/Articles/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        [ValidateInput(false)]
         public ActionResult Create([Bind(Include = "id_article,id_category,title_article,alias_article,id_user,description_article,time_pulish_article,time_write,state_article,img_article,linkvideo_article")] Article article)
         {
             if (ModelState.IsValid)

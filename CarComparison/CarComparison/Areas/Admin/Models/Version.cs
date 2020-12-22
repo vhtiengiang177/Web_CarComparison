@@ -9,6 +9,7 @@
 
 namespace CarComparison.Areas.Admin.Models
 {
+    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
     
@@ -25,6 +26,7 @@ namespace CarComparison.Areas.Admin.Models
         public string id_model { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        [JsonIgnore]
         public virtual ICollection<Car> Cars { get; set; }
         public virtual Model Model { get; set; }
     }

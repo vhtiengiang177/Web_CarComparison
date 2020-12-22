@@ -35,11 +35,4 @@ CKEDITOR.editorConfig = function( config ) {
 
 	// Simplify the dialog windows.
     config.removeDialogTabs = 'image:advanced;link:advanced';
-
-    // Cấu hình
-    config.extraPlugins = 'syntaxhighlight';
-    config.syntaxhighlight_lang = 'csharp';
-    config.syntaxhighlight_hideControls = true;
-    config.language = 'vi';
-    config.filebrowserBrowseUrl = ''
 };
