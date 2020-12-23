@@ -12,11 +12,13 @@ using Newtonsoft.Json;
 
 namespace CarComparison.Areas.Admin.Controllers
 {
+    [AuthorizeController]
     public class CarsController : Controller
     {
         private CompareCarEntities db = new CompareCarEntities();
-
+        
         // GET: Admin/Cars
+
         public ActionResult Index(string searchname)
         {
             var car = from c in db.XemTenXe()

@@ -150,11 +150,14 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\ArticlesController.cs" />
     <Compile Include="Areas\Admin\Controllers\CarsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CommentsController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\TypeUsersController.cs" />
+    <Compile Include="Areas\Admin\Controllers\UserController.cs" />
     <Compile Include="Areas\Admin\Models\Article.cs">
       <DependentUpon>CarModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Areas\Admin\Models\AuthorizeController.cs" />
     <Compile Include="Areas\Admin\Models\Automaker.cs">
       <DependentUpon>CarModel.tt</DependentUpon>
     </Compile>
@@ -208,7 +211,9 @@
       <DependentUpon>CarModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ClientController.cs" />
+    <Compile Include="Controllers\CommentController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -231,8 +236,6 @@
       <LastGenOutput>CarModel.cs</LastGenOutput>
     </Content>
     <Content Include="Asset\Admin\css\sb-admin-2.css" />
-    <Content Include="Asset\Image\Car\HondaCity1-5AT.jpg" />
-    <Content Include="Asset\Image\Car\HyundaiVelosterHatchback1-5AT.jpg" />
     <Content Include="Asset\Admin\img\undraw_posting_photo.svg" />
     <Content Include="Asset\Admin\img\undraw_profile.svg" />
     <Content Include="Asset\Admin\img\undraw_profile_1.svg" />
@@ -2274,6 +2277,18 @@
     <Content Include="Asset\Client\js\jquery.js" />
     <Content Include="Asset\Client\js\owl.carousel.min.js" />
     <Content Include="Asset\Client\js\smoothscroll.js" />
+    <Content Include="Asset\Image\Car\Ca01.jpg" />
+    <Content Include="Asset\Image\Car\Ca02.jpg" />
+    <Content Include="Asset\Image\Car\Ca03.jpg" />
+    <Content Include="Asset\Image\Car\Ca04.jpg" />
+    <Content Include="Asset\Image\Car\Ca05.jpg" />
+    <Content Include="Asset\Image\Car\Ca06.jpg" />
+    <Content Include="Asset\Image\Car\Ca07.jpg" />
+    <Content Include="Asset\Image\Car\Ca08.jpg" />
+    <Content Include="Asset\Image\Car\Ca09.jpg" />
+    <Content Include="Asset\Image\Car\Ca10.jpg" />
+    <Content Include="Asset\Image\Car\Ca11.jpg" />
+    <Content Include="Asset\Image\Car\Ca12.jpg" />
     <Content Include="Asset\Login\css\font-awesome.min.css" />
     <Content Include="Asset\Login\css\style.css" />
     <Content Include="Asset\Login\images\image.jpg" />
@@ -2602,6 +2617,16 @@
     <Content Include="Asset\Admin\js\ckeditor\samples\toolbarconfigurator\font\fontello.woff" />
     <Content Include="Asset\Admin\js\ckeditor\samples\toolbarconfigurator\lib\codemirror\LICENSE" />
     <Content Include="Asset\Admin\js\ckeditor\skins\moono-lisa\readme.md" />
+    <Content Include="Areas\Admin\Views\User\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\User\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\User\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\User\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\User\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Comments\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Comments\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Comments\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Comments\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Comments\Index.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -2634,14 +2659,16 @@
     <Content Include="Views\Client\Index.cshtml" />
     <Content Include="Views\Client\Review.cshtml" />
     <Content Include="Views\Client\Team.cshtml" />
-    <Content Include="Views\Account\LoginView.cshtml" />
-    <Content Include="Views\Account\RegisterView.cshtml" />
+    <Content Include="Views\Login\RegisterView.cshtml" />
+    <Content Include="Views\Login\LoginView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Asset\Client\styles\" />
     <Folder Include="Asset\Image\User\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\Account\" />
+    <Folder Include="Views\Comment\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

@@ -6,10 +6,9 @@ using System.Web.Mvc;
 
 namespace CarComparison.Controllers
 {
-    // Chức năng: Sửa thông tin tài khoản sau khi đăng nhập, cả admin và member đều dùng chung
-    public class AccountController : Controller
+    public class CommentController : Controller
     {
-        // GET: Account
+        // GET: Comment
         public ActionResult Index()
         {
             return View();

@@ -15,6 +15,7 @@ using PagedList;
 
 namespace CarComparison.Controllers
 {
+    // Chức năng: Mọi thứ mà bất kỳ ai được truy cập vào
     public class ClientController : Controller
     {
         private CompareCarEntities db = new CompareCarEntities();
@@ -154,27 +155,27 @@ namespace CarComparison.Controllers
         }
 
         
-        public ActionResult Register(string username, string password, string password2)
-        {
-            //if (LoginDAO.Instance.Register(username, password, password2))
-            //{
-            //    return View("Success");
-            //}
-            //else
-                return View("Error");
+        //public ActionResult Register(string username, string password, string password2)
+        //{
+        //    //if (LoginDAO.Instance.Register(username, password, password2))
+        //    //{
+        //    //    return View("Success");
+        //    //}
+        //    //else
+        //        return View("Error");
            
-        }
+        //}
 
 
-        public ActionResult RegisterView()
-        {
-            return View("Register");
-        }
+        //public ActionResult RegisterView()
+        //{
+        //    return View("Register");
+        //}
 
-        public ActionResult Team()
-        {
-            return View();
-        }
+        //public ActionResult Team()
+        //{
+        //    return View();
+        //}
 
         public ActionResult Review(int? page)
         {
@@ -182,24 +183,5 @@ namespace CarComparison.Controllers
             
             return View();
         }
-
-        //không biết ai viết code này
-        public ActionResult Details(string id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Car car = db.Cars.Find(id);
-            if (car == null)
-            {
-                return HttpNotFound();
-            }
-            return View(car);
-        }
-
-        //
-
-
     }
 }

@@ -9,12 +9,13 @@ namespace CarComparison.Areas.Admin.Controllers
 {
     public class HomeController : Controller
     {
-        public static User_ adminLogin;
-
+        //public static User_ adminLogin;
+        [AuthorizeController]
         // GET: Admin/Home
+
         public ActionResult Index()
         {
-            User_ user = Global.GlobalUser;
+            //User_ user = Global.GlobalUser;
             return View();
         }
     }

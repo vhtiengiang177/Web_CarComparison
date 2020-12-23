@@ -1,0 +1,131 @@
+﻿@model CarComparison.Areas.Admin.Models.User_
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>User_</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.name_user)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name_user)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.password_user)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.password_user)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.lname_user)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.lname_user)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fname_user)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fname_user)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.email_user)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.email_user)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.avt_user)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.avt_user)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.block_state_user)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.block_state_user)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.registerdate_user)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.registerdate_user)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.lastvisitdate_user)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.lastvisitdate_user)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.phone_user)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.phone_user)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.sex_user)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sex_user)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.birthday_user)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.birthday_user)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.address_user)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.address_user)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TypeUser.name_typeuser)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TypeUser.name_typeuser)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id_user }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

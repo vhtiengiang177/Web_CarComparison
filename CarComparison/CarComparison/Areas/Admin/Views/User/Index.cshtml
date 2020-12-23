@@ -1,0 +1,112 @@
+﻿@model IEnumerable<CarComparison.Areas.Admin.Models.User_>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.name_user)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.password_user)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.lname_user)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fname_user)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.email_user)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.avt_user)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.block_state_user)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.registerdate_user)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.lastvisitdate_user)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.phone_user)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.sex_user)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.birthday_user)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.address_user)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TypeUser.name_typeuser)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.name_user)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.password_user)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.lname_user)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fname_user)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.email_user)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.avt_user)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.block_state_user)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.registerdate_user)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.lastvisitdate_user)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.phone_user)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.sex_user)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.birthday_user)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.address_user)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TypeUser.name_typeuser)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id_user }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id_user }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id_user })
+        </td>
+    </tr>
+}
+
+</table>
