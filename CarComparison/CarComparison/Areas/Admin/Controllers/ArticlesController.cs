@@ -11,6 +11,7 @@ using Newtonsoft.Json;
 
 namespace CarComparison.Areas.Admin.Controllers
 {
+    // Chức năng: Quản lý bài viết
     public class ArticlesController : Controller
     {
         private CompareCarEntities db = new CompareCarEntities();

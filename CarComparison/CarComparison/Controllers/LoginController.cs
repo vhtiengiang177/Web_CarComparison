@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace CarComparison.Controllers
 {
-    // Đăng ký, đăng nhập, kiểm tra tài khoản ở đây
+    // Chức năng: Đăng ký, đăng nhập, kiểm tra tài khoản ở đây
     public class LoginController : Controller
     {
         private CompareCarEntities db = new CompareCarEntities();

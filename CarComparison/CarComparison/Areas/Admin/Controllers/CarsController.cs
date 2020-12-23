@@ -12,6 +12,7 @@ using Newtonsoft.Json;
 
 namespace CarComparison.Areas.Admin.Controllers
 {
+    // Chức năng: Quản lý xe
     [AuthorizeController]
     public class CarsController : Controller
     {

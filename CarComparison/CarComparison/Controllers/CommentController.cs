@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace CarComparison.Controllers
 {
+    // Chức năng: Bình luận bài viết trên web
     public class CommentController : Controller
     {
         // GET: Comment
