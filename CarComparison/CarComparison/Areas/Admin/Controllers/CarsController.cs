@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -17,7 +20,6 @@ namespace CarComparison.Areas.Admin.Controllers
     public class CarsController : Controller
     {
         private CompareCarEntities db = new CompareCarEntities();
-        
         // GET: Admin/Cars
 
         public ActionResult Index(string searchname)
@@ -100,6 +102,12 @@ namespace CarComparison.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                if(car.img_car != null && car.img_car != "")
+                {
+                    Bitmap bmp = new Bitmap(car.img_car);
+                    bmp.Save(Path.Combine("~/Asset/Image/Car/" + car.id_car + Path.GetExtension(car.img_car)), ImageFormat.Jpeg);
+                }
+                
                 db.Cars.Add(car);
                 db.SaveChanges();
                 return RedirectToAction("Index");

@@ -13,27 +13,28 @@ namespace CarComparison.Areas.Admin.Models
             //nếu session=null thì trả về trang đăng nhập
             if (tbus == null)
             {
-                filterContext.Result = new RedirectResult("~/Account/LoginView");
+                filterContext.Result = new RedirectResult("~/Login/LoginView");
             }
             //session != null
             else
             {
                 //lấy danh sách quyền của user
-                var us_idper = (from id_per in db.User_Permission where id_per.id_typeuser == tbus.id_typeuser select id_per.id_permission).ToList();
+                var us_idper = (from id_per in db.User_Permission where id_per.id_typeuser == tbus.id_typeuser select id_per).ToList();
                 if(us_idper.Count != 0)
                 {
-                    string idper = us_idper[0].ToString();
-                    var us_per = (from per in db.Permissions where per.id_permission == idper select per).ToList();
+                    //string idper = us_idper[0].ToString();
+                    //var us_per = db.Permissions.Where(n => n.id_permission == idper).ToList();
+                    //(from per in db.Permissions where per.id_permission == idper select per).ToList();
                     //db.Permissions.Where(n => n.id_permission == us_idper[0]).ToList();
                     //đếm số lượng quyền
-                    int amount_per = us_per.Count;
+                    int amount_per = us_idper.Count;
                     //khởi tạo mảng
                     string[] listpermission = new string[amount_per];
                     int i = 0;
                     //lấy danh sách quyền đưa vào mảng
-                    foreach (var item in us_per)
+                    foreach (var item in us_idper)
                     {
-                        listpermission[i] = item.name_permission;
+                        listpermission[i] = item.Permission.name_permission;
                         i++;
                     }
                     //Lấy tên controller và action
