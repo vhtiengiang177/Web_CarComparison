@@ -50,10 +50,10 @@ namespace CarComparison.Controllers
         public ActionResult Login(FormCollection f)
         {
 
-            string taikhoan = f["username"].ToString();
-            string matkhau = f["password"].ToString();
-            string matkhaumd5 = GetMD5(matkhau);
-            User_ us = db.User_.SingleOrDefault(n => n.name_user == taikhoan && n.password_user == matkhaumd5);
+            string userName = f["username"].ToString();
+            string passWord = f["password"].ToString();
+            string passWordmd5 = GetMD5(passWord);
+            User_ us = db.User_.SingleOrDefault(n => n.name_user == userName && n.password_user == passWordmd5);
             //nếu user nhập đúng mật khẩu
             if (us != null)
             {
