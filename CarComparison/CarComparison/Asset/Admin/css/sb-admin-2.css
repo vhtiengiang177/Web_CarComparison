@@ -488,7 +488,7 @@ mark,
   background-color: #fff;
   border: 1px solid #dddfeb;
   border-radius: 0.35rem;
-  max-width: 90%;
+  max-width: 95%;
   height: auto;
 }
 
@@ -11244,12 +11244,7 @@ body.sidebar-toggled footer.sticky-footer {
 }
 
 .form-car {
-    width: 500px;
-}
-
-.detail-car{
-    width:300px;
-    margin-right: 15px;
+    width: 250px;
 }
 
 .form-group-typeuser {
@@ -11259,4 +11254,8 @@ body.sidebar-toggled footer.sticky-footer {
 .content-edit {
     display: flex;
     flex-wrap: wrap;
+}
+
+.form-car-create {
+    width: 500px;
 }

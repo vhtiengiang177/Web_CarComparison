@@ -161,11 +161,11 @@ namespace CarComparison.Controllers
         }
 
        
-        [HttpGet]
-        public ActionResult Login()
-        {
-            return View();
-        }
+        //[HttpGet]
+        //public ActionResult Login()
+        //{
+        //    return View();
+        //}
 
         
         

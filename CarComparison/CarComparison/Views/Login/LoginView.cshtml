@@ -45,15 +45,20 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             <div class="agile_info">
                 <div class="w3l_form">
                     <div class="left_grid_info">
-                        <h1>CAR COMPARISON</h1>
-                        <p></p>
-                        <img src="~/Asset/Login/images/image.jpg" alt="" />
+                        <a href="/Client">
+                            <h1>CAR COMPARISON</h1>
+                            <p></p>
+                            <img src="~/Asset/Login/images/image.jpg" alt="" />
+                        </a>
                     </div>
                 </div>
                 <div class="w3_info">
                     <h2>ĐĂNG NHẬP</h2>
                     <br />
                     <form action="/Login/Login" method="post">
+                        @Html.ValidationSummary(true)
+
+                        @Html.AntiForgeryToken()
                         <label>Username</label>
                         <div class="input-group">
                             <span class="fa fa-user" aria-hidden="true"></span>
@@ -67,6 +72,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         <div class="login-check">
                             <label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i> </i> Ghi nhớ đăng nhập</label>
                         </div>
+                        <div>
+                            @Html.ValidationMessage("LoginError", new { @class = "text-danger", @style = "color: crimson;" })
+                        </div>
+                        <br />
                         <button class="btn btn-danger btn-block" type="submit">Đăng nhập</button>
                     </form>
                     @*<p class="account">By clicking login, you agree to our <a href="#">Terms & Conditions!</a></p>*@

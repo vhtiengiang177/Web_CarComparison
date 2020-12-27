@@ -152,33 +152,80 @@
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
-
+                        <th>STT</th>
                         <th>Hãng xe</th>
                         <th>Dòng xe</th>
                         <th>Phiên bản</th>
-                        <th></th>
+                        <th>Hành động</th>
                     </tr>
                 </thead>
-                @foreach (var item in Model)
-                {
+                <tfoot>
                     <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.name_automaker)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.name_model)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.name_version)
-                        </td>
-                        <td>
-                            @Html.ActionLink("Chi tiết", "Details", new { id = item.id_car }) |
-                            @Html.ActionLink("Sửa", "Edit", new { id = item.id_car }) |
-                            @Html.ActionLink("Xóa", "Delete", new { id = item.id_car })
-                        </td>
+                        <th>STT</th>
+                        <th>Hãng xe</th>
+                        <th>Dòng xe</th>
+                        <th>Phiên bản</th>
+                        <th>Hành động</th>
                     </tr>
-                }
+                </tfoot>
+                <tbody>
+                    @{
+                        int i = 0;
+                    }
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @{
+                                    i++;
+                                }
+                                <div>@i</div>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.name_automaker)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.name_model)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.name_version)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Chi tiết", "Details", new { id = item.id_car }) |
+                                @Html.ActionLink("Sửa", "Edit", new { id = item.id_car }) |
+                                @Html.ActionLink("Xóa", "Delete", new { id = item.id_car })
+                            </td>
+                        </tr>
+                    }
+                </tbody>
             </table>
         </div>
     </div>
 </div>
+@section scriptTable{
+    <script src="~/Asset/Admin/vendor/datatables/jquery.dataTables.js"></script>
+    <script src="~/Asset/Admin/vendor/datatables/dataTables.bootstrap4.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#dataTable').DataTable({
+                "language": {
+                    "bLengthChange": true,
+                    "sLengthMenu": "Hiển thị _MENU_ mục",
+                    "zeroRecords": "Lỗi: Không tìm thấy dữ liệu - Xin lỗi bạn vì sự cố",
+                    "sInfo": "Hiển thị từ _START_ đến  _END_ trong _TOTAL_ mục",
+                    "infoEmpty": "Dữ liệu không có sẵn",
+                    "oPaginate": {
+                        "sFirst": "Đầu",
+                        "sLast": "Cuối",
+                        "sNext": "Tiếp",
+                        "sPrevious": "Trước"
+                    },
+                    "sSearch": "Tìm kiếm",
+                    "sInfoFiltered": "(được lọc từ tổng _MAX_ mục được nhập)"
+                }
+            
+        });
+        });
+    </script>
+}
+

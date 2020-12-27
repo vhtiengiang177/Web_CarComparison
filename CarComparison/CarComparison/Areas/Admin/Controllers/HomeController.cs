@@ -15,6 +15,7 @@ namespace CarComparison.Areas.Admin.Controllers
         public ActionResult Index()
         {
             //User_ user = Global.GlobalUser;
+            //User_ us = Session["user"] as User_;
             return View();
         }
     }
