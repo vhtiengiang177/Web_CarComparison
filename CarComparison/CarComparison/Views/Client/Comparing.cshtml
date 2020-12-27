@@ -186,7 +186,7 @@
                                         <div id="car-head" style="font-weight:bold; font-size: 15pt;"></div>
                                         <div id="charge" style="color:brown;font-size: 15pt; "></div>
 
-                                        <img src="~/Asset/Client/images/product-1-720x480.jpg" alt="car1" width="250" height="200">
+                                        <img src="" alt="car1" width="250" height="200" id="image-G">
 
                                     </dd>
                                 </dl>
@@ -779,7 +779,7 @@
                                         $('#seat').prepend("<dd value='" + row.id_car + "'>" + row.seat_car + "<dd>");
                                         $('#airconditioner').prepend("<dd value='" + row.id_car + "'>" + row.airconditioner_car + "<dd>");
                                         $('#sunroof').prepend("<dd value='" + row.id_car + "'>" + row.sunroof_car + "<dd>");
-
+                                        $('#image-G').attr('src', row.img_car);
                                         $('#charge').prepend("<div value='" + row.id_car + "'>" + row.charge_car + " tỷ " + "</div>");
                                         $('#car-head').prepend("<div value='" + row.id_car + "'>" + selectedname + "</div>");
                                     });

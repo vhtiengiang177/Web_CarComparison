@@ -152,7 +152,6 @@
     <Compile Include="Areas\Admin\Controllers\CarsController.cs" />
     <Compile Include="Areas\Admin\Controllers\CommentsController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
-    <Compile Include="Areas\Admin\Controllers\TypeUsersController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserController.cs" />
     <Compile Include="Areas\Admin\Models\Article.cs">
       <DependentUpon>CarModel.tt</DependentUpon>
@@ -2581,10 +2580,6 @@
     <Content Include="obj\Debug\edmxResourcesToEmbed\Areas\Admin\Models\CarModel.csdl" />
     <Content Include="obj\Debug\edmxResourcesToEmbed\Areas\Admin\Models\CarModel.msl" />
     <Content Include="obj\Debug\edmxResourcesToEmbed\Areas\Admin\Models\CarModel.ssdl" />
-    <Content Include="Areas\Admin\Views\TypeUsers\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\TypeUsers\Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\TypeUsers\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\TypeUsers\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Articles\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Articles\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\Articles\Details.cshtml" />
@@ -2659,13 +2654,13 @@
     <Content Include="Views\Client\Team.cshtml" />
     <Content Include="Views\Login\RegisterView.cshtml" />
     <Content Include="Views\Login\LoginView.cshtml" />
+    <Content Include="Views\Account\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Asset\Client\styles\" />
     <Folder Include="Asset\Image\User\" />
     <Folder Include="Models\" />
-    <Folder Include="Views\Account\" />
     <Folder Include="Views\Comment\" />
   </ItemGroup>
   <ItemGroup>

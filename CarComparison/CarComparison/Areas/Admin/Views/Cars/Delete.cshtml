@@ -123,240 +123,204 @@
 <div>
     <hr />
     <div class="content-edit">
-        <dl class="form-car">
+        <div class="form-car">
             <div class="form-group">
-                <div class="detail-car">
-                    <dt>
-                        Ảnh
-                    </dt>
+                <dt>
+                    Ảnh
+                </dt>
 
-                    <dd>
-                        <img class="img-thumbnail" src="@Url.Content(@Model.img_car)" alt="" />
-                    </dd>
-                </div>
+                <dd>
+                    <img class="img-thumbnail" src="@Url.Content(@Model.img_car)" alt="" />
+                </dd>
             </div>
             <div class="form-group">
-                <div class="detail-car">
-                    <dt>
-                        Tổng quan
-                    </dt>
+                <dt>
+                    Tổng quan
+                </dt>
 
-                    <dd>
-                        @Html.DisplayFor(model => model.overview_car)
-                    </dd>
-                </div>
+                <dd>
+                    @Html.DisplayFor(model => model.overview_car)
+                </dd>
 
             </div>
             <div class="form-group">
-                <div class="detail-car">
-                    <dt>
-                        Chiều Dài Cơ Sở
-                    </dt>
+                <dt>
+                    Chiều Dài Cơ Sở
+                </dt>
 
-                    <dd>
-                        @Html.DisplayFor(model => model.length_car)
-                    </dd>
-                </div>
+                <dd>
+                    @Html.DisplayFor(model => model.length_car)
+                </dd>
             </div>
             <div class="form-group">
-                <div class="detail-car">
-                    <dt>
-                        Mâm Xe
-                    </dt>
-                    <dd>
-                        @Html.DisplayFor(model => model.wheels_car)
-                    </dd>
-                </div>
+                <dt>
+                    Mâm Xe
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.wheels_car)
+                </dd>
+            </div>
+        </div>
+        <div class="form-car">
+            <div class="form-group">
+                <dt>
+                    Thông Số Lốp
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.tireparameters_car)
+                </dd>
             </div>
             <div class="form-group">
-                <div class="detail-car">
-                    <dt>
-                        Thông Số Lốp
-                    </dt>
+                <dt>
+                    Trọng Lượng
+                </dt>
 
-                    <dd>
-                        @Html.DisplayFor(model => model.tireparameters_car)
-                    </dd>
-                </div>
+                <dd>
+                    @Html.DisplayFor(model => model.weight_car)
+                </dd>
             </div>
             <div class="form-group">
-                <div class="detail-car">
-                    <dt>
-                        Trọng Lượng
-                    </dt>
+                <dt>
+                    Dung Tích Động Cơ
+                </dt>
 
-                    <dd>
-                        @Html.DisplayFor(model => model.weight_car)
-                    </dd>
-                </div>
+                <dd>
+                    @Html.DisplayFor(model => model.capacity_car)
+                </dd>
             </div>
             <div class="form-group">
-                <div class="detail-car">
-                    <dt>
-                        Dung Tích Động Cơ
-                    </dt>
+                <dt>
+                    Mã Lực
+                </dt>
 
-                    <dd>
-                        @Html.DisplayFor(model => model.capacity_car)
-                    </dd>
-                </div>
+                <dd>
+                    @Html.DisplayFor(model => model.horsepower_car)
+                </dd>
             </div>
             <div class="form-group">
-                <div class="detail-car">
-                    <dt>
-                        Mã Lực
-                    </dt>
+                <dt>
+                    Hộp Số
+                </dt>
 
-                    <dd>
-                        @Html.DisplayFor(model => model.horsepower_car)
-                    </dd>
-                </div>
+                <dd>
+                    @Html.DisplayFor(model => model.gear_car)
+                </dd>
             </div>
             <div class="form-group">
-                <div class="detail-car">
-                    <dt>
-                        Hộp Số
-                    </dt>
+                <dt>
+                    Momen Xoắn
+                </dt>
 
-                    <dd>
-                        @Html.DisplayFor(model => model.gear_car)
-                    </dd>
-                </div>
+                <dd>
+                    @Html.DisplayFor(model => model.torque_car)
+                </dd>
+            </div>
+        </div>
+        <div class="form-car">
+            <div class="form-group">
+                <dt>
+                    Hệ Dẫn Động
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.drivetype_car)
+
+                </dd>
             </div>
             <div class="form-group">
-                <div class="detail-car">
-                    <dt>
-                        Momen Xoắn
-                    </dt>
+                <dt>
+                    Hệ Thống Thắng Trước
+                </dt>
 
-                    <dd>
-                        @Html.DisplayFor(model => model.torque_car)
-                    </dd>
-                </div>
+                <dd>
+                    @Html.DisplayFor(model => model.frontbrakesystem_car)
+                </dd>
             </div>
             <div class="form-group">
-                <div class="detail-car">
-                    <dt>
-                        Hệ Dẫn Động
-                    </dt>
+                <dt>
+                    Hệ Thống Thắng Sau
+                </dt>
 
-                    <dd>
-                        @Html.DisplayFor(model => model.drivetype_car)
-
-                    </dd>
-                </div>
+                <dd>
+                    @Html.DisplayFor(model => model.rearbrakesystem_car)
+                </dd>
             </div>
             <div class="form-group">
-                <div class="detail-car">
-                    <dt>
-                        Hệ Thống Thắng Trước
-                    </dt>
+                <dt>
+                    Tốc Độ Tối Đa
+                </dt>
 
-                    <dd>
-                        @Html.DisplayFor(model => model.frontbrakesystem_car)
-                    </dd>
-                </div>
+                <dd>
+                    @Html.DisplayFor(model => model.maximumspeed_car)
+                </dd>
             </div>
             <div class="form-group">
-                <div class="detail-car">
-                    <dt>
-                        Hệ Thống Thắng Sau
-                    </dt>
+                <dt>
+                    Tăng tốc từ 0-100km/h
+                </dt>
 
-                    <dd>
-                        @Html.DisplayFor(model => model.rearbrakesystem_car)
-                    </dd>
-                </div>
+                <dd>
+                    @Html.DisplayFor(model => model.accelerationtime_car)
+                </dd>
             </div>
             <div class="form-group">
-                <div class="detail-car">
-                    <dt>
-                        Tốc Độ Tối Đa
-                    </dt>
+                <dt>
+                    Dung Tích Bình Xăng
+                </dt>
 
-                    <dd>
-                        @Html.DisplayFor(model => model.maximumspeed_car)
-                    </dd>
-                </div>
+                <dd>
+                    @Html.DisplayFor(model => model.capacitytank_car)
+                </dd>
+            </div>
+        </div>
+        <div class="form-car">
+            <div class="form-group">
+                <dt>
+                    Số Ghế
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.numberseat_car)
+                </dd>
             </div>
             <div class="form-group">
-                <div class="detail-car">
-                    <dt>
-                        Tăng tốc từ 0-100km/h
-                    </dt>
+                <dt>
+                    Loại Ghế
+                </dt>
 
-                    <dd>
-                        @Html.DisplayFor(model => model.accelerationtime_car)
-                    </dd>
-                </div>
+                <dd>
+                    @Html.DisplayFor(model => model.seat_car)
+                </dd>
             </div>
             <div class="form-group">
-                <div class="detail-car">
-                    <dt>
-                        Dung Tích Bình Xăng
-                    </dt>
+                <dt>
+                    Hệ Thống Điều Hòa
+                </dt>
 
-                    <dd>
-                        @Html.DisplayFor(model => model.capacitytank_car)
-                    </dd>
-                </div>
+                <dd>
+                    @Html.DisplayFor(model => model.airconditioner_car)
+                </dd>
             </div>
             <div class="form-group">
-                <div class="detail-car">
-                    <dt>
-                        Số Ghế
-                    </dt>
+                <dt>
+                    Cửa Sổ Trời
+                </dt>
 
-                    <dd>
-                        @Html.DisplayFor(model => model.numberseat_car)
-                    </dd>
-                </div>
+                <dd>
+                    @Html.DisplayFor(model => model.sunroof_car)
+                </dd>
             </div>
             <div class="form-group">
-                <div class="detail-car">
-                    <dt>
-                        Loại Ghế
-                    </dt>
+                <dt>
+                    Giá Xe
+                </dt>
 
-                    <dd>
-                        @Html.DisplayFor(model => model.seat_car)
-                    </dd>
-                </div>
+                <dd>
+                    @Html.DisplayFor(model => model.charge_car)
+                </dd>
             </div>
-            <div class="form-group">
-                <div class="detail-car">
-                    <dt>
-                        Hệ Thống Điều Hòa
-                    </dt>
-
-                    <dd>
-                        @Html.DisplayFor(model => model.airconditioner_car)
-                    </dd>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="detail-car">
-                    <dt>
-                        Cửa Sổ Trời
-                    </dt>
-
-                    <dd>
-                        @Html.DisplayFor(model => model.sunroof_car)
-                    </dd>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="detail-car">
-                    <dt>
-                        Giá Xe
-                    </dt>
-
-                    <dd>
-                        @Html.DisplayFor(model => model.charge_car)
-                    </dd>
-                </div>
-            </div>
-        </dl>
+        </div>
     </div>
     <div class="content-edit">
         <a href="#" data-toggle="modal" data-target="#confirmDelete">
