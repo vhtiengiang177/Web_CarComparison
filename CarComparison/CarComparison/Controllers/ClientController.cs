@@ -27,10 +27,26 @@ namespace CarComparison.Controllers
         // GET: Client
         public ActionResult Index()
         {
+            //Lần lượt tạo các viewbag để lấy các list từ csdl
+            //List bài viết mới nhất
+
+            var lstNewBlog = db.Articles;
+            //Gán vào ViewBag
+            ViewBag.ListNewBlog = lstNewBlog;
+
+            //List xe mới nhất
+            var lstNewCar = db.Cars;
+            //Gán vào ViewBag
+            ViewBag.ListNewCar = lstNewCar; 
             return View();
         }
 
         public ActionResult About()
+        {
+            return View();
+        }
+
+        public ActionResult Team()
         {
             return View();
         }
@@ -45,17 +61,7 @@ namespace CarComparison.Controllers
             return View();
         }
 
-        //public ActionResult Comparing()
-        //{
-        //    CompareCarEntities db = new CompareCarEntities();
-        //    var getAutomakerList = db.Automakers.ToList();
-        //    SelectList list = new SelectList(getAutomakerList, "id_automaker", "name_automaker");
-        //    ViewBag.automakerlistname = list;
-        //    return View();
-
-
-        //}
-
+        
         public ActionResult Comparing()
         {
             cascadingmodel mol = new cascadingmodel();
@@ -88,59 +94,66 @@ namespace CarComparison.Controllers
             db.Configuration.ProxyCreationEnabled = false;
             List<Car> CarList = db.Cars.Where(x => x.id_version == idVersion).ToList();
 
-            //from a in db.Models
-            //join c in db.Versions on a.id_model equals c.id_model
-            //join b in db.Automakers on a.id_automaker equals b.id_automaker
-            //join d in db.Cars on c.id_version equals d.id_version
-            //where d.id_car == idCar
-            //select new
-            //{
-            //    tenxe = a.name_model + " " + c.name_version,
-
-            //};
+           
             return Json(CarList, JsonRequestBehavior.AllowGet);
 
         }
 
-        //public JsonResult getCar(string idver)
+        //public JsonResult joinName(string id_car)
         //{
-        //    List<Car> CarList = new List<Car>();
-        //    CarList = db.Cars.ToList();
-        //    return Json(CarList, JsonRequestBehavior.AllowGet);
-        //}
-        //[HttpPost]
-        //public ActionResult Comparing(string automakerId, string modelId, string versionId)
-        //{
-        //    cascadingmodel model = new cascadingmodel();
-        //    foreach (var auto in db.Automakers)
+        //    string name = "";
+        //    var query = (from s in db.Cars
+        //                 join c in db.Versions on s.id_version equals c.id_version
+        //                 join t in db.Models on c.id_model equals t.id_model
+        //                 join h in db.Automakers on t.id_automaker equals h.id_automaker
+                        
+        //                 select new
+        //                 {
+        //                     s.id_car,
+        //                     c.name_version,
+        //                     t.name_model,
+        //                     h.name_automaker
+
+        //                 });
+        //    foreach (var item in query)
         //    {
-        //        model.Automaker.Add(new SelectListItem { Text = auto.name_automaker, Value = auto.id_automaker.ToString() });
+        //        if (item.id_car== id_car)
+        //        {
+        //            name= item.name_automaker + " " + item.name_model + " " + item.name_version;
+        //        }                    
         //    }
 
-        //    if (automakerId != null)
-        //    {
-        //        var mol = (from mo in db.Models
-        //                      where mo.id_automaker == automakerId
-        //                   select mo).ToList();
-        //        foreach (var mo in mol)
-        //        {
-        //            model.Model.Add(new SelectListItem { Text = mo.name_model, Value = mo.id_model });
-        //        }
-
-        //        if (modelId != null)
-        //        {
-        //            var version = (from ver in db.Versions
-        //                          where ver.id_model == modelId
-        //                           select ver).ToList();
-        //            foreach (var ver in version)
-        //            {
-        //                model.Version.Add(new SelectListItem { Text = ver.name_version, Value = ver.id_version });
-        //            }
-        //        }
-        //    }
-
-        //    return View(model);
+        //    return Json(name, JsonRequestBehavior.AllowGet);
         //}
+
+
+        public JsonResult joinName(string id_version)
+        {
+            string name = "";
+            var query = (
+                         from c in db.Versions
+                         join t in db.Models on c.id_model equals t.id_model
+                         join h in db.Automakers on t.id_automaker equals h.id_automaker
+                         where id_version == c.id_version
+                         select new
+                         {
+                             c.id_version,
+                             c.name_version,
+                             t.name_model,
+                             h.name_automaker
+
+                         });
+            foreach (var item in query)
+            {
+                if (item.id_version == id_version)
+                {
+                    name = item.name_automaker + " " + item.name_model + " " + item.name_version;
+                }
+            }
+
+            return Json(name, JsonRequestBehavior.AllowGet);
+        }
+
 
         public ActionResult Add()
         {
@@ -155,27 +168,7 @@ namespace CarComparison.Controllers
         }
 
         
-        //public ActionResult Register(string username, string password, string password2)
-        //{
-        //    //if (LoginDAO.Instance.Register(username, password, password2))
-        //    //{
-        //    //    return View("Success");
-        //    //}
-        //    //else
-        //        return View("Error");
-           
-        //}
-
-
-        //public ActionResult RegisterView()
-        //{
-        //    return View("Register");
-        //}
-
-        //public ActionResult Team()
-        //{
-        //    return View();
-        //}
+        
 
         public ActionResult Review(int? page)
         {
@@ -183,5 +176,13 @@ namespace CarComparison.Controllers
             
             return View();
         }
+
+        [ChildActionOnly] //để người dùng không get được view này
+        public ActionResult blogPartial()
+        {
+            return PartialView();
+        }
+
+        
     }
 }

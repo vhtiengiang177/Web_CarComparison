@@ -1,7 +1,14 @@
-﻿@{
+﻿@using CarComparison.Areas.Admin.Models
+@model IEnumerable<Article>
+
+@{
     Layout = null;
 }
 
+@{
+    IEnumerable<Article> lstNewBlog = ViewBag.ListNewBlog as IEnumerable<Article>;
+
+}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,64 +29,48 @@
     <script src="~/Asset/Client/js/custom.js"></script>
     @*MAIN CSS--!>*@
     <link rel="stylesheet" href="~/Asset/Client/css/style.css">
-    @*<link href="~/total/client/css/bootstrap.min.css" rel="stylesheet" />*@
+
 </head>
-    <body id="top" data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
+<body id="top" data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
 
-         @*PRE LOADER*@
-        <section class="preloader">
-            <div class="spinner">
-                <span class="spinner-rotate"></span>
+    @*PRE LOADER*@
+    <section class="preloader">
+        <div class="spinner">
+            <span class="spinner-rotate"></span>
+        </div>
+    </section>
+
+
+    @*MENU*@
+    <section class="navbar custom-navbar navbar-fixed-top" role="navigation">
+        <div class="container">
+
+            <div class="navbar-header">
+                <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon icon-bar"></span>
+                    <span class="icon icon-bar"></span>
+                    <span class="icon icon-bar"></span>
+                </button>
+
+                @*lOGO TEXT HERE*@
+                <a href="#" class="navbar-brand">Car Comparing Website</a>
             </div>
-        </section>
 
+            @*MENU LINKS*@
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav navbar-nav-first">
+                    <li class="active"><a href="/Client/Index">Trang chủ</a></li>
+                    <li><a href="/Client/Comparing">So sánh Xe</a></li>
+                    <li><a href="/Client/Review">Bài đánh giá</a></li>
+                    <li><a href="/Client/Team">Team</a></li>
+                    <li><a href="testimonials.html">Video</a></li>
+                    <li><a href="/Client/Contact">Liên hệ</a></li>
+                    <li>@Html.ActionLink("Đăng Nhập", "LoginView", "Account")</li>
 
-         @*MENU*@
-        <section class="navbar custom-navbar navbar-fixed-top" role="navigation">
-            <div class="container">
+                </ul>
+            </div>
 
-                <div class="navbar-header">
-                    <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="icon icon-bar"></span>
-                        <span class="icon icon-bar"></span>
-                        <span class="icon icon-bar"></span>
-                    </button>
-
-                     @*lOGO TEXT HERE*@
-                    <a href="#" class="navbar-brand">Car Comparing Website</a>
-                </div>
-
-                 @*MENU LINKS*@
-                <div class="collapse navbar-collapse">
-                    <ul class="nav navbar-nav navbar-nav-first">
-                        <li class="active"><a href="/Client/Index">Trang chủ</a></li>
-                        <li><a href="/Client/Comparing">So sánh Xe</a></li>
-                       
-                        
-
-                        <ul class="dropdown-menu">
-                            <li><a href="blog-posts.html">Bài đánh giá</a></li>
-                            <li><a href="/Client/Team">Team</a></li>
-
-                            <li><a href="testimonials.html">Video</a></li>
-                        </ul>
-                    </li>
-                        <li><a href="/Client/Review">Bài đánh giá</a></li>
-                        <li><a href="/Client/Team">Team</a></li>
-
-                        <li><a href="testimonials.html">Video</a></li>
-                        <li><a href="/Client/Contact">Liên hệ</a></li>
-                        @*<li><button onclick="document.getElementById('id01').style.display='block'" style="width:auto; margin:9px" class="section-btn btn btn-primary btn-block">Đăng Nhập</button></li>*@
-                        <li>@Html.ActionLink("Đăng Nhập", "LoginView", "Account")</li>
-
-
-
-
-
-                    </ul>
-                </div>
-
-                <div id="id01" class="modal">
+            @*<div id="id01" class="modal">
 
                     <form class="modal-content animate" action="~/Account/DangNhap" method="post">
                         <div class="imgcontainer">
@@ -107,32 +98,31 @@
                             <span class="psw">Forgot <a href="#">password?</a></span>
                         </div>
                     </form>
-                </div>
+                </div>*@
 
-            </div>
-        </section>
+        </div>
+    </section>
     @*HOME*@
     <section id="home">
-       
+
         <div class="row">
             <div class="owl-carousel owl-theme home-slider">
-                @*<div class="item item-first">
+                <div class="item item-first">
                     <div class="caption">
                         <div class="container">
                             <div class="col-md-6 col-sm-12">
-                                <h1>COMPARING CAR NOW!!!!!</h1>
+                                <h1>Hot Reviews! Hot News!</h1>
                                 <h3>Tối ưu hóa sự ựa chọn của bạn, đảm bảo chất lượng trong từng bài viết</h3>
-                                <a href="/Client/Comparing" class="section-btn btn btn-default">Compare now</a>
+                                <a href="/Client/Review" class="section-btn btn btn-default">Go to Blog</a>
                             </div>
                         </div>
                     </div>
-                </div>*@
+                </div>
 
                 <div class="item item-second">
                     <div class="caption">
                         <div class="container">
                             <div class="col-md-6 col-sm-12">
-
 
                                 <h1>Compare cars side-by-side</h1>
                                 <h3>So sánh sự khác biệt về giá, tính năng, hiệu suất và hơn thế nữa...</h3>
@@ -142,17 +132,17 @@
                     </div>
                 </div>
 
-                @*<div class="item item-third">
+                <div class="item item-third">
                     <div class="caption">
                         <div class="container">
                             <div class="col-md-6 col-sm-12">
-                                <h1>Efficient Learning Methods</h1>
-                                <h3>Nam eget sapien vel nibh euismod vulputate in vel nibh. Quisque eu ex eu urna venenatis sollicitudin ut at libero.</h3>
-                                <a href="cars.html" class="section-btn btn btn-default">Browse Cars</a>
+                                <h1>Contact To Choose </h1>
+                                <h3>Đội ngũ chuyên nghiệp, tư vấn cho bạn chiếc xe ưng ý nhất..</h3>
+                                <a href="/Client/Contact" class="section-btn btn btn-default">Contact Now!!</a>
                             </div>
                         </div>
                     </div>
-                </div>*@
+                </div>
             </div>
         </div>
     </section>
@@ -179,7 +169,7 @@
                 <div class="row">
                     <div class="col-md-12 col-sm-12">
                         <div class="section-title text-center">
-                            <h2>Featured Cars <small>Lorem ipsum dolor sit amet.</small></h2>
+                            <h2>Xe được xem nhiều nhất <small></small></h2>
                         </div>
                     </div>
 
@@ -349,83 +339,19 @@
         </section>
 
         <section>
+            @*//Bước 1: Tách code và lồng PartialView*@
+            @*Bước 2: gán dữ liệu từ controller thông qua viewbag vào partialview*@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12 col-sm-12">
                         <div class="section-title text-center">
-                            <h2>Latest Blog posts <small>Lorem ipsum dolor sit amet.</small></h2>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4 col-sm-4">
-                        <div class="courses-thumb courses-thumb-secondary">
-                            <div class="courses-top">
-                                <div class="courses-image">
-                                    <img src="~/Asset/Client/images/blog-1-720x480.jpg" class="img-responsive" alt="">
-                                </div>
-                                <div class="courses-date">
-                                    <span title="Author"><i class="fa fa-user"></i> John Doe</span>
-                                    <span title="Date"><i class="fa fa-calendar"></i> 12/06/2020 10:30</span>
-                                    <span title="Views"><i class="fa fa-eye"></i> 114</span>
-                                </div>
-                            </div>
-
-                            <div class="courses-detail">
-                                <h3><a href="blog-post-details.html">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</a></h3>
-                            </div>
-
-                            <div class="courses-info">
-                                <a href="blog-post-details.html" class="section-btn btn btn-primary btn-block">Read More</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4 col-sm-4">
-                        <div class="courses-thumb courses-thumb-secondary">
-                            <div class="courses-top">
-                                <div class="courses-image">
-                                    <img src="~/Asset/Client/images/blog-2-720x480.jpg" class="img-responsive" alt="">
-                                </div>
-                                <div class="courses-date">
-                                    <span title="Author"><i class="fa fa-user"></i> John Doe</span>
-                                    <span title="Date"><i class="fa fa-calendar"></i> 12/06/2020 10:30</span>
-                                    <span title="Views"><i class="fa fa-eye"></i> 114</span>
-                                </div>
-                            </div>
-
-                            <div class="courses-detail">
-                                <h3><a href="blog-post-details.html">Tempora molestiae, iste, consequatur unde sint praesentium!</a></h3>
-                            </div>
-
-                            <div class="courses-info">
-                                <a href="blog-post-details.html" class="section-btn btn btn-primary btn-block">Read More</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4 col-sm-4">
-                        <div class="courses-thumb courses-thumb-secondary">
-                            <div class="courses-top">
-                                <div class="courses-image">
-                                    <img src="~/Asset/Client/images/blog-3-720x480.jpg" class="img-responsive" alt="">
-                                </div>
-                                <div class="courses-date">
-                                    <span title="Author"><i class="fa fa-user"></i> John Doe</span>
-                                    <span title="Date"><i class="fa fa-calendar"></i> 12/06/2020 10:30</span>
-                                    <span title="Views"><i class="fa fa-eye"></i> 114</span>
-                                </div>
-                            </div>
-
-                            <div class="courses-detail">
-                                <h3><a href="blog-post-details.html">A voluptas ratione, error provident distinctio, eaque id officia?</a></h3>
-                            </div>
-
-                            <div class="courses-info">
-                                <a href="blog-post-details.html" class="section-btn btn btn-primary btn-block">Read More</a>
-                            </div>
+                            <h2>Bài review mới nhất <small> Review chân thực và Chất lượng nhất..</small></h2>
                         </div>
                     </div>
                 </div>
+
+                @Html.Partial("~/Views/Client/blogPartial.cshtml",lstNewBlog) 
+
             </div>
         </section>
 
@@ -524,7 +450,7 @@
         </section>
     </main>
 
-    CONTACT
+    @*CONTACT*@
     <section id="contact">
         <div class="container">
             <div class="row">
@@ -560,7 +486,7 @@
         </div>
     </section>
 
-    FOOTER
+    @*FOOTER*@
     <footer id="footer">
         <div class="container">
             <div class="row">
@@ -637,5 +563,5 @@
     <script src="~/Asset/Client/js/smoothscroll.js"></script>
     <script src="~/Asset/Client/js/custom.js"></script>
 
-    </body>
+</body>
 </html>
