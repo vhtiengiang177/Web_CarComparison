@@ -95,6 +95,11 @@ namespace CarComparison.Controllers
             return View();
         }
 
-
+        public ActionResult Logout()
+        {
+            Session.Remove("user");
+            Session.Clear();
+            return View("~/Views/Client/Index.cshtml");
+        }
     }
 }

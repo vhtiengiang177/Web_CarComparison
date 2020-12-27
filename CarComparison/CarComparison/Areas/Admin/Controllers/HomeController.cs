@@ -16,7 +16,7 @@ namespace CarComparison.Areas.Admin.Controllers
         {
             //User_ user = Global.GlobalUser;
             //User_ us = Session["user"] as User_;
-            return PartialView("~/Areas/Admin/Views/Shared/_Layout.cshtml");
+            return View();
         }
     }
 }

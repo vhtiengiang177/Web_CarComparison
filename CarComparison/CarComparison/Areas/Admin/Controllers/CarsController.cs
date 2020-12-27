@@ -17,7 +17,7 @@ using Version = CarComparison.Areas.Admin.Models.Version;
 namespace CarComparison.Areas.Admin.Controllers
 {
     // Chức năng: Quản lý xe
-    //[AuthorizeController]
+    [AuthorizeController]
     public class CarsController : Controller
     {
         private CompareCarEntities db = new CompareCarEntities();
