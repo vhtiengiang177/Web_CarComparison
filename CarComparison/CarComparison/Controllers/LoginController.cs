@@ -53,7 +53,7 @@ namespace CarComparison.Controllers
             string userName = f["username"].ToString();
             string passWord = f["password"].ToString();
             string passWordmd5 = GetMD5(passWord);
-            User_ us = db.User_.SingleOrDefault(n => n.name_user == userName && n.password_user == passWordmd5);
+            User_ us = (from c in db.User_ where c.name_user == userName && c.password_user == passWordmd5 select c).SingleOrDefault();
             //nếu user nhập đúng mật khẩu
             if (us != null)
             {

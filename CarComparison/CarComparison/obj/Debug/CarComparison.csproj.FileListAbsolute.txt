@@ -213,6 +213,4 @@ E:\3-1\LapTrinhWeb\CarCompation\Web_CarComparison\CarComparison\CarComparison\ob
 E:\3-1\LapTrinhWeb\CarCompation\Web_CarComparison\CarComparison\CarComparison\obj\Debug\CarComparison.csproj.CopyComplete
 E:\3-1\LapTrinhWeb\CarCompation\Web_CarComparison\CarComparison\CarComparison\obj\Debug\CarComparison.dll
 E:\3-1\LapTrinhWeb\CarCompation\Web_CarComparison\CarComparison\CarComparison\obj\Debug\CarComparison.pdb
-E:\TienGiang\Nam3Ky1\Lập trình Web\Web_CarComparison\CarComparison\CarComparison\bin\PagedList.xml
-E:\TienGiang\Nam3Ky1\Lập trình Web\Web_CarComparison\CarComparison\CarComparison\bin\PagedList.Mvc.xml
 D:\TÀI LIỆU NĂM 3\Lập trình web\CarProject\Web_CarComparison\CarComparison\CarComparison\obj\Debug\CarComparison.csprojAssemblyReference.cache

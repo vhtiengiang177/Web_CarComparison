@@ -98,18 +98,33 @@ namespace CarComparison.Areas.Admin.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateInput(false)]
+        [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "id_car,overview_car,length_car,wheels_car,tireparameters_car,weight_car,capacity_car,horsepower_car,gear_car,torque_car,drivetype_car,frontbrakesystem_car,rearbrakesystem_car,maximumspeed_car,accelerationtime_car,capacitytank_car,numberseat_car,seat_car,airconditioner_car,sunroof_car,charge_car,img_car,imageFile")] Car car)
         {
+            string name_au = Request["Version.Model.Automaker.name_automaker"];
+            string name_mo = Request["Version.Model.name_model"];
+            string name_ver = Request["Version.name_version"];
+            if (name_au == "" || name_mo == "" || name_ver == "")
+            {
+                if (name_au == "")
+                {
+                    ModelState.AddModelError("au", "Không để trống tên hãng xe!");
+                }
+                if (name_mo == "")
+                {
+                    ModelState.AddModelError("mo", "Không để trống tên dòng xe!");
+                }
+                if (name_ver == "")
+                {
+                    ModelState.AddModelError("ver", "Không để trống tên phiên bản xe!");
+                }
+            }
             if (ModelState.IsValid)
             {
                 Automaker automaker = new Automaker();
                 Model model = new Model();
                 Version version = new Version();
-                string name_au = Request["Version.Model.Automaker.name_automaker"];
-                string name_mo = Request["Version.Model.name_model"];
-                string name_ver = Request["Version.name_version"];
-                var checkAu = (from n in db.Automakers where n.name_automaker == name_au select n.id_automaker).ToList();
+                    var checkAu = (from n in db.Automakers where n.name_automaker == name_au select n.id_automaker).ToList();
                 if (checkAu.Count > 0) // Nếu dòng đã có sẵn
                 {
                     string id_au = checkAu[0];
