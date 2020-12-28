@@ -14,16 +14,7 @@ namespace CarComparison.Areas.Admin.Models
             
         }
 
-        //public List<SelectListItem> Automaker { get; set; }
-        //public List<SelectListItem> Model { get; set; }
-        //public List<SelectListItem> Version { get; set; }
-
-
-
        
-
-
-
 
         public string automakerId { get; set; }
         public string modelId { get; set; }

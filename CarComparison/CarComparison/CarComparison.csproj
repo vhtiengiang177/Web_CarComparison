@@ -2241,6 +2241,7 @@
     <Content Include="Asset\Client\css\owl.carousel.css" />
     <Content Include="Asset\Client\css\owl.theme.default.min.css" />
     <Content Include="Asset\Client\css\style.css" />
+    <Content Include="Asset\Client\font\fontawesome-webfont.svg" />
     <Content Include="Asset\Client\images\about-1-720x720.jpg" />
     <Content Include="Asset\Client\images\about-2-720x720.jpg" />
     <Content Include="Asset\Client\images\author-image-1-646x680.jpg" />
@@ -2271,6 +2272,8 @@
     <Content Include="Asset\Client\images\slider-image-2-1920x700.jpg" />
     <Content Include="Asset\Client\images\slider-image-3-1920x700.jpg" />
     <Content Include="Asset\Client\images\thao.jpg" />
+    <Content Include="Asset\Client\images\thay-trung.jpg" />
+    <Content Include="Asset\Client\images\thay-trung.PNG" />
     <Content Include="Asset\Client\images\tst-image-1-200x216.jpg" />
     <Content Include="Asset\Client\images\tst-image-2-200x216.jpg" />
     <Content Include="Asset\Client\images\tst-image-3-200x216.jpg" />
@@ -2379,7 +2382,11 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\owl.carousel.css" />
+    <Content Include="Content\owl.theme.default.min.css" />
     <Content Include="Content\PagedList.css" />
+    <Content Include="Content\style.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />

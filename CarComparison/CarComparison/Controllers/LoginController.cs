@@ -77,7 +77,9 @@ namespace CarComparison.Controllers
                     }
                     if (us.id_typeuser == "TyUs02")
                     {
-                        return View("~/Views/Client/Index.cshtml");
+                        return RedirectToAction("Index", "Client");
+
+                        //return RedirectResult("~/Views/Client/Index.cshtml");
                     }
                 }
             }

@@ -48,10 +48,7 @@ namespace CarComparison.Controllers
             return View();
         }
 
-        public ActionResult MyAcc()
-        {
-            return View();
-        }
+        
 
         public ActionResult Contact()
         {
@@ -152,17 +149,7 @@ namespace CarComparison.Controllers
         }
 
 
-        public ActionResult Add()
-        {
-            return View();
-        }
-
-       
-        //[HttpGet]
-        //public ActionResult Login()
-        //{
-        //    return View();
-        //}
+        
 
         
         
