@@ -12,6 +12,7 @@ using Newtonsoft.Json;
 namespace CarComparison.Areas.Admin.Controllers
 {
     // Chức năng: Quản lý bài viết
+    [AuthorizeController]
     public class ArticlesController : Controller
     {
         private CompareCarEntities db = new CompareCarEntities();
@@ -41,25 +42,37 @@ namespace CarComparison.Areas.Admin.Controllers
         // GET: Admin/Articles/Create
         public ActionResult Create()
         {
-            var articles = db.Articles.Include(a => a.CategoryArticle).Include(a => a.User_).ToList();
-            string json = Newtonsoft.Json.JsonConvert.SerializeObject(articles);
-            DataTable dt = JsonConvert.DeserializeObject<DataTable>(json);
-            string id;
-            if (dt.Rows.Count == 0) // nếu danh sách rỗng
+            var articles = (from c in db.Articles select c.id_article).ToList();
+            string id = "";
+            if (articles.Count == 0) // nếu danh sách rỗng
             {
-                id = "0";
+                id = "Ar01";
             }
             else
             {
-                id = dt.Rows[dt.Rows.Count][0].ToString().Substring(2, 3);
-            }
-            if(int.Parse(id) >= 0 && int.Parse(id) < 9)
-            {
-                id = "Ar00" + (int.Parse(id) + 1).ToString();
-            }
-            else if (int.Parse(id) >= 9)
-            {
-                id = "Ar0" + (int.Parse(id) + 1).ToString();
+                for (int i = 0; i < articles.Count(); i++)
+                {
+                    if (int.Parse(articles[i].Substring(2, 2)) != (i + 1))
+                    {
+                        if (i + 1 >= 0 && i + 1 < 9)
+                            id = "Ar" + (i + 1).ToString();
+                        else if (i + 1 > 9)
+                            id = "Ar" + (i + 1).ToString();
+                        break;
+                    }
+                }
+                if (id == "")
+                {
+                    id = articles[articles.Count - 1].Substring(2, 2);
+                    if (int.Parse(id) >= 0 && int.Parse(id) < 9)
+                    {
+                        id = "Ar0" + (int.Parse(id) + 1).ToString();
+                    }
+                    else if (int.Parse(id) >= 9)
+                    {
+                        id = "Ar" + (int.Parse(id) + 1).ToString();
+                    }
+                }
             }
             Article art = new Article
             {

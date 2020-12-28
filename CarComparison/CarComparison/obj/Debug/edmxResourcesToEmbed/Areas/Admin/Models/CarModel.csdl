@@ -18,6 +18,7 @@
     <NavigationProperty Name="Comments" Relationship="Self.FK_Comment_id_article" FromRole="Article" ToRole="Comment" />
     <NavigationProperty Name="User_" Relationship="CompareCarModel.FK_Article_id_user" FromRole="Article" ToRole="User_" />
     <Property Name="img_article" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="view_article" Type="Int32" />
   </EntityType>
   <EntityType Name="Automaker">
     <Key>

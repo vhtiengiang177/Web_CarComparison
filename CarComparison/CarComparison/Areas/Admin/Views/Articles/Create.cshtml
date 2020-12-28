@@ -3,9 +3,124 @@
 @{
     ViewBag.Title = "Create";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    var user = Session["user"] as CarComparison.Areas.Admin.Models.User_;
 }
 
-<h2>Tạo bài đăng video</h2>
+@section sidebar{
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+        <!-- Sidebar - Brand -->
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/Admin/Home">
+            <div class="sidebar-brand-icon rotate-n-15">
+                <i class="fas fa-car-side"></i>
+            </div>
+            <div class="sidebar-brand-text mx-3">Car Comparison</div>
+        </a>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider my-0">
+
+        <!-- Nav Item - Dashboard -->ac
+        <li class="nav-item">
+            <a class="nav-link" href="/Admin/Home/">
+                <!--Sửa đường link tổng quan-->
+                <span>Tổng quan</span>
+            </a>
+        </li>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+
+        <!-- Heading -->
+        <div class="sidebar-heading">
+            Quản lý
+        </div>
+
+        <!-- Nav Item - Xe -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+               aria-expanded="true" aria-controls="collapseTwo">
+                <span>Xe</span>
+            </a>
+            <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Tùy chỉnh xe:</h6>
+                    <a class="collapse-item" href="/Admin/Cars">Danh sách xe</a> <!--Sửa đường link-->
+                    <a class="collapse-item" href="/Admin/Cars/Create">Thêm xe</a>
+                </div>
+            </div>
+        </li>
+
+        <!-- Nav Item - Bài viết -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+               aria-expanded="true" aria-controls="collapseUtilities">
+                <span>Bài viết</span>
+            </a>
+            <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+                 data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Tùy chỉnh bài viết:</h6>
+                    <a class="collapse-item" href="/Admin/Articles/">Danh sách các bài viết</a> <!--Sửa đường link-->
+                    <a class="collapse-item active" href="/Admin/Articles/Create">Thêm bài viết</a>
+                </div>
+            </div>
+        </li>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+
+        <!-- Heading -->
+        <div class="sidebar-heading">
+            Tài khoản
+        </div>
+
+        <!-- Nav Item - Nhân viên -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+               aria-expanded="true" aria-controls="collapsePages">
+                <span>Nhân viên</span>
+            </a>
+            <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Tùy chỉnh nhân viên:</h6>
+                    <a class="collapse-item" href="#">Danh sách nhân viên</a> <!--Sửa đường link-->
+                    <a class="collapse-item" href="#">Thêm nhân viên</a>
+                </div>
+            </div>
+        </li>
+
+        <!-- Nav Item - Người dùng -->
+        <li class="nav-item">
+            <a class="nav-link" href="#">
+                <!--Sửa đường link-->
+                <span>Người dùng</span>
+            </a>
+        </li>
+
+        <!-- Nav Item - Loại tài khoản -->
+        <li class="nav-item">
+            <a class="nav-link" href="/Admin/TypeUsers">
+                <!--Sửa đường link-->
+                <span>Loại tài khoản</span>
+            </a>
+        </li>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider d-none d-md-block" />
+
+        <!-- Sidebar Toggler (Sidebar) -->
+        <div class="text-center d-none d-md-inline">
+            <button class="rounded-circle border-0" id="sidebarToggle"></button>
+        </div>
+    </ul>
+}
+
+<h2>Tạo bài viết</h2>
+
+<div class="text-lg-right">
+    @Html.ActionLink("Quay lại", "Index")
+</div>
 
 @using (Html.BeginForm())
 {
@@ -14,91 +129,61 @@
     <div class="form-horizontal">
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.id_article, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.id_article, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", disabled = "disabled" } })
-                @Html.ValidationMessageFor(model => model.id_article, "", new { @class = "text-danger" })
+        <div class="content-edit">
+            <div class="form-car-create">
+                <div class="form-group">
+                    <label>Mã Số Bài Viết</label>
+                    @Html.EditorFor(model => model.id_article, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                    @Html.ValidationMessageFor(model => model.id_article, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    <label>Loại Bài Viết</label>
+                    @Html.DropDownList("id_category", ViewData["id_category"] as SelectList, htmlAttributes: new { @class = "form-control", @onchange = "funCheck()" })
+                    @Html.ValidationMessageFor(model => model.id_category, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    <label>Tiêu đề</label>
+                    @Html.EditorFor(model => model.title_article, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.title_article, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    <label>Bí danh</label>
+                    @Html.EditorFor(model => model.alias_article, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.alias_article, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    <label>Tác giả</label>
+                    @Html.Display(user.lname_user) @Html.Display(user.fname_user)
+                </div>
+                <div class="form-group">
+                    <label>Nội dung</label>
+                    @Html.TextAreaFor(model => model.description_article, new { @id = "ckeDescription" })
+                </div>
+                <div class="form-group">
+                    <label id="label_link_video">Đường dẫn video</label>
+                    @Html.EditorFor(model => model.linkvideo_article, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.linkvideo_article, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>*@
+        </div>>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.id_category, "id_category", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("id_category", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.id_category, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.title_article, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.title_article, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.title_article, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-             Bí danh
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.alias_article, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.alias_article, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            Người viết
-            <div class="col-md-10">
-                @Html.DropDownList("id_user", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.id_user, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            Nội dung
-            <div class="col-md-10">
-                @Html.TextAreaFor(model => model.description_article, new { @id = "ckeDescription" })
-                @*@Html.ValidationMessageFor(model => model.description_article, "", new { @class = "text-danger" })*@
-
-
-            </div>
-        </div>
-
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.time_pulish_article, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.time_pulish_article, new { htmlAttributes = new { @class = "form-control"} })
-                @Html.ValidationMessageFor(model => model.time_pulish_article, "", new { @class = "text-danger" })
-            </div>
-        </div>*@
-
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.time_write, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.time_write, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.time_write, "", new { @class = "text-danger" })
-            </div>
-        </div>*@
-
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.state_article, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.state_article, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.state_article, "", new { @class = "text-danger" })
-            </div>
-        </div>*@
-
-        <div class="form-group">
-            Link video xe
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.linkvideo_article, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.linkvideo_article, "", new { @class = "text-danger" })
-            </div>
-        </div>
+        <script type="text/javascript">
+            function funCheck() {
+                if ($('#id_category').val() == "CaAr01") {
+                    $('#linkvideo_article').show();
+                    $('#label_link_video').show();
+                }
+                else {
+                    $('#linkvideo_article').hide();
+                    $('#label_link_video').hide();
+                }
+            }
+        </script>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" name="action" value="Đăng bài" class="btn btn-default" />
+                @*<input type="submit" name="action" value="Lưu bài" class="btn btn-default" />*@
             </div>
         </div>
     </div>
