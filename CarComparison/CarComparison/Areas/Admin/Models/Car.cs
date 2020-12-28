@@ -10,8 +10,8 @@
 namespace CarComparison.Areas.Admin.Models
 {
     using System;
-    using System.Collections.Generic;
     using System.Web;
+    using System.Collections.Generic;
     
     public partial class Car
     {
@@ -41,5 +41,6 @@ namespace CarComparison.Areas.Admin.Models
     
         public virtual Version Version { get; set; }
         public HttpPostedFileBase imageFile { get; set; }
+
     }
 }

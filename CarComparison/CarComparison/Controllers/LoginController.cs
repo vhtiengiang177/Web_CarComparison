@@ -95,6 +95,27 @@ namespace CarComparison.Controllers
             return View();
         }
 
+
+        public ActionResult Register(FormCollection f)
+        {
+            string userName = f["username"].ToString();
+            var checkUserName = (from c in db.User_ where c.name_user == userName select c).ToList();
+            if(checkUserName.Count() != 0)
+            {
+                ModelState.AddModelError("RegisterError", "Tên tài khoản đã tổn tại!");
+            }
+            else
+            {
+                string passWord = f["password"].ToString();
+                string passWordmd5 = GetMD5(passWord);
+                string lastName = f["lname"].ToString();
+                string firstName = f["fname"].ToString();
+                var sex = Convert.ToInt32(f["sex"]);
+            }
+            
+            return View();
+        }
+
         public ActionResult Logout()
         {
             Session.Remove("user");
