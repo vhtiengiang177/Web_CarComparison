@@ -10,7 +10,7 @@
     IEnumerable<Article> lstNewBlog = ViewBag.ListNewBlog as IEnumerable<Article>;
     IEnumerable<Article> lstNewVideo = ViewBag.ListNewVideo as IEnumerable<Article>;
 
-    var user = Session["user"] as CarComparison.Areas.Admin.Models.User_;
+    //var user = Session["user"] as CarComparison.Areas.Admin.Models.User_;
 }
 
 
@@ -19,8 +19,9 @@
     <li class="active"><a href="/Client/Index">Trang chủ</a></li>
     <li><a href="/Client/Comparing">So sánh Xe</a></li>
     <li><a href="/Client/Review">Bài đánh giá</a></li>
-    <li><a href="/Client/Team">Team</a></li>
     <li><a href="/Client/Video">Video</a></li>
+    <li><a href="/Client/Team">Team</a></li>
+
     <li><a href="/Client/Contact">Liên hệ</a></li>
 }
 @*HOME*@

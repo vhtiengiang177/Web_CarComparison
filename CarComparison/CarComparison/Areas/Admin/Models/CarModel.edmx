@@ -20,6 +20,7 @@
           <Property Name="state_article" Type="nvarchar" MaxLength="50" />
           <Property Name="linkvideo_article" Type="nvarchar(max)" />
           <Property Name="img_article" Type="nvarchar" MaxLength="255" />
+          <Property Name="view_article" Type="int" />
         </EntityType>
         <EntityType Name="Automaker">
           <Key>
@@ -362,6 +363,7 @@
           <NavigationProperty Name="Comments" Relationship="Self.FK_Comment_id_article" FromRole="Article" ToRole="Comment" />
           <NavigationProperty Name="User_" Relationship="CompareCarModel.FK_Article_id_user" FromRole="Article" ToRole="User_" />
           <Property Name="img_article" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="view_article" Type="Int32" />
         </EntityType>
         <EntityType Name="Automaker">
           <Key>
@@ -722,6 +724,7 @@
           <EntitySetMapping Name="Articles">
             <EntityTypeMapping TypeName="CompareCarModel.Article">
               <MappingFragment StoreEntitySet="Article">
+                <ScalarProperty Name="view_article" ColumnName="view_article" />
                 <ScalarProperty Name="img_article" ColumnName="img_article" />
                 <ScalarProperty Name="id_article" ColumnName="id_article" />
                 <ScalarProperty Name="id_category" ColumnName="id_category" />

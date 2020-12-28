@@ -1,11 +1,5 @@
-﻿@using CarComparison.Areas.Admin.Models
-@model IEnumerable<Article>
-
-
-
+﻿
 @{
-    IEnumerable<Article> lstNewBlog = ViewBag.ListNewBlog as IEnumerable<Article>;
-    IEnumerable<Article> lstNewVideo = ViewBag.ListNewVideo as IEnumerable<Article>;
 
     var user = Session["user"] as CarComparison.Areas.Admin.Models.User_;
 }
@@ -27,6 +21,7 @@
     <link rel="stylesheet" href="~/Asset/Client/css/owl.theme.default.min.css">
     <link href="~/Asset/Client/css/bootstrap.min.css" rel="stylesheet" />
     <script src="~/Asset/Client/js/custom.js"></script>
+   
     @*MAIN CSS--!>*@
     <link rel="stylesheet" href="~/Asset/Client/css/style.css">
 </head>

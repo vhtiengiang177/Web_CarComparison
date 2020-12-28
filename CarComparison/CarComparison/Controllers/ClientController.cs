@@ -27,12 +27,12 @@ namespace CarComparison.Controllers
             //Lần lượt tạo các viewbag để lấy các list từ csdl
             //List bài viết mới nhất
 
-            var lstNewBlog = db.Articles;
+            var lstNewBlog = db.Articles.Where(n => n.id_category == "CaAr02");
             //Gán vào ViewBag
             ViewBag.ListNewBlog = lstNewBlog;
 
             //List video mới nhất
-            var lstNewVideo = db.Articles.Where(n=>n.id_category=="2");
+            var lstNewVideo = db.Articles.Where(n=>n.id_category== "CaAr01");
             //Gán vào ViewBag
             ViewBag.ListNewVideo = lstNewVideo; 
             return View();
@@ -170,15 +170,36 @@ namespace CarComparison.Controllers
         public ActionResult Review()
         {
 
-            
-            return View();
+            var lstBlog = db.Articles.Where(n => n.id_category != "CaAr01" );
+            //Gán vào ViewBag
+            ViewBag.ListBlog= lstBlog;
+
+
+            return View(lstBlog);
         }
 
         public ActionResult Video()
         {
 
+            var videoList = (from a in db.Articles
+                                       where a.id_category == "CaAr01" && a.state_article == "1"
+                                       select a).ToList();
+            Article art = new Article { linkvideo_article = videoList[videoList.Count - 1].linkvideo_article,
+                title_article = videoList[videoList.Count - 1].title_article,
+                time_pulish_article= videoList[videoList.Count - 1].time_pulish_article,
+                id_user = videoList[videoList.Count - 1].id_user
 
-            return View();
+            } ;
+            ViewBag.artLink = art.linkvideo_article;
+            ViewBag.artTitle = art.title_article;
+            ViewBag.artDate = art.time_pulish_article;
+
+            var lstNewVideo = db.Articles.Where(n => n.id_category == "CaAr01");
+            //Gán vào ViewBag
+            ViewBag.ListNewVideo = lstNewVideo;
+
+
+            return View(lstNewVideo);
         }
 
         [ChildActionOnly] //để người dùng không get được view này

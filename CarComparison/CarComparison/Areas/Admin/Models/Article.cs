@@ -31,6 +31,7 @@ namespace CarComparison.Areas.Admin.Models
         public string state_article { get; set; }
         public string linkvideo_article { get; set; }
         public string img_article { get; set; }
+        public Nullable<int> view_article { get; set; }
     
         public virtual CategoryArticle CategoryArticle { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
