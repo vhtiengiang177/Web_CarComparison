@@ -140,19 +140,19 @@
                 <div class="form-group">
                     <label>Hãng xe</label>
                     @Html.EditorFor(model => model.Version.Model.Automaker.name_automaker, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Version.Model.Automaker.name_automaker, "", new { @class = "text-danger" })
+                    @Html.ValidationMessage("au", new { @class = "text-danger" })
                 </div>
 
                 <div class="form-group">
                     <label>Dòng xe</label>
                     @Html.EditorFor(model => model.Version.Model.name_model, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Version.Model.name_model, "", new { @class = "text-danger" })
+                    @Html.ValidationMessage("mo", new { @class = "text-danger" })
                 </div>
 
                 <div class="form-group">
                     <label>Phiên bản</label>
                     @Html.EditorFor(model => model.Version.name_version, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Version.name_version, "", new { @class = "text-danger" })
+                    @Html.ValidationMessage("ver", new { @class = "text-danger" })
                 </div>
 
                 <div class="form-group">
@@ -278,7 +278,7 @@
 
                 <div class="form-group">
                     <label>Ảnh</label>
-                    <input class="btn btn-block" type="file" onchange="funCheck()" accept=".jpg" name="imageFile" id="imageFile"  />
+                    <input class="btn btn-block" type="file" onchange="funCheck()" accept=".jpg" name="imageFile" id="imageFile" required />
                     <script type="text/javascript">
                         function funCheck() {
                             var file = document.getElementById("imageFile").value;
