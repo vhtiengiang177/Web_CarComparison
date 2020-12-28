@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
-using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
@@ -177,7 +174,7 @@ namespace CarComparison.Controllers
             return View();
         }
 
-        [ChildActionOnly] //để người dùng không get được view này
+        //[ChildActionOnly] //để người dùng không get được view này
         public ActionResult blogPartial()
         {
             return PartialView();

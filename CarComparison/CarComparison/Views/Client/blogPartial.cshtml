@@ -1,16 +1,17 @@
 ﻿
-@using CarComparison.Areas.Admin.Models
-@model IEnumerable<Article>
 
-@foreach(var item in Model.Take(2))
+@using CarComparison.Areas.Admin.Models;
+@model IEnumerable<Article> 
+
+@foreach(var item in Model.Take(3))
 {
     <div class="col-md-4 col-sm-4">
         <div class="courses-thumb courses-thumb-secondary">
             <div class="courses-top">
                 <div class="courses-image">
-                    <img src="~/Asset/Client/images/blog-1-720x480.jpg" class="img-responsive" alt="">
+                    <img src=@item.img_article class="img-responsive" alt="">
                 </div>
-                <div class="courses-date">
+                <div class="courses-date">s
                     <span title="Author"><i class="fa fa-user"></i> John Doe</span>
                     <span title="Date"><i class="fa fa-calendar"></i> 12/06/2020 10:30</span>
                     <span title="Views"><i class="fa fa-eye"></i> 114</span>
@@ -18,7 +19,7 @@
             </div>
 
             <div class="courses-detail">
-                <h3><a href="blog-post-details.html">item.title_article</a></h3>
+                <h3><a href="blog-post-details.html">@item.title_article</a></h3>
             </div>
 
             <div class="courses-info">
@@ -26,5 +27,5 @@
             </div>
         </div>
     </div>
- }
+}
 

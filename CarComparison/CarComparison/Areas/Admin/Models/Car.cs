@@ -40,7 +40,6 @@ namespace CarComparison.Areas.Admin.Models
         public string id_version { get; set; }
     
         public virtual Version Version { get; set; }
-
         public HttpPostedFileBase imageFile { get; set; }
     }
 }

@@ -4,6 +4,7 @@
     <EntitySetMapping Name="Articles">
       <EntityTypeMapping TypeName="CompareCarModel.Article">
         <MappingFragment StoreEntitySet="Article">
+          <ScalarProperty Name="img_article" ColumnName="img_article" />
           <ScalarProperty Name="id_article" ColumnName="id_article" />
           <ScalarProperty Name="id_category" ColumnName="id_category" />
           <ScalarProperty Name="title_article" ColumnName="title_article" />
@@ -134,16 +135,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <FunctionImportMapping FunctionImportName="XemTenXe" FunctionName="CompareCarModel.Store.XemTenXe">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="CompareCarModel.XemTenXe_Result">
-          <ScalarProperty Name="name_automaker" ColumnName="name_automaker" />
-          <ScalarProperty Name="name_model" ColumnName="name_model" />
-          <ScalarProperty Name="name_version" ColumnName="name_version" />
-          <ScalarProperty Name="id_car" ColumnName="id_car" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
     <EntitySetMapping Name="User_">
       <EntityTypeMapping TypeName="CompareCarModel.User_">
         <MappingFragment StoreEntitySet="User_">
@@ -165,5 +156,15 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="XemTenXe" FunctionName="CompareCarModel.Store.XemTenXe">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CompareCarModel.XemTenXe_Result">
+          <ScalarProperty Name="name_automaker" ColumnName="name_automaker" />
+          <ScalarProperty Name="name_model" ColumnName="name_model" />
+          <ScalarProperty Name="name_version" ColumnName="name_version" />
+          <ScalarProperty Name="id_car" ColumnName="id_car" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

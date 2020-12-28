@@ -209,6 +209,9 @@
     <Compile Include="Areas\Admin\Models\XemTenXe_Result.cs">
       <DependentUpon>CarModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Areas\Admin\Models\XemTenXe_Result1.cs">
+      <DependentUpon>CarModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ClientController.cs" />
@@ -2262,6 +2265,8 @@
     <Content Include="Asset\Client\images\product-4-720x480.jpg" />
     <Content Include="Asset\Client\images\product-5-720x480.jpg" />
     <Content Include="Asset\Client\images\product-6-720x480.jpg" />
+    <Content Include="Asset\Client\images\slider-1-1920x700.jpg" />
+    <Content Include="Asset\Client\images\slider-3-1920x700.jpg" />
     <Content Include="Asset\Client\images\slider-image-1-1920x700.jpg" />
     <Content Include="Asset\Client\images\slider-image-2-1920x700.jpg" />
     <Content Include="Asset\Client\images\slider-image-3-1920x700.jpg" />
@@ -2276,6 +2281,10 @@
     <Content Include="Asset\Client\js\jquery.js" />
     <Content Include="Asset\Client\js\owl.carousel.min.js" />
     <Content Include="Asset\Client\js\smoothscroll.js" />
+    <Content Include="Asset\Image\Article\blog-1-720x480.jpg" />
+    <Content Include="Asset\Image\Article\blog-2-720x480.jpg" />
+    <Content Include="Asset\Image\Article\blog-3-720x480.jpg" />
+    <Content Include="Asset\Image\Article\blog-4-720x480.jpg" />
     <Content Include="Asset\Image\Car\Ca01.jpg" />
     <Content Include="Asset\Image\Car\Ca02.jpg" />
     <Content Include="Asset\Image\Car\Ca03.jpg" />
@@ -2655,6 +2664,7 @@
     <Content Include="Views\Login\RegisterView.cshtml" />
     <Content Include="Views\Login\LoginView.cshtml" />
     <Content Include="Views\Account\Index.cshtml" />
+    <Content Include="Views\Client\blogPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -19,6 +19,7 @@
           <Property Name="time_write" Type="datetime" />
           <Property Name="state_article" Type="nvarchar" MaxLength="50" />
           <Property Name="linkvideo_article" Type="nvarchar(max)" />
+          <Property Name="img_article" Type="nvarchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="Automaker">
           <Key>
@@ -360,6 +361,7 @@
           <NavigationProperty Name="CategoryArticle" Relationship="Self.FK_Article_id_category" FromRole="Article" ToRole="CategoryArticle" />
           <NavigationProperty Name="Comments" Relationship="Self.FK_Comment_id_article" FromRole="Article" ToRole="Comment" />
           <NavigationProperty Name="User_" Relationship="CompareCarModel.FK_Article_id_user" FromRole="Article" ToRole="User_" />
+          <Property Name="img_article" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Automaker">
           <Key>
@@ -625,7 +627,6 @@
             <End Role="TypeUser" EntitySet="TypeUsers" />
             <End Role="User_Permission" EntitySet="User_Permission" />
           </AssociationSet>
-          <FunctionImport Name="XemTenXe" ReturnType="Collection(CompareCarModel.XemTenXe_Result)" />
           <EntitySet Name="User_" EntityType="CompareCarModel.User_" />
           <AssociationSet Name="FK_Article_id_user" Association="CompareCarModel.FK_Article_id_user">
             <End Role="User_" EntitySet="User_" />
@@ -639,6 +640,7 @@
             <End Role="TypeUser" EntitySet="TypeUsers" />
             <End Role="User_" EntitySet="User_" />
           </AssociationSet>
+          <FunctionImport Name="XemTenXe" ReturnType="Collection(CompareCarModel.XemTenXe_Result)" />
           </EntityContainer>
         <ComplexType Name="XemTenXe_Result">
           <Property Type="String" Name="name_automaker" Nullable="true" MaxLength="50" />
@@ -705,6 +707,12 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <ComplexType Name="XemTenXe_Result1">
+          <Property Type="String" Name="name_automaker" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="name_model" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="name_version" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="id_car" Nullable="false" MaxLength="10" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -714,6 +722,7 @@
           <EntitySetMapping Name="Articles">
             <EntityTypeMapping TypeName="CompareCarModel.Article">
               <MappingFragment StoreEntitySet="Article">
+                <ScalarProperty Name="img_article" ColumnName="img_article" />
                 <ScalarProperty Name="id_article" ColumnName="id_article" />
                 <ScalarProperty Name="id_category" ColumnName="id_category" />
                 <ScalarProperty Name="title_article" ColumnName="title_article" />
@@ -844,16 +853,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="XemTenXe" FunctionName="CompareCarModel.Store.XemTenXe">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="CompareCarModel.XemTenXe_Result">
-                <ScalarProperty Name="name_automaker" ColumnName="name_automaker" />
-                <ScalarProperty Name="name_model" ColumnName="name_model" />
-                <ScalarProperty Name="name_version" ColumnName="name_version" />
-                <ScalarProperty Name="id_car" ColumnName="id_car" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <EntitySetMapping Name="User_">
             <EntityTypeMapping TypeName="CompareCarModel.User_">
               <MappingFragment StoreEntitySet="User_">
@@ -875,6 +874,16 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="XemTenXe" FunctionName="CompareCarModel.Store.XemTenXe">
+          <ResultMapping>
+              <ComplexTypeMapping TypeName="CompareCarModel.XemTenXe_Result">
+                <ScalarProperty Name="name_automaker" ColumnName="name_automaker" />
+                <ScalarProperty Name="name_model" ColumnName="name_model" />
+                <ScalarProperty Name="name_version" ColumnName="name_version" />
+                <ScalarProperty Name="id_car" ColumnName="id_car" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
