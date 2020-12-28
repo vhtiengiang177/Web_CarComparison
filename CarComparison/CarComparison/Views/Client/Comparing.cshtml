@@ -1,993 +1,815 @@
 ﻿@model CarComparison.Areas.Admin.Models.cascadingmodel
 
 @{
-    Layout = null;
-    var user = Session["user"] as CarComparison.Areas.Admin.Models.User_;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    
 }
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
+@section navbar{
+    <li><a href="/Client/Index">Trang chủ</a></li>
+    <li  class="active"><a href="/Client/Comparing">So sánh Xe</a></li>
+    <li><a href="/Client/Review">Bài đánh giá</a></li>
+    <li><a href="/Client/Team">Team</a></li>
+    <li><a href="/Client/Video">Video</a></li>
+    <li><a href="/Client/Contact">Liên hệ</a></li>
 
-    <title>LTW | Web So sánh Xe mới nhất</title>
+}
 
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-    <meta name="description" content="">
-    <meta name="keywords" content="">
-    <meta name="author" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="~/Asset/Client/css/bootstrap.min.css">
-    <link rel="stylesheet" href="~/Asset/Client/css/font-awesome.min.css">
-    <link rel="stylesheet" href="~/Asset/Client/css/owl.carousel.css">
-    <link rel="stylesheet" href="~/Asset/Client/css/owl.theme.default.min.css">
-    <link href="~/Asset/Client/css/bootstrap.min.css" rel="stylesheet" />
-    <script src="~/Asset/Client/js/btn_top.js"></script>
-    <link href="~/Asset/Client/css/btn_top.css" rel="stylesheet" />
-    <!-- MAIN CSS -->
-    <link rel="stylesheet" href="~/Asset/Client/css/style.css">
+<section>
+    <div class="container">
+        <div class="text-center">
+            <h1>So sánh xe </h1>
 
-</head>
-<body id="top" data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
+            <br>
 
-    <!-- PRE LOADER -->
-    <section class="preloader">
-        <div class="spinner">
-            <span class="spinner-rotate"></span>
+            <p class="lead">Giúp bạn so sánh và tìm được chiếc xe mong muốn.</p>
         </div>
-    </section>
+    </div>
+</section>
 
+<section class="section-background">
+    <div class="left-back" style="float:left; width:300px;height:560px;">
 
-    <!-- MENU -->
-    <section class="navbar custom-navbar navbar-fixed-top" role="navigation">
-        <div class="container">
+        <div><h4 style="width:457px;">&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;   THÔNG SỐ SO SÁNH</h4></div>
+        <hr style="width:50%;text-align:left;margin-left:0" />
 
-            <div class="navbar-header">
-                <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon icon-bar"></span>
-                    <span class="icon icon-bar"></span>
-                    <span class="icon icon-bar"></span>
-                </button>
+        <ul>
+            <li>
+                <a href="#tong-quan"><h4>&nbsp; &nbsp; &nbsp;Tổng quan</h4></a>
+            </li>
+            <li>
+                <a href="#kich-thuoc"><h4>&nbsp; &nbsp; &nbsp;Kích thước</h4></a>
+            </li>
+            <li>
+                <a href="#dong-co"><h4>&nbsp; &nbsp; &nbsp;Động cơ</h4></a>
+            </li>
+            <li>
+                <a href="#van-hanh"><h4>&nbsp; &nbsp; &nbsp;Vận hành</h4></a>
+            </li>
+            <li>
+                <a href="#tieu-thu-nhien-lieu"><h4>&nbsp; &nbsp; &nbsp;Tiêu thụ nhiên liệu</h4></a>
+            </li>
+            <li>
+                <a href="#noi-that"><h4>&nbsp; &nbsp; &nbsp;Nội thất</h4></a>
+            </li>
+            <li>
+                <a href="#ngoai-that"><h4>&nbsp; &nbsp; &nbsp;Ngoại thất</h4></a>
+            </li>
+            <li>
+                <a href="#antoan"><h4>&nbsp; &nbsp; &nbsp;An toàn</h4></a>
+            </li>
+        </ul>
+    </div>
 
-                <!-- lOGO TEXT HERE -->
-                <a href="#" class="navbar-brand">Car Comparing Website</a>
-            </div>
 
-            <!-- MENU LINKS -->
-            <div class="collapse navbar-collapse">
-                <ul class="nav navbar-nav navbar-nav-first">
-                    <li><a href="/Client/Index">Trang chủ</a></li>
-                    <li class="active"><a href="/Client/Comparing">So sánh Xe</a></li>
-                    <li><a href="/Client/Review">Bài đánh giá</a></li>
-                    <li><a href="/Client/Team">Team</a></li>
-                    <li><a href="testimonials.html">Video</a></li>
-                    <li><a href="/Client/Contact">Liên hệ</a></li>
-                    @if (user != null)
-                    {
-                        <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">@user.lname_user @user.fname_user ▼</span>
-                            </a>
-                            <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
-                                    Thông tin tài khoản
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    Cài đặt
-                                </a>
-                                @if (user.id_typeuser == "TyUs01")
-                                {
-                                    <a class="dropdown-item" href="/Admin/Home/">
-                                        Trang admin
-                                    </a>
-                                }
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                                    Đăng xuất
-                                </a>
-                            </div>
-                        </li>
-                    }
-                    else
-                    {
-                        <li>@Html.ActionLink("Đăng Nhập", "LoginView", "Login")</li>
-                    }
-                </ul>
-            </div>
-            <!-- Logout Modal-->
-            <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                 aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Đăng xuất</h5>
-                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">×</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">Chọn "Đăng xuất" bên dưới nếu bạn đã sẵn sàng kết thúc phiên hoạt động của mình.</div>
-                        <div class="modal-footer">
-                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Hủy</button>
-                            <a class="btn btn-primary" href="/Login/Logout">Đăng xuất</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <section>
-        <div class="container">
-            <div class="text-center">
-                <h1>So sánh xe </h1>
 
-                <br>
 
-                <p class="lead">Giúp bạn so sánh và tìm được chiếc xe mong muốn.</p>
-            </div>
-        </div>
-    </section>
 
-    <section class="section-background">
-        <div class="left-back" style="float:left; width:300px;height:560px;">
+    <div class="container   ">
 
-            <div><h4 style="width:457px;">&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;   THÔNG SỐ SO SÁNH</h4></div>
-            <hr style="width:50%;text-align:left;margin-left:0" />
+        <div class="row">
+            <div class="col-lg-3 col-xs-12">
+                <div class="form">
 
-            <ul>
-                <li>
-                    <a href="#tong-quan"><h4>&nbsp; &nbsp; &nbsp;Tổng quan</h4></a>
-                </li>
-                <li>
-                    <a href="#kich-thuoc"><h4>&nbsp; &nbsp; &nbsp;Kích thước</h4></a>
-                </li>
-                <li>
-                    <a href="#dong-co"><h4>&nbsp; &nbsp; &nbsp;Động cơ</h4></a>
-                </li>
-                <li>
-                    <a href="#van-hanh"><h4>&nbsp; &nbsp; &nbsp;Vận hành</h4></a>
-                </li>
-                <li>
-                    <a href="#tieu-thu-nhien-lieu"><h4>&nbsp; &nbsp; &nbsp;Tiêu thụ nhiên liệu</h4></a>
-                </li>
-                <li>
-                    <a href="#noi-that"><h4>&nbsp; &nbsp; &nbsp;Nội thất</h4></a>
-                </li>
-                <li>
-                    <a href="#ngoai-that"><h4>&nbsp; &nbsp; &nbsp;Ngoại thất</h4></a>
-                </li>
-                <li>
-                    <a href="#antoan"><h4>&nbsp; &nbsp; &nbsp;An toàn</h4></a>
-                </li>
-            </ul>
-        </div>
 
+                    <form action="#">
+                        <div class="car-1">
 
 
-
-
-        
-        <div class="container   ">
-
-            <div class="row">
-                <div class="col-lg-3 col-xs-12">
-                    <div class="form">
-
-
-                        <form action="#">
-                            <div class="car-1">
-
-
-                                <div class="form-group">
-                                    <label>Hãng xe</label>
-                                    @if (ViewBag.AutoList != null)
-                                    {
-                                        @Html.DropDownListFor(model => model.automakerId, ViewBag.AutoList as SelectList, "--Select--", new { @class = "form-control" })
-                                    }
-
-
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Dòng xe</label>
-                                    @Html.DropDownListFor(model => model.modelId, new SelectList(" "), "--Select--", new { @class = "form-control" })
-
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Phiên bản</label>
-                                    @Html.DropDownListFor(model => model.versionId, new SelectList(" "), "--Select--", new { @class = "form-control" })
-
-
-                                </div>
-                            </div>
-                            <br />
-                            <hr />
-
-
-                            <div class="detail-car-1" style="display:none">
-                                <button type="button" class="close" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                                    <section class="img-car-boder" style="padding:unset;">
-                                        
-                                            
-                                                <div id="car-head" style="font-weight:bold; font-size: 15pt;"></div>
-                                                <div id="charge" style="color:brown;font-size: 15pt; "></div>
-                                                <div class="border-img">
-                                                    <img id="image-detail1" style=" width:100%;" />
-                                                </div>
-
-
-                                           
-                                        
-                                    </section>
-                                    <section id="kich-thuoc" style="padding:unset;">
-                                        <h5 style=" font-size: 18pt;">Kích thước</h5>
-                                        <hr style="color:black;" />
-                                        <dl>
-                                            <dt>Tổng thể</dt>
-                                            <dd id="over"></dd>
-                                        </dl>
-
-                                        <dl>
-                                            <dt>Chiều Dài Cơ Sở</dt>
-                                            <dd id="length"></dd>
-                                        </dl>
-
-                                        <dl>
-                                            <dt> Mâm Xe</dt>
-                                            <dd id="wheels"></dd>
-                                        </dl>
-
-                                        <dl>
-                                            <dt>Thông Số Lốp</dt>
-                                            <dd id="tireparameters"></dd>
-                                        </dl>
-
-                                        <dl>
-                                            <dt>Trọng Lượng</dt>
-                                            <dd id="weight"></dd>
-                                        </dl>
-                                    </section>
-                                    <section id="dong-co" style="padding:unset;">
-                                        <h5 style=" font-size: 18pt;">Động cơ</h5>
-                                        <hr style="color:black;" />
-                                        <dl>
-                                            <dt>Dung Tích Động Cơ</dt>
-                                            <dd id="capacity"></dd>
-                                        </dl>
-
-                                        <dl>
-                                            <dt>Mã Lực</dt>
-                                            <dd id="horsepower"></dd>
-                                        </dl>
-
-
-                                        <dl>
-                                            <dt>Momen Xoắn</dt>
-                                            <dd id="torque"></dd>
-                                        </dl>
-                                    </section>
-                                    <section id="van-hanh" style="padding:unset;">
-                                        <h5 style=" font-size: 18pt;">Vận hành</h5>
-                                        <hr style="color:black;" />
-                                        <dl>
-                                            <dt> Hộp Số</dt>
-                                            <dd id="gear"></dd>
-                                        </dl>
-                                        <dl>
-                                            <dt>Hệ Dẫn Động</dt>
-                                            <dd id="drivetype"></dd>
-                                        </dl>
-
-                                        <dl>
-                                            <dt>Hệ Thống Thắng Trước</dt>
-                                            <dd id="frontbrakesystem"></dd>
-                                        </dl>
-                                        <dl>
-                                            <dt>Hệ Thống Thắng Sau</dt>
-                                            <dd id="rearbrakesystem"></dd>
-                                        </dl>
-
-                                        <dl>
-                                            <dt>Tốc Độ Tối Đa</dt>
-                                            <dd id="maximumspeed"></dd>
-                                        </dl>
-
-                                        <dl>
-                                            <dt>Tăng tốc từ 0-100km/h</dt>
-                                            <dd id="accelerationtime"></dd>
-                                        </dl>
-                                    </section>
-                                    <section id="tieu-thu-nhien-lieu" style="padding:unset;">
-                                        <h5 style=" font-size: 18pt;">Tiêu thụ nhiên liệu</h5>
-                                        <hr style="color:black;" />
-                                        <dl>
-                                            <dt>Dung Tích Bình Xăng</dt>
-                                            <dd id="capacitytank"></dd>
-                                        </dl>
-                                    </section>
-                                    <section id="noi-that" style="padding:unset;">
-                                        <h5 style=" font-size: 18pt;">Nội thất</h5>
-                                        <hr style="color:black;" />
-                                        <dl>
-                                            <dt>Số Ghế</dt>
-                                            <dd id="numberseat"></dd>
-                                        </dl>
-
-                                        <dl>
-                                            <dt>Loại Ghế</dt>
-                                            <dd id="seat"></dd>
-                                        </dl>
-
-                                        <dl>
-                                            <dt>Hệ Thống Điều Hòa</dt>
-                                            <dd id="airconditioner"></dd>
-                                        </dl>
-
-                                        <dl>
-                                            <dt>Cửa Sổ Trời</dt>
-                                            <dd id="sunroof"></dd>
-                                        </dl>
-                                    </section>
-
-
-
-
-                            </div>
-
-                        </form>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-xs-12">
-                    <div class="form">
-
-
-                        <form action="#">
-                            <div class="car-2">
-                                <div class="form-group">
-                                    <label>Hãng xe</label>
-                                    @if (ViewBag.AutoList != null)
-                                    {
-                                        @Html.DropDownListFor(model => model.automakerId1, ViewBag.AutoList as SelectList, "--Select--", new { @class = "form-control" })
-                                    }
-
-
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Dòng xe</label>
-                                    @Html.DropDownListFor(model => model.modelId1, new SelectList(" "), "--Select--", new { @class = "form-control" })
-
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Phiên bản</label>
-                                    @Html.DropDownListFor(model => model.versionId1, new SelectList(" "), "--Select--", new { @class = "form-control" })
-
-
-                                </div>
-
-
-                            </div>
-
-                            <br />
-                            <hr />
-                            <div class="detail-car-2" style="display:none">
-
-                                <button type="button" class="close" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                                <section class="img-car-boder" style="padding:unset;">
-
-
-                                    <div id="car-head1" style="font-weight:bold; font-size: 15pt;"></div>
-                                    <div id="charge1" style="color:brown;font-size: 15pt; "></div>
-                                    <div class="border-img1">
-                                        <img id="image-detail2" style=" width:100%;" />
-                                    </div>
-
-
-
-
-                                </section>
-                                <section id="kich-thuoc1" style="padding:unset;">
-                                    <h5 style=" font-size: 18pt;">&nbsp;   </h5>
-                                    <hr style="color:black;" />
-                                    <dl>
-                                        <dt>Tổng thể</dt>
-                                        <dd id="over1"></dd>
-                                    </dl>
-
-                                    <dl>
-                                        <dt>Chiều Dài Cơ Sở</dt>
-                                        <dd id="length1"></dd>
-                                    </dl>
-
-                                    <dl>
-                                        <dt> Mâm Xe</dt>
-                                        <dd id="wheels1"></dd>
-                                    </dl>
-
-                                    <dl>
-                                        <dt>Thông Số Lốp</dt>
-                                        <dd id="tireparameters1"></dd>
-                                    </dl>
-
-                                    <dl>
-                                        <dt>Trọng Lượng</dt>
-                                        <dd id="weight1"></dd>
-                                    </dl>
-                                </section>
-                                <section id="dong-co1" style="padding:unset;">
-                                    <h5 style=" font-size: 18pt;">&nbsp;</h5>
-                                    <hr style="color:black;" />
-                                    <dl>
-                                        <dt>Dung Tích Động Cơ</dt>
-                                        <dd id="capacity1"></dd>
-                                    </dl>
-
-                                    <dl>
-                                        <dt>Mã Lực</dt>
-                                        <dd id="horsepower1"></dd>
-                                    </dl>
-
-
-                                    <dl>
-                                        <dt>Momen Xoắn</dt>
-                                        <dd id="torque1"></dd>
-                                    </dl>
-                                </section>
-                                <section id="van-hanh1" style="padding:unset;">
-                                    <h5 style=" font-size: 18pt;">&nbsp;</h5>
-                                    <hr style="color:black;" />
-                                    <dl>
-                                        <dt> Hộp Số</dt>
-                                        <dd id="gear1"></dd>
-                                    </dl>
-                                    <dl>
-                                        <dt>Hệ Dẫn Động</dt>
-                                        <dd id="drivetype1"></dd>
-                                    </dl>
-
-                                    <dl>
-                                        <dt>Hệ Thống Thắng Trước</dt>
-                                        <dd id="frontbrakesystem1"></dd>
-                                    </dl>
-                                    <dl>
-                                        <dt>Hệ Thống Thắng Sau</dt>
-                                        <dd id="rearbrakesystem1"></dd>
-                                    </dl>
-
-                                    <dl>
-                                        <dt>Tốc Độ Tối Đa</dt>
-                                        <dd id="maximumspeed1"></dd>
-                                    </dl>
-
-                                    <dl>
-                                        <dt>Tăng tốc từ 0-100km/h</dt>
-                                        <dd id="accelerationtime1"></dd>
-                                    </dl>
-                                </section>
-                                <section id="tieu-thu-nhien-lieu1" style="padding:unset;">
-                                    <h5 style=" font-size: 18pt;">&nbsp;</h5>
-                                    <hr style="color:black;" />
-                                    <dl>
-                                        <dt>Dung Tích Bình Xăng</dt>
-                                        <dd id="capacitytank1"></dd>
-                                    </dl>
-                                </section>
-                                <section id="noi-that1" style="padding:unset;">
-                                    <h5 style=" font-size: 18pt;">&nbsp;</h5>
-                                    <hr style="color:black;" />
-                                    <dl>
-                                        <dt>Số Ghế</dt>
-                                        <dd id="numberseat1"></dd>
-                                    </dl>
-
-                                    <dl>
-                                        <dt>Loại Ghế</dt>
-                                        <dd id="seat1"></dd>
-                                    </dl>
-
-                                    <dl>
-                                        <dt>Hệ Thống Điều Hòa</dt>
-                                        <dd id="airconditioner1"></dd>
-                                    </dl>
-
-                                    <dl>
-                                        <dt>Cửa Sổ Trời</dt>
-                                        <dd id="sunroof1"></dd>
-                                    </dl>
-                                </section>
-
-                            </div>
-
-
-
-                        </form>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-xs-12">
-                    <div class="form">
-
-
-                        <form action="#">
-                            <div class="car-3">
-                                <div class="form-group">
-                                    <label>Hãng xe</label>
-                                    @if (ViewBag.AutoList != null)
-                                    {
-                                        @Html.DropDownListFor(model => model.automakerId2, ViewBag.AutoList as SelectList, "--Select--", new { @class = "form-control" })
-                                    }
-
-
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Dòng xe</label>
-                                    @Html.DropDownListFor(model => model.modelId2, new SelectList(" "), "--Select--", new { @class = "form-control" })
-
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Phiên bản</label>
-                                    @Html.DropDownListFor(model => model.versionId2, new SelectList(" "), "--Select--", new { @class = "form-control" })
-
-
-                                </div>
-
-
-
-
-
-
-
-
-                            </div>
-
-                            <br />
-                            <hr />
-                            <div class="detail-car-3" style="display:none">
-                                <button type="button" class="close" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                                <section class="img-car-boder" style="padding:unset;">
-
-
-                                    <div id="car-head" style="font-weight:bold; font-size: 15pt;"></div>
-                                    <div id="charge2" style="color:brown;font-size: 15pt; "></div>
-                                    <div class="border-img">
-                                        <img id="image-detail3" style=" width:100%;" />
-                                    </div>
-
-
-
-
-                                </section>
-                                <section style="padding:unset;">
-                                    <h5 style=" font-size: 18pt;">&nbsp;   </h5>
-                                    <hr style="color:black;" />
-                                    <dl>
-                                        <dt>Tổng thể</dt>
-                                        <dd id="over2"></dd>
-                                    </dl>
-
-                                    <dl>
-                                        <dt>Chiều Dài Cơ Sở</dt>
-                                        <dd id="length2"></dd>
-                                    </dl>
-
-                                    <dl>
-                                        <dt> Mâm Xe</dt>
-                                        <dd id="wheels2"></dd>
-                                    </dl>
-
-                                    <dl>
-                                        <dt>Thông Số Lốp</dt>
-                                        <dd id="tireparameters2"></dd>
-                                    </dl>
-
-                                    <dl>
-                                        <dt>Trọng Lượng</dt>
-                                        <dd id="weight2"></dd>
-                                    </dl>
-                                </section>
-                                <section style="padding:unset;">
-                                    <h5 style=" font-size: 18pt;">&nbsp;</h5>
-                                    <hr style="color:black;" />
-                                    <dl>
-                                        <dt>Dung Tích Động Cơ</dt>
-                                        <dd id="capacity2"></dd>
-                                    </dl>
-
-                                    <dl>
-                                        <dt>Mã Lực</dt>
-                                        <dd id="horsepower2"></dd>
-                                    </dl>
-
-
-                                    <dl>
-                                        <dt>Momen Xoắn</dt>
-                                        <dd id="torque2"></dd>
-                                    </dl>
-                                </section>
-                                <section style="padding:unset;">
-                                    <h5 style=" font-size: 18pt;">&nbsp;</h5>
-                                    <hr style="color:black;" />
-                                    <dl>
-                                        <dt> Hộp Số</dt>
-                                        <dd id="gear2"></dd>
-                                    </dl>
-                                    <dl>
-                                        <dt>Hệ Dẫn Động</dt>
-                                        <dd id="drivetype2"></dd>
-                                    </dl>
-
-                                    <dl>
-                                        <dt>Hệ Thống Thắng Trước</dt>
-                                        <dd id="frontbrakesystem2"></dd>
-                                    </dl>
-                                    <dl>
-                                        <dt>Hệ Thống Thắng Sau</dt>
-                                        <dd id="rearbrakesystem2"></dd>
-                                    </dl>
-
-                                    <dl>
-                                        <dt>Tốc Độ Tối Đa</dt>
-                                        <dd id="maximumspeed2"></dd>
-                                    </dl>
-
-                                    <dl>
-                                        <dt>Tăng tốc từ 0-100km/h</dt>
-                                        <dd id="accelerationtime2"></dd>
-                                    </dl>
-                                </section>
-                                <section style="padding:unset;">
-                                    <h5 style=" font-size: 18pt;">&nbsp;</h5>
-                                    <hr style="color:black;" />
-                                    <dl>
-                                        <dt>Dung Tích Bình Xăng</dt>
-                                        <dd id="capacitytank2"></dd>
-                                    </dl>
-                                </section>
-                                <section style="padding:unset;">
-                                    <h5 style=" font-size: 18pt;">&nbsp;</h5>
-                                    <hr style="color:black;" />
-                                    <dl>
-                                        <dt>Số Ghế</dt>
-                                        <dd id="numberseat2"></dd>
-                                    </dl>
-
-                                    <dl>
-                                        <dt>Loại Ghế</dt>
-                                        <dd id="seat2"></dd>
-                                    </dl>
-
-                                    <dl>
-                                        <dt>Hệ Thống Điều Hòa</dt>
-                                        <dd id="airconditioner2"></dd>
-                                    </dl>
-
-                                    <dl>
-                                        <dt>Cửa Sổ Trời</dt>
-                                        <dd id="sunroof2"></dd>
-                                    </dl>
-                                </section>
-
-                            </div>
-
-                        </form>
-
-
-
-                    </div>
-                </div>
-
-
-                <br />
-                <br />
-
-            </div>
-            </div>
-    </section>
-    <div> <a class="btn-top" href="javascript:void(0);" title="Top" style="display: inline;"></a> </div>
-
-    <!-- FOOTER -->
-    <footer id="footer">
-        <div class="container">
-            <div class="row">
-
-                <div class="col-md-4 col-sm-6">
-                    <div class="footer-info">
-                        <div class="section-title">
-                            <h2>Địa chỉ</h2>
-                        </div>
-                        <address>
-                            <p>Số 1 Võ Văn Ngân <br>Thủ Đức, Việt Nam</p>
-                        </address>
-
-                        <ul class="social-icon">
-                            <li><a href="#" class="fa fa-facebook-square" attr="facebook icon"></a></li>
-                            <li><a href="#" class="fa fa-twitter"></a></li>
-                            <li><a href="#" class="fa fa-instagram"></a></li>
-                        </ul>
-
-                        <div class="copyright-text">
-                            <p>Copyright &copy; 2020 Company Name</p>
-
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4 col-sm-6">
-                    <div class="footer-info">
-                        <div class="section-title">
-                            <h2>Thông tin liên hệ</h2>
-                        </div>
-                        <address>
-                            <p>+1 333 4040 5566</p>
-                            <p><a href="mailto:contact@company.com">contact@company.com</a></p>
-                        </address>
-
-                        <div class="footer_menu">
-                            <h2>Links</h2>
-                            <ul>
-                                <li><a href="index.html">Trang chủ</a></li>
-                                <li><a href="about-us.html">Thông tin</a></li>
-                                <li><a href="terms.html">Terms & Conditions</a></li>
-                                <li><a href="contact.html">Liên hệ</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4 col-sm-12">
-                    <div class="footer-info newsletter-form">
-                        <div class="section-title">
-                            <h2>Nhận tin mới nhất</h2>
-                        </div>
-                        <div>
                             <div class="form-group">
-                                <form action="#" method="get">
-                                    <input type="email" class="form-control" placeholder="Enter your email" name="email" id="email" required>
-                                    <input type="submit" class="form-control" name="submit" id="form-submit" value="Send me">
-                                </form>
-                                <span><sup>*</sup> Please note - we do not spam your email.</span>
+                                <label>Hãng xe</label>
+                                @if (ViewBag.AutoList != null)
+                                {
+                                    @Html.DropDownListFor(model => model.automakerId, ViewBag.AutoList as SelectList, "--Select--", new { @class = "form-control" })
+                                }
+
+
+                            </div>
+
+                            <div class="form-group">
+                                <label>Dòng xe</label>
+                                @Html.DropDownListFor(model => model.modelId, new SelectList(" "), "--Select--", new { @class = "form-control" })
+
+                            </div>
+
+                            <div class="form-group">
+                                <label>Phiên bản</label>
+                                @Html.DropDownListFor(model => model.versionId, new SelectList(" "), "--Select--", new { @class = "form-control" })
+
+
                             </div>
                         </div>
-                    </div>
+                        <br />
+                        <hr />
+
+
+                        <div class="detail-car-1" style="display:none">
+                            <button type="button" class="close" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <section class="img-car-boder" style="padding:unset;">
+
+
+                                <div id="car-head" style="font-weight:bold; font-size: 15pt;"></div>
+                                <div id="charge" style="color:brown;font-size: 15pt; "></div>
+                                <div class="border-img">
+                                    <img id="image-detail1" style=" width:100%;" />
+                                </div>
+
+
+
+
+                            </section>
+                            <section id="kich-thuoc" style="padding:unset;">
+                                <h5 style=" font-size: 18pt;">Kích thước</h5>
+                                <hr style="color:black;" />
+                                <dl>
+                                    <dt>Tổng thể</dt>
+                                    <dd id="over"></dd>
+                                </dl>
+
+                                <dl>
+                                    <dt>Chiều Dài Cơ Sở</dt>
+                                    <dd id="length"></dd>
+                                </dl>
+
+                                <dl>
+                                    <dt> Mâm Xe</dt>
+                                    <dd id="wheels"></dd>
+                                </dl>
+
+                                <dl>
+                                    <dt>Thông Số Lốp</dt>
+                                    <dd id="tireparameters"></dd>
+                                </dl>
+
+                                <dl>
+                                    <dt>Trọng Lượng</dt>
+                                    <dd id="weight"></dd>
+                                </dl>
+                            </section>
+                            <section id="dong-co" style="padding:unset;">
+                                <h5 style=" font-size: 18pt;">Động cơ</h5>
+                                <hr style="color:black;" />
+                                <dl>
+                                    <dt>Dung Tích Động Cơ</dt>
+                                    <dd id="capacity"></dd>
+                                </dl>
+
+                                <dl>
+                                    <dt>Mã Lực</dt>
+                                    <dd id="horsepower"></dd>
+                                </dl>
+
+
+                                <dl>
+                                    <dt>Momen Xoắn</dt>
+                                    <dd id="torque"></dd>
+                                </dl>
+                            </section>
+                            <section id="van-hanh" style="padding:unset;">
+                                <h5 style=" font-size: 18pt;">Vận hành</h5>
+                                <hr style="color:black;" />
+                                <dl>
+                                    <dt> Hộp Số</dt>
+                                    <dd id="gear"></dd>
+                                </dl>
+                                <dl>
+                                    <dt>Hệ Dẫn Động</dt>
+                                    <dd id="drivetype"></dd>
+                                </dl>
+
+                                <dl>
+                                    <dt>Hệ Thống Thắng Trước</dt>
+                                    <dd id="frontbrakesystem"></dd>
+                                </dl>
+                                <dl>
+                                    <dt>Hệ Thống Thắng Sau</dt>
+                                    <dd id="rearbrakesystem"></dd>
+                                </dl>
+
+                                <dl>
+                                    <dt>Tốc Độ Tối Đa</dt>
+                                    <dd id="maximumspeed"></dd>
+                                </dl>
+
+                                <dl>
+                                    <dt>Tăng tốc từ 0-100km/h</dt>
+                                    <dd id="accelerationtime"></dd>
+                                </dl>
+                            </section>
+                            <section id="tieu-thu-nhien-lieu" style="padding:unset;">
+                                <h5 style=" font-size: 18pt;">Tiêu thụ nhiên liệu</h5>
+                                <hr style="color:black;" />
+                                <dl>
+                                    <dt>Dung Tích Bình Xăng</dt>
+                                    <dd id="capacitytank"></dd>
+                                </dl>
+                            </section>
+                            <section id="noi-that" style="padding:unset;">
+                                <h5 style=" font-size: 18pt;">Nội thất</h5>
+                                <hr style="color:black;" />
+                                <dl>
+                                    <dt>Số Ghế</dt>
+                                    <dd id="numberseat"></dd>
+                                </dl>
+
+                                <dl>
+                                    <dt>Loại Ghế</dt>
+                                    <dd id="seat"></dd>
+                                </dl>
+
+                                <dl>
+                                    <dt>Hệ Thống Điều Hòa</dt>
+                                    <dd id="airconditioner"></dd>
+                                </dl>
+
+                                <dl>
+                                    <dt>Cửa Sổ Trời</dt>
+                                    <dd id="sunroof"></dd>
+                                </dl>
+                            </section>
+
+
+
+
+                        </div>
+
+                    </form>
                 </div>
-
             </div>
+
+            <div class="col-lg-3 col-xs-12">
+                <div class="form">
+
+
+                    <form action="#">
+                        <div class="car-2">
+                            <div class="form-group">
+                                <label>Hãng xe</label>
+                                @if (ViewBag.AutoList != null)
+                                {
+                                    @Html.DropDownListFor(model => model.automakerId1, ViewBag.AutoList as SelectList, "--Select--", new { @class = "form-control" })
+                                }
+
+
+                            </div>
+
+                            <div class="form-group">
+                                <label>Dòng xe</label>
+                                @Html.DropDownListFor(model => model.modelId1, new SelectList(" "), "--Select--", new { @class = "form-control" })
+
+                            </div>
+
+                            <div class="form-group">
+                                <label>Phiên bản</label>
+                                @Html.DropDownListFor(model => model.versionId1, new SelectList(" "), "--Select--", new { @class = "form-control" })
+
+
+                            </div>
+
+
+                        </div>
+
+                        <br />
+                        <hr />
+                        <div class="detail-car-2" style="display:none">
+
+                            <button type="button" class="close" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <section class="img-car-boder" style="padding:unset;">
+
+
+                                <div id="car-head1" style="font-weight:bold; font-size: 15pt;"></div>
+                                <div id="charge1" style="color:brown;font-size: 15pt; "></div>
+                                <div class="border-img1">
+                                    <img id="image-detail2" style=" width:100%;" />
+                                </div>
+
+
+
+
+                            </section>
+                            <section id="kich-thuoc1" style="padding:unset;">
+                                <h5 style=" font-size: 18pt;">&nbsp;   </h5>
+                                <hr style="color:black;" />
+                                <dl>
+                                    <dt>Tổng thể</dt>
+                                    <dd id="over1"></dd>
+                                </dl>
+
+                                <dl>
+                                    <dt>Chiều Dài Cơ Sở</dt>
+                                    <dd id="length1"></dd>
+                                </dl>
+
+                                <dl>
+                                    <dt> Mâm Xe</dt>
+                                    <dd id="wheels1"></dd>
+                                </dl>
+
+                                <dl>
+                                    <dt>Thông Số Lốp</dt>
+                                    <dd id="tireparameters1"></dd>
+                                </dl>
+
+                                <dl>
+                                    <dt>Trọng Lượng</dt>
+                                    <dd id="weight1"></dd>
+                                </dl>
+                            </section>
+                            <section id="dong-co1" style="padding:unset;">
+                                <h5 style=" font-size: 18pt;">&nbsp;</h5>
+                                <hr style="color:black;" />
+                                <dl>
+                                    <dt>Dung Tích Động Cơ</dt>
+                                    <dd id="capacity1"></dd>
+                                </dl>
+
+                                <dl>
+                                    <dt>Mã Lực</dt>
+                                    <dd id="horsepower1"></dd>
+                                </dl>
+
+
+                                <dl>
+                                    <dt>Momen Xoắn</dt>
+                                    <dd id="torque1"></dd>
+                                </dl>
+                            </section>
+                            <section id="van-hanh1" style="padding:unset;">
+                                <h5 style=" font-size: 18pt;">&nbsp;</h5>
+                                <hr style="color:black;" />
+                                <dl>
+                                    <dt> Hộp Số</dt>
+                                    <dd id="gear1"></dd>
+                                </dl>
+                                <dl>
+                                    <dt>Hệ Dẫn Động</dt>
+                                    <dd id="drivetype1"></dd>
+                                </dl>
+
+                                <dl>
+                                    <dt>Hệ Thống Thắng Trước</dt>
+                                    <dd id="frontbrakesystem1"></dd>
+                                </dl>
+                                <dl>
+                                    <dt>Hệ Thống Thắng Sau</dt>
+                                    <dd id="rearbrakesystem1"></dd>
+                                </dl>
+
+                                <dl>
+                                    <dt>Tốc Độ Tối Đa</dt>
+                                    <dd id="maximumspeed1"></dd>
+                                </dl>
+
+                                <dl>
+                                    <dt>Tăng tốc từ 0-100km/h</dt>
+                                    <dd id="accelerationtime1"></dd>
+                                </dl>
+                            </section>
+                            <section id="tieu-thu-nhien-lieu1" style="padding:unset;">
+                                <h5 style=" font-size: 18pt;">&nbsp;</h5>
+                                <hr style="color:black;" />
+                                <dl>
+                                    <dt>Dung Tích Bình Xăng</dt>
+                                    <dd id="capacitytank1"></dd>
+                                </dl>
+                            </section>
+                            <section id="noi-that1" style="padding:unset;">
+                                <h5 style=" font-size: 18pt;">&nbsp;</h5>
+                                <hr style="color:black;" />
+                                <dl>
+                                    <dt>Số Ghế</dt>
+                                    <dd id="numberseat1"></dd>
+                                </dl>
+
+                                <dl>
+                                    <dt>Loại Ghế</dt>
+                                    <dd id="seat1"></dd>
+                                </dl>
+
+                                <dl>
+                                    <dt>Hệ Thống Điều Hòa</dt>
+                                    <dd id="airconditioner1"></dd>
+                                </dl>
+
+                                <dl>
+                                    <dt>Cửa Sổ Trời</dt>
+                                    <dd id="sunroof1"></dd>
+                                </dl>
+                            </section>
+
+                        </div>
+
+
+
+                    </form>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-xs-12">
+                <div class="form">
+
+
+                    <form action="#">
+                        <div class="car-3">
+                            <div class="form-group">
+                                <label>Hãng xe</label>
+                                @if (ViewBag.AutoList != null)
+                                {
+                                    @Html.DropDownListFor(model => model.automakerId2, ViewBag.AutoList as SelectList, "--Select--", new { @class = "form-control" })
+                                }
+
+
+                            </div>
+
+                            <div class="form-group">
+                                <label>Dòng xe</label>
+                                @Html.DropDownListFor(model => model.modelId2, new SelectList(" "), "--Select--", new { @class = "form-control" })
+
+                            </div>
+
+                            <div class="form-group">
+                                <label>Phiên bản</label>
+                                @Html.DropDownListFor(model => model.versionId2, new SelectList(" "), "--Select--", new { @class = "form-control" })
+
+
+                            </div>
+
+
+
+
+
+
+
+
+                        </div>
+
+                        <br />
+                        <hr />
+                        <div class="detail-car-3" style="display:none">
+                            <button type="button" class="close" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <section class="img-car-boder" style="padding:unset;">
+
+
+                                <div id="car-head" style="font-weight:bold; font-size: 15pt;"></div>
+                                <div id="charge2" style="color:brown;font-size: 15pt; "></div>
+                                <div class="border-img">
+                                    <img id="image-detail3" style=" width:100%;" />
+                                </div>
+
+
+
+
+                            </section>
+                            <section style="padding:unset;">
+                                <h5 style=" font-size: 18pt;">&nbsp;   </h5>
+                                <hr style="color:black;" />
+                                <dl>
+                                    <dt>Tổng thể</dt>
+                                    <dd id="over2"></dd>
+                                </dl>
+
+                                <dl>
+                                    <dt>Chiều Dài Cơ Sở</dt>
+                                    <dd id="length2"></dd>
+                                </dl>
+
+                                <dl>
+                                    <dt> Mâm Xe</dt>
+                                    <dd id="wheels2"></dd>
+                                </dl>
+
+                                <dl>
+                                    <dt>Thông Số Lốp</dt>
+                                    <dd id="tireparameters2"></dd>
+                                </dl>
+
+                                <dl>
+                                    <dt>Trọng Lượng</dt>
+                                    <dd id="weight2"></dd>
+                                </dl>
+                            </section>
+                            <section style="padding:unset;">
+                                <h5 style=" font-size: 18pt;">&nbsp;</h5>
+                                <hr style="color:black;" />
+                                <dl>
+                                    <dt>Dung Tích Động Cơ</dt>
+                                    <dd id="capacity2"></dd>
+                                </dl>
+
+                                <dl>
+                                    <dt>Mã Lực</dt>
+                                    <dd id="horsepower2"></dd>
+                                </dl>
+
+
+                                <dl>
+                                    <dt>Momen Xoắn</dt>
+                                    <dd id="torque2"></dd>
+                                </dl>
+                            </section>
+                            <section style="padding:unset;">
+                                <h5 style=" font-size: 18pt;">&nbsp;</h5>
+                                <hr style="color:black;" />
+                                <dl>
+                                    <dt> Hộp Số</dt>
+                                    <dd id="gear2"></dd>
+                                </dl>
+                                <dl>
+                                    <dt>Hệ Dẫn Động</dt>
+                                    <dd id="drivetype2"></dd>
+                                </dl>
+
+                                <dl>
+                                    <dt>Hệ Thống Thắng Trước</dt>
+                                    <dd id="frontbrakesystem2"></dd>
+                                </dl>
+                                <dl>
+                                    <dt>Hệ Thống Thắng Sau</dt>
+                                    <dd id="rearbrakesystem2"></dd>
+                                </dl>
+
+                                <dl>
+                                    <dt>Tốc Độ Tối Đa</dt>
+                                    <dd id="maximumspeed2"></dd>
+                                </dl>
+
+                                <dl>
+                                    <dt>Tăng tốc từ 0-100km/h</dt>
+                                    <dd id="accelerationtime2"></dd>
+                                </dl>
+                            </section>
+                            <section style="padding:unset;">
+                                <h5 style=" font-size: 18pt;">&nbsp;</h5>
+                                <hr style="color:black;" />
+                                <dl>
+                                    <dt>Dung Tích Bình Xăng</dt>
+                                    <dd id="capacitytank2"></dd>
+                                </dl>
+                            </section>
+                            <section style="padding:unset;">
+                                <h5 style=" font-size: 18pt;">&nbsp;</h5>
+                                <hr style="color:black;" />
+                                <dl>
+                                    <dt>Số Ghế</dt>
+                                    <dd id="numberseat2"></dd>
+                                </dl>
+
+                                <dl>
+                                    <dt>Loại Ghế</dt>
+                                    <dd id="seat2"></dd>
+                                </dl>
+
+                                <dl>
+                                    <dt>Hệ Thống Điều Hòa</dt>
+                                    <dd id="airconditioner2"></dd>
+                                </dl>
+
+                                <dl>
+                                    <dt>Cửa Sổ Trời</dt>
+                                    <dd id="sunroof2"></dd>
+                                </dl>
+                            </section>
+
+                        </div>
+
+                    </form>
+
+
+
+                </div>
+            </div>
+
+
+            <br />
+            <br />
+
         </div>
-    </footer>
-    <a id="back-to-top" href="#" class="btn btn-light btn-lg back-to-top" role="button"><i class="fas fa-chevron-up"></i></a>
-
-    <!-- SCRIPTS -->
-    <script src="~/Asset/Client/js/jquery.js"></script>
-    <script src="~/Asset/Client/js/bootstrap.min.js"></script>
-    <script src="~/Asset/Client/js/owl.carousel.min.js"></script>
-    <script src="~/Asset/Client/js/smoothscroll.js"></script>
-    <script src="~/Asset/Client/js/custom.js"></script>
-
-    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            var selectedname = "";
-            $("#automakerId").change(function () {
-
-                $.get("/Client/GetModelList", { idAuto: $("#automakerId").val() }, function (data) {
-                    $("#modelId").empty();
-                    $.each(data, function (index, row) {
-                        $("#modelId").append("<option value='" + row.id_model + "'>" + row.name_model + "</option>")
+    </div>
+</section>
+<div> <a class="btn-top" href="javascript:void(0);" title="Top" style="display: inline;"></a> </div>
 
 
-                    });
-                    $("#modelId").change(function () {
-                        selectedname += $(this).children("option:selected").val();
-                        $.get("/Client/GetVersionList", { idModel: $("#modelId").val() }, function (data) {
-                            $("#versionId").empty();
-                            $.each(data, function (index, row) {
-                                $("#versionId").append("<option value='" + row.id_version + "'>" + row.name_version + "</option>")
+<!-- SCRIPTS -->
+<script src="~/Asset/Client/js/jquery.js"></script>
+<script src="~/Asset/Client/js/bootstrap.min.js"></script>
+<script src="~/Asset/Client/js/owl.carousel.min.js"></script>
+<script src="~/Asset/Client/js/smoothscroll.js"></script>
+<script src="~/Asset/Client/js/custom.js"></script>
 
-                            });
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var selectedname = "";
+        $("#automakerId").change(function () {
 
+            $.get("/Client/GetModelList", { idAuto: $("#automakerId").val() }, function (data) {
+                $("#modelId").empty();
+                $.each(data, function (index, row) {
+                    $("#modelId").append("<option value='" + row.id_model + "'>" + row.name_model + "</option>")
 
-                            $("#versionId").change(function () {
-
-                                $(".car-1").hide();
-                                $(".detail-car-1").show();
-                                $.get("/Client/GetCarList", { idVersion: $("#versionId ").val() }, function (data) {
-                                    $get("/Client/joinName", { id_version: $("#versionId ").val() }, function (data) {
-                                        $.("#car-head").prepend("<div value='" + row.id_car + "'>" + data + "</div>");
-                                    };
-                                    $("#detail-car-1").empty();
-
-
-                                    $.each(data, function (i, row) {
-                                       
-                                        $('#over').prepend("<dd value='" + row.id_car + "'>" + row.overview_car + "<dd>");
-                                        $('#length').prepend("<dd value='" + row.id_car + "'>" + row.length_car + "<dd>");
-                                        $('#wheels').prepend("<dd value='" + row.id_car + "'>" + row.wheels_car + "<dd>");
-                                        $('#tireparameters').prepend("<dd value='" + row.id_car + "'>" + row.tireparameters_car + "<dd>");
-                                        $('#weight').prepend("<dd value='" + row.id_car + "'>" + row.weight_car + "<dd>");
-                                        $('#capacity').prepend("<dd value='" + row.id_car + "'>" + row.capacity_car + "<dd>");
-                                        $('#horsepower').prepend("<dd value='" + row.id_car + "'>" + row.horsepower_car + "<dd>");
-                                        $('#gear').prepend("<dd value='" + row.id_car + "'>" + row.gear_car + "<dd>");
-                                        $('#torque').prepend("<dd value='" + row.id_car + "'>" + row.torque_car + "<dd>");
-                                        $('#drivetype').prepend("<dd value='" + row.id_car + "'>" + row.drivetype_car + "<dd>");
-                                        $('#frontbrakesystem').prepend("<dd value='" + row.id_car + "'>" + row.frontbrakesystem_car + "<dd>");
-                                        $('#rearbrakesystem').prepend("<dd value='" + row.id_car + "'>" + row.rearbrakesystem_car + "<dd>");
-                                        $('#maximumspeed').prepend("<dd value='" + row.id_car + "'>" + row.maximumspeed_car + "<dd>");
-                                        $('#accelerationtime').prepend("<dd value='" + row.id_car + "'>" + row.accelerationtime_car + "<dd>");
-                                        $('#capacitytank').prepend("<dd value='" + row.id_car + "'>" + row.capacitytank_car + "<dd>");
-                                        $('#numberseat').prepend("<dd value='" + row.id_car + "'>" + row.numberseat_car + "<dd>");
-                                        $('#seat').prepend("<dd value='" + row.id_car + "'>" + row.seat_car + "<dd>");
-                                        $('#airconditioner').prepend("<dd value='" + row.id_car + "'>" + row.airconditioner_car + "<dd>");
-                                        $('#sunroof').prepend("<dd value='" + row.id_car + "'>" + row.sunroof_car + "<dd>");
-                                        $('#image-detail1').attr('src', row.img_car)
-
-                                        $('#charge').prepend("<div value='" + row.id_car + "'>" + row.charge_car + " tỷ " + "</div>");
-
-                                    });
-                                });
-                            });
-
-
-
-                        });
-                    });
 
                 });
+                $("#modelId").change(function () {
+                    selectedname += $(this).children("option:selected").val();
+                    $.get("/Client/GetVersionList", { idModel: $("#modelId").val() }, function (data) {
+                        $("#versionId").empty();
+                        $.each(data, function (index, row) {
+                            $("#versionId").append("<option value='" + row.id_version + "'>" + row.name_version + "</option>")
 
-
-            });
-
-
-
-
-           
-
-
-            $("#automakerId1").change(function () {
-                $.get("/Client/GetModelList", { idAuto: $("#automakerId1").val() }, function (data) {
-                    $("#modelId1").empty();
-                    $.each(data, function (index, row) {
-                        $("#modelId1").append("<option value='" + row.id_model + "'>" + row.name_model + "</option>")
-
-                    });
-                    $("#modelId1").change(function () {
-                        $.get("/Client/GetVersionList", { idModel: $("#modelId1").val() }, function (data) {
-                            $("#versionId1").empty();
-                            $.each(data, function (index, row) {
-                                $("#versionId1").append("<option value='" + row.id_version + "'>" + row.name_version + "</option>")
-                            });
                         });
 
-                        $("#versionId1").change(function () {
 
-                            $(".car-2").hide();
-                            $(".detail-car-2").show();
-                            $.get("/Client/GetCarList", { idVersion: $("#versionId1 ").val() }, function (data) {
-                                $("#detail-car-2").empty();
+                        $("#versionId").change(function () {
+
+                            $(".car-1").hide();
+                            $(".detail-car-1").show();
+                            $.get("/Client/GetCarList", { idVersion: $("#versionId ").val() }, function (data) {
+                                $get("/Client/joinName", { id_version: $("#versionId ").val() }, function (data) {
+                                    $.("#car-head").prepend("<div value='" + row.id_car + "'>" + data + "</div>");
+                                };
+                                $("#detail-car-1").empty();
 
 
                                 $.each(data, function (i, row) {
 
-                                    $('#over1').prepend("<dd value='" + row.id_car + "'>" + row.overview_car + "<dd>");
-                                    $('#length1').prepend("<dd value='" + row.id_car + "'>" + row.length_car + "<dd>");
-                                    $('#wheels1').prepend("<dd value='" + row.id_car + "'>" + row.wheels_car + "<dd>");
-                                    $('#tireparameters1').prepend("<dd value='" + row.id_car + "'>" + row.tireparameters_car + "<dd>");
-                                    $('#weight1').prepend("<dd value='" + row.id_car + "'>" + row.weight_car + "<dd>");
-                                    $('#capacity1').prepend("<dd value='" + row.id_car + "'>" + row.capacity_car + "<dd>");
-                                    $('#horsepower1').prepend("<dd value='" + row.id_car + "'>" + row.horsepower_car + "<dd>");
-                                    $('#gear1').prepend("<dd value='" + row.id_car + "'>" + row.gear_car + "<dd>");
-                                    $('#torque1').prepend("<dd value='" + row.id_car + "'>" + row.torque_car + "<dd>");
-                                    $('#drivetype1').prepend("<dd value='" + row.id_car + "'>" + row.drivetype_car + "<dd>");
-                                    $('#frontbrakesystem1').prepend("<dd value='" + row.id_car + "'>" + row.frontbrakesystem_car + "<dd>");
-                                    $('#rearbrakesystem1').prepend("<dd value='" + row.id_car + "'>" + row.rearbrakesystem_car + "<dd>");
-                                    $('#maximumspeed1').prepend("<dd value='" + row.id_car + "'>" + row.maximumspeed_car + "<dd>");
-                                    $('#accelerationtime1').prepend("<dd value='" + row.id_car + "'>" + row.accelerationtime_car + "<dd>");
-                                    $('#capacitytank1').prepend("<dd value='" + row.id_car + "'>" + row.capacitytank_car + "<dd>");
-                                    $('#numberseat1').prepend("<dd value='" + row.id_car + "'>" + row.numberseat_car + "<dd>");
-                                    $('#seat1').prepend("<dd value='" + row.id_car + "'>" + row.seat_car + "<dd>");
-                                    $('#airconditioner1').prepend("<dd value='" + row.id_car + "'>" + row.airconditioner_car + "<dd>");
-                                    $('#sunroof1').prepend("<dd value='" + row.id_car + "'>" + row.sunroof_car + "<dd>");
-                                    $('#image-detail2').attr('src', row.img_car)
-                                    $('#charge1').prepend("<div value='" + row.id_car + "'>" + row.charge_car + " tỷ " + "</div>");
+                                    $('#over').prepend("<dd value='" + row.id_car + "'>" + row.overview_car + "<dd>");
+                                    $('#length').prepend("<dd value='" + row.id_car + "'>" + row.length_car + "<dd>");
+                                    $('#wheels').prepend("<dd value='" + row.id_car + "'>" + row.wheels_car + "<dd>");
+                                    $('#tireparameters').prepend("<dd value='" + row.id_car + "'>" + row.tireparameters_car + "<dd>");
+                                    $('#weight').prepend("<dd value='" + row.id_car + "'>" + row.weight_car + "<dd>");
+                                    $('#capacity').prepend("<dd value='" + row.id_car + "'>" + row.capacity_car + "<dd>");
+                                    $('#horsepower').prepend("<dd value='" + row.id_car + "'>" + row.horsepower_car + "<dd>");
+                                    $('#gear').prepend("<dd value='" + row.id_car + "'>" + row.gear_car + "<dd>");
+                                    $('#torque').prepend("<dd value='" + row.id_car + "'>" + row.torque_car + "<dd>");
+                                    $('#drivetype').prepend("<dd value='" + row.id_car + "'>" + row.drivetype_car + "<dd>");
+                                    $('#frontbrakesystem').prepend("<dd value='" + row.id_car + "'>" + row.frontbrakesystem_car + "<dd>");
+                                    $('#rearbrakesystem').prepend("<dd value='" + row.id_car + "'>" + row.rearbrakesystem_car + "<dd>");
+                                    $('#maximumspeed').prepend("<dd value='" + row.id_car + "'>" + row.maximumspeed_car + "<dd>");
+                                    $('#accelerationtime').prepend("<dd value='" + row.id_car + "'>" + row.accelerationtime_car + "<dd>");
+                                    $('#capacitytank').prepend("<dd value='" + row.id_car + "'>" + row.capacitytank_car + "<dd>");
+                                    $('#numberseat').prepend("<dd value='" + row.id_car + "'>" + row.numberseat_car + "<dd>");
+                                    $('#seat').prepend("<dd value='" + row.id_car + "'>" + row.seat_car + "<dd>");
+                                    $('#airconditioner').prepend("<dd value='" + row.id_car + "'>" + row.airconditioner_car + "<dd>");
+                                    $('#sunroof').prepend("<dd value='" + row.id_car + "'>" + row.sunroof_car + "<dd>");
+                                    $('#image-detail1').attr('src', row.img_car)
+
+                                    $('#charge').prepend("<div value='" + row.id_car + "'>" + row.charge_car + " tỷ " + "</div>");
+
                                 });
                             });
-                        })
-                    })
-
-
-                });
-            })
-           
-            
-
-
-
-            $("#automakerId2").change(function () {
-                $.get("/Client/GetModelList", { idAuto: $("#automakerId2").val() }, function (data) {
-                    $("#modelId2").empty();
-                    $.each(data, function (index, row) {
-                        $("#modelId2").append("<option value='" + row.id_model + "'>" + row.name_model + "</option>")
-                    });
-                    $("#modelId2").change(function () {
-                        $.get("/Client/GetVersionList", { idModel: $("#modelId2").val() }, function (data) {
-                            $("#versionId2").empty();
-                            $.each(data, function (index, row) {
-                                $("#versionId2").append("<option value='" + row.id_version + "'>" + row.name_version + "</option>")
-                            });
-                            $("#versionId2").change(function () {
-
-                                $(".car-3").hide();
-                                $(".detail-car-3").show();
-                                $.get("/Client/GetCarList", { idVersion: $("#versionId2 ").val() }, function (data) {
-                                    $("#detail-car-3").empty();
-
-
-
-                                    $.each(data, function (i, row) {
-                                       
-                                        $('#over2').prepend("<dd value='" + row.id_car + "'>" + row.overview_car + "<dd>");
-                                        $('#length2').prepend("<dd value='" + row.id_car + "'>" + row.length_car + "<dd>");
-                                        $('#wheels2').prepend("<dd value='" + row.id_car + "'>" + row.wheels_car + "<dd>");
-                                        $('#tireparameters2').prepend("<dd value='" + row.id_car + "'>" + row.tireparameters_car + "<dd>");
-                                        $('#weight2').prepend("<dd value='" + row.id_car + "'>" + row.weight_car + "<dd>");
-                                        $('#capacity2').prepend("<dd value='" + row.id_car + "'>" + row.capacity_car + "<dd>");
-                                        $('#horsepower2').prepend("<dd value='" + row.id_car + "'>" + row.horsepower_car + "<dd>");
-                                        $('#gear2').prepend("<dd value='" + row.id_car + "'>" + row.gear_car + "<dd>");
-                                        $('#torque2').prepend("<dd value='" + row.id_car + "'>" + row.torque_car + "<dd>");
-                                        $('#drivetype2').prepend("<dd value='" + row.id_car + "'>" + row.drivetype_car + "<dd>");
-                                        $('#frontbrakesystem2').prepend("<dd value='" + row.id_car + "'>" + row.frontbrakesystem_car + "<dd>");
-                                        $('#rearbrakesystem2').prepend("<dd value='" + row.id_car + "'>" + row.rearbrakesystem_car + "<dd>");
-                                        $('#maximumspeed2').prepend("<dd value='" + row.id_car + "'>" + row.maximumspeed_car + "<dd>");
-                                        $('#accelerationtime2').prepend("<dd value='" + row.id_car + "'>" + row.accelerationtime_car + "<dd>");
-                                        $('#capacitytank2').prepend("<dd value='" + row.id_car + "'>" + row.capacitytank_car + "<dd>");
-                                        $('#numberseat2').prepend("<dd value='" + row.id_car + "'>" + row.numberseat_car + "<dd>");
-                                        $('#seat2').prepend("<dd value='" + row.id_car + "'>" + row.seat_car + "<dd>");
-                                        $('#airconditioner2').prepend("<dd value='" + row.id_car + "'>" + row.airconditioner_car + "<dd>");
-                                        $('#sunroof2').prepend("<dd value='" + row.id_car + "'>" + row.sunroof_car + "<dd>");
-                                        $('#image-detail3').attr('src', row.img_car)
-                                        $('#charge2').prepend("<div value='" + row.id_car + "'>" + row.charge_car + " tỷ " + "</div>");
-                                    });
-                                });
-                            })
                         });
-                    })
 
+
+
+                    });
                 });
-            })
-            
-
-           
-
-
-
-
-            $("button").click(function () {
-
-                $(".car-1").show();
-                $(".detail-car-1").empty();
-                $(".detail-car-1").hide();
-           
 
             });
 
+
         });
 
-        
-    </script>
 
-</body>
-</html>
+
+
+
+
+
+        $("#automakerId1").change(function () {
+            $.get("/Client/GetModelList", { idAuto: $("#automakerId1").val() }, function (data) {
+                $("#modelId1").empty();
+                $.each(data, function (index, row) {
+                    $("#modelId1").append("<option value='" + row.id_model + "'>" + row.name_model + "</option>")
+
+                });
+                $("#modelId1").change(function () {
+                    $.get("/Client/GetVersionList", { idModel: $("#modelId1").val() }, function (data) {
+                        $("#versionId1").empty();
+                        $.each(data, function (index, row) {
+                            $("#versionId1").append("<option value='" + row.id_version + "'>" + row.name_version + "</option>")
+                        });
+                    });
+
+                    $("#versionId1").change(function () {
+
+                        $(".car-2").hide();
+                        $(".detail-car-2").show();
+                        $.get("/Client/GetCarList", { idVersion: $("#versionId1 ").val() }, function (data) {
+                            $("#detail-car-2").empty();
+
+
+                            $.each(data, function (i, row) {
+
+                                $('#over1').prepend("<dd value='" + row.id_car + "'>" + row.overview_car + "<dd>");
+                                $('#length1').prepend("<dd value='" + row.id_car + "'>" + row.length_car + "<dd>");
+                                $('#wheels1').prepend("<dd value='" + row.id_car + "'>" + row.wheels_car + "<dd>");
+                                $('#tireparameters1').prepend("<dd value='" + row.id_car + "'>" + row.tireparameters_car + "<dd>");
+                                $('#weight1').prepend("<dd value='" + row.id_car + "'>" + row.weight_car + "<dd>");
+                                $('#capacity1').prepend("<dd value='" + row.id_car + "'>" + row.capacity_car + "<dd>");
+                                $('#horsepower1').prepend("<dd value='" + row.id_car + "'>" + row.horsepower_car + "<dd>");
+                                $('#gear1').prepend("<dd value='" + row.id_car + "'>" + row.gear_car + "<dd>");
+                                $('#torque1').prepend("<dd value='" + row.id_car + "'>" + row.torque_car + "<dd>");
+                                $('#drivetype1').prepend("<dd value='" + row.id_car + "'>" + row.drivetype_car + "<dd>");
+                                $('#frontbrakesystem1').prepend("<dd value='" + row.id_car + "'>" + row.frontbrakesystem_car + "<dd>");
+                                $('#rearbrakesystem1').prepend("<dd value='" + row.id_car + "'>" + row.rearbrakesystem_car + "<dd>");
+                                $('#maximumspeed1').prepend("<dd value='" + row.id_car + "'>" + row.maximumspeed_car + "<dd>");
+                                $('#accelerationtime1').prepend("<dd value='" + row.id_car + "'>" + row.accelerationtime_car + "<dd>");
+                                $('#capacitytank1').prepend("<dd value='" + row.id_car + "'>" + row.capacitytank_car + "<dd>");
+                                $('#numberseat1').prepend("<dd value='" + row.id_car + "'>" + row.numberseat_car + "<dd>");
+                                $('#seat1').prepend("<dd value='" + row.id_car + "'>" + row.seat_car + "<dd>");
+                                $('#airconditioner1').prepend("<dd value='" + row.id_car + "'>" + row.airconditioner_car + "<dd>");
+                                $('#sunroof1').prepend("<dd value='" + row.id_car + "'>" + row.sunroof_car + "<dd>");
+                                $('#image-detail2').attr('src', row.img_car)
+                                $('#charge1').prepend("<div value='" + row.id_car + "'>" + row.charge_car + " tỷ " + "</div>");
+                            });
+                        });
+                    })
+                })
+
+
+            });
+        })
+
+
+
+
+
+        $("#automakerId2").change(function () {
+            $.get("/Client/GetModelList", { idAuto: $("#automakerId2").val() }, function (data) {
+                $("#modelId2").empty();
+                $.each(data, function (index, row) {
+                    $("#modelId2").append("<option value='" + row.id_model + "'>" + row.name_model + "</option>")
+                });
+                $("#modelId2").change(function () {
+                    $.get("/Client/GetVersionList", { idModel: $("#modelId2").val() }, function (data) {
+                        $("#versionId2").empty();
+                        $.each(data, function (index, row) {
+                            $("#versionId2").append("<option value='" + row.id_version + "'>" + row.name_version + "</option>")
+                        });
+                        $("#versionId2").change(function () {
+
+                            $(".car-3").hide();
+                            $(".detail-car-3").show();
+                            $.get("/Client/GetCarList", { idVersion: $("#versionId2 ").val() }, function (data) {
+                                $("#detail-car-3").empty();
+
+
+
+                                $.each(data, function (i, row) {
+
+                                    $('#over2').prepend("<dd value='" + row.id_car + "'>" + row.overview_car + "<dd>");
+                                    $('#length2').prepend("<dd value='" + row.id_car + "'>" + row.length_car + "<dd>");
+                                    $('#wheels2').prepend("<dd value='" + row.id_car + "'>" + row.wheels_car + "<dd>");
+                                    $('#tireparameters2').prepend("<dd value='" + row.id_car + "'>" + row.tireparameters_car + "<dd>");
+                                    $('#weight2').prepend("<dd value='" + row.id_car + "'>" + row.weight_car + "<dd>");
+                                    $('#capacity2').prepend("<dd value='" + row.id_car + "'>" + row.capacity_car + "<dd>");
+                                    $('#horsepower2').prepend("<dd value='" + row.id_car + "'>" + row.horsepower_car + "<dd>");
+                                    $('#gear2').prepend("<dd value='" + row.id_car + "'>" + row.gear_car + "<dd>");
+                                    $('#torque2').prepend("<dd value='" + row.id_car + "'>" + row.torque_car + "<dd>");
+                                    $('#drivetype2').prepend("<dd value='" + row.id_car + "'>" + row.drivetype_car + "<dd>");
+                                    $('#frontbrakesystem2').prepend("<dd value='" + row.id_car + "'>" + row.frontbrakesystem_car + "<dd>");
+                                    $('#rearbrakesystem2').prepend("<dd value='" + row.id_car + "'>" + row.rearbrakesystem_car + "<dd>");
+                                    $('#maximumspeed2').prepend("<dd value='" + row.id_car + "'>" + row.maximumspeed_car + "<dd>");
+                                    $('#accelerationtime2').prepend("<dd value='" + row.id_car + "'>" + row.accelerationtime_car + "<dd>");
+                                    $('#capacitytank2').prepend("<dd value='" + row.id_car + "'>" + row.capacitytank_car + "<dd>");
+                                    $('#numberseat2').prepend("<dd value='" + row.id_car + "'>" + row.numberseat_car + "<dd>");
+                                    $('#seat2').prepend("<dd value='" + row.id_car + "'>" + row.seat_car + "<dd>");
+                                    $('#airconditioner2').prepend("<dd value='" + row.id_car + "'>" + row.airconditioner_car + "<dd>");
+                                    $('#sunroof2').prepend("<dd value='" + row.id_car + "'>" + row.sunroof_car + "<dd>");
+                                    $('#image-detail3').attr('src', row.img_car)
+                                    $('#charge2').prepend("<div value='" + row.id_car + "'>" + row.charge_car + " tỷ " + "</div>");
+                                });
+                            });
+                        })
+                    });
+                })
+
+            });
+        })
+
+
+
+
+
+
+
+        $("button").click(function () {
+
+            $(".car-1").show();
+            $(".detail-car-1").empty();
+            $(".detail-car-1").hide();
+
+
+        });
+
+    });
+
+
+</script>

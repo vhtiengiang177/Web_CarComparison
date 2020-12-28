@@ -31,10 +31,10 @@ namespace CarComparison.Controllers
             //Gán vào ViewBag
             ViewBag.ListNewBlog = lstNewBlog;
 
-            //List xe mới nhất
-            var lstNewCar = db.Cars;
+            //List video mới nhất
+            var lstNewVideo = db.Articles.Where(n=>n.id_category=="2");
             //Gán vào ViewBag
-            ViewBag.ListNewCar = lstNewCar; 
+            ViewBag.ListNewVideo = lstNewVideo; 
             return View();
         }
 
@@ -167,19 +167,32 @@ namespace CarComparison.Controllers
         
         
 
-        public ActionResult Review(int? page)
+        public ActionResult Review()
         {
 
             
             return View();
         }
 
-        //[ChildActionOnly] //để người dùng không get được view này
+        public ActionResult Video()
+        {
+
+
+            return View();
+        }
+
+        [ChildActionOnly] //để người dùng không get được view này
         public ActionResult blogPartial()
         {
             return PartialView();
         }
 
-        
+        [ChildActionOnly]
+        public ActionResult videoPartial()
+        {
+            return PartialView();
+        }
+
+
     }
 }

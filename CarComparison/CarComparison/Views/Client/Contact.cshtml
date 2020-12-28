@@ -1,214 +1,63 @@
 ﻿
 @{
-    Layout = null;
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@{
-    Layout = null;
+@section navbar{
+    <li><a href="/Client/Index">Trang chủ</a></li>
+    <li><a href="/Client/Comparing">So sánh Xe</a></li>
+    <li><a href="/Client/Review">Bài đánh giá</a></li>
+    <li><a href="/Client/Team">Team</a></li>
+    <li><a href="/Client/Video">Video</a></li>
+    <li class="active"><a href="/Client/Contact">Liên hệ</a></li>
+
 }
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<section>
+    <div class="container">
+        <div class="text-center">
+            <h1>Contact Us</h1>
 
-    <title>LTW | Web So sánh Xe mới nhất</title>
+            <br>
 
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-    <meta name="description" content="">
-    <meta name="keywords" content="">
-    <meta name="author" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-    <link rel="stylesheet" href="~/Asset/Client/css/bootstrap.min.css">
-    <link rel="stylesheet" href="~/Asset/Client/css/font-awesome.min.css">
-    <link rel="stylesheet" href="~/Asset/Client/css/owl.carousel.css">
-    <link rel="stylesheet" href="~/Asset/Client/css/owl.theme.default.min.css">
-    <link href="~/Asset/Client/~/Asset/Client/css/bootstrap.min.css" rel="stylesheet" />
-    <!-- MAIN CSS -->
-    <link rel="stylesheet" href="~/Asset/Client/css/style.css">
-
-</head>
-<body id="top" data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
-
-    <!-- PRE LOADER -->
-    <section class="preloader">
-        <div class="spinner">
-            <span class="spinner-rotate"></span>
+            <p class="lead">Nếu bạn cần hỗ trợ, liên hệ với chúng tôi qua thông tin bên dưới.</p>
         </div>
-    </section>
+    </div>
+</section>
 
+<!-- CONTACT -->
+<section id="contact">
+    <div class="container">
+        <div class="row">
 
-    <!-- MENU -->
-    <section class="navbar custom-navbar navbar-fixed-top" role="navigation">
-        <div class="container">
-
-            <div class="navbar-header">
-                <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon icon-bar"></span>
-                    <span class="icon icon-bar"></span>
-                    <span class="icon icon-bar"></span>
-                </button>
-
-                <!-- lOGO TEXT HERE -->
-                <a href="#" class="navbar-brand">Car Comparing Website</a>
-            </div>
-
-            <!-- MENU LINKS -->
-            <div class="collapse navbar-collapse">
-                <ul class="nav navbar-nav navbar-nav-first">
-                    <li ><a href="/Client/Index">Trang chủ</a></li>
-                    <li><a href="cars.html">So sánh Xe</a></li>
-                    @*<li><a href="about-us.html">Thông tin</a></li>*@
-                    @*<li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">More <span class="caret"></span></a>
-
-                            <ul class="dropdown-menu">
-                                <li><a href="blog-posts.html">Bài đánh giá</a></li>
-                                <li><a href="/Client/Team">Team</a></li>
-
-                                <li><a href="testimonials.html">Video</a></li>
-                            </ul>
-                        </li>*@
-                    <li><a href="blog-posts.html">Bài đánh giá</a></li>
-                    <li><a href="/Client/Team">Team</a></li>
-
-                    <li><a href="testimonials.html">Video</a></li>
-                    <li class="active"><a href="/Client/Contact">Liên hệ</a></li>
-
-
-
-
-
-                </ul>
-            </div>
-
-        </div>
-    </section>
-    <section>
-        <div class="container">
-            <div class="text-center">
-                <h1>Contact Us</h1>
-
-                <br>
-
-                <p class="lead">Nếu bạn cần hỗ trợ, liên hệ với chúng tôi qua thông tin bên dưới.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section id="contact">
-        <div class="container">
-            <div class="row">
-
-                <div class="col-md-6 col-sm-12">
-                    <form id="contact-form" role="form" action="" method="post">
-                        <div class="section-title">
-                            <h2>Thông tin liên hệ <small>Mọi ý kiến đóng góp vui lòng điền thông tin bên dưới!</small></h2>
-                        </div>
-
-                        <div class="col-md-12 col-sm-12">
-                            <input type="text" class="form-control" placeholder="Họ và tên" name="name" required>
-
-                            <input type="email" class="form-control" placeholder="Địa chỉ email" name="email" required>
-
-                            <textarea class="form-control" rows="6" placeholder="Nội dung" name="message" required></textarea>
-                        </div>
-
-                        <div class="col-md-4 col-sm-12">
-                            <input type="submit" class="form-control" name="Gửi" value="Send Message">
-                        </div>
-
-                    </form>
-                </div>
-
-                <div class="col-md-6 col-sm-12">
-                    <div class="contact-image">
-                        <img src="~/Asset/Client/images/contact-1-600x400.jpg" class="img-responsive" alt="Smiling Two Girls">
+            <div class="col-md-6 col-sm-12">
+                <form id="contact-form" role="form" action="" method="post">
+                    <div class="section-title">
+                        <h2>Thông tin liên hệ <small>Mọi ý kiến đóng góp vui lòng điền thông tin bên dưới!</small></h2>
                     </div>
-                </div>
 
+                    <div class="col-md-12 col-sm-12">
+                        <input type="text" class="form-control" placeholder="Họ và tên" name="name" required>
+
+                        <input type="email" class="form-control" placeholder="Địa chỉ email" name="email" required>
+
+                        <textarea class="form-control" rows="6" placeholder="Nội dung" name="message" required></textarea>
+                    </div>
+
+                    <div class="col-md-4 col-sm-12">
+                        <input type="submit" class="form-control" name="Gửi" value="Send Message">
+                    </div>
+
+                </form>
             </div>
-        </div>
-    </section>
 
-    <!-- FOOTER -->
-    <footer id="footer">
-        <div class="container">
-            <div class="row">
-
-                <div class="col-md-4 col-sm-6">
-                    <div class="footer-info">
-                        <div class="section-title">
-                            <h2>Địa chỉ</h2>
-                        </div>
-                        <address>
-                            <p>Số 1 Võ Văn Ngân <br>Thủ Đức, Việt Nam</p>
-                        </address>
-
-                        <ul class="social-icon">
-                            <li><a href="#" class="fa fa-facebook-square" attr="facebook icon"></a></li>
-                            <li><a href="#" class="fa fa-twitter"></a></li>
-                            <li><a href="#" class="fa fa-instagram"></a></li>
-                        </ul>
-
-                        <div class="copyright-text">
-                            <p>Copyright &copy; 2020 Company Name</p>
-
-                        </div>
-                    </div>
+            <div class="col-md-6 col-sm-12">
+                <div class="contact-image">
+                    <img src="~/Asset/Client/images/contact-1-600x400.jpg" class="img-responsive" alt="Smiling Two Girls">
                 </div>
-
-                <div class="col-md-4 col-sm-6">
-                    <div class="footer-info">
-                        <div class="section-title">
-                            <h2>Thông tin liên hệ</h2>
-                        </div>
-                        <address>
-                            <p>+1 333 4040 5566</p>
-                            <p><a href="mailto:contact@company.com">contact@company.com</a></p>
-                        </address>
-
-                        <div class="footer_menu">
-                            <h2>Links</h2>
-                            <ul>
-                                <li><a href="index.html">Trang chủ</a></li>
-                                <li><a href="about-us.html">Thông tin</a></li>
-                                <li><a href="terms.html">Terms & Conditions</a></li>
-                                <li><a href="contact.html">Liên hệ</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4 col-sm-12">
-                    <div class="footer-info newsletter-form">
-                        <div class="section-title">
-                            <h2>Nhận tin mới nhất</h2>
-                        </div>
-                        <div>
-                            <div class="form-group">
-                                <form action="#" method="get">
-                                    <input type="email" class="form-control" placeholder="Enter your email" name="email" id="email" required>
-                                    <input type="submit" class="form-control" name="submit" id="form-submit" value="Send me">
-                                </form>
-                                <span><sup>*</sup> Please note - we do not spam your email.</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
             </div>
+
         </div>
-    </footer>
+    </div>
+</section>
 
-    <!-- SCRIPTS -->
-    <script src="~/Asset/Client/js/jquery.js"></script>
-    <script src="~/Asset/Client/js/bootstrap.min.js"></script>
-    <script src="~/Asset/Client/js/owl.carousel.min.js"></script>
-    <script src="~/Asset/Client/js/smoothscroll.js"></script>
-    <script src="~/Asset/Client/js/custom.js"></script>
-
-</body>
-</html>
