@@ -14,6 +14,7 @@
     <Property Name="time_write" Type="datetime" />
     <Property Name="state_article" Type="nvarchar" MaxLength="50" />
     <Property Name="linkvideo_article" Type="nvarchar(max)" />
+    <Property Name="img_article" Type="nvarchar" MaxLength="255" />
   </EntityType>
   <EntityType Name="Automaker">
     <Key>

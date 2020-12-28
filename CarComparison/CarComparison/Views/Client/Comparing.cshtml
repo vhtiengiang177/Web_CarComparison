@@ -1,12 +1,8 @@
 ﻿@model CarComparison.Areas.Admin.Models.cascadingmodel
 
-
-
-
-
 @{
     Layout = null;
-
+    var user = Session["user"] as CarComparison.Areas.Admin.Models.User_;
 }
 
 <!DOCTYPE html>
@@ -63,30 +59,64 @@
                 <ul class="nav navbar-nav navbar-nav-first">
                     <li><a href="/Client/Index">Trang chủ</a></li>
                     <li class="active"><a href="/Client/Comparing">So sánh Xe</a></li>
-                    @*<li><a href="about-us.html">Thông tin</a></li>*@
-                    @*<li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">More <span class="caret"></span></a>
-
-                            <ul class="dropdown-menu">
-                                <li><a href="blog-posts.html">Bài đánh giá</a></li>
-                                <li><a href="/Client/Team">Team</a></li>
-
-                                <li><a href="testimonials.html">Video</a></li>
-                            </ul>
-                        </li>*@
                     <li><a href="/Client/Review">Bài đánh giá</a></li>
                     <li><a href="/Client/Team">Team</a></li>
-
                     <li><a href="testimonials.html">Video</a></li>
                     <li><a href="/Client/Contact">Liên hệ</a></li>
-
-
-
-
-
+                    @if (user != null)
+                    {
+                        <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">@user.lname_user @user.fname_user ▼</span>
+                            </a>
+                            <!-- Dropdown - User Information -->
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                 aria-labelledby="userDropdown">
+                                <a class="dropdown-item" href="#">
+                                    Thông tin tài khoản
+                                </a>
+                                <a class="dropdown-item" href="#">
+                                    Cài đặt
+                                </a>
+                                @if (user.id_typeuser == "TyUs01")
+                                {
+                                    <a class="dropdown-item" href="/Admin/Home/">
+                                        Trang admin
+                                    </a>
+                                }
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                    Đăng xuất
+                                </a>
+                            </div>
+                        </li>
+                    }
+                    else
+                    {
+                        <li>@Html.ActionLink("Đăng Nhập", "LoginView", "Login")</li>
+                    }
                 </ul>
             </div>
-
+            <!-- Logout Modal-->
+            <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Đăng xuất</h5>
+                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">Chọn "Đăng xuất" bên dưới nếu bạn đã sẵn sàng kết thúc phiên hoạt động của mình.</div>
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Hủy</button>
+                            <a class="btn btn-primary" href="/Login/Logout">Đăng xuất</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 

@@ -4,6 +4,7 @@
     <EntitySetMapping Name="Articles">
       <EntityTypeMapping TypeName="CompareCarModel.Article">
         <MappingFragment StoreEntitySet="Article">
+          <ScalarProperty Name="img_article" ColumnName="img_article" />
           <ScalarProperty Name="id_article" ColumnName="id_article" />
           <ScalarProperty Name="id_category" ColumnName="id_category" />
           <ScalarProperty Name="title_article" ColumnName="title_article" />

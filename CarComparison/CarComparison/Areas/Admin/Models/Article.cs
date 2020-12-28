@@ -30,6 +30,7 @@ namespace CarComparison.Areas.Admin.Models
         public Nullable<System.DateTime> time_write { get; set; }
         public string state_article { get; set; }
         public string linkvideo_article { get; set; }
+        public string img_article { get; set; }
     
         public virtual CategoryArticle CategoryArticle { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

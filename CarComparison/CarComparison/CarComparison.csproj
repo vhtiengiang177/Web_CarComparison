@@ -2655,6 +2655,7 @@
     <Content Include="Views\Login\RegisterView.cshtml" />
     <Content Include="Views\Login\LoginView.cshtml" />
     <Content Include="Views\Account\Index.cshtml" />
+    <Content Include="Views\Client\blogPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -7,7 +7,7 @@
 
 @{
     IEnumerable<Article> lstNewBlog = ViewBag.ListNewBlog as IEnumerable<Article>;
-
+    var user = Session["user"] as CarComparison.Areas.Admin.Models.User_;
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -29,7 +29,6 @@
     <script src="~/Asset/Client/js/custom.js"></script>
     @*MAIN CSS--!>*@
     <link rel="stylesheet" href="~/Asset/Client/css/style.css">
-
 </head>
 <body id="top" data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
 
@@ -65,41 +64,60 @@
                     <li><a href="/Client/Team">Team</a></li>
                     <li><a href="testimonials.html">Video</a></li>
                     <li><a href="/Client/Contact">Liên hệ</a></li>
-                    <li>@Html.ActionLink("Đăng Nhập", "LoginView", "Account")</li>
-
+                    @if (user != null)
+                    {
+                        <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">@user.lname_user @user.fname_user ▼</span>
+                            </a>
+                            <!-- Dropdown - User Information -->
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                 aria-labelledby="userDropdown">
+                                <a class="dropdown-item" href="#">
+                                    Thông tin tài khoản
+                                </a>
+                                <a class="dropdown-item" href="#">
+                                    Cài đặt
+                                </a>
+                                @if (user.id_typeuser == "TyUs01")
+                                {
+                                    <a class="dropdown-item" href="/Admin/Home/">
+                                        Trang admin
+                                    </a>
+                                }
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                    Đăng xuất
+                                </a>
+                            </div>
+                        </li>
+                    }
+                    else
+                    {
+                        <li>@Html.ActionLink("Đăng Nhập", "LoginView", "Login")</li>
+                    }
                 </ul>
             </div>
-
-            @*<div id="id01" class="modal">
-
-                    <form class="modal-content animate" action="~/Account/DangNhap" method="post">
-                        <div class="imgcontainer">
-                            <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
-                            <img src="~/Asset/Login1/images/man.jpg" alt="Avatar" class="avatar">
-
+            <!-- Logout Modal-->
+            <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Đăng xuất</h5>
+                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
                         </div>
-
-                        <div class="container">
-                            <label for="uname"><b>Username</b></label>
-                            <input type="text" placeholder="Enter Username" name="username" required>
-
-                            <label for="psw"><b>Password</b></label>
-                            <input type="password" placeholder="Enter Password" name="password" required>
-
-                            <button type="submit">Sign In</button>
-                            <button onclick="document.getElementById('id02').style.display='block'" style="width:100%; height:100%">Sign Up</button>
-                            <label>
-                                <input type="checkbox" checked="checked" name="remember"> Remember me
-                            </label>
+                        <div class="modal-body">Chọn "Đăng xuất" bên dưới nếu bạn đã sẵn sàng kết thúc phiên hoạt động của mình.</div>
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Hủy</button>
+                            <a class="btn btn-primary" href="/Login/Logout">Đăng xuất</a>
                         </div>
-
-                        <div class="container" style="background-color:#f1f1f1">
-                            <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Đây là nút tao vừa sửa</button>
-                            <span class="psw">Forgot <a href="#">password?</a></span>
-                        </div>
-                    </form>
-                </div>*@
-
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
     @*HOME*@
@@ -350,7 +368,7 @@
                     </div>
                 </div>
 
-                @Html.Partial("~/Views/Client/blogPartial.cshtml",lstNewBlog) 
+                @Html.Partial("~/Views/Client/blogPartial.cshtml", lstNewBlog)
 
             </div>
         </section>
