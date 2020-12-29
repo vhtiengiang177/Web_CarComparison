@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 using CarComparison.Areas.Admin.Models;
@@ -88,18 +90,105 @@ namespace CarComparison.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult Create([Bind(Include = "id_article,id_category,title_article,alias_article,id_user,description_article,time_pulish_article,time_write,state_article,img_article,linkvideo_article")] Article article)
+        public ActionResult Create([Bind(Include = "id_article,id_category,title_article,description_article,img_article,linkvideo_article,imageFile")] Article article)
         {
-            if (ModelState.IsValid)
+            string value = Request["action"]; // Lấy nút submit
+            if((article.id_category == "CaAr01" && article.linkvideo_article == "") || article.title_article == "" || article.description_article == "") 
             {
-                db.Articles.Add(article);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if(article.linkvideo_article == "")
+                {
+                    ModelState.AddModelError("linkError", "Không để trống link video");
+                }
+                if (article.title_article == "")
+                {
+                    ModelState.AddModelError("titleError", "Không để trống tiêu đề");
+                }
+                if (article.description_article == "")
+                {
+                    ModelState.AddModelError("desError", "Không để trống nội dung");
+                }
+                article.id_category = "CaAr01";
+                ViewBag.id_category = new SelectList(db.CategoryArticles, "id_category", "name_category", article.id_category);
+                return View(article);
             }
+            if(article.linkvideo_article != "" && article.linkvideo_article != null)
+            {
+                var uri = new Uri(article.linkvideo_article);
+                if(uri.Host != "www.youtube.com")
+                {
+                    ModelState.AddModelError("linkError", "Lưu ý: Chỉ nhận đường dẫn youtube!");
+                    article.id_category = "CaAr01";
+                    ViewBag.id_category = new SelectList(db.CategoryArticles, "id_category", "name_category", article.id_category);
+                    return View(article);
+                }
+                var query = HttpUtility.ParseQueryString(uri.Query);
 
-            ViewBag.id_category = new SelectList(db.CategoryArticles, "id_category", "name_category", article.id_category);
-            ViewBag.id_user = new SelectList(db.User_, "id_user", "name_user", article.id_user);
-            return View(article);
+                var videoId = string.Empty;
+
+                if (query.AllKeys.Contains("v"))
+                {
+                    videoId = query["v"];
+                }
+                else
+                {
+                    videoId = uri.Segments.Last();
+                }
+                string link_new = @"//www.youtube.com/embed/" + videoId;
+                article.linkvideo_article = link_new;
+            }
+            var user = Session["user"] as User_;
+            article.id_user = user.id_user;
+            if (value == "Lưu nháp")
+            {
+                article.state_article = "0"; // Trạng thái bằng không, chưa đc hiển thị trên web
+                article.time_write = DateTime.Now;
+                article.view_article = 0;
+            }
+            if (value == "Đăng bài")
+            {
+                article.state_article = "1"; // Trạng thái bằng 1, được hiển thị trên web
+                article.time_write = DateTime.Now;
+                article.time_pulish_article = DateTime.Now;
+                article.view_article = 0;
+            }
+            string removeUnicode = RemoveUnicode(article.title_article);
+            string cleanString = removeUnicode.ToLower().Replace(" ", "-"); // ToLower() on the string thenreplaces spaces with hyphens
+            cleanString = Regex.Replace(cleanString, @"[^a-zA-Z0-9\/_|+ -]", ""); // removes all non-alphanumerics/underscore/hyphens
+            article.alias_article = cleanString;
+
+            string fileName = Path.GetFileNameWithoutExtension(article.imageFile.FileName);
+            string extension = Path.GetExtension(article.imageFile.FileName);
+            article.img_article = "/Asset/Image/Article/" + article.id_article + extension;
+            fileName = Path.Combine(Server.MapPath("/Asset/Image/Article/"), article.id_article + extension);
+            article.imageFile.SaveAs(fileName);
+
+            db.Articles.Add(article);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        public string RemoveUnicode(string text)
+        {
+            string[] arr1 = new string[] { "á", "à", "ả", "ã", "ạ", "â", "ấ", "ầ", "ẩ", "ẫ", "ậ", "ă", "ắ", "ằ", "ẳ", "ẵ", "ặ",
+    "đ",
+    "é","è","ẻ","ẽ","ẹ","ê","ế","ề","ể","ễ","ệ",
+    "í","ì","ỉ","ĩ","ị",
+    "ó","ò","ỏ","õ","ọ","ô","ố","ồ","ổ","ỗ","ộ","ơ","ớ","ờ","ở","ỡ","ợ",
+    "ú","ù","ủ","ũ","ụ","ư","ứ","ừ","ử","ữ","ự",
+    "ý","ỳ","ỷ","ỹ","ỵ",};
+            string[] arr2 = new string[] { "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a",
+    "d",
+    "e","e","e","e","e","e","e","e","e","e","e",
+    "i","i","i","i","i",
+    "o","o","o","o","o","o","o","o","o","o","o","o","o","o","o","o","o",
+    "u","u","u","u","u","u","u","u","u","u","u",
+    "y","y","y","y","y",};
+            for (int i = 0; i < arr1.Length; i++)
+            {
+                text = text.Replace(arr1[i], arr2[i]);
+                text = text.Replace(arr1[i].ToUpper(), arr2[i].ToUpper());
+            }
+            return text;
         }
 
         // GET: Admin/Articles/Edit/5
@@ -124,10 +213,93 @@ namespace CarComparison.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id_article,id_category,title_article,alias_article,id_user,description_article,time_pulish_article,time_write,state_article,img_article,linkvideo_article")] Article article)
+        public ActionResult Edit([Bind(Include = "id_article,id_category,title_article,description_article,img_article,linkvideo_article,imageFile")] Article article)
         {
+            string value = Request["action"]; // Lấy nút submit
+            if ((article.id_category == "CaAr01" && article.linkvideo_article == "") || article.title_article == "" || article.description_article == "")
+            {
+                if (article.linkvideo_article == "")
+                {
+                    ModelState.AddModelError("linkError", "Không để trống link video");
+                }
+                if (article.title_article == "")
+                {
+                    ModelState.AddModelError("titleError", "Không để trống tiêu đề");
+                }
+                if (article.description_article == "")
+                {
+                    ModelState.AddModelError("desError", "Không để trống nội dung");
+                }
+                article.id_category = "CaAr01";
+                //ViewBag.id_category = new SelectList(db.CategoryArticles, "id_category", "name_category", article.id_category);
+                //return View(article);
+            }
             if (ModelState.IsValid)
             {
+                Article article_old = db.Articles.Find(article.id_article);
+                if (article.linkvideo_article != "" && article.linkvideo_article != null)
+                {
+                    var uri = new Uri(article.linkvideo_article);
+                    if (uri.Host != "www.youtube.com")
+                    {
+                        ModelState.AddModelError("linkError", "Lưu ý: Chỉ nhận đường dẫn youtube!");
+                        article.id_category = "CaAr01";
+                        ViewBag.id_category = new SelectList(db.CategoryArticles, "id_category", "name_category", article.id_category);
+                        return View(article);
+                    }
+                    var query = HttpUtility.ParseQueryString(uri.Query);
+
+                    var videoId = string.Empty;
+
+                    if (query.AllKeys.Contains("v"))
+                    {
+                        videoId = query["v"];
+                    }
+                    else
+                    {
+                        videoId = uri.Segments.Last();
+                    }
+                    string link_new = @"//www.youtube.com/embed/" + videoId;
+                    article.linkvideo_article = link_new;
+                }
+                var user = Session["user"] as User_;
+                article.id_user = user.id_user;
+                if (value == "Cập nhật")
+                {
+                    article.state_article = "0"; // Trạng thái bằng 1, đc hiển thị trên web
+                    article.time_pulish_article = DateTime.Now;
+                }
+                if (value == "Chuyển sang nháp")
+                {
+                    article.state_article = "0"; // Trạng thái bằng 0, k được hiển thị trên web
+                    article.time_pulish_article = article_old.time_pulish_article;
+                }
+                article.time_write = DateTime.Now;
+                article.view_article = article_old.view_article;
+                string removeUnicode = RemoveUnicode(article.title_article);
+                string cleanString = removeUnicode.ToLower().Replace(" ", "-"); // ToLower() on the string thenreplaces spaces with hyphens
+                cleanString = Regex.Replace(cleanString, @"[^a-zA-Z0-9\/_|+ -]", ""); // removes all non-alphanumerics/underscore/hyphens
+                article.alias_article = cleanString;
+
+                if (article.imageFile != null)
+                {
+                    if (article.img_article != null && article.img_article != "")
+                    {
+                        string fullpath = Server.MapPath(article.img_article);
+                        FileInfo fi = new FileInfo(fullpath);
+                        if (fi != null)
+                        {
+                            System.IO.File.Delete(fullpath);
+                            fi.Delete();
+                        }
+                    }
+                    string fileName = Path.GetFileNameWithoutExtension(article.imageFile.FileName);
+                    string extension = Path.GetExtension(article.imageFile.FileName);
+                    article.img_article = "/Asset/Image/Article/" + article.img_article + extension;
+                    fileName = Path.Combine(Server.MapPath("/Asset/Image/Article/"), article.id_article + extension);
+                    article.imageFile.SaveAs(fileName);
+                }
+                
                 db.Entry(article).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
