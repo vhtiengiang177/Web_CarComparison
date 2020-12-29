@@ -1,0 +1,76 @@
+﻿
+@{
+    ViewBag.Title = "Comment";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Asset/Client/css/styleCmt.css" rel="stylesheet" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+@*<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"*@>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+@section navbar{
+    <li><a href="/Client/Index">Trang chủ</a></li>
+    <li><a href="/Client/Comparing">So sánh Xe</a></li>
+    <li><a href="/Client/Review">Bài đánh giá</a></li>
+    <li><a href="/Client/Video">Video</a></li>
+    <li><a href="/Client/Team">Team</a></li>
+
+    <li class="active"><a href="/Client/Contact">Liên hệ</a></li>
+
+}
+<div class="container bootstrap snippets bootdey">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="blog-comment">
+                <h3 class="text-success">Comments</h3>
+                <hr />
+                <ul class="comments">
+                    <li class="clearfix">
+                        <img src="https://bootdey.com/img/Content/user_1.jpg" class="avatar" alt="">
+                        <div class="post-comments">
+                            <p class="meta">Dec 18, 2014 <a href="#">JohnDoe</a> says : <i class="pull-right"><a href="#"><small>Reply</small></a></i></p>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                Etiam a sapien odio, sit amet
+                            </p>
+                        </div>
+                    </li>
+                    <li class="clearfix">
+                        <img src="https://bootdey.com/img/Content/user_2.jpg" class="avatar" alt="">
+                        <div class="post-comments">
+                            <p class="meta">Dec 19, 2014 <a href="#">JohnDoe</a> says : <i class="pull-right"><a href="#"><small>Reply</small></a></i></p>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                Etiam a sapien odio, sit amet
+                            </p>
+                        </div>
+
+                        <ul class="comments">
+                            <li class="clearfix">
+                                <img src="https://bootdey.com/img/Content/user_3.jpg" class="avatar" alt="">
+                                <div class="post-comments">
+                                    <p class="meta">Dec 20, 2014 <a href="#">JohnDoe</a> says : <i class="pull-right"><a href="#"><small>Reply</small></a></i></p>
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                        Etiam a sapien odio, sit amet
+                                    </p>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    // Reply box popup JS
+    $(document).ready(function () {
+        $(".reply-popup").click(function () {
+            $(".reply-box").toggle();
+        });
+    });
+</script>

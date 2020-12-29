@@ -2241,6 +2241,7 @@
     <Content Include="Asset\Client\css\owl.carousel.css" />
     <Content Include="Asset\Client\css\owl.theme.default.min.css" />
     <Content Include="Asset\Client\css\style.css" />
+    <Content Include="Asset\Client\css\styleCmt.css" />
     <Content Include="Asset\Client\font\fontawesome-webfont.svg" />
     <Content Include="Asset\Client\images\about-1-720x720.jpg" />
     <Content Include="Asset\Client\images\about-2-720x720.jpg" />
@@ -2674,6 +2675,9 @@
     <Content Include="Views\Client\blogPartial.cshtml" />
     <Content Include="Views\Client\videoPartial.cshtml" />
     <Content Include="Views\Client\Video.cshtml" />
+    <Content Include="Views\Client\DetailBlog.cshtml" />
+    <Content Include="Views\Client\DetailVideo.cshtml" />
+    <Content Include="Views\Client\Comment.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

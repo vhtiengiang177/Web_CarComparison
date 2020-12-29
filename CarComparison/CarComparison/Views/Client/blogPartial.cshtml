@@ -19,13 +19,13 @@
             </div>
 
             <div class="courses-detail">
-                <h3><a href="blog-post-details.html">@item.title_article</a></h3>
+                <h3><a href="@Url.Action("DetailBlog","Client",new { id=item.id_article})">@item.title_article</a></h3>
                 <span title="Author"><i class="fa fa-user"></i>Tác giả:&nbsp; @item.User_.lname_user @item.User_.fname_user</span>
 
             </div>
 
             <div class="courses-info">
-                <a href="blog-post-details.html" class="section-btn btn btn-primary btn-block">Read More</a>
+                <a href="@Url.Action("DetailBlog","Client",new { id=item.id_article})" class="section-btn btn btn-primary btn-block">Read More</a>
             </div>
         </div>
     </div>

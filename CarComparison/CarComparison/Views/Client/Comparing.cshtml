@@ -68,9 +68,10 @@
 
 
 
-    <div class="container   ">
-
+    <div class="container">
+        <a href="" id="reset-all" class="section-btn btn btn-primary " style="float:right">Reset All</a>
         <div class="row">
+
             <div class="col-lg-3 col-xs-12">
                 <div class="form">
 
@@ -107,7 +108,8 @@
 
 
                         <div class="detail-car-1" style="display:none">
-                            
+                            <button id="btn-1" class="btn-close"><i class="fa fa-close"></i></button>
+
                             <section class="img-car-boder" style="padding:unset;">
 
 
@@ -276,9 +278,7 @@
                         <hr />
                         <div class="detail-car-2" style="display:none">
 
-                            <button type="button" class="close" aria-label="Close">
-                               
-                            </button>
+                            <button id="btn-2" class="btn-close"><i class="fa fa-close"></i></button>
                             <section class="img-car-boder" style="padding:unset;">
 
 
@@ -451,9 +451,9 @@
                         <br />
                         <hr />
                         <div class="detail-car-3" style="display:none">
-                            <button type="button" class="close" aria-label="Close">
-                                
-                            </button>
+                            <button id="btn-3" class="btn-close"><i class="fa fa-close"></i></button>
+
+
                             <section class="img-car-boder" style="padding:unset;">
 
 
@@ -669,6 +669,7 @@
                                         $('#charge').prepend("<div value='" + row.id_car + "'>" + row.charge_car + " tỷ " + "</div>");
                                         var selectedname = $("#automakerId option:selected").text() + " " + $("#modelId option:selected").text() + " " + $("#versionId option:selected").text();
                                         $('#car-head').prepend("<div value='" + row.id_car + "'>" + selectedname + "</div>");
+                                        $('#reset-all').show();
                                     });
                                 });
             })
@@ -743,6 +744,7 @@
                         $('#charge1').prepend("<div value='" + row.id_car + "'>" + row.charge_car + " tỷ " + "</div>");
                         var selectedname1 = $("#automakerId1 option:selected").text() + " " + $("#modelId1 option:selected").text() + " " + $("#versionId1 option:selected").text();
                         $('#car-head1').prepend("<div value='" + row.id_car + "'>" + selectedname1 + "</div>");
+                        $('#reset-all').show();
                     });
                 });
             })
@@ -807,6 +809,7 @@
                         var selectedname2 = $("#automakerId2 option:selected").text() + " " + $("#modelId2 option:selected").text() + " " + $("#versionId2 option:selected").text();
                         $('#car-head2').prepend("<div value='" + row.id_car + "'>" + selectedname2 + "</div>");
                         $('#charge2').prepend("<div value='" + row.id_car + "'>" + row.charge_car + " tỷ " + "</div>");
+                        $('#reset-all').show();
 
                     });
                 });
@@ -815,7 +818,7 @@
 
 
 
-            $(".fa fa-times").click(function () {
+            $("#btn-1").click(function () {
 
                 $("#modelId").empty();
                 $("#modelId").append("<option value='no model'>--Select--</option>");
@@ -849,7 +852,7 @@
             });
 
 
-            $("button1").click(function () {
+            $("#btn-2").click(function () {
 
                 $("#modelId1").empty();
                 $("#modelId1").append("<option value='no model'>--Select--</option>");
@@ -884,11 +887,11 @@
 
 
 
-            $("button2").click(function () {
+            $("#btn-3").click(function () {
 
                 $("#modelId2").empty();
                 $("#modelId2").append("<option value='no model'>--Select--</option>");
-                $("#versionId1").empty();
+                $("#versionId2").empty();
                 $("#versionId2").append("<option value='no version'>--Select--</option>");
                 $(".car-3").show();
                 $('#over2').empty();
