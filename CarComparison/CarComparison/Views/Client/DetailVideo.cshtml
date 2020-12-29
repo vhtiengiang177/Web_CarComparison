@@ -1,0 +1,129 @@
+﻿@using CarComparison.Areas.Admin.Models;
+@model Article
+@{
+    ViewBag.Title = "DetailVideo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Asset/Client/css/styleCmt.css" rel="stylesheet" />
+
+@section navbar{
+    <li><a href="/Client/Index">Trang chủ</a></li>
+    <li><a href="/Client/Comparing">So sánh Xe</a></li>
+    <li><a href="/Client/Review">Bài đánh giá</a></li>
+    <li><a href="/Client/Video">Video</a></li>
+    <li><a href="/Client/Team">Team</a></li>
+
+    <li><a href="/Client/Contact">Liên hệ</a></li>
+
+}
+
+<section>
+    <div class="container">
+        <h2>@Model.title_article</h2>
+
+        <p class="lead">
+            <i class="fa fa-user"></i> @Model.User_.fname_user @Model.User_.lname_user &nbsp;&nbsp;&nbsp;
+            <i class="fa fa-calendar"></i> @Model.time_pulish_article &nbsp;&nbsp;&nbsp;
+            <i class="fa fa-eye"></i> @Model.view_article
+        </p>
+
+        <iframe src="@Model.linkvideo_article" width="100%" height="600" frameborder="0" style="" allow='autoplay=1'></iframe>
+
+        <br>
+
+        <h5>@Model.description_article</h5>
+
+
+
+
+        <br>
+
+
+        <br>
+
+
+
+
+        <br>
+        <br>
+
+        <div class="row">
+            <div class="col-md-4 col-xs-12 pull-right">
+                <h4>Social share</h4>
+
+                <p>
+                    <a href="#" target="_blank"><i class="fa fa-facebook"></i></a> &nbsp;&nbsp;&nbsp;
+
+                    <a href="#" target="_blank"><i class="fa fa-twitter"></i></a> &nbsp;&nbsp;&nbsp;
+
+                    <a href="#" target="_blank"><i class="fa fa-linkedin"></i></a>
+                </p>
+
+                <br>
+
+
+                <h4>Video gợi ý:</h4>
+
+                <ul class="list">
+                    @foreach (var item in ViewBag.lstnew3video)
+                    {
+                        <li><a href="@Url.Action("DetailVideo","Client",new { id=item.id_article})">@item.title_article</a></li>
+                    }
+
+                </ul>
+            </div>
+
+            <div class="col-md-8 col-xs-12">
+                <div class="container bootstrap snippets bootdey">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="blog-comment">
+                                <h3 class="text-success">Comments</h3>
+                                <hr />
+                                <ul class="comments">
+                                    <li class="clearfix">
+                                        <img src="https://bootdey.com/img/Content/user_1.jpg" class="avatar" alt="">
+                                        <div class="post-comments">
+                                            <p class="meta">Dec 18, 2014 <a href="#">JohnDoe</a> says : <i class="pull-right"><a href="#"><small>Reply</small></a></i></p>
+                                            <p>
+                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                                Etiam a sapien odio, sit amet
+                                            </p>
+                                        </div>
+                                    </li>
+                                    <li class="clearfix">
+                                        <img src="https://bootdey.com/img/Content/user_2.jpg" class="avatar" alt="">
+                                        <div class="post-comments">
+                                            <p class="meta">Dec 19, 2014 <a href="#">JohnDoe</a> says : <i class="pull-right"><a href="#"><small>Reply</small></a></i></p>
+                                            <p>
+                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                                Etiam a sapien odio, sit amet
+                                            </p>
+                                        </div>
+
+                                        <ul class="comments">
+                                            <li class="clearfix">
+                                                <img src="https://bootdey.com/img/Content/user_3.jpg" class="avatar" alt="">
+                                                <div class="post-comments">
+                                                    <p class="meta">Dec 20, 2014 <a href="#">JohnDoe</a> says : <i class="pull-right"><a href="#"><small>Reply</small></a></i></p>
+                                                    <p>
+                                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                                        Etiam a sapien odio, sit amet
+                                                    </p>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+

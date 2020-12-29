@@ -50,38 +50,44 @@
 
                 <br>
 
-                <label class="control-label">Video liên quan</label>
+                <label class="control-label">Video liên quan:</label>
 
                 <ul class="list">
-                    <li><a href="blog-post-details.html">So sánh Toyota Vios 2020 và Hyundai Accent 2020  </a></li>
-                    <li><a href="blog-post-details.html">Chọn Mitsubishi Attrage hay Kia Soluto 400 triệu  </a></li>
-                    <li><a href="blog-post-details.html">Chỉ từ 375 triệu có ngay xe nhập Thái - Mitsubishi Attrage 2020</a></li>
+                    @foreach (var item in ViewBag.lstnew3video)
+                    {
+                        <li><a href="@Url.Action("DetailVideo","Client",new { id=item.id_article})">@item.title_article</a></li>
+                    }
+
                 </ul>
             </div>
 
             <div class="col-lg-9 col-xs-12">
                 <div class="row">
+                    @foreach(var item in ViewBag.videofirst)
+                    {
+                        <div class="courses-thumb courses-thumb-secondary">
+                            <div class="courses-top">
+                                <div class="courses-image">
 
-                    <div class="courses-thumb courses-thumb-secondary">
-                        <div class="courses-top">
-                            <div class="courses-image">
+                                    <iframe src="@item.linkvideo_article" width="100%" height="500" frameborder="0" style="" allow='autoplay=1'></iframe>
+                                </div>
+                                <div class="courses-date">
 
-                                <iframe src="@ViewBag.artLink" width="100%" height="500" frameborder="0" style="" allow='autoplay=1'></iframe>
+                                   
+                                </div>
                             </div>
-                            <div class="courses-date">
 
-                                <span title="Date"><i class="fa fa-calendar">@ViewBag.artDate </i> </span>
-                                <span title="Views"><i class="fa fa-eye">200</i></span>
+                            <div class="courses-detail">
+                                <h3><a href="blog-post-details.html">@item.title_article</a></h3>
+                                <span title="Author"><i class="fa fa-user"> @item.User_.fname_user @item.User_.lname_user &nbsp;&nbsp; </i> </span>
+                                <span title="Date"><i class="fa fa-calendar"> @item.time_pulish_article &nbsp;&nbsp; </i> </span>
+                                <span title="Views"><i class="fa fa-eye">@item.view_article</i></span>
                             </div>
+
+
                         </div>
-
-                        <div class="courses-detail">
-                            <h3><a href="blog-post-details.html">@ViewBag.artTitle</a></h3>
-                            <span title="Author"><i class="fa fa-user"></i> </span>
-                        </div>
-
-
-                    </div>
+                    }
+                    
 
                     @foreach (var item in Model)
                     {
@@ -100,14 +106,14 @@
 
                                 <div class="courses-detail">
                                     <div style="width:300 ; height:200">
-                                        <h3><a href="blog-post-details.html">@item.title_article</a></h3>
+                                        <h3><a href="@Url.Action("DetailVideo","Client",new { id=item.id_article})">@item.title_article</a></h3>
                                     </div>
 
-                                    <span title="Author"><i class="fa fa-user"></i>Tác giả: @item.User_.fname_user @item.User_.lname_user</span>
+                                    <span title="Author"><i class="fa fa-user"></i> @item.User_.fname_user @item.User_.lname_user</span>
                                 </div>
 
                                 <div class="courses-info">
-                                    <a href="blog-post-details.html" class="section-btn btn btn-primary btn-block">View Detail</a>
+                                    <a href="@Url.Action("DetailVideo","Client",new { id=item.id_article})" class="section-btn btn btn-primary btn-block">View Detail</a>
                                 </div>
                             </div>
                         </div>
