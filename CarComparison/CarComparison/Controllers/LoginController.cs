@@ -6,6 +6,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI;
 
 namespace CarComparison.Controllers
 {
@@ -43,6 +44,11 @@ namespace CarComparison.Controllers
         [AllowAnonymous]
         public ActionResult LoginView()
         {
+            User_ us = Session["user"] as User_;
+            if(us != null)
+            {
+                return RedirectToAction("Index", "Client");
+            }
             return View();
         }
 
@@ -78,8 +84,6 @@ namespace CarComparison.Controllers
                     if (us.id_typeuser == "TyUs02")
                     {
                         return RedirectToAction("Index", "Client");
-
-                        //return RedirectResult("~/Views/Client/Index.cshtml");
                     }
                 }
             }
@@ -94,27 +98,102 @@ namespace CarComparison.Controllers
         [AllowAnonymous]
         public ActionResult RegisterView()
         {
+            User_ us = Session["user"] as User_;
+            if (us != null)
+            {
+                return RedirectToAction("Index", "Client");
+            }
             return View();
         }
 
 
         public ActionResult Register(FormCollection f)
         {
-            string userName = f["username"].ToString();
-            var checkUserName = (from c in db.User_ where c.name_user == userName select c).ToList();
-            if(checkUserName.Count() != 0)
+            try
             {
-                ModelState.AddModelError("RegisterError", "Tên tài khoản đã tổn tại!");
+                string userName = f["username"].ToString();
+                var checkUserName = (from c in db.User_ where c.name_user == userName select c).ToList();
+                if (checkUserName.Count() != 0)
+                {
+                    ModelState.AddModelError("RegisterError", "Tên tài khoản đã tổn tại!");
+                }
+                else
+                {
+                    string passWord = f["password"].ToString();
+                    string passWordmd5 = GetMD5(passWord);
+                    string lastName = f["lname"].ToString();
+                    string firstName = f["fname"].ToString();
+                    string email = f["email"].ToString();
+                    string sex = f["sex"];
+                    DateTime birthday = Convert.ToDateTime(f["birthday"]);
+                    User_ us_new = new User_();
+                    // Tạo id user tự động
+                    var createID = (from c in db.User_ select c.id_user).ToList();
+                    string id = "";
+                    if (createID.Count == 0) // nếu danh sách rỗng
+                    {
+                        id = "Us01";
+                    }
+                    else
+                    {
+                        for (int i = 0; i < createID.Count(); i++)
+                        {
+                            if (int.Parse(createID[i].Substring(2, 2)) != (i + 1))
+                            {
+                                if (i + 1 >= 0 && i + 1 < 9)
+                                    id = "Us0" + (i + 1).ToString();
+                                else if (i + 1 > 9)
+                                    id = "Us" + (i + 1).ToString();
+                                break;
+                            }
+                        }
+                        if (id == "")
+                        {
+                            id = createID[createID.Count - 1].Substring(2, 2);
+                            if (int.Parse(id) >= 0 && int.Parse(id) < 9)
+                            {
+                                id = "Us0" + (int.Parse(id) + 1).ToString();
+                            }
+                            else if (int.Parse(id) >= 9)
+                            {
+                                id = "Us" + (int.Parse(id) + 1).ToString();
+                            }
+                        }
+                    }
+                    us_new.id_user = id;
+                    us_new.id_typeuser = "TyUs02"; // Member
+                    us_new.lname_user = lastName;
+                    us_new.fname_user = firstName;
+                    us_new.email_user = email;
+                    if (sex == "1")
+                    {
+                        us_new.sex_user = "Nam";
+                    }
+                    else if (sex == "2")
+                    {
+                        us_new.sex_user = "Nữ";
+                    }
+                    else
+                    {
+                        us_new.sex_user = "Khác";
+                    }
+                    us_new.birthday_user = birthday;
+                    us_new.block_state_user = "1";
+                    us_new.name_user = userName;
+                    us_new.password_user = passWordmd5;
+                    us_new.registerdate_user = DateTime.Now;
+                    us_new.lastvisitdate_user = DateTime.Now;
+                    db.User_.Add(us_new);
+                    db.SaveChanges();
+                    Session["user"] = us_new;
+                    return RedirectToAction("Index", "Client");
+                }
+                return View();
             }
-            else
+            catch (Exception ex)
             {
-                string passWord = f["password"].ToString();
-                string passWordmd5 = GetMD5(passWord);
-                string lastName = f["lname"].ToString();
-                string firstName = f["fname"].ToString();
-                var sex = Convert.ToInt32(f["sex"]);
+                Response.Write("<script>alert('Lỗi: Không thể tạo được tài khoản, vui lòng đăng ký lại!" + ex.Message + "');</script>");
             }
-            
             return View();
         }
 
@@ -122,7 +201,7 @@ namespace CarComparison.Controllers
         {
             Session.Remove("user");
             Session.Clear();
-            return View("~/Views/Client/Index.cshtml");
+            return RedirectToAction("Index", "Client");
         }
     }
 }

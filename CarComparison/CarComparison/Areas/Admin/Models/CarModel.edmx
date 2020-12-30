@@ -86,8 +86,7 @@
           <Property Name="id_contact" Type="nvarchar" MaxLength="10" Nullable="false" />
           <Property Name="name_contact" Type="nvarchar" MaxLength="255" />
           <Property Name="email_contact" Type="nvarchar" MaxLength="255" />
-          <Property Name="namecompany_contact" Type="nvarchar" MaxLength="255" />
-          <Property Name="subject_contace" Type="ntext" />
+          <Property Name="subject_contact" Type="ntext" />
           <Property Name="state_contact" Type="nvarchar" MaxLength="50" />
           <Property Name="date_contact" Type="datetime" />
         </EntityType>
@@ -436,10 +435,9 @@
           <Property Name="id_contact" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="name_contact" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="email_contact" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="namecompany_contact" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="subject_contace" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="state_contact" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="date_contact" Type="DateTime" Precision="3" />
+          <Property Name="subject_contact" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Model">
           <Key>
@@ -709,12 +707,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <ComplexType Name="XemTenXe_Result1">
-          <Property Type="String" Name="name_automaker" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="name_model" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="name_version" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="id_car" Nullable="false" MaxLength="10" />
-        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -803,11 +795,10 @@
           <EntitySetMapping Name="Contacts">
             <EntityTypeMapping TypeName="CompareCarModel.Contact">
               <MappingFragment StoreEntitySet="Contact">
+                <ScalarProperty Name="subject_contact" ColumnName="subject_contact" />
                 <ScalarProperty Name="id_contact" ColumnName="id_contact" />
                 <ScalarProperty Name="name_contact" ColumnName="name_contact" />
                 <ScalarProperty Name="email_contact" ColumnName="email_contact" />
-                <ScalarProperty Name="namecompany_contact" ColumnName="namecompany_contact" />
-                <ScalarProperty Name="subject_contace" ColumnName="subject_contace" />
                 <ScalarProperty Name="state_contact" ColumnName="state_contact" />
                 <ScalarProperty Name="date_contact" ColumnName="date_contact" />
               </MappingFragment>

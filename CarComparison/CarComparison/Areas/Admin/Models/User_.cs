@@ -11,7 +11,8 @@ namespace CarComparison.Areas.Admin.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Web;
+
     public partial class User_
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -42,5 +43,7 @@ namespace CarComparison.Areas.Admin.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Comment> Comments { get; set; }
         public virtual TypeUser TypeUser { get; set; }
+
+        public HttpPostedFileBase imageFile { get; set; }
     }
 }

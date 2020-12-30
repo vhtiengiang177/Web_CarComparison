@@ -209,9 +209,6 @@
     <Compile Include="Areas\Admin\Models\XemTenXe_Result.cs">
       <DependentUpon>CarModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Areas\Admin\Models\XemTenXe_Result1.cs">
-      <DependentUpon>CarModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ClientController.cs" />
@@ -2285,6 +2282,8 @@
     <Content Include="Asset\Client\js\jquery.js" />
     <Content Include="Asset\Client\js\owl.carousel.min.js" />
     <Content Include="Asset\Client\js\smoothscroll.js" />
+    <Content Include="Asset\Image\Article\Ar01.jpg" />
+    <Content Include="Asset\Image\Article\Ar02.jpg" />
     <Content Include="Asset\Image\Article\blog-1-720x480.jpg" />
     <Content Include="Asset\Image\Article\blog-2-720x480.jpg" />
     <Content Include="Asset\Image\Article\blog-3-720x480.jpg" />
@@ -2301,6 +2300,9 @@
     <Content Include="Asset\Image\Car\Ca10.jpg" />
     <Content Include="Asset\Image\Car\Ca11.jpg" />
     <Content Include="Asset\Image\Car\Ca12.jpg" />
+    <Content Include="Asset\Image\User\Default.JPG" />
+    <Content Include="Asset\Image\User\Us01.jpg" />
+    <Content Include="Asset\Image\User\Us02.jpg" />
     <Content Include="Asset\Login\css\font-awesome.min.css" />
     <Content Include="Asset\Login\css\style.css" />
     <Content Include="Asset\Login\images\image.jpg" />
@@ -2671,18 +2673,19 @@
     <Content Include="Views\Client\Team.cshtml" />
     <Content Include="Views\Login\RegisterView.cshtml" />
     <Content Include="Views\Login\LoginView.cshtml" />
-    <Content Include="Views\Account\Index.cshtml" />
     <Content Include="Views\Client\blogPartial.cshtml" />
     <Content Include="Views\Client\videoPartial.cshtml" />
     <Content Include="Views\Client\Video.cshtml" />
     <Content Include="Views\Client\DetailBlog.cshtml" />
     <Content Include="Views\Client\DetailVideo.cshtml" />
     <Content Include="Views\Client\Comment.cshtml" />
+    <Content Include="Views\Account\LoginView.cshtml" />
+    <Content Include="Views\Account\RegisterView.cshtml" />
+    <Content Include="Views\Account\AccountInformationView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Asset\Client\styles\" />
-    <Folder Include="Asset\Image\User\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Comment\" />
   </ItemGroup>

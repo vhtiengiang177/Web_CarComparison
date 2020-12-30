@@ -83,11 +83,10 @@
     <EntitySetMapping Name="Contacts">
       <EntityTypeMapping TypeName="CompareCarModel.Contact">
         <MappingFragment StoreEntitySet="Contact">
+          <ScalarProperty Name="subject_contact" ColumnName="subject_contact" />
           <ScalarProperty Name="id_contact" ColumnName="id_contact" />
           <ScalarProperty Name="name_contact" ColumnName="name_contact" />
           <ScalarProperty Name="email_contact" ColumnName="email_contact" />
-          <ScalarProperty Name="namecompany_contact" ColumnName="namecompany_contact" />
-          <ScalarProperty Name="subject_contace" ColumnName="subject_contace" />
           <ScalarProperty Name="state_contact" ColumnName="state_contact" />
           <ScalarProperty Name="date_contact" ColumnName="date_contact" />
         </MappingFragment>

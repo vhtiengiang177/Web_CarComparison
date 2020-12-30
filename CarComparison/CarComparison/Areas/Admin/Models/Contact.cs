@@ -17,9 +17,8 @@ namespace CarComparison.Areas.Admin.Models
         public string id_contact { get; set; }
         public string name_contact { get; set; }
         public string email_contact { get; set; }
-        public string namecompany_contact { get; set; }
-        public string subject_contace { get; set; }
         public string state_contact { get; set; }
         public Nullable<System.DateTime> date_contact { get; set; }
+        public string subject_contact { get; set; }
     }
 }

@@ -52,7 +52,7 @@
                 </button>
 
                 @*lOGO TEXT HERE*@
-                <a href="/Client/" class="navbar-brand">Car Comparison Website</a>
+                <a href="/Client/" class="navbar-brand">Car Comparison</a>
             </div>
 
             @*MENU LINKS*@
@@ -69,7 +69,7 @@
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                  aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="/Account/AccountInformationView">
                                     Thông tin tài khoản
                                 </a>
                                 <a class="dropdown-item" href="#">
@@ -90,7 +90,7 @@
                     }
                     else
                     {
-                        <li>@Html.ActionLink("Đăng Nhập", "LoginView", "Login")</li>
+                        <li>@Html.ActionLink("Đăng Nhập", "LoginView", "Account")</li>
                     }
                 </ul>
             </div>
