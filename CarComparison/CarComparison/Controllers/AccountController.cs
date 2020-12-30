@@ -1,6 +1,8 @@
 ﻿using CarComparison.Areas.Admin.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Security.Cryptography;
@@ -205,8 +207,7 @@ namespace CarComparison.Controllers
             return RedirectToAction("Index", "Client");
         }
 
-        [AuthorizeController]
-        public ActionResult AccountInformationView()
+        public ActionResult AccountInformation()
         {
             User_ us = Session["user"] as User_;
             if (us == null)
@@ -218,6 +219,202 @@ namespace CarComparison.Controllers
 
         [HttpPost]
         public ActionResult AccountInformation(FormCollection f)
+        {
+            //string action = f["action"];
+            //string formID = f["id_user"];
+            //User_ us = db.User_.Find(formID);
+            //if (us == null)
+            //{
+            //    return HttpNotFound();
+            //}
+            //if (action == "Vô hiệu hóa tài khoản")
+            //{
+            //    us.block_state_user = "0";
+            //    return RedirectToAction("Logout"); // Thoát khỏi trang
+            //}
+            //else if(action == "Lưu")
+            //{
+            //    string lname = f["lname_user"];
+            //    string fname = f["fname_user"];
+            //    string email = f["email_user"];
+            //    string phone = f["phone_user"];
+            //    string sex = f["sex"];
+            //    DateTime birthday = Convert.ToDateTime(f["birthday_us"]);
+            //    string address = f["address_user"];
+            //    us.lname_user = lname;
+            //    us.fname_user = fname;
+            //    us.email_user = email;
+            //    us.phone_user = phone;
+            //    if(sex == "1")
+            //    {
+            //        us.sex_user = "Nam";
+            //    }
+            //    else if(sex == "2")
+            //    {
+            //        us.sex_user = "Nữ";
+            //    }
+            //    else
+            //    {
+            //        us.sex_user = "Khác";
+            //    }
+            //    us.birthday_user = birthday;
+            //    us.address_user = address;
+
+            //    if (us.imageFile != null)
+            //    {
+            //        if (us.avt_user != null && us.avt_user != "")
+            //        {
+            //            string fullpath = Server.MapPath(us.avt_user);
+            //            FileInfo fi = new FileInfo(fullpath);
+            //            if (fi != null)
+            //            {
+            //                System.IO.File.Delete(fullpath);
+            //                fi.Delete();
+            //            }
+            //        }
+            //        string fileName = Path.GetFileNameWithoutExtension(us.imageFile.FileName);
+            //        string extension = Path.GetExtension(us.imageFile.FileName);
+            //        us.avt_user = "/Asset/Image/Car/" + us.id_user + extension;
+            //        fileName = Path.Combine(Server.MapPath("/Asset/Image/Car/"), us.id_user + extension);
+            //        us.imageFile.SaveAs(fileName);
+            //    }
+
+            //    db.Entry(us).State = EntityState.Modified;
+            //    db.SaveChanges();
+            //    Response.Write("<script>alert('Cập nhật thành công!');</script>");
+            //    return View();
+            //}
+            //else if(action == "Hủy")
+            //{
+            //    return View(us);
+            //}
+            //else if(action == "Đổi mật khẩu")
+            //{
+            //    string ol = f["password_old"];
+            //    string ne = f["password_new"];
+            //    string re_ne = f["repassword_new"];
+            //    string olmd5 = GetMD5(ol);
+            //    string nemd5 = GetMD5(ne);
+            //    string re_nemd5 = GetMD5(re_ne);
+            //    if (ne != re_ne || olmd5 != us.password_user)
+            //    {
+            //        if(ne != re_ne)
+            //        {
+            //            ModelState.AddModelError("errorChange", "Mật khẩu mới và nhập lại mật khẩu không trùng nhau!");
+            //        }
+            //        if(olmd5 != us.password_user)
+            //        {
+            //            ModelState.AddModelError("errorChange2", "Mật khẩu cũ không đúng!");
+            //        }
+            //        return View();
+            //    }
+            //    us.password_user = nemd5;
+            //    db.Entry(us).State = EntityState.Modified;
+            //    db.SaveChanges();
+            //    Response.Write("<script>alert('Đổi thành công!');</script>");
+            //}
+            //return View(us);
+        }
+
+        [HttpPost]
+        public ActionResult EditInfo(FormCollection f)
+        {
+            string action = f["action"];
+            string formID = f["id_user"];
+            User_ us = db.User_.Find(formID);
+            if (us == null)
+            {
+                return HttpNotFound();
+            }
+            if (action == "Lưu")
+            {
+                string lname = f["lname_user"];
+                string fname = f["fname_user"];
+                string email = f["email_user"];
+                string phone = f["phone_user"];
+                string sex = f["sex"];
+                DateTime birthday = Convert.ToDateTime(f["birthday_us"]);
+                string address = f["address_user"];
+                us.lname_user = lname;
+                us.fname_user = fname;
+                us.email_user = email;
+                us.phone_user = phone;
+                if (sex == "1")
+                {
+                    us.sex_user = "Nam";
+                }
+                else if (sex == "2")
+                {
+                    us.sex_user = "Nữ";
+                }
+                else
+                {
+                    us.sex_user = "Khác";
+                }
+                us.birthday_user = birthday;
+                us.address_user = address;
+
+                if (us.imageFile != null)
+                {
+                    if (us.avt_user != null && us.avt_user != "")
+                    {
+                        string fullpath = Server.MapPath(us.avt_user);
+                        FileInfo fi = new FileInfo(fullpath);
+                        if (fi != null)
+                        {
+                            System.IO.File.Delete(fullpath);
+                            fi.Delete();
+                        }
+                    }
+                    string fileName = Path.GetFileNameWithoutExtension(us.imageFile.FileName);
+                    string extension = Path.GetExtension(us.imageFile.FileName);
+                    us.avt_user = "/Asset/Image/User/" + us.id_user + extension;
+                    fileName = Path.Combine(Server.MapPath("/Asset/Image/User/"), us.id_user + extension);
+                    us.imageFile.SaveAs(fileName);
+                }
+
+                db.Entry(us).State = EntityState.Modified;
+                db.SaveChanges();
+                Response.Write("<script>alert('Cập nhật thành công!');</script>");
+            }
+            return View(us);
+        }
+
+        [HttpPost]
+        public ActionResult ChangePassword(FormCollection f)
+        {
+            string formID = f["id_user"];
+            User_ us = db.User_.Find(formID);
+            if (us == null)
+            {
+                return HttpNotFound();
+            }
+            string ol = f["password_old"];
+            string ne = f["password_new"];
+            string re_ne = f["repassword_new"];
+            string olmd5 = GetMD5(ol);
+            string nemd5 = GetMD5(ne);
+            string re_nemd5 = GetMD5(re_ne);
+            if (ne != re_ne || olmd5 != us.password_user)
+            {
+                if (ne != re_ne)
+                {
+                    ModelState.AddModelError("errorChange", "Mật khẩu mới và nhập lại mật khẩu không trùng nhau!");
+                }
+                if (olmd5 != us.password_user)
+                {
+                    ModelState.AddModelError("errorChange2", "Mật khẩu cũ không đúng!");
+                }
+                return View();
+            }
+            us.password_user = nemd5;
+            db.Entry(us).State = EntityState.Modified;
+            db.SaveChanges();
+            Response.Write("<script>alert('Đổi thành công!');</script>");
+            return View(us);
+        }
+
+        public ActionResult DisableAccount(FormCollection f)
         {
             string action = f["action"];
             string formID = f["id_user"];
@@ -231,7 +428,6 @@ namespace CarComparison.Controllers
                 us.block_state_user = "0";
                 return RedirectToAction("Logout"); // Thoát khỏi trang
             }
-            return View();
         }
 
         protected override void Dispose(bool disposing)

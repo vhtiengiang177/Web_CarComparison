@@ -69,7 +69,7 @@
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                  aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="/Account/AccountInformationView">
+                                <a class="dropdown-item" href="/Account/AccountInformation">
                                     Thông tin tài khoản
                                 </a>
                                 <a class="dropdown-item" href="#">
@@ -82,7 +82,7 @@
                                     </a>
                                 }
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                <a class="dropdown-item" href="/Account/Logout">
                                     Đăng xuất
                                 </a>
                             </div>
@@ -95,7 +95,7 @@
                 </ul>
             </div>
             <!-- Logout Modal-->
-            <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            @*<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                  aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -112,7 +112,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>*@
         </div>
     </section>
     @RenderBody()
