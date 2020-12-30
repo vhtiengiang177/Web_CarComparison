@@ -1,16 +1,17 @@
 ﻿@using CarComparison.Areas.Admin.Models;
-@model Article
+@model Article_Comment
 
 @{
     ViewBag.Title = "DetailBlog";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var user = Session["user"] as CarComparison.Areas.Admin.Models.User_;
 }
-@{
+@*@{
     IEnumerable<Article> lstnew3 = ViewBag.lstnew3 as IEnumerable<Article>;
 
 
 
-}
+}*@
 
 
 
@@ -26,17 +27,25 @@
 
 <section>
     <div class="container">
-        <h2>@Model.title_article</h2>
 
-        <p class="lead">
-            <i class="fa fa-user"></i> @Model.User_.fname_user @Model.User_.lname_user &nbsp;&nbsp;&nbsp;
-            <i class="fa fa-calendar"></i> @Model.time_pulish_article &nbsp;&nbsp;&nbsp;
-            <i class="fa fa-eye"></i> @Model.view_article
-        </p>
+        @foreach (var item in Model.Article)
+        {
+            <h2> @item.title_article</h2>
+
+            <p class="lead">
+                <i class="fa fa-user"></i>  @item.User_.fname_user  @item.User_.lname_user &nbsp;&nbsp;&nbsp;
+                <i class="fa fa-calendar"></i>  @item.time_pulish_article &nbsp;&nbsp;&nbsp;
+                <i class="fa fa-eye"></i>  @item.view_article
+            </p>
 
 
 
-        @Model.description_article
+           @item.description_article
+
+        }
+
+
+
 
 
 
@@ -56,9 +65,9 @@
                 </p>
 
                 <br>
-                
 
-                <h4>Bài viết gợi ý</h4>
+
+                @*<h4>Bài viết gợi ý</h4>
 
                 <ul class="list">
                     @foreach (var item in ViewBag.lstnew3)
@@ -66,62 +75,108 @@
                         <li><a href="@Url.Action("DetailBlog","Client",new { id=item.id_article})">@item.title_article</a></li>
                     }
 
-                </ul>
+                </ul>*@
             </div>
 
             <div class="col-md-8 col-xs-12">
 
                 <div class="blog-comment">
-                    <h3 class="text-success">Comments</h3>
-                    
+                    <h3 class="text-success">Comments(@Model.Comments.Count)</h3>
+                    @if (@Model.Comments.Count == 0)
+                    {
+                        <h4 id="nocmt">Chưa có bình luận</h4>
+                        <hr />
+                    }
 
-                    <form class="clearfix">
-                        <div class="form-group">
-                            <img src="https://bootdey.com/img/Content/user_1.jpg" class="avatar" alt="">
-                            <div class="post-comments">
-                                <textarea name="comment" class="form-control" rows="3"></textarea>
-                                <br />
-                                <button type="submit" class="btn btn-default pull-right">Send</button>
+                    @if (user != null)
+                    {
+                        <form class="clearfix" action="">
+                            <div class="form-group">
+                                <img src="@user.avt_user" class="avatar" alt="">
+                                <div class="post-comments">
+                                    <textarea name="comment" class="form-control" rows="3"></textarea>
+                                    <br />
+                                    <button type="submit" class="btn btn-default pull-right">Gửi</button>
+                                </div>
                             </div>
-                        </div>
-                       
-                    </form>
+
+                        </form>
+                    }
+                    else
+                    {
+                        <div>Để bình luận mời bạn <a href="/Account/RegisterView" style="text-decoration:underline; color:#B81D22">Đăng kí</a>/<a href="/Account/LoginView"  style="text-decoration:underline; color:#B81D22">Đăng nhập</a></div>
+                    }
+
 
                     <hr />
                     <ul class="comments">
-                        <li class="clearfix">
-                            <img src="https://bootdey.com/img/Content/user_1.jpg" class="avatar" alt="">
-                            <div class="post-comments">
-                                <p class="meta">Dec 18, 2014 <a style="color:#0026ff; font-weight:bold" href="#">JohnDoe</a> says : <i class="pull-right"><a href="#"><small style="color:#0026ff">Reply</small></a></i></p>
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                    Etiam a sapien odio, sit amet
-                                </p>
-                            </div>
-                        </li>
-                        <li class="clearfix">
-                            <img src="https://bootdey.com/img/Content/user_2.jpg" class="avatar" alt="">
-                            <div class="post-comments">
-                                <p class="meta">Dec 19, 2014 <a style="color:#0026ff; font-weight:bold" href="#">JohnDoe</a> says : <i class="pull-right"><a href="#"><small style="color:#0026ff">Reply</small></a></i></p>
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                    Etiam a sapien odio, sit amet
-                                </p>
-                            </div>
 
-                            <ul class="comments">
-                                <li class="clearfix">
-                                    <img src="https://bootdey.com/img/Content/user_3.jpg" class="avatar" alt="">
-                                    <div class="post-comments">
-                                        <p class="meta">Dec 20, 2014 <a style="color:#0026ff; font-weight:bold" href="#">JohnDoe</a> says : <i class="pull-right"><a href="#"><small style="color:#0026ff">Reply</small></a></i></p>
-                                        <p>
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                            Etiam a sapien odio, sit amet
-                                        </p>
-                                    </div>
-                                </li>
-                            </ul>
-                        </li>
+                        @foreach (var item in Model.Comments)
+                        {
+
+                            if (item.id_reply_comment == null)
+                            {
+                                var temp = item.id_comment;
+                                <div >
+
+
+                                        <li class="clearfix">
+                                            <img src=@item.User_.avt_user class="avatar" alt="">
+                                            <div class="post-comments">
+                                                <p class="meta"> <a style="color:#0026ff; font-weight:bold"> @item.User_.lname_user @item.User_.fname_user</a> <i class="pull-right"><a href="#"><small style="color:#0026ff">@item.day_comment</small></a></i></p>
+                                                <p>
+                                                    @item.text_comment
+                                                </p>
+                                                <a onclick="funCreate()" id=@item.id_comment href="#"><small style="color:#0026ff" >Trả lời</small></a> &nbsp;&nbsp;&nbsp;<a><i class="fa fa-thumbs-up">@item.count_like</i></a>&nbsp;&nbsp;&nbsp;<a><i class="fa fa-thumbs-down">@item.count_dislike</i></a>
+
+                                            </div>
+
+                                            <script >
+                                                    function funCreate() {
+                                                        var str = `  <ul class="comments">
+                                                        <li class="clearfix">
+                                                            <img src="" class="avatar" alt="">
+                                                            <div class="post-comments">
+                                                                <textarea name="comment" class="form-control" rows="3"></textarea>
+                                                                <br />
+                                                                 <button type="submit" class="btn btn-default pull-right">Gửi</button>
+                                                            </div>
+                                                        </li>
+                                                    </ul> `;
+
+                                                        document.getElementById("#abc").innerHTML = str;
+                                                    }
+                                            </script>
+                                        </li>
+                                </div>
+                                foreach (var item2 in Model.Comments)
+                                {
+                                    if (item2.id_reply_comment == temp)
+                                    {
+                                        <ul class="comments">
+                                            <li class="clearfix">
+                                                <img src=@item2.User_.avt_user class="avatar" alt="">
+                                                <div class="post-comments">
+                                                    <p class="meta"> <a style="color:#0026ff; font-weight:bold"> @item2.User_.lname_user @item2.User_.fname_user</a> <i class="pull-right"><a href="#"><small style="color:#0026ff">@item2.day_comment</small></a></i></p>
+                                                    <p>
+                                                        @item2.text_comment
+                                                    </p>
+                                                    ;<a><i class="fa fa-thumbs-up">@item2.count_like</i></a>&nbsp;&nbsp;&nbsp;<a><i class="fa fa-thumbs-down">@item2.count_dislike</i></a>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    }
+                                }
+
+                                <div id="abc">
+
+                                </div>
+                            }
+                           
+
+                        }
+
+                        
                     </ul>
                 </div>
 

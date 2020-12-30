@@ -18,6 +18,7 @@ namespace CarComparison.Controllers
         private CompareCarEntities db = new CompareCarEntities();
         
         cascadingmodel mol = new cascadingmodel();
+        Article_Comment ac = new Article_Comment();
 
 
 
@@ -127,14 +128,20 @@ namespace CarComparison.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            //Nếu không thì truy xuất csdl lấy ra bài viết tương ứng
-            Article art = db.Articles.SingleOrDefault(n=>n.id_article==id && n.id_category!="CaAr01");
-            if (art == null)
+            Article_Comment arc = new Article_Comment();
+
+
+            arc.Article= (from c in db.Articles where c.id_article == id && c.id_category != "CaAr01"  select c).ToList();
+            arc.Comments= (from c in db.Comments where c.id_article == id select c).ToList();
+            ////Nếu không thì truy xuất csdl lấy ra bài viết tương ứng
+            //var art = (from c in arc.Article where c.id_article == id select c).ToList();
+            //ViewBag.art = art;
+            if (arc== null)
             {
                 //Thông báo không có bài viết đó
                 return HttpNotFound();
             }
-            return View(art);
+            return View(arc);
             
         }
 
@@ -190,15 +197,21 @@ namespace CarComparison.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            //Nếu không thì truy xuất csdl lấy ra bài viết tương ứng
-            Article art = db.Articles.SingleOrDefault(n => n.id_article == id && n.id_category == "CaAr01");
-            if (art == null)
+
+            Article_Comment arc = new Article_Comment();
+
+
+            arc.Article = (from c in db.Articles where c.id_article == id && c.id_category=="CaAr01" select c).ToList();
+            arc.Comments = (from c in db.Comments where c.id_article == id select c).ToList();
+            ////Nếu không thì truy xuất csdl lấy ra bài viết tương ứng
+            //var art = (from c in arc.Article where c.id_article == id select c).ToList();
+            //ViewBag.art = art;
+            if (arc == null)
             {
                 //Thông báo không có bài viết đó
                 return HttpNotFound();
             }
-            return View(art);
-
+            return View(arc);
         }
 
         
