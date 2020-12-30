@@ -203,3 +203,12 @@
     @Html.ActionLink("Edit", "Edit", new { id = Model.id_article }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
+<script type="text/javascript">
+    CKEDITOR.replace("ckeDescription");
+    CKEDITOR.replace('ckeDescription', {
+        extraPlugins: 'easyimage',
+        removePlugins: 'image',
+        cloudServices_tokenUrl: 'https://77303.cke-cs.com/token/dev/fe736dd2e1db1de1431a54ea2079387164e7fc18543091ee756610bf958f',
+        cloudServices_uploadUrl: 'https://77303.cke-cs.com/easyimage/upload/'
+    });
+</script>

@@ -73,7 +73,7 @@ namespace CarComparison.Controllers
 
                     if (us.id_typeuser == "TyUs01")
                     {
-                        return View("~/Areas/Admin/Views/Home/Index.cshtml");
+                        return RedirectToAction("Index", "Admin/Home");
                     }
                     if (us.id_typeuser == "TyUs02")
                     {

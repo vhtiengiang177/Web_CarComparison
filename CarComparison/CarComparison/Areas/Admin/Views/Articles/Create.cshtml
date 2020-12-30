@@ -20,7 +20,7 @@
         <!-- Divider -->
         <hr class="sidebar-divider my-0">
 
-        <!-- Nav Item - Dashboard -->ac
+        <!-- Nav Item - Dashboard -->
         <li class="nav-item">
             <a class="nav-link" href="/Admin/Home/">
                 <!--Sửa đường link tổng quan-->
@@ -122,7 +122,7 @@
     @Html.ActionLink("Quay lại", "Index")
 </div>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Create", "Articles", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 
@@ -132,40 +132,62 @@
         <div class="content-edit">
             <div class="form-car-create">
                 <div class="form-group">
-                    <label>Mã Số Bài Viết</label>
+                    <label>Mã Bài Viết</label>
                     @Html.EditorFor(model => model.id_article, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                    @Html.ValidationMessageFor(model => model.id_article, "", new { @class = "text-danger" })
                 </div>
+                <div class="form-group">
+                    <label>Tác giả</label>
+                    <input class="form-control text-box single-line" id="user" name="user" type="text" value="@user.lname_user @user.fname_user" readonly="readonly" />
+                </div>
+            </div>
+            <div class="form-car-create">
                 <div class="form-group">
                     <label>Loại Bài Viết</label>
                     @Html.DropDownList("id_category", ViewData["id_category"] as SelectList, htmlAttributes: new { @class = "form-control", @onchange = "funCheck()" })
                     @Html.ValidationMessageFor(model => model.id_category, "", new { @class = "text-danger" })
                 </div>
                 <div class="form-group">
-                    <label>Tiêu đề</label>
-                    @Html.EditorFor(model => model.title_article, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.title_article, "", new { @class = "text-danger" })
-                </div>
-                <div class="form-group">
-                    <label>Bí danh</label>
-                    @Html.EditorFor(model => model.alias_article, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.alias_article, "", new { @class = "text-danger" })
-                </div>
-                <div class="form-group">
-                    <label>Tác giả</label>
-                    @Html.Display(user.lname_user) @Html.Display(user.fname_user)
-                </div>
-                <div class="form-group">
-                    <label>Nội dung</label>
-                    @Html.TextAreaFor(model => model.description_article, new { @id = "ckeDescription" })
-                </div>
-                <div class="form-group">
                     <label id="label_link_video">Đường dẫn video</label>
-                    @Html.EditorFor(model => model.linkvideo_article, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.linkvideo_article, "", new { @class = "text-danger" })
+                    @Html.EditorFor(model => model.linkvideo_article, new { htmlAttributes = new { @class = "form-control" }})
+                    @Html.ValidationMessage("linkError", new { @class = "text-danger", @style = "color: crimson;" })
+         
                 </div>
             </div>
-        </div>>
+            <div class="form-group">
+                <label>Ảnh</label>
+                <input class="btn btn-block" type="file" onchange="funCheckA()" accept=".jpg" name="imageFile" id="imageFile" required />
+                <script type="text/javascript">
+                    function funCheckA() {
+                        var file = document.getElementById("imageFile").value;
+                        var idxDot = file.lastIndexOf(".") + 1;
+                        var extFile = file.substr(idxDot, file.length).toLowerCase();
+                        if (extFile != "jpg") {
+                            alert("Chỉ cho phép ảnh đuôi .jpg");
+                            document.getElementById("imageFile").value = null;
+                            $('#img-thumb').hide();
+                        }
+                        else {
+                            var reader = new FileReader();
+
+                            reader.onload = function (e) {
+                                $('#img-thumb').attr('src', e.target.result);
+                                $('#img-thumb').show();
+                            }
+                            reader.readAsDataURL(document.getElementById("imageFile").files[0]);
+                        }
+                    }
+                </script>
+                <br />
+                <img class="img-thumbnail" width="70%" src="" alt="" id="img-thumb"/>
+                <br />
+                <label>Tiêu đề</label>
+                @Html.EditorFor(model => model.title_article, new { htmlAttributes = new { @class = "form-control", @style = "width: 950px;" } })
+                @Html.ValidationMessage("titleError", new { @class = "text-danger", @style = "color: crimson;" })
+                <label>Nội dung</label>
+                @Html.TextAreaFor(model => model.description_article, new { @id = "ckeDescription", @style = "width: 950px;" })
+                @Html.ValidationMessage("desError", new { @class = "text-danger", @style = "color: crimson;" })
+            </div>
+        </div>
 
         <script type="text/javascript">
             function funCheck() {
@@ -179,21 +201,23 @@
                 }
             }
         </script>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" name="action" value="Đăng bài" class="btn btn-default" />
-                @*<input type="submit" name="action" value="Lưu bài" class="btn btn-default" />*@
+        <div class="content-edit">
+            <div class="form-group">
+                <input type="submit" name="action" value="Đăng bài" class="btn btn-primary" />
+                <input type="submit" name="action" value="Lưu nháp" class="btn btn-secondary" /> |
+                @Html.ActionLink("Quay lại", "Index")
             </div>
         </div>
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
-
 <script src="~/Asset/Admin/js/ckeditor/ckeditor.js"></script>
 <script type="text/javascript">
-    CKEDITOR.replace("ckeDescription");
+    //CKEDITOR.replace("ckeDescription");
+    CKEDITOR.replace('ckeDescription', {
+        extraPlugins: 'easyimage',
+        removePlugins: 'image',
+        cloudServices_tokenUrl: 'https://77303.cke-cs.com/token/dev/fe736dd2e1db1de1431a54ea2079387164e7fc18543091ee756610bf958f',
+        cloudServices_uploadUrl: 'https://77303.cke-cs.com/easyimage/upload/'
+    });
 </script>
