@@ -76,9 +76,9 @@ namespace CarComparison.Controllers
 
         }
 
-        
+
         //Trang bài viết
-        public ActionResult Review(int? page)
+        public ActionResult Review(int? page, string key)
         {
             //3 bài viết gợi ý
             var lstnew = (from c in db.Articles where c.id_category != "CaAr01" orderby c.time_pulish_article descending select c).ToList();
@@ -99,6 +99,13 @@ namespace CarComparison.Controllers
             //Tạo biến thứ 2: Số trang hiện tại
             int PageNumber = (page ?? 1); // gán bằng 1
 
+            //Tìm kiếm theo tên bài viết
+            if (key!=null)
+            {
+                var lstsearchBlog = db.Articles.Where(n => n.title_article.Contains(key) && n.id_category != "CaAr01"); //contains tìm kiếm gần đúng
+                return View(lstsearchBlog.OrderBy(n => n.id_article).ToPagedList(PageNumber, PageSize));
+            }    
+            
 
             return View(lstBlog.OrderBy(n=>n.id_article).ToPagedList(PageNumber,PageSize));
         }
@@ -132,7 +139,7 @@ namespace CarComparison.Controllers
         }
 
         //Trang video
-        public ActionResult Video(int? page)
+        public ActionResult Video(int? page, string key)
         {
             //3 video mới nhất gợi ý
             var lstnew = (from c in db.Articles where c.id_category == "CaAr01" orderby c.time_pulish_article descending select c).ToList();
@@ -156,6 +163,13 @@ namespace CarComparison.Controllers
             int PageSize = 4;
             //Tạo biến thứ 2: Số trang hiện tại
             int PageNumber = (page ?? 1); // gán bằng 1
+
+            //Tìm kiếm theo tên video
+            if (key != null)
+            {
+                var lstsearchVideo = db.Articles.Where(n => n.title_article.Contains(key) && n.id_category == "CaAr01"); //contains tìm kiếm gần đúng
+                return View(lstsearchVideo.OrderBy(n => n.id_article).ToPagedList(PageNumber, PageSize));
+            }
 
 
             return View(lstNewVideo.OrderBy(n => n.id_article).ToPagedList(PageNumber, PageSize));
@@ -227,6 +241,30 @@ namespace CarComparison.Controllers
             var lstBlog = db.Articles.Where(n => n.title_article.Contains(key) && n.id_category!="CaAr01"); //contains tìm kiếm gần đúng
             ViewBag.Key = key;
             return PartialView(lstBlog.OrderBy(n => n.time_pulish_article));
+        }
+
+
+        // GET: Contacts/Create
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        // POST: Contacts/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "id_contact,name_contact,email_contact,subject_contace,state_contact,date_contact")] Contact contact)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Contacts.Add(contact);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            return View(contact);
         }
 
     }

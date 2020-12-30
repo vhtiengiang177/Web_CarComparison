@@ -86,8 +86,7 @@
           <Property Name="id_contact" Type="nvarchar" MaxLength="10" Nullable="false" />
           <Property Name="name_contact" Type="nvarchar" MaxLength="255" />
           <Property Name="email_contact" Type="nvarchar" MaxLength="255" />
-          <Property Name="namecompany_contact" Type="nvarchar" MaxLength="255" />
-          <Property Name="subject_contace" Type="ntext" />
+          <Property Name="subject_contact" Type="ntext" />
           <Property Name="state_contact" Type="nvarchar" MaxLength="50" />
           <Property Name="date_contact" Type="datetime" />
         </EntityType>
@@ -429,18 +428,6 @@
           <Property Name="text_comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="User_" Relationship="CompareCarModel.FK_Comment_id_commenter" FromRole="Comment" ToRole="User_" />
         </EntityType>
-        <EntityType Name="Contact">
-          <Key>
-            <PropertyRef Name="id_contact" />
-          </Key>
-          <Property Name="id_contact" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="name_contact" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="email_contact" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="namecompany_contact" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="subject_contace" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="state_contact" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="date_contact" Type="DateTime" Precision="3" />
-        </EntityType>
         <EntityType Name="Model">
           <Key>
             <PropertyRef Name="id_model" />
@@ -591,7 +578,6 @@
           <EntitySet Name="Cars" EntityType="Self.Car" />
           <EntitySet Name="CategoryArticles" EntityType="Self.CategoryArticle" />
           <EntitySet Name="Comments" EntityType="Self.Comment" />
-          <EntitySet Name="Contacts" EntityType="Self.Contact" />
           <EntitySet Name="Models" EntityType="Self.Model" />
           <EntitySet Name="Permissions" EntityType="Self.Permission" />
           <EntitySet Name="TypeUsers" EntityType="Self.TypeUser" />
@@ -643,6 +629,7 @@
             <End Role="User_" EntitySet="User_" />
           </AssociationSet>
           <FunctionImport Name="XemTenXe" ReturnType="Collection(CompareCarModel.XemTenXe_Result)" />
+          <EntitySet Name="Contacts" EntityType="CompareCarModel.Contact" />
           </EntityContainer>
         <ComplexType Name="XemTenXe_Result">
           <Property Type="String" Name="name_automaker" Nullable="true" MaxLength="50" />
@@ -715,6 +702,17 @@
           <Property Type="String" Name="name_version" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="id_car" Nullable="false" MaxLength="10" />
         </ComplexType>
+        <EntityType Name="Contact">
+          <Key>
+            <PropertyRef Name="id_contact" />
+          </Key>
+          <Property Name="id_contact" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="name_contact" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="email_contact" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="subject_contact" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="state_contact" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="date_contact" Type="DateTime" Precision="3" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -800,19 +798,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Contacts">
-            <EntityTypeMapping TypeName="CompareCarModel.Contact">
-              <MappingFragment StoreEntitySet="Contact">
-                <ScalarProperty Name="id_contact" ColumnName="id_contact" />
-                <ScalarProperty Name="name_contact" ColumnName="name_contact" />
-                <ScalarProperty Name="email_contact" ColumnName="email_contact" />
-                <ScalarProperty Name="namecompany_contact" ColumnName="namecompany_contact" />
-                <ScalarProperty Name="subject_contace" ColumnName="subject_contace" />
-                <ScalarProperty Name="state_contact" ColumnName="state_contact" />
-                <ScalarProperty Name="date_contact" ColumnName="date_contact" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Models">
             <EntityTypeMapping TypeName="CompareCarModel.Model">
               <MappingFragment StoreEntitySet="Model">
@@ -887,6 +872,18 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <EntitySetMapping Name="Contacts">
+            <EntityTypeMapping TypeName="CompareCarModel.Contact">
+              <MappingFragment StoreEntitySet="Contact">
+                <ScalarProperty Name="date_contact" ColumnName="date_contact" />
+                <ScalarProperty Name="state_contact" ColumnName="state_contact" />
+                <ScalarProperty Name="subject_contact" ColumnName="subject_contact" />
+                <ScalarProperty Name="email_contact" ColumnName="email_contact" />
+                <ScalarProperty Name="name_contact" ColumnName="name_contact" />
+                <ScalarProperty Name="id_contact" ColumnName="id_contact" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
