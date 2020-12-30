@@ -9,8 +9,14 @@ hr {
     border-top: 1px solid #FFFFFF;
 }
 
+.name {
+    color: #757575;
+    font-weight:bold;
+    text-decoration: none;
+}
+
 a {
-    color: #82b440;
+    color: #757575;
     text-decoration: none;
 }
 
@@ -24,8 +30,8 @@ a {
 }
 
 .blog-comment {
-    padding-left: 15%;
-    padding-right: 15%;
+  width:680px;
+
 }
 
     .blog-comment ul {
@@ -69,7 +75,7 @@ a {
 
     .blog-comment .meta {
         font-size: 13px;
-        color: #aaaaaa;
+        color: #252525;
         padding-bottom: 8px;
         margin-bottom: 10px !important;
         border-bottom: 1px solid #eee;
