@@ -30,7 +30,7 @@
 
         @foreach (var item in Model.Article)
         {
-            <h2> @item.title_article</h2>
+            <h2 style="color:#B81D22; text-align:center;"> @item.title_article</h2>
 
             <p class="lead">
                 <i class="fa fa-user"></i>  @item.User_.fname_user  @item.User_.lname_user &nbsp;&nbsp;&nbsp;
@@ -40,10 +40,13 @@
 
 
 
-           @item.description_article
+           <div style="width:90%; display: block; margin-left: auto; margin-right: auto;">
+            @Html.Raw(@item.description_article)
+        </div>
 
         }
 
+        
 
 
 
@@ -69,12 +72,18 @@
 
                 @*<h4>Bài viết gợi ý</h4>
 
-                <ul class="list">
-                    @foreach (var item in ViewBag.lstnew3)
+                @*<ul class="list">
+                    @if (ViewBag.lstnew3 == null)
                     {
-                        <li><a href="@Url.Action("DetailBlog","Client",new { id=item.id_article})">@item.title_article</a></li>
+                        <li>Chưa có bài viết mới.</li>
                     }
-
+                    else
+                    {
+                        foreach (var item in ViewBag.lstnew3)
+                        {
+                            <li><a href="@Url.Action("DetailBlog","Client",new { id=item.id_article})">@item.title_article</a></li>
+                        }
+                    }
                 </ul>*@
             </div>
 

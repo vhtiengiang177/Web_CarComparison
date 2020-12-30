@@ -13,7 +13,7 @@ namespace CarComparison.Areas.Admin.Models
             //nếu session=null thì trả về trang đăng nhập
             if (tbus == null)
             {
-                filterContext.Result = new RedirectResult("~/Login/LoginView");
+                filterContext.Result = new RedirectResult("~/Account/LoginView");
             }
             //session != null
             else
@@ -42,7 +42,7 @@ namespace CarComparison.Areas.Admin.Models
 
                     //Lấy tên Controller
                     string ControllerName = filterContext.ActionDescriptor.ControllerDescriptor.ControllerName;
-                    //nếu tên controler không có trong mảng quyền của user thì trả về trang đăng nhập
+                    //nếu tên controler không có trong mảng quyền của user thì trả về trang chủ
                     if (!listpermission.Contains(ControllerName))
                     {
                         filterContext.Result = new RedirectResult("~/Client/Index");

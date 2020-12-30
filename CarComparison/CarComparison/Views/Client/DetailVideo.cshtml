@@ -24,7 +24,7 @@
 
         @foreach (var item in Model.Article)
         {
-            <h2> @item.title_article</h2>
+            <h2 style="color:#B81D22; text-align:center;"> @item.title_article</h2>
 
             <p class="lead">
                 <i class="fa fa-user"></i>  @item.User_.fname_user  @item.User_.lname_user &nbsp;&nbsp;&nbsp;
@@ -32,15 +32,17 @@
                 <i class="fa fa-eye"></i>  @item.view_article
             </p>
             <br>
-            <iframe src="@item.linkvideo_article" height="600" frameborder="0" style="width:100%;" allow='autoplay=1'></iframe>
+            <iframe src="@item.linkvideo_article" height="600" frameborder="0" style="width:80%;display: block; margin-left: auto; margin-right: auto;" allow='autoplay=1'></iframe>
 
-            <br>
-
-            @item.description_article
+        <br>
+        <div style="width:90%; display: block; margin-left: auto; margin-right: auto;">
+            @Html.Raw(@item.description_article)
+        </div>
 
         }
 
 
+        
 
 
 
@@ -65,10 +67,17 @@
                 <h4>Video gợi ý:</h4>
 
                 @*<ul class="list">
-                        @foreach (var item in ViewBag.lstnew3video)
+                    @if (ViewBag.lstnew3video == null)
+                    {
+                        <li>Chưa có video mới.</li>
+                    }
+                    else
+                    {
+                        foreach (var item in ViewBag.lstnew3video)
                         {
                             <li><a href="@Url.Action("DetailVideo","Client",new { id=item.id_article})">@item.title_article</a></li>
                         }
+                    }
 
                     </ul>*@
             </div>
