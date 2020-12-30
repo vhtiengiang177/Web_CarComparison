@@ -32,13 +32,13 @@ namespace CarComparison.Areas.Admin.Models
         public virtual DbSet<Car> Cars { get; set; }
         public virtual DbSet<CategoryArticle> CategoryArticles { get; set; }
         public virtual DbSet<Comment> Comments { get; set; }
-        public virtual DbSet<Contact> Contacts { get; set; }
         public virtual DbSet<Model> Models { get; set; }
         public virtual DbSet<Permission> Permissions { get; set; }
         public virtual DbSet<TypeUser> TypeUsers { get; set; }
         public virtual DbSet<User_Permission> User_Permission { get; set; }
         public virtual DbSet<Version> Versions { get; set; }
         public virtual DbSet<User_> User_ { get; set; }
+        public virtual DbSet<Contact> Contacts { get; set; }
     
         public virtual ObjectResult<XemTenXe_Result> XemTenXe()
         {

@@ -46,8 +46,8 @@
     <section class="section-background">
         <div class="container">
             <div class="row">
-                @using (Ajax.BeginForm("resultSearchPartial", "Client", new AjaxOptions { UpdateTargetId = "resultSearch", InsertionMode = InsertionMode.Replace }))
-                {
+                @using (Ajax.BeginForm("Review", "Client", new AjaxOptions { UpdateTargetId = "resultSearch", InsertionMode = InsertionMode.Replace }))
+                { 
 
                     <div class="col-lg-3 pull-right col-xs-12">
                         <div class="form">
@@ -121,11 +121,9 @@
 
 
                         </div>
-                        <div class="row">
-                            <div class="dlink">
-                                Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/@Model.PageCount
-                                @Html.PagedListPager(Model, page => Url.Action("Review", new { page = page }))
-                            </div>
+                        <div class="dlink">
+                            Trang @(Model.PageCount<Model.PageNumber ? 0 :Model.PageNumber)/@Model.PageCount
+                            @Html.PagedListPager(Model, page => Url.Action("Review", new { page = page }))
                         </div>
                     </div>
 

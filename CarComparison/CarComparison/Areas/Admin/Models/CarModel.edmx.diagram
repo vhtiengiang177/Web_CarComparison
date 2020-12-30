@@ -10,7 +10,6 @@
         <EntityTypeShape EntityType="CompareCarModel.Car" Width="1.5" PointX="11.625" PointY="6.25" IsExpanded="true" />
         <EntityTypeShape EntityType="CompareCarModel.CategoryArticle" Width="1.5" PointX="3" PointY="8.75" IsExpanded="true" />
         <EntityTypeShape EntityType="CompareCarModel.Comment" Width="1.5" PointX="7.625" PointY="6.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="CompareCarModel.Contact" Width="1.5" PointX="9.625" PointY="6.5" IsExpanded="true" />
         <EntityTypeShape EntityType="CompareCarModel.Model" Width="1.5" PointX="7.5" PointY="10.375" IsExpanded="true" />
         <EntityTypeShape EntityType="CompareCarModel.Permission" Width="1.5" PointX="1.125" PointY="2.125" IsExpanded="true" />
         <EntityTypeShape EntityType="CompareCarModel.TypeUser" Width="1.5" PointX="0.75" PointY="8" IsExpanded="true" />
@@ -28,6 +27,7 @@
         <AssociationConnector Association="CompareCarModel.FK_Article_id_user" />
         <AssociationConnector Association="CompareCarModel.FK_Comment_id_commenter" />
         <AssociationConnector Association="CompareCarModel.FK_User_id_typeuser" />
+        <EntityTypeShape EntityType="CompareCarModel.Contact" Width="1.5" PointX="5.625" PointY="1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
