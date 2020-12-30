@@ -55,90 +55,88 @@
 
                     <label class="control-label">Video liên quan:</label>
 
-                <ul class="list">
-                    @if (ViewBag.lstnew3video == null)
-                    {
-                        <li>Chưa có video mới.</li>
-                    }
-                    else
-                    {
-                        foreach (var item in ViewBag.lstnew3video)
+                    <ul class="list">
+                        @if (ViewBag.lstnew3video == null)
                         {
-                            <li><a href="@Url.Action("DetailVideo","Client",new { id=item.id_article})">@item.title_article</a></li>
+                            <li>Chưa có video mới.</li>
                         }
-                    }
+                        else
+                        {
+                            foreach (var item in ViewBag.lstnew3video)
+                            {
+                                <li><a href="@Url.Action("DetailVideo", "Client", new { id = item.id_article })">@item.title_article</a></li>
+                            }
+                        }
 
-                </ul>
-            </div>
-            <div class="col-lg-9 col-xs-12">
-                <div class="row">
-                    @foreach (var item in ViewBag.videofirst)
-                    {
-                        <div class="courses-thumb courses-thumb-secondary">
-                            <div class="courses-top">
-                                <div class="courses-image">
-
-                                <iframe src="@item.linkvideo_article" width="100%" height="500" frameborder="0" style="" allow='autoplay=1'></iframe>
-                            </div>
-                            <div class="courses-date">
-
-
-                            </div>
-                        </div>
-
-                            <div class="courses-detail">
-                                <h3><a href="blog-post-details.html">@item.title_article</a></h3>
-                                <span title="Author"><i class="fa fa-user">@item.User_.lname_user @item.User_.fname_user &nbsp;&nbsp; </i> </span>
-                                <span title="Date"><i class="fa fa-calendar"> @item.time_pulish_article &nbsp;&nbsp; </i> </span>
-                                <span title="Views"><i class="fa fa-eye">@item.view_article</i></span>
-                            </div>
-
-
-                    </div>
-                }
-
-                <div id="resultSearch">
-                    @foreach (var item in Model)
-                    {
-                        <div class="col-sm-6">
+                    </ul>
+                </div>
+            }
+                <div class="col-lg-9 col-xs-12">
+                    <div class="row">
+                        @foreach (var item in ViewBag.videofirst)
+                        {
                             <div class="courses-thumb courses-thumb-secondary">
                                 <div class="courses-top">
                                     <div class="courses-image">
-                                        <iframe src="@item.linkvideo_article" width="100%" height="300" frameborder="0" style="" allow='autoplay=1'></iframe>
+
+                                        <iframe src="@item.linkvideo_article" width="100%" height="500" frameborder="0" style="" allow='autoplay=1'></iframe>
                                     </div>
                                     <div class="courses-date">
 
-                                        <span title="Date"><i class="fa fa-calendar"></i> @item.time_pulish_article</span>
-                                        <span title="Views"><i class="fa fa-eye"></i> @item.view_article</span>
+
                                     </div>
                                 </div>
 
                                 <div class="courses-detail">
-                                    <div style="width:300 ; height:200">
-                                        <h3><a href="@Url.Action("DetailVideo","Client",new { id=item.id_article})">@item.title_article</a></h3>
-                                    </div>
-
-                                    <span title="Author"><i class="fa fa-user"></i>@item.User_.lname_user @item.User_.fname_user </span>
+                                    <h3><a href="blog-post-details.html">@item.title_article</a></h3>
+                                    <span title="Author"><i class="fa fa-user">@item.User_.lname_user @item.User_.fname_user &nbsp;&nbsp; </i> </span>
+                                    <span title="Date"><i class="fa fa-calendar"> @item.time_pulish_article &nbsp;&nbsp; </i> </span>
+                                    <span title="Views"><i class="fa fa-eye">@item.view_article</i></span>
                                 </div>
 
-                                <div class="courses-info">
-                                    <a href="@Url.Action("DetailVideo","Client",new { id=item.id_article})" class="section-btn btn btn-primary btn-block">Xem chi tiết</a>
-                                </div>
+
                             </div>
+                        }
+
+                        <div id="resultSearch">
+                            @foreach (var item in Model)
+                            {
+                                <div class="col-sm-6">
+                                    <div class="courses-thumb courses-thumb-secondary">
+                                        <div class="courses-top">
+                                            <div class="courses-image">
+                                                <iframe src="@item.linkvideo_article" height="300" frameborder="0" style="width:100%" allow='autoplay=1'></iframe>
+                                            </div>
+                                            <div class="courses-date">
+
+                                                <span title="Date"><i class="fa fa-calendar"></i> @item.time_pulish_article</span>
+                                                <span title="Views"><i class="fa fa-eye"></i> @item.view_article</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="courses-detail">
+                                            <div style="width:300 ; height:200">
+                                                <h3><a href="@Url.Action("DetailVideo","Client",new { id=item.id_article})">@item.title_article</a></h3>
+                                            </div>
+
+                                            <span title="Author"><i class="fa fa-user"></i>@item.User_.lname_user @item.User_.fname_user </span>
+                                        </div>
+
+                                        <div class="courses-info">
+                                            <a href="@Url.Action("DetailVideo","Client",new { id=item.id_article})" class="section-btn btn btn-primary btn-block">Xem chi tiết</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
                         </div>
-                    }
-
-
-
-
+                    </div>
+                    <div class="row">
+                        <div class="dlink">
+                            Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/@Model.PageCount
+                            @Html.PagedListPager(Model, page => Url.Action("Video", new { page = page }))
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="dlink">
-                Trang @(Model.PageCount<Model.PageNumber ? 0 :Model.PageNumber)/@Model.PageCount
-                @Html.PagedListPager(Model, page => Url.Action("Video", new { page = page }))
-            </div>
-
-        </div>
         </div>
     </div>
 </section>

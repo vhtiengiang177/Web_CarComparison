@@ -19,15 +19,17 @@
 
 <section>
     <div class="container">
-        <h2>@Model.title_article</h2>
+        <h2 style="color:#B81D22; text-align:center;">@Model.title_article</h2>
 
         <p class="lead">
-            <i class="fa fa-user"></i>@Model.User_.lname_user @Model.User_.fname_user &nbsp;&nbsp;&nbsp;
-            <i class="fa fa-calendar"></i> @Model.time_pulish_article &nbsp;&nbsp;&nbsp;
-            <i class="fa fa-eye"></i> @Model.view_article
+            <span style="font-size:15px; padding-left:115px;">
+                <i class="fa fa-user"></i>@Model.User_.lname_user @Model.User_.fname_user &nbsp;&nbsp;&nbsp;
+                <i class="fa fa-calendar"></i> @Model.time_pulish_article &nbsp;&nbsp;&nbsp;
+                <i class="fa fa-eye"></i> @Model.view_article
+            </span>
         </p>
 
-        <iframe src="@Model.linkvideo_article" height="600" frameborder="0" style="width:100%;" allow='autoplay=1'></iframe>
+        <iframe src="@Model.linkvideo_article" height="600" frameborder="0" style="width:80%;display: block; margin-left: auto; margin-right: auto;" allow='autoplay=1'></iframe>
 
         <br>
         <div style="width:90%; display: block; margin-left: auto; margin-right: auto;">
@@ -38,9 +40,6 @@
 
 
         <br>
-
-
-
 
         <br>
         <br>
