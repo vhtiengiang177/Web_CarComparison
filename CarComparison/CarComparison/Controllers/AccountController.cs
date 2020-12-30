@@ -313,7 +313,7 @@ namespace CarComparison.Controllers
             //    db.SaveChanges();
             //    Response.Write("<script>alert('Đổi thành công!');</script>");
             //}
-            //return View(us);
+            return View();
         }
 
         [HttpPost]
@@ -428,6 +428,7 @@ namespace CarComparison.Controllers
                 us.block_state_user = "0";
                 return RedirectToAction("Logout"); // Thoát khỏi trang
             }
+            return View();
         }
 
         protected override void Dispose(bool disposing)

@@ -228,7 +228,7 @@ namespace CarComparison.Controllers
             //Tìm kiếm theo tên video
             if (key != null)
             {
-                var lstsearchVideo = db.Articles.Where(n => n.title_article.Contains(key) && n.id_category == "CaAr01"); //contains tìm kiếm gần đúng
+                var lstsearchVideo = db.Articles.Where(n => n.title_article.Contains(key) && n.id_category == "CaAr01" && n.state_article == "1"); //contains tìm kiếm gần đúng
                 return View(lstsearchVideo.OrderBy(n => n.id_article).ToPagedList(PageNumber, PageSize));
             }
 
@@ -273,7 +273,7 @@ namespace CarComparison.Controllers
             Article_Comment arc = new Article_Comment();
 
 
-            arc.Article = (from c in db.Articles where c.id_article == id && c.id_category=="CaAr01" select c).ToList();
+            arc.Article = (from c in db.Articles where c.id_article == id && c.id_category== "CaAr01" && c.state_article == "1" select c).ToList();
             arc.Comments = (from c in db.Comments where c.id_article == id select c).ToList();
             ////Nếu không thì truy xuất csdl lấy ra bài viết tương ứng
             //var art = (from c in arc.Article where c.id_article == id select c).ToList();
@@ -370,6 +370,124 @@ namespace CarComparison.Controllers
             return View();
         }
 
+        [HttpPost]
+        public ActionResult DetailVideo(FormCollection f, string id_art = "")
+        {
+            id_art = f["id_art"];
+            string text = f["comment"];
+            User_ us = Session["user"] as User_;
+
+            // Sinh id
+            var com = (from c in db.Comments select c.id_comment).ToList();
+            string id = "";
+            if (com.Count == 0) // nếu danh sách rỗng
+            {
+                id = "Cm001";
+            }
+            else
+            {
+                for (int i = 0; i < com.Count(); i++)
+                {
+                    if (int.Parse(com[i].Substring(2, 3)) != (i + 1))
+                    {
+                        if (i + 1 >= 0 && i + 1 < 9)
+                            id = "Cm00" + (i + 1).ToString();
+                        else if (i + 1 > 9)
+                            id = "Cm0" + (i + 1).ToString();
+                        break;
+                    }
+                }
+                if (id == "")
+                {
+                    id = com[com.Count - 1].Substring(2, 3);
+                    if (int.Parse(id) >= 0 && int.Parse(id) < 9)
+                    {
+                        id = "Cm00" + (int.Parse(id) + 1).ToString();
+                    }
+                    else if (int.Parse(id) >= 9)
+                    {
+                        id = "Cm0" + (int.Parse(id) + 1).ToString();
+                    }
+                }
+            }
+            Comment dbcom = new Comment();
+            dbcom.id_comment = id;
+            dbcom.id_article = id_art;
+            dbcom.id_commenter = us.id_user;
+            dbcom.day_comment = DateTime.Now;
+            dbcom.text_comment = text;
+            dbcom.count_like = dbcom.count_dislike = 0;
+
+            db.Comments.Add(dbcom);
+            db.SaveChanges();
+
+            Article_Comment arc = new Article_Comment();
+
+
+            arc.Article = (from c in db.Articles where c.id_article == id_art && c.id_category == "CaAr01" && c.state_article == "1" select c).ToList();
+            arc.Comments = (from c in db.Comments where c.id_article == id select c).ToList();
+            //return RedirectToRoute("", "Client/DetailVideo/" + id_art);
+            return View("DetailVideo", arc);
+        }
+
+        [HttpPost]
+        public ActionResult DetailBlog(FormCollection f, string id_art = "")
+        {
+            id_art = f["id_art"];
+            string text = f["comment"];
+            User_ us = Session["user"] as User_;
+
+            // Sinh id
+            var com = (from c in db.Comments select c.id_comment).ToList();
+            string id = "";
+            if (com.Count == 0) // nếu danh sách rỗng
+            {
+                id = "Cm001";
+            }
+            else
+            {
+                for (int i = 0; i < com.Count(); i++)
+                {
+                    if (int.Parse(com[i].Substring(2, 3)) != (i + 1))
+                    {
+                        if (i + 1 >= 0 && i + 1 < 9)
+                            id = "Cm00" + (i + 1).ToString();
+                        else if (i + 1 > 9)
+                            id = "Cm0" + (i + 1).ToString();
+                        break;
+                    }
+                }
+                if (id == "")
+                {
+                    id = com[com.Count - 1].Substring(2, 3);
+                    if (int.Parse(id) >= 0 && int.Parse(id) < 9)
+                    {
+                        id = "Cm00" + (int.Parse(id) + 1).ToString();
+                    }
+                    else if (int.Parse(id) >= 9)
+                    {
+                        id = "Cm0" + (int.Parse(id) + 1).ToString();
+                    }
+                }
+            }
+            Comment dbcom = new Comment();
+            dbcom.id_comment = id;
+            dbcom.id_article = id_art;
+            dbcom.id_commenter = us.id_user;
+            dbcom.day_comment = DateTime.Now;
+            dbcom.text_comment = text;
+            dbcom.count_like = dbcom.count_dislike = 0;
+
+            db.Comments.Add(dbcom);
+            db.SaveChanges();
+
+            Article_Comment arc = new Article_Comment();
+
+
+            arc.Article = (from c in db.Articles where c.id_article == id_art && c.id_category == "CaAr01" && c.state_article == "1" select c).ToList();
+            arc.Comments = (from c in db.Comments where c.id_article == id select c).ToList();
+            return RedirectToRoute("Client/DetailVideo/", id_art);
+        }
 
         //Tìm kiếm theo ajax
         public ActionResult resultSearchPartial(string key)

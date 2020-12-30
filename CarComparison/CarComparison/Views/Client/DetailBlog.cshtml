@@ -99,7 +99,7 @@
 
                     @if (user != null)
                     {
-                        <form class="clearfix" action="">
+                        <form class="clearfix" action="/Client/DetailBlog" method="post">
                             <div class="form-group">
                                 <img src="@user.avt_user" class="avatar" alt="">
                                 <div class="post-comments">
@@ -108,7 +108,10 @@
                                     <button type="submit" class="btn btn-default pull-right">Gửi</button>
                                 </div>
                             </div>
-
+                            @foreach (var item in Model.Article)
+                            {
+                                <input name="id_art" style="display:none" value="@item.id_article" />
+                            }
                         </form>
                     }
                     else

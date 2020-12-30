@@ -27,7 +27,7 @@
             <h2 style="color:#B81D22; text-align:center;"> @item.title_article</h2>
 
             <p class="lead">
-                <i class="fa fa-user"></i>  @item.User_.fname_user  @item.User_.lname_user &nbsp;&nbsp;&nbsp;
+                <i class="fa fa-user"></i>@item.User_.lname_user  @item.User_.fname_user &nbsp;&nbsp;&nbsp;
                 <i class="fa fa-calendar"></i>  @item.time_pulish_article &nbsp;&nbsp;&nbsp;
                 <i class="fa fa-eye"></i>  @item.view_article
             </p>
@@ -94,16 +94,19 @@
 
                     @if (user != null)
                     {
-                        <form class="clearfix" action="">
+                        <form class="clearfix" action="/Client/DetailVideo" method="post">
                             <div class="form-group">
                                 <img src="@user.avt_user" class="avatar" alt="">
                                 <div class="post-comments">
-                                    <textarea name="comment" class="form-control" rows="3"></textarea>
+                                    <textarea name="comment" id="comment" class="form-control" rows="3"></textarea>
                                     <br />
                                     <button type="submit" class="btn btn-default pull-right">Gửi</button>
                                 </div>
+                                @foreach (var item in Model.Article)
+                                {
+                                <input name="id_art" style="display:none" value="@item.id_article"/>
+                                }
                             </div>
-
                         </form>
                     }
                     else
