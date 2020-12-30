@@ -27,12 +27,12 @@ namespace CarComparison.Controllers
             //Lần lượt tạo các viewbag để lấy các list từ csdl
             //List bài viết mới nhất
 
-            var lstNewBlog = db.Articles.Where(n => n.id_category == "CaAr02");
+            var lstNewBlog = db.Articles.Where(n => n.id_category == "CaAr02").Where(a => a.state_article == "1");
             //Gán vào ViewBag
             ViewBag.ListNewBlog = lstNewBlog;
 
             //List video mới nhất
-            var lstNewVideo = db.Articles.Where(n=>n.id_category== "CaAr01");
+            var lstNewVideo = db.Articles.Where(n=>n.id_category== "CaAr01").Where(a => a.state_article == "1");
             //Gán vào ViewBag
             ViewBag.ListNewVideo = lstNewVideo; 
             return View();
@@ -81,15 +81,33 @@ namespace CarComparison.Controllers
         public ActionResult Review(int? page)
         {
             //3 bài viết gợi ý
-            var lstnew = (from c in db.Articles where c.id_category != "CaAr01" orderby c.time_pulish_article descending select c).ToList();
+            var lstnew = (from c in db.Articles where c.id_category != "CaAr01" && c.state_article == "1" orderby c.time_pulish_article descending select c).ToList();
             var lstnew3 = new List<Article>();
-            lstnew3.Add(lstnew[0]);
-            lstnew3.Add(lstnew[1]);
-            lstnew3.Add(lstnew[2]);
-            ViewBag.lstnew3 = lstnew3;
+            if (lstnew.Count() > 3)
+            {
+                lstnew3.Add(lstnew[0]);
+                lstnew3.Add(lstnew[1]);
+                lstnew3.Add(lstnew[2]);
+                ViewBag.lstnew3 = lstnew3;
+            }
+            else if (lstnew.Count() == 2)
+            {
+                lstnew3.Add(lstnew[0]);
+                lstnew3.Add(lstnew[1]);
+                ViewBag.lstnew3 = lstnew3;
+            }
+            else if (lstnew.Count() == 1)
+            {
+                lstnew3.Add(lstnew[0]);
+                ViewBag.lstnew3 = lstnew3;
+            }
+            else if (lstnew.Count() == 0)
+            {
+                ViewBag.lstnew3 = null;
+            }
 
             //Toàn bộ bài viết
-            var lstBlog = db.Articles.Where(n => n.id_category != "CaAr01" );
+            var lstBlog = db.Articles.Where(n => n.id_category != "CaAr01" && n.state_article == "1");
             //Gán vào ViewBag
             ViewBag.ListBlog= lstBlog;
 
@@ -107,13 +125,31 @@ namespace CarComparison.Controllers
         public ActionResult DetailBlog(string id)
         {
             //3 bài viết gợi ý
-            var lstnew = (from c in db.Articles where c.id_category != "CaAr01" orderby c.time_pulish_article descending select c).ToList();
+            var lstnew = (from c in db.Articles where c.id_category != "CaAr01" && c.state_article == "1" orderby c.time_pulish_article descending select c).ToList();
 
             var lstnew3 = new List<Article>();
-            lstnew3.Add(lstnew[0]);
-            lstnew3.Add(lstnew[1]);
-            lstnew3.Add(lstnew[2]);
-            ViewBag.lstnew3 = lstnew3;
+            if(lstnew.Count() > 3)
+            {
+                lstnew3.Add(lstnew[0]);
+                lstnew3.Add(lstnew[1]);
+                lstnew3.Add(lstnew[2]);
+                ViewBag.lstnew3 = lstnew3;
+            }
+            else if(lstnew.Count() == 2)
+            {
+                lstnew3.Add(lstnew[0]);
+                lstnew3.Add(lstnew[1]);
+                ViewBag.lstnew3 = lstnew3;
+            }
+            else if(lstnew.Count() == 1)
+            {
+                lstnew3.Add(lstnew[0]);
+                ViewBag.lstnew3 = lstnew3;
+            }
+            else if(lstnew.Count() == 0)
+            {
+                ViewBag.lstnew3 = null;
+            }
 
             //Kiểm tra tham số truyền vào
             if (id == null)
@@ -135,19 +171,37 @@ namespace CarComparison.Controllers
         public ActionResult Video(int? page)
         {
             //3 video mới nhất gợi ý
-            var lstnew = (from c in db.Articles where c.id_category == "CaAr01" orderby c.time_pulish_article descending select c).ToList();
+            var lstnew = (from c in db.Articles where c.id_category == "CaAr01" && c.state_article == "1" orderby c.time_pulish_article descending select c).ToList();
             var lstnew3video = new List<Article>();
-            lstnew3video.Add(lstnew[0]);
-            lstnew3video.Add(lstnew[1]);
-            lstnew3video.Add(lstnew[2]);
-            ViewBag.lstnew3video = lstnew3video;
+            if (lstnew.Count() > 3)
+            {
+                lstnew3video.Add(lstnew[0]);
+                lstnew3video.Add(lstnew[1]);
+                lstnew3video.Add(lstnew[2]);
+                ViewBag.lstnew3video = lstnew3video;
+            }
+            else if (lstnew.Count() == 2)
+            {
+                lstnew3video.Add(lstnew[0]);
+                lstnew3video.Add(lstnew[1]);
+                ViewBag.lstnew3video = lstnew3video;
+            }
+            else if (lstnew.Count() == 1)
+            {
+                lstnew3video.Add(lstnew[0]);
+                ViewBag.lstnew3video = lstnew3video;
+            }
+            else if (lstnew.Count() == 0)
+            {
+                ViewBag.lstnew3video = null;
+            }
 
             //video lớn ở đầu trang video
             var videofirst = new List<Article>();
             videofirst.Add(lstnew[0]);
             ViewBag.videofirst = videofirst;
-            //Danh sách video
-            var lstNewVideo = db.Articles.Where(n => n.id_category == "CaAr01");
+            //Danh sách video có trạng thái đã xuất bản
+            var lstNewVideo = db.Articles.Where(n => n.id_category == "CaAr01").Where(a => a.state_article == "1"); 
             //Gán vào ViewBag
             ViewBag.ListNewVideo = lstNewVideo;
 
@@ -157,7 +211,6 @@ namespace CarComparison.Controllers
             //Tạo biến thứ 2: Số trang hiện tại
             int PageNumber = (page ?? 1); // gán bằng 1
 
-
             return View(lstNewVideo.OrderBy(n => n.id_article).ToPagedList(PageNumber, PageSize));
         }
 
@@ -165,12 +218,30 @@ namespace CarComparison.Controllers
         public ActionResult DetailVideo(string id)
         {
             //3 video gợi ý
-            var lstnew = (from c in db.Articles where c.id_category == "CaAr01" orderby c.time_pulish_article descending select c).ToList();
+            var lstnew = (from c in db.Articles where c.id_category == "CaAr01" && c.state_article == "1" orderby c.time_pulish_article descending select c).ToList();
             var lstnew3video = new List<Article>();
-            lstnew3video.Add(lstnew[0]);
-            lstnew3video.Add(lstnew[1]);
-            lstnew3video.Add(lstnew[2]);
-            ViewBag.lstnew3video = lstnew3video;
+            if (lstnew.Count() > 3)
+            {
+                lstnew3video.Add(lstnew[0]);
+                lstnew3video.Add(lstnew[1]);
+                lstnew3video.Add(lstnew[2]);
+                ViewBag.lstnew3video = lstnew3video;
+            }
+            else if (lstnew.Count() == 2)
+            {
+                lstnew3video.Add(lstnew[0]);
+                lstnew3video.Add(lstnew[1]);
+                ViewBag.lstnew3video = lstnew3video;
+            }
+            else if (lstnew.Count() == 1)
+            {
+                lstnew3video.Add(lstnew[0]);
+                ViewBag.lstnew3video = lstnew3video;
+            }
+            else if (lstnew.Count() == 0)
+            {
+                ViewBag.lstnew3video = null;
+            }
             //Kiểm tra tham số truyền vào
             if (id == null)
             {
@@ -210,6 +281,59 @@ namespace CarComparison.Controllers
         //TRang contact
         public ActionResult Contact()
         {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Contact(FormCollection f)
+        {
+            string name = f["name"];
+            string email = f["email"];
+            string subject = f["message"];
+            // Sinh id tự động
+            var contact = (from c in db.Contacts select c.id_contact).ToList();
+            string id = "";
+            if (contact.Count == 0) // nếu danh sách rỗng
+            {
+                id = "Co01";
+            }
+            else
+            {
+                for (int i = 0; i < contact.Count(); i++)
+                {
+                    if (int.Parse(contact[i].Substring(2, 2)) != (i + 1))
+                    {
+                        if (i + 1 >= 0 && i + 1 < 9)
+                            id = "Co0" + (i + 1).ToString();
+                        else if (i + 1 > 9)
+                            id = "Co" + (i + 1).ToString();
+                        break;
+                    }
+                }
+                if (id == "")
+                {
+                    id = contact[contact.Count - 1].Substring(2, 2);
+                    if (int.Parse(id) >= 0 && int.Parse(id) < 9)
+                    {
+                        id = "Co0" + (int.Parse(id) + 1).ToString();
+                    }
+                    else if (int.Parse(id) >= 9)
+                    {
+                        id = "Co" + (int.Parse(id) + 1).ToString();
+                    }
+                }
+            }
+            Contact con = new Contact();
+            con.id_contact = id;
+            con.name_contact = name;
+            con.email_contact = email;
+            con.subject_contact = subject;
+            con.state_contact = "0"; // Chưa đọc
+            con.date_contact = DateTime.Now;
+
+            db.Contacts.Add(con);
+            db.SaveChanges();
+            Response.Write("<script>alert('Gửi thành công!');</script>");
             return View();
         }
 

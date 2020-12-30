@@ -29,19 +29,14 @@
         <h2>@Model.title_article</h2>
 
         <p class="lead">
-            <i class="fa fa-user"></i> @Model.User_.fname_user @Model.User_.lname_user &nbsp;&nbsp;&nbsp;
+            <i class="fa fa-user"></i>@Model.User_.lname_user @Model.User_.fname_user &nbsp;&nbsp;&nbsp;
             <i class="fa fa-calendar"></i> @Model.time_pulish_article &nbsp;&nbsp;&nbsp;
             <i class="fa fa-eye"></i> @Model.view_article
         </p>
 
-
-
-        @Model.description_article
-
-
-
-
-
+        <div style="width:90%; display: block; margin-left: auto; margin-right: auto;">
+            @Html.Raw(Model.description_article)
+        </div>
 
         <div class="row">
             <div class="col-md-4 col-xs-12 pull-right">
@@ -61,11 +56,17 @@
                 <h4>Bài viết gợi ý</h4>
 
                 <ul class="list">
-                    @foreach (var item in ViewBag.lstnew3)
+                    @if (ViewBag.lstnew3 == null)
                     {
-                        <li><a href="@Url.Action("DetailBlog","Client",new { id=item.id_article})">@item.title_article</a></li>
+                        <li>Chưa có bài viết mới.</li>
                     }
-
+                    else
+                    {
+                        foreach (var item in ViewBag.lstnew3)
+                        {
+                            <li><a href="@Url.Action("DetailBlog","Client",new { id=item.id_article})">@item.title_article</a></li>
+                        }
+                    }
                 </ul>
             </div>
 

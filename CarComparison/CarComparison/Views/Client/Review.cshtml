@@ -72,11 +72,17 @@
                         <label class="control-label">Bài viết gợi ý</label>
 
                         <ul class="list">
-                            @foreach (var item in ViewBag.lstnew3)
+                            @if (ViewBag.lstnew3 == null)
                             {
-                                <li><a href="@Url.Action("DetailBlog", "Client", new { id = item.id_article })">@item.title_article</a></li>
+                                <li>Chưa có bài viết mới.</li>
                             }
-
+                            else
+                            {
+                                foreach (var item in ViewBag.lstnew3)
+                                {
+                                    <li><a href="@Url.Action("DetailBlog","Client",new { id=item.id_article})">@item.title_article</a></li>
+                                }
+                            }
                         </ul>
                     </div>
                 }
@@ -107,16 +113,19 @@
                                         </div>
 
                                         <div class="courses-info">
-                                            <a href="@Url.Action("DetailBlog","Client",new { id=item.id_article})" class="section-btn btn btn-primary btn-block">Read More</a>
+                                            <a href="@Url.Action("DetailBlog","Client",new { id=item.id_article})" class="section-btn btn btn-primary btn-block">Đọc thêm</a>
                                         </div>
                                     </div>
                                 </div>
                             }
+
+
+                        </div>
+                        <div class="row">
                             <div class="dlink">
-                                Trang @(Model.PageCount<Model.PageNumber ? 0 :Model.PageNumber)/@Model.PageCount
+                                Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/@Model.PageCount
                                 @Html.PagedListPager(Model, page => Url.Action("Review", new { page = page }))
                             </div>
-
                         </div>
                     </div>
 
