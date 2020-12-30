@@ -213,6 +213,7 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ClientController.cs" />
     <Compile Include="Controllers\CommentController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -2679,6 +2680,9 @@
     <Content Include="Views\Client\DetailBlog.cshtml" />
     <Content Include="Views\Client\DetailVideo.cshtml" />
     <Content Include="Views\Client\Comment.cshtml" />
+    <Content Include="Views\Search\resultSearch.cshtml" />
+    <Content Include="Views\Search\resultSearchPartial.cshtml" />
+    <Content Include="Views\Client\resultSearchPartial.cshtml" />
     <Content Include="Views\Account\LoginView.cshtml" />
     <Content Include="Views\Account\RegisterView.cshtml" />
     <Content Include="Views\Account\AccountInformationView.cshtml" />
@@ -2688,6 +2692,8 @@
     <Folder Include="Asset\Client\styles\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Comment\" />
+    <Folder Include="Views\Review\" />
+    <Folder Include="Views\Video\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

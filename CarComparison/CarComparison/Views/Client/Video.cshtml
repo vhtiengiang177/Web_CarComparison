@@ -1,5 +1,6 @@
 ﻿@using CarComparison.Areas.Admin.Models;
-@model IEnumerable<Article>
+@using PagedList.Mvc;
+@model PagedList.IPagedList<Article>
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -63,7 +64,7 @@
 
             <div class="col-lg-9 col-xs-12">
                 <div class="row">
-                    @foreach(var item in ViewBag.videofirst)
+                    @foreach (var item in ViewBag.videofirst)
                     {
                         <div class="courses-thumb courses-thumb-secondary">
                             <div class="courses-top">
@@ -73,7 +74,7 @@
                                 </div>
                                 <div class="courses-date">
 
-                                   
+
                                 </div>
                             </div>
 
@@ -87,7 +88,7 @@
 
                         </div>
                     }
-                    
+
 
                     @foreach (var item in Model)
                     {
@@ -123,6 +124,10 @@
 
 
                 </div>
+            </div>
+            <div class="dlink">
+                Trang @(Model.PageCount<Model.PageNumber ? 0 :Model.PageNumber)/@Model.PageCount
+                @Html.PagedListPager(Model, page => Url.Action("Video", new { page = page }))
             </div>
         </div>
     </div>

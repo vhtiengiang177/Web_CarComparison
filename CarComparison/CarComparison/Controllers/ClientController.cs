@@ -78,7 +78,7 @@ namespace CarComparison.Controllers
 
         
         //Trang bài viết
-        public ActionResult Review()
+        public ActionResult Review(int? page)
         {
             //3 bài viết gợi ý
             var lstnew = (from c in db.Articles where c.id_category != "CaAr01" orderby c.time_pulish_article descending select c).ToList();
@@ -93,8 +93,14 @@ namespace CarComparison.Controllers
             //Gán vào ViewBag
             ViewBag.ListBlog= lstBlog;
 
+            //Thực hiện chức năng phân trang
+            //Tạo biến số bài viết trên trang
+            int PageSize = 4;
+            //Tạo biến thứ 2: Số trang hiện tại
+            int PageNumber = (page ?? 1); // gán bằng 1
 
-            return View(lstBlog);
+
+            return View(lstBlog.OrderBy(n=>n.id_article).ToPagedList(PageNumber,PageSize));
         }
 
         //Chi tiết bài viết
@@ -126,7 +132,7 @@ namespace CarComparison.Controllers
         }
 
         //Trang video
-        public ActionResult Video()
+        public ActionResult Video(int? page)
         {
             //3 video mới nhất gợi ý
             var lstnew = (from c in db.Articles where c.id_category == "CaAr01" orderby c.time_pulish_article descending select c).ToList();
@@ -145,8 +151,14 @@ namespace CarComparison.Controllers
             //Gán vào ViewBag
             ViewBag.ListNewVideo = lstNewVideo;
 
+            //Thực hiện chức năng phân trang
+            //Tạo biến số bài viết trên trang
+            int PageSize = 4;
+            //Tạo biến thứ 2: Số trang hiện tại
+            int PageNumber = (page ?? 1); // gán bằng 1
 
-            return View(lstNewVideo);
+
+            return View(lstNewVideo.OrderBy(n => n.id_article).ToPagedList(PageNumber, PageSize));
         }
 
         //Chi tiết video
@@ -206,6 +218,16 @@ namespace CarComparison.Controllers
             return View();
         }
 
+
+        //Tìm kiếm theo ajax
+        public ActionResult resultSearchPartial(string key)
+        {
+
+            //Tìm kiếm theo tên bài viết
+            var lstBlog = db.Articles.Where(n => n.title_article.Contains(key) && n.id_category!="CaAr01"); //contains tìm kiếm gần đúng
+            ViewBag.Key = key;
+            return PartialView(lstBlog.OrderBy(n => n.time_pulish_article));
+        }
 
     }
 }

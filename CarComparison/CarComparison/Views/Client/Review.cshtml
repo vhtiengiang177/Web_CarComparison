@@ -1,5 +1,8 @@
 ﻿@using CarComparison.Areas.Admin.Models;
-@model IEnumerable<Article>
+@using PagedList.Mvc;
+
+@model PagedList.IPagedList<Article>
+
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -7,7 +10,7 @@
 
 @{
     IEnumerable<Article> lstnew3 = ViewBag.lstnew3 as IEnumerable<Article>;
-    
+
 }
 
 
@@ -24,6 +27,8 @@
 }
 
 
+
+
 <section>
     <div class="container">
         <div class="text-center">
@@ -36,74 +41,92 @@
     </div>
 </section>
 
-<section class="section-background">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-3 pull-right col-xs-12">
-                <div class="form">
-                    <form action="#">
-                        <div class="form-group">
-                            <label class="control-label">Blog Search</label>
-
-                            <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Search for...">
-                                <span class="input-group-btn">
-                                    <button class="btn btn-default" type="button">Go!</button>
-                                </span>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-
-                <br>
-
-                <label class="control-label">Bài viết gợi ý</label>
-
-                <ul class="list">
-                    @foreach (var item in lstnew3)
-                    {
-                        <li><a href="@Url.Action("DetailBlog","Client",new { id=item.id_article})">@item.title_article</a></li>
-                    }
-
-                </ul>
-            </div>
-
-            <div class="col-lg-9 col-xs-12">
-                <div class="row">
-                    @foreach (var item in Model)
-                    {
 
 
-                        <div class="col-sm-6">
-                            <div class="courses-thumb courses-thumb-secondary">
-                                <div class="courses-top">
-                                    <div class="courses-image">
-                                        <img src=@item.img_article class="img-responsive" alt="">
-                                    </div>
-                                    <div class="courses-date">
+    <section class="section-background">
+        <div class="container">
+            <div class="row">
+                @using (Ajax.BeginForm("resultSearchPartial", "Client", new AjaxOptions { UpdateTargetId = "resultSearch", InsertionMode = InsertionMode.Replace }))
+                {
 
-                                        <span title="Author"><i class="fa fa-calendar"></i> @item.time_pulish_article</span>
-                                        <span title="Views"><i class="fa fa-eye"></i>@item.view_article</span>
+                    <div class="col-lg-3 pull-right col-xs-12">
+                        <div class="form">
+
+                            <form action="#">
+                                <div class="form-group">
+                                    <label class="control-label">Blog Search</label>
+
+                                    <div class="input-group">
+                                        <input type="text" name="key" class="form-control" placeholder="Search for...">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-default" type="button">Go!</button>
+                                        </span>
                                     </div>
                                 </div>
-
-                                <div class="courses-detail">
-                                    <h3><a href="@Url.Action("DetailBlog","Client",new { id=item.id_article})">@item.title_article</a></h3>
-                                    <span title="Author"><i class="fa fa-user"></i>Tác giả:&nbsp; @item.User_.lname_user @item.User_.fname_user</span>
-
-                                </div>
-
-                                <div class="courses-info">
-                                    <a href="@Url.Action("DetailBlog","Client",new { id=item.id_article})" class="section-btn btn btn-primary btn-block">Read More</a>
-                                </div>
-                            </div>
+                            </form>
                         </div>
-                    }
 
+
+                        <br>
+
+                        <label class="control-label">Bài viết gợi ý</label>
+
+                        <ul class="list">
+                            @foreach (var item in ViewBag.lstnew3)
+                            {
+                                <li><a href="@Url.Action("DetailBlog", "Client", new { id = item.id_article })">@item.title_article</a></li>
+                            }
+
+                        </ul>
+                    </div>
+                }
+                <div id="resultSearch">
+                    <div class="col-lg-9 col-xs-12">
+                        <div class="row">
+                            @foreach (var item in Model)
+                            {
+
+
+                                <div class="col-sm-6">
+                                    <div class="courses-thumb courses-thumb-secondary">
+                                        <div class="courses-top">
+                                            <div class="courses-image">
+                                                <img src=@item.img_article class="img-responsive" alt="">
+                                            </div>
+                                            <div class="courses-date">
+
+                                                <span title="Author"><i class="fa fa-calendar"></i> @item.time_pulish_article</span>
+                                                <span title="Views"><i class="fa fa-eye"></i>@item.view_article</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="courses-detail">
+                                            <h3><a href="@Url.Action("DetailBlog","Client",new { id=item.id_article})">@item.title_article</a></h3>
+                                            <span title="Author"><i class="fa fa-user"></i>Tác giả:&nbsp; @item.User_.lname_user @item.User_.fname_user</span>
+
+                                        </div>
+
+                                        <div class="courses-info">
+                                            <a href="@Url.Action("DetailBlog","Client",new { id=item.id_article})" class="section-btn btn btn-primary btn-block">Read More</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            <div class="dlink">
+                                Trang @(Model.PageCount<Model.PageNumber ? 0 :Model.PageNumber)/@Model.PageCount
+                                @Html.PagedListPager(Model, page => Url.Action("Review", new { page = page }))
+                            </div>
+
+                        </div>
+                    </div>
 
                 </div>
+
+
+
             </div>
         </div>
-    </div>
-</section>
+    </section>
+
+
 
