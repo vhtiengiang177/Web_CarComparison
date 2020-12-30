@@ -118,97 +118,56 @@
     </ul>
 }
 
-
-<h2>Details</h2>
-
 <div>
-    <h4>Article</h4>
+    <div style="color:#B81D22; font-size:21px; text-align:center; font-weight:bold">@Html.DisplayFor(model => model.title_article)</div>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.title_article)
-        </dt>
+    <div class="content-edit">
+        @if (Model.id_category != "CaAr01")
+        {
+            <div style="width:100%;margin-bottom:10px;"><img style="width:70%;display: block; margin-left: auto; margin-right: auto;" class="img-thumbnail" src="@Url.Content(Model.img_article)" alt="" id="img-thumb" /></div>
+        }
+        else
+        {
+            <div style="width:100%;margin-bottom:10px;"><iframe src="@Model.linkvideo_article" height="600" frameborder="0" style="width:70%;display: block; margin-left: auto; margin-right: auto;"></iframe></div>
 
-        <dd>
-            @Html.DisplayFor(model => model.title_article)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.alias_article)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.alias_article)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.description_article)
-        </dt>
-
-        <dd>
-            @Html.Raw(Model.description_article)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.time_pulish_article)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.time_pulish_article)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.time_write)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.time_write)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.state_article)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.state_article)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.linkvideo_article)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.linkvideo_article)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CategoryArticle.name_category)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CategoryArticle.name_category)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.User_.name_user)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.User_.name_user)
-        </dd>
-
-    </dl>
+        }
+        <div class="form-car">
+            <div class="form-group">
+                @if (Model.state_article == "1")
+                {
+                    <div><span style="font-weight:bold">Trạng thái:</span> Đã xuất bản</div>
+                }
+                else
+                {
+                    <div><span style="font-weight:bold">Trạng thái:</span> Chưa xuất bản</div>
+                }
+            </div>
+        </div>
+        <div style="width:350px;">
+            <span style="font-weight:bold;">Ngày viết:</span> @Html.DisplayFor(model => model.time_write)
+        </div>
+        <div style="width:350px;" ">
+            @if (Model.state_article == "1")
+            {
+                <div><span style="font-weight:bold">Ngày xuất bản:</span> @Html.DisplayFor(model => model.time_pulish_article)</div>
+            }
+        </div>
+        <div class="form-car">
+            <div><span style="font-weight:bold">Tác giả:</span> @Model.User_.lname_user @Model.User_.fname_user</div>
+        </div>
+        <div style="width:350px;">
+            <div><span style="font-weight:bold">Thể loại:</span> @Model.CategoryArticle.name_category</div>
+        </div>
+        <br />
+        <div style="font-weight:bold">Nội dung:</div>
+        <div style="width:100%; display: block; margin-left: auto; margin-right: auto; border:solid 1px; background-color:#ffffff; padding:10px; margin-bottom:20px; margin-top:20px;">@Html.Raw(Model.description_article)</div>
+    </div>
+     <div class="content-edit">
+        <a href="/Admin/Cars/Edit/@Html.DisplayFor(model => model.id_article)">
+            <input class="btn btn-primary" id="edit" value="Sửa"/>
+        </a>
+        <a href="/Admin/Articles" style="margin-left:5px;">
+            <input type="button" class="btn btn-secondary" value="Quay lại" />
+        </a>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.id_article }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
-<script type="text/javascript">
-    CKEDITOR.replace("ckeDescription");
-    CKEDITOR.replace('ckeDescription', {
-        extraPlugins: 'easyimage',
-        removePlugins: 'image',
-        cloudServices_tokenUrl: 'https://77303.cke-cs.com/token/dev/fe736dd2e1db1de1431a54ea2079387164e7fc18543091ee756610bf958f',
-        cloudServices_uploadUrl: 'https://77303.cke-cs.com/easyimage/upload/'
-    });
-</script>

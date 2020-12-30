@@ -81,8 +81,7 @@
     <Property Name="id_contact" Type="nvarchar" MaxLength="10" Nullable="false" />
     <Property Name="name_contact" Type="nvarchar" MaxLength="255" />
     <Property Name="email_contact" Type="nvarchar" MaxLength="255" />
-    <Property Name="namecompany_contact" Type="nvarchar" MaxLength="255" />
-    <Property Name="subject_contace" Type="ntext" />
+    <Property Name="subject_contact" Type="ntext" />
     <Property Name="state_contact" Type="nvarchar" MaxLength="50" />
     <Property Name="date_contact" Type="datetime" />
   </EntityType>

@@ -10,9 +10,9 @@
 namespace CarComparison.Areas.Admin.Models
 {
     using System;
-    using System.Web;
     using System.Collections.Generic;
-    
+    using System.Web;
+
     public partial class Car
     {
         public string id_car { get; set; }
@@ -40,6 +40,7 @@ namespace CarComparison.Areas.Admin.Models
         public string id_version { get; set; }
     
         public virtual Version Version { get; set; }
+
         public HttpPostedFileBase imageFile { get; set; }
     }
 }

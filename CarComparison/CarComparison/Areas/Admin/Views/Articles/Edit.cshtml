@@ -117,7 +117,7 @@
     </ul>
 }
 
-<h2>Chỉnh sửa bài viết</h2>
+<h1 class="h3 mb-2 text-gray-800">Chỉnh sửa bài viết</h1>
 
 <div class="text-lg-right">
     @Html.ActionLink("Quay lại", "Index")
@@ -144,18 +144,24 @@
             <div class="form-car-create">
                 <div class="form-group">
                     <label>Loại Bài Viết</label>
-                    @Html.DropDownList("id_category", ViewData["id_category"] as SelectList, htmlAttributes: new { @class = "form-control", @onchange = "funCheck()" })
+                    @Html.DropDownList("id_category", null, htmlAttributes: new { @class = "form-control", @onchange = "funCheck()" })
                     @Html.ValidationMessageFor(model => model.id_category, "", new { @class = "text-danger" })
                 </div>
                 <div class="form-group">
-                    <label id="label_link_video">Đường dẫn video</label>
-                    @Html.EditorFor(model => model.linkvideo_article, new { htmlAttributes = new { @class = "form-control" } })
+                    @if (Model.id_category == "CaAr01")
+                    {
+                        <label id="label_link_video">Đường dẫn video</label>
+                        @Html.EditorFor(model => model.linkvideo_article, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessage("linkError", new { @class = "text-danger", @style = "color: crimson;" })
+                    }
+                    <label id="label_link_video" style="display:none">Đường dẫn video</label>
+                    @Html.EditorFor(model => model.linkvideo_article, new { htmlAttributes = new { @class = "form-control", @style = "display:none" } })
                     @Html.ValidationMessage("linkError", new { @class = "text-danger", @style = "color: crimson;" })
                 </div>
             </div>
             <div class="form-group">
                 <label>Ảnh</label>
-                <input class="btn btn-block" type="file" onchange="funCheckA()" accept=".jpg" name="imageFile" id="imageFile" required />
+                <input class="btn btn-block" type="file" onchange="funCheckA()" accept=".jpg" name="imageFile" id="imageFile" />
                 <script type="text/javascript">
                     function funCheckA() {
                         var file = document.getElementById("imageFile").value;
@@ -179,6 +185,7 @@
                 </script>
                 <br />
                 <img class="img-thumbnail" width="70%" src="@Url.Content(Model.img_article)" alt="" id="img-thumb" />
+                @Html.EditorFor(model => model.img_article, new { htmlAttributes = new { @class = "form-control", @style = "opacity:0;" } })
                 <br />
                 <label>Tiêu đề</label>
                 @Html.EditorFor(model => model.title_article, new { htmlAttributes = new { @class = "form-control", @style = "width: 950px;" } })
@@ -203,9 +210,18 @@
         </script>
         <div class="content-edit">
             <div class="form-group">
-                <input type="submit" name="action" value="Cập nhật" class="btn btn-primary" />
-                <input type="submit" name="action" value="Chuyển sang nháp" class="btn btn-secondary" /> |
-                @Html.ActionLink("Quay lại", "Index")
+                @if (Model.state_article == "1")
+                {
+                    <input type="submit" name="action" value="Cập nhật" class="btn btn-primary" />
+                    <input type="submit" name="action" value="Chuyển sang nháp" class="btn btn-secondary" />
+                }
+                else
+                {
+                    <input type="submit" name="action" value="Đăng bài" class="btn btn-primary" />
+                    <input type="submit" name="action" value="Lưu nháp" class="btn btn-secondary" />
+                }
+
+                | @Html.ActionLink("Quay lại", "Index")
             </div>
         </div>
     </div>

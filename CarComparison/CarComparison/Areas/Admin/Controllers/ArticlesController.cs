@@ -20,9 +20,13 @@ namespace CarComparison.Areas.Admin.Controllers
         private CompareCarEntities db = new CompareCarEntities();
 
         // GET: Admin/Articles
-        public ActionResult Index()
+        public ActionResult Index(string searchname)
         {
             var articles = db.Articles.Include(a => a.CategoryArticle).Include(a => a.User_);
+            if (!String.IsNullOrEmpty(searchname))
+            {
+                articles = (from a in db.Articles where a.CategoryArticle.name_category.Contains(searchname) || a.title_article.Contains(searchname) select a);
+            }
             return View(articles.ToList());
         }
 
@@ -57,7 +61,7 @@ namespace CarComparison.Areas.Admin.Controllers
                     if (int.Parse(articles[i].Substring(2, 2)) != (i + 1))
                     {
                         if (i + 1 >= 0 && i + 1 < 9)
-                            id = "Ar" + (i + 1).ToString();
+                            id = "Ar0" + (i + 1).ToString();
                         else if (i + 1 > 9)
                             id = "Ar" + (i + 1).ToString();
                         break;
@@ -107,14 +111,13 @@ namespace CarComparison.Areas.Admin.Controllers
                 {
                     ModelState.AddModelError("desError", "Không để trống nội dung");
                 }
-                article.id_category = "CaAr01";
                 ViewBag.id_category = new SelectList(db.CategoryArticles, "id_category", "name_category", article.id_category);
                 return View(article);
             }
             if(article.linkvideo_article != "" && article.linkvideo_article != null)
             {
                 var uri = new Uri(article.linkvideo_article);
-                if(uri.Host != "www.youtube.com")
+                if(uri.Host != "www.youtube.com" && uri.Host != "https://youtu.be/")
                 {
                     ModelState.AddModelError("linkError", "Lưu ý: Chỉ nhận đường dẫn youtube!");
                     article.id_category = "CaAr01";
@@ -212,7 +215,7 @@ namespace CarComparison.Areas.Admin.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        [ValidateInput(false)]
         public ActionResult Edit([Bind(Include = "id_article,id_category,title_article,description_article,img_article,linkvideo_article,imageFile")] Article article)
         {
             string value = Request["action"]; // Lấy nút submit
@@ -230,20 +233,18 @@ namespace CarComparison.Areas.Admin.Controllers
                 {
                     ModelState.AddModelError("desError", "Không để trống nội dung");
                 }
-                article.id_category = "CaAr01";
                 //ViewBag.id_category = new SelectList(db.CategoryArticles, "id_category", "name_category", article.id_category);
                 //return View(article);
             }
             if (ModelState.IsValid)
             {
-                Article article_old = db.Articles.Find(article.id_article);
+                Article article_old = db.Articles.AsNoTracking().Where(c => c.id_article == article.id_article).SingleOrDefault(); // tránh xung đột khi đang sửa Ar tại id 1
                 if (article.linkvideo_article != "" && article.linkvideo_article != null)
                 {
                     var uri = new Uri(article.linkvideo_article);
                     if (uri.Host != "www.youtube.com")
                     {
                         ModelState.AddModelError("linkError", "Lưu ý: Chỉ nhận đường dẫn youtube!");
-                        article.id_category = "CaAr01";
                         ViewBag.id_category = new SelectList(db.CategoryArticles, "id_category", "name_category", article.id_category);
                         return View(article);
                     }
@@ -262,17 +263,25 @@ namespace CarComparison.Areas.Admin.Controllers
                     string link_new = @"//www.youtube.com/embed/" + videoId;
                     article.linkvideo_article = link_new;
                 }
-                var user = Session["user"] as User_;
-                article.id_user = user.id_user;
+                article.id_user = article_old.id_user;
                 if (value == "Cập nhật")
                 {
-                    article.state_article = "0"; // Trạng thái bằng 1, đc hiển thị trên web
+                    article.state_article = "1"; // Trạng thái bằng 1, đc hiển thị trên web
                     article.time_pulish_article = DateTime.Now;
                 }
                 if (value == "Chuyển sang nháp")
                 {
                     article.state_article = "0"; // Trạng thái bằng 0, k được hiển thị trên web
                     article.time_pulish_article = article_old.time_pulish_article;
+                }
+                if (value == "Lưu nháp")
+                {
+                    article.state_article = "0"; // Trạng thái bằng không, chưa đc hiển thị trên web
+                }
+                if (value == "Đăng bài")
+                {
+                    article.state_article = "1"; // Trạng thái bằng 1, được hiển thị trên web
+                    article.time_pulish_article = DateTime.Now;
                 }
                 article.time_write = DateTime.Now;
                 article.view_article = article_old.view_article;
@@ -295,7 +304,7 @@ namespace CarComparison.Areas.Admin.Controllers
                     }
                     string fileName = Path.GetFileNameWithoutExtension(article.imageFile.FileName);
                     string extension = Path.GetExtension(article.imageFile.FileName);
-                    article.img_article = "/Asset/Image/Article/" + article.img_article + extension;
+                    article.img_article = "/Asset/Image/Article/" + article.id_article + extension;
                     fileName = Path.Combine(Server.MapPath("/Asset/Image/Article/"), article.id_article + extension);
                     article.imageFile.SaveAs(fileName);
                 }
@@ -330,6 +339,17 @@ namespace CarComparison.Areas.Admin.Controllers
         public ActionResult DeleteConfirmed(string id)
         {
             Article article = db.Articles.Find(id);
+            // Xóa hình của bài viết
+            if (article.img_article != null && article.img_article != "")
+            {
+                string fullpath = Server.MapPath(article.img_article);
+                FileInfo fi = new FileInfo(fullpath);
+                if (fi != null)
+                {
+                    System.IO.File.Delete(fullpath);
+                    fi.Delete();
+                }
+            }
             db.Articles.Remove(article);
             db.SaveChanges();
             return RedirectToAction("Index");
