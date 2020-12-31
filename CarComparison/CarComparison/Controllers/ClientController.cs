@@ -508,18 +508,41 @@ namespace CarComparison.Controllers
         // POST: Contacts/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id_contact,name_contact,email_contact,subject_contace,state_contact,date_contact")] Contact contact)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Contacts.Add(contact);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Create([Bind(Include = "id_contact,name_contact,email_contact,subject_contace,state_contact,date_contact")] Contact contact)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        db.Contacts.Add(contact);
+        //        db.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }
 
-            return View(contact);
+        //    return View(contact);
+        //}
+
+        [HttpPost]
+        public ActionResult DeleteComment(FormCollection f)
+        {
+            string id_comment = f["id_comment"];
+            string cat = f["category"];
+            Comment cmt = db.Comments.Find(id_comment);
+            db.Comments.Remove(cmt);
+            db.SaveChanges();
+
+            if (cat == "Video")
+            {
+                return RedirectToAction("DetailVideo", "Client", new { id = cmt.id_article });
+            }
+            else if(cat == "Đánh giá")
+            {
+                return RedirectToAction("DetailVideo", "Client", new { id = cmt.id_article });
+            }
+            else
+            {
+                return RedirectToAction("DetailVideo", "Client", new { id = cmt.id_article });
+            }
         }
 
     }
