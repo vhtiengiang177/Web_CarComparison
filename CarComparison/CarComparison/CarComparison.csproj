@@ -167,6 +167,7 @@
     <Compile Include="Areas\Admin\Controllers\ArticlesController.cs" />
     <Compile Include="Areas\Admin\Controllers\CarsController.cs" />
     <Compile Include="Areas\Admin\Controllers\CommentsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ContactsController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserController.cs" />
     <Compile Include="Areas\Admin\Models\Article.cs">
@@ -2595,7 +2596,6 @@
     <Content Include="Asset\Admin\vendor\jquery\jquery.slim.min.map" />
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Cars\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Cars\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\Cars\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Cars\Edit.cshtml" />
@@ -2659,6 +2659,11 @@
     <Content Include="Areas\Admin\Views\Comments\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\Comments\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Comments\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Contacts\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Contacts\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Contacts\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Cars\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Contacts\Index.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />

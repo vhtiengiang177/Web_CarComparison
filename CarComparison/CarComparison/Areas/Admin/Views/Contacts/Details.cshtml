@@ -1,0 +1,59 @@
+﻿@model CarComparison.Areas.Admin.Models.Contact
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Contact</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.name_contact)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name_contact)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.email_contact)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.email_contact)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.state_contact)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.state_contact)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.date_contact)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.date_contact)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.subject_contact)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.subject_contact)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id_contact }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
