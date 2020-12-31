@@ -5,6 +5,58 @@
 }
 @model CarComparison.Areas.Admin.Models.User_
 
+<script>
+window.onload = function () {
+
+    var chart = new CanvasJS.Chart("chartContainer", {
+	    theme: "light1", // "light1", "light2", "dark1", "dark2"
+	    exportEnabled: true,
+	    animationEnabled: true,
+        title: {
+            fontFamily: "tahoma",
+		    text: "Biểu đồ % lượng xe của các hãng"
+	    },
+        subtitles: [{
+            fontFamily: "tahoma",
+		    text: "Tháng 1/2021"
+	    }],
+	    data: [{
+		    type: "pie",
+		    startAngle: 180,
+		    toolTipContent: "<b>{label}</b>: {y}%",
+		    showInLegend: "true",
+		    legendText: "{label}",
+		    indexLabel: "{label} - {y}%",
+		    dataPoints: @Html.Raw(ViewBag.DataPoints)
+	    }]
+    });
+    chart.render();
+
+    var chartArc = new CanvasJS.Chart("chartContainerArc", {
+	animationEnabled: true,
+        title: {
+            fontFamily: "tahoma",
+        text: "Top 8 bài viết nhiều lượt xem nhất"
+	},
+        subtitles: [{
+            fontFamily: "tahoma",
+		text: "Từ tháng 12/2020 đến tháng 01/2021"
+	}],
+	axisY: {
+		title: "lượt xem",
+		gridThickness: 0
+	},
+	data: [{
+		type: "bar",
+		indexLabel: "{y}",
+		dataPoints: @Html.Raw(ViewBag.dataPointsArticle)
+	}]
+    });
+    chartArc.render();
+
+}
+</script>
+
 @section sidebar{
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
@@ -122,38 +174,28 @@
         <i class="fas fa-download fa-sm text-white-50"></i> Generate Report
     </a>
 </div>
-<div class="row">
+<div class="row" >
     <!-- Area Chart -->
-    <div class="col-xl-8 col-lg-7">
-        <div class="card shadow mb-4">
-            <!-- Card Header - Dropdown -->
-            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                <h6 class="m-0 font-weight-bold text-primary">Earnings Overview</h6>
-                <div class="dropdown no-arrow">
-                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                         aria-labelledby="dropdownMenuLink">
-                        <div class="dropdown-header">Dropdown Header:</div>
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
-                </div>
-            </div>
-            <!-- Card Body -->
-            <div class="card-body">
-                <div class="chart-area">
-                    <canvas id="myAreaChart"></canvas>
-                </div>
-            </div>
+    
+        
+        <div class="chart-1" style="height: 370px; width: 650px;">
+            <div id="chartContainerArc" style="height: 370px; width: 650px;"></div>
+            <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
         </div>
-    </div>
+        
+        <hr />
+        <div class="chart-2" style="height: 370px; width: 550px;">
+            
+            <div id="chartContainer" style="height: 370px; width: 550px;"></div>
+            <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+
+        </div>
+
+
+
+
+
+ 
 </div>
-
-
 
 

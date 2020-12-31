@@ -205,6 +205,7 @@
     <Compile Include="Areas\Admin\Models\Contact.cs">
       <DependentUpon>CarModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Areas\Admin\Models\DataPoint.cs" />
     <Compile Include="Areas\Admin\Models\Model.cs">
       <DependentUpon>CarModel.tt</DependentUpon>
     </Compile>
