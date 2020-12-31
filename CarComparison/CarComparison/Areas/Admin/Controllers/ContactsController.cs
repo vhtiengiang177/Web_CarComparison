@@ -189,6 +189,7 @@ namespace CarComparison.Areas.Admin.Controllers
                     .ToList();
                 return View("View", model);
             }
+            Response.Write("<script>alert('Danh sách hiện đang trống!');</script>");
             return View();
             
         }

@@ -9,6 +9,7 @@
 @{
     IEnumerable<Article> lstNewBlog = ViewBag.ListNewBlog as IEnumerable<Article>;
     IEnumerable<Article> lstNewVideo = ViewBag.ListNewVideo as IEnumerable<Article>;
+    IEnumerable<Article> lstNewArcCompare = ViewBag.lstNewArcCompare as IEnumerable<Article>;
 
     //var user = Session["user"] as CarComparison.Areas.Admin.Models.User_;
 }
@@ -19,7 +20,7 @@
     <li class="active"><a href="/Client/Index">Trang chủ</a></li>
     <li><a href="/Client/Comparing">So sánh Xe</a></li>
     <li><a href="/Client/Review">Bài đánh giá</a></li>
-    <li><a href="/Client/Video">Bài so sánh</a></li>
+    <li><a href="/Client/ArcCompare">Bài so sánh</a></li>
     <li><a href="/Client/Video">Video</a></li>
     <li><a href="/Client/Team">Team</a></li>
     <li><a href="/Client/Contact">Liên hệ</a></li>
@@ -110,7 +111,7 @@
             <div class="row">
                 <div class="col-md-12 col-sm-12">
                     <div class="section-title text-center">
-                        <h2>Bài review mới nhất <small> Review chân thực và Chất lượng nhất..</small></h2>
+                        <h2>Bài đánh giá mới nhất <small> Đánh giá chân thực và Chất lượng nhất..</small></h2>
                     </div>
                 </div>
             </div>
@@ -120,6 +121,24 @@
         </div>
     </section>
 
+    <section>
+        @*//Bước 1: Tách code và lồng PartialView*@
+        @*Bước 2: gán dữ liệu từ controller thông qua viewbag vào partialview*@
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-sm-12">
+                    <div class="section-title text-center">
+                        <h2>Bài so sánh mới nhất <small> So sánh các tính năng, cấu trúc xe...</small></h2>
+                    </div>
+                </div>
+            </div>
+
+            @Html.Partial("~/Views/Client/blogPartial.cshtml", lstNewArcCompare)
+
+        </div>
+    </section>
+
+
 
 
     <section id="testimonial">
@@ -128,7 +147,7 @@
 
                 <div class="col-md-12 col-sm-12">
                     <div class="section-title text-center">
-                        <h2>Testimonials <small>from around the world</small></h2>
+                        <h2>Người dùng đánh giá <small>chân thực, khách quan,..</small></h2>
                     </div>
 
                     <div class="owl-carousel owl-theme owl-client">
@@ -141,7 +160,7 @@
                                     <h4>Jackson</h4>
                                     <span>Shopify Developer</span>
                                 </div>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam voluptas, facilis adipisci dolorem exercitationem nemo aut error impedit repudiandae iusto.</p>
+                                <p>Trang web thật sự giúp tôi tìm so sánh và tìm được chiếc xe như mong muốn, cảm ơn rất nhiều.</p>
                                 <div class="tst-rating">
                                     <i class="fa fa-star"></i>
                                     <i class="fa fa-star"></i>
@@ -161,7 +180,7 @@
                                     <h4>Camila</h4>
                                     <span>Marketing Manager</span>
                                 </div>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente error, unde eos laborum consequatur officiis perferendis vel debitis, dolore, ipsum quibusdam culpa quisquam, reiciendis aspernatur.</p>
+                                <p>Các bài đánh giá rất hay và chân thực, thật tuyệt vời khi không cần truy cập nhiều trang web để nhận được những thông tin bổ ích như thế này.</p>
                                 <div class="tst-rating">
                                     <i class="fa fa-star"></i>
                                     <i class="fa fa-star"></i>
@@ -179,7 +198,7 @@
                                     <h4>Barbie</h4>
                                     <span>Art Director</span>
                                 </div>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sit laborum minima autem, reprehenderit mollitia amet id, beatae quo sequi culpa assumenda neque a quisquam, magni.</p>
+                                <p>Tôi cần mua một chiếc xe và đội ngũ web tư vấn rất nhiệt tình, tôi không còn cảm thấy không còn phân vân khi chọn lựa chiếc xe mà mình dự định mua, cảm ơn .</p>
                                 <div class="tst-rating">
                                     <i class="fa fa-star"></i>
                                     <i class="fa fa-star"></i>
@@ -198,7 +217,7 @@
                                     <h4>Andrio</h4>
                                     <span>Web Developer</span>
                                 </div>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore natus culpa laudantium sit dolores quidem at nulla, iure atque laborum! Odit tempora, enim aliquid at modi illum ducimus explicabo soluta.</p>
+                                <p>Tôi thật sự vui khi nhận được nhiều thông tin rất hữu ích..</p>
                                 <div class="tst-rating">
                                     <i class="fa fa-star"></i>
                                     <i class="fa fa-star"></i>

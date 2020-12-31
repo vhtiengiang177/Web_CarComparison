@@ -26,16 +26,27 @@ namespace CarComparison.Controllers
         public ActionResult Index()
         {
             //Lần lượt tạo các viewbag để lấy các list từ csdl
-            //List bài viết mới nhất
 
+
+            //List video mới nhất
+            var lstNewVideo = db.Articles.Where(n => n.id_category == "CaAr01").Where(a => a.state_article == "1");
+            //Gán vào ViewBag
+            ViewBag.ListNewVideo = lstNewVideo;
+
+
+            //List bài đánh giá mới nhất
             var lstNewBlog = db.Articles.Where(n => n.id_category == "CaAr02").Where(a => a.state_article == "1");
             //Gán vào ViewBag
             ViewBag.ListNewBlog = lstNewBlog;
 
-            //List video mới nhất
-            var lstNewVideo = db.Articles.Where(n=>n.id_category== "CaAr01").Where(a => a.state_article == "1");
+
+            //List bài so sánh mới nhất
+            var lstNewArcCompare = db.Articles.Where(n => n.id_category == "CaAr03").Where(a => a.state_article == "1");
             //Gán vào ViewBag
-            ViewBag.ListNewVideo = lstNewVideo; 
+            ViewBag.lstNewArcCompare = lstNewArcCompare;
+
+
+
             return View();
         }
 
@@ -78,11 +89,11 @@ namespace CarComparison.Controllers
         }
 
 
-        //Trang bài viết
+        //Trang bài đánh giá
         public ActionResult Review(int? page, string key)
         {
             //3 bài viết gợi ý
-            var lstnew = (from c in db.Articles where c.id_category != "CaAr01" && c.state_article == "1" orderby c.time_pulish_article descending select c).ToList();
+            var lstnew = (from c in db.Articles where c.id_category == "CaAr02" && c.state_article == "1" orderby c.time_pulish_article descending select c).ToList();
             var lstnew3 = new List<Article>();
             if (lstnew.Count() > 3)
             {
@@ -108,7 +119,7 @@ namespace CarComparison.Controllers
             }
 
             //Toàn bộ bài viết
-            var lstBlog = db.Articles.Where(n => n.id_category != "CaAr01" && n.state_article == "1");
+            var lstBlog = db.Articles.Where(n => n.id_category == "CaAr02" && n.state_article == "1");
             //Gán vào ViewBag
             ViewBag.ListBlog= lstBlog;
 
@@ -121,7 +132,7 @@ namespace CarComparison.Controllers
             //Tìm kiếm theo tên bài viết
             if (key!=null)
             {
-                var lstsearchBlog = db.Articles.Where(n => n.title_article.Contains(key) && n.id_category != "CaAr01"); //contains tìm kiếm gần đúng
+                var lstsearchBlog = db.Articles.Where(n => n.title_article.Contains(key) && n.id_category == "CaAr02"); //contains tìm kiếm gần đúng
                 return View(lstsearchBlog.OrderBy(n => n.id_article).ToPagedList(PageNumber, PageSize));
             }    
             
@@ -286,7 +297,58 @@ namespace CarComparison.Controllers
             return View(arc);
         }
 
-        
+        //Trang bài so sánh
+        public ActionResult ArcCompare(int? page, string key)
+        {
+            //3 bài viết gợi ý
+            var lstnew = (from c in db.Articles where c.id_category == "CaAr03" && c.state_article == "1" orderby c.time_pulish_article descending select c).ToList();
+            var lstnew3 = new List<Article>();
+            if (lstnew.Count() > 3)
+            {
+                lstnew3.Add(lstnew[0]);
+                lstnew3.Add(lstnew[1]);
+                lstnew3.Add(lstnew[2]);
+                ViewBag.lstnew3 = lstnew3;
+            }
+            else if (lstnew.Count() == 2)
+            {
+                lstnew3.Add(lstnew[0]);
+                lstnew3.Add(lstnew[1]);
+                ViewBag.lstnew3 = lstnew3;
+            }
+            else if (lstnew.Count() == 1)
+            {
+                lstnew3.Add(lstnew[0]);
+                ViewBag.lstnew3 = lstnew3;
+            }
+            else if (lstnew.Count() == 0)
+            {
+                ViewBag.lstnew3 = null;
+            }
+
+            //Toàn bộ bài viết
+            var lstBlog = db.Articles.Where(n => n.id_category == "CaAr03" && n.state_article == "1");
+            //Gán vào ViewBag
+            ViewBag.ListBlog = lstBlog;
+
+            //Thực hiện chức năng phân trang
+            //Tạo biến số bài viết trên trang
+            int PageSize = 4;
+            //Tạo biến thứ 2: Số trang hiện tại
+            int PageNumber = (page ?? 1); // gán bằng 1
+
+            //Tìm kiếm theo tên bài viết
+            if (key != null)
+            {
+                var lstsearchBlog = db.Articles.Where(n => n.title_article.Contains(key) && n.id_category == "CaAr03"); //contains tìm kiếm gần đúng
+                return View(lstsearchBlog.OrderBy(n => n.id_article).ToPagedList(PageNumber, PageSize));
+            }
+
+
+            return View(lstBlog.OrderBy(n => n.id_article).ToPagedList(PageNumber, PageSize));
+        }
+
+
         [ChildActionOnly] //để người dùng không get được view này
         public ActionResult blogPartial()
         {
@@ -521,6 +583,11 @@ namespace CarComparison.Controllers
 
             return View(contact);
         }
+
+
+       
+
+       
 
     }
 }

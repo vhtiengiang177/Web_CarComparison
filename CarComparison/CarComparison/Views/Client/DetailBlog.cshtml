@@ -7,11 +7,11 @@
     var user = Session["user"] as CarComparison.Areas.Admin.Models.User_;
 }
 @*@{
-    IEnumerable<Article> lstnew3 = ViewBag.lstnew3 as IEnumerable<Article>;
+        IEnumerable<Article> lstnew3 = ViewBag.lstnew3 as IEnumerable<Article>;
 
 
 
-}*@
+    }*@
 
 
 
@@ -19,10 +19,11 @@
     <li><a href="/Client/Index">Trang chủ</a></li>
     <li><a href="/Client/Comparing">So sánh Xe</a></li>
     <li><a href="/Client/Review">Bài đánh giá</a></li>
+    <li><a href="/Client/ArcCompare">Bài so sánh</a></li>
     <li><a href="/Client/Video">Video</a></li>
     <li><a href="/Client/Team">Team</a></li>
     <li><a href="/Client/Contact">Liên hệ</a></li>
-   
+
 }
 
 <section>
@@ -40,9 +41,9 @@
 
 
 
-           <div style="width:90%; display: block; margin-left: auto; margin-right: auto;">
-            @Html.Raw(@item.description_article)
-        </div>
+            <div style="width:90%; display: block; margin-left: auto; margin-right: auto;">
+                @Html.Raw(@item.description_article)
+            </div>
 
         }
 
@@ -64,19 +65,19 @@
 
                 @*<h4>Bài viết gợi ý</h4>
 
-                @*<ul class="list">
-                    @if (ViewBag.lstnew3 == null)
-                    {
-                        <li>Chưa có bài viết mới.</li>
-                    }
-                    else
-                    {
-                        foreach (var item in ViewBag.lstnew3)
+                    @*<ul class="list">
+                        @if (ViewBag.lstnew3 == null)
                         {
-                            <li><a href="@Url.Action("DetailBlog","Client",new { id=item.id_article})">@item.title_article</a></li>
+                            <li>Chưa có bài viết mới.</li>
                         }
-                    }
-                </ul>*@
+                        else
+                        {
+                            foreach (var item in ViewBag.lstnew3)
+                            {
+                                <li><a href="@Url.Action("DetailBlog","Client",new { id=item.id_article})">@item.title_article</a></li>
+                            }
+                        }
+                    </ul>*@
             </div>
 
             <div class="col-md-8 col-xs-12">
@@ -108,7 +109,7 @@
                     }
                     else
                     {
-                        <div>Để bình luận mời bạn <a href="/Account/RegisterView" style="text-decoration:underline; color:#B81D22">Đăng kí</a>/<a href="/Account/LoginView"  style="text-decoration:underline; color:#B81D22">Đăng nhập</a></div>
+                        <div>Để bình luận mời bạn <a href="/Account/RegisterView" style="text-decoration:underline; color:#B81D22">Đăng kí</a>/<a href="/Account/LoginView" style="text-decoration:underline; color:#B81D22">Đăng nhập</a></div>
                     }
 
 
@@ -121,37 +122,37 @@
                             if (item.id_reply_comment == null)
                             {
                                 var temp = item.id_comment;
-                                <div >
+                                <div>
 
 
-                                        <li class="clearfix">
-                                            <img src=@item.User_.avt_user class="avatar" alt="">
-                                            <div class="post-comments">
-                                                <p class="meta"> <a style="color:#0026ff; font-weight:bold"> @item.User_.lname_user @item.User_.fname_user</a> <i class="pull-right"><a href="#"><small style="color:#0026ff">@item.day_comment</small></a></i></p>
-                                                <p>
-                                                    @item.text_comment
-                                                </p>
-                                                <a onclick="funCreate()" id=@item.id_comment href="#"><small style="color:#0026ff" >Trả lời</small></a> &nbsp;&nbsp;&nbsp;<a><i class="fa fa-thumbs-up">@item.count_like</i></a>&nbsp;&nbsp;&nbsp;<a><i class="fa fa-thumbs-down">@item.count_dislike</i></a>
+                                    <li class="clearfix">
+                                        <img src=@item.User_.avt_user class="avatar" alt="">
+                                        <div class="post-comments">
+                                            <p class="meta"> <a style="color:#0026ff; font-weight:bold"> @item.User_.lname_user @item.User_.fname_user</a> <i class="pull-right"><a href="#"><small style="color:#0026ff">@item.day_comment</small></a></i></p>
+                                            <p>
+                                                @item.text_comment
+                                            </p>
+                                            <a onclick="funCreate()" id=@item.id_comment href="#"><small style="color:#0026ff">Trả lời</small></a> &nbsp;&nbsp;&nbsp;<a><i class="fa fa-thumbs-up">@item.count_like</i></a>&nbsp;&nbsp;&nbsp;<a><i class="fa fa-thumbs-down">@item.count_dislike</i></a>
 
-                                            </div>
+                                        </div>
 
-                                            <script >
-                                                    function funCreate() {
-                                                        var str = `  <ul class="comments">
-                                                        <li class="clearfix">
-                                                            <img src="" class="avatar" alt="">
-                                                            <div class="post-comments">
-                                                                <textarea name="comment" class="form-control" rows="3"></textarea>
-                                                                <br />
-                                                                 <button type="submit" class="btn btn-default pull-right">Gửi</button>
-                                                            </div>
-                                                        </li>
-                                                    </ul> `;
+                                        <script>
+                                            function funCreate() {
+                                                var str = `  <ul class="comments">
+                                                                                                <li class="clearfix">
+                                                                                                    <img src="" class="avatar" alt="">
+                                                                                                    <div class="post-comments">
+                                                                                                        <textarea name="comment" class="form-control" rows="3"></textarea>
+                                                                                                        <br />
+                                                                                                         <button type="submit" class="btn btn-default pull-right">Gửi</button>
+                                                                                                    </div>
+                                                                                                </li>
+                                                                                            </ul> `;
 
-                                                        document.getElementById("#abc").innerHTML = str;
-                                                    }
-                                            </script>
-                                        </li>
+                                                document.getElementById("#abc").innerHTML = str;
+                                            }
+                                        </script>
+                                    </li>
                                 </div>
                                 foreach (var item2 in Model.Comments)
                                 {
@@ -176,11 +177,11 @@
 
                                 </div>
                             }
-                           
+
 
                         }
 
-                        
+
                     </ul>
                 </div>
 
