@@ -18,8 +18,8 @@
 @section navbar{
     <li><a href="/Client/Index">Trang chủ</a></li>
     <li><a href="/Client/Comparing">So sánh Xe</a></li>
-    <li class="active"><a href="/Client/Review">Bài đánh giá</a></li>
-    <li><a href="/Client/ArcCompare">Bài so sánh</a></li>
+    <li ><a href="/Client/Review">Bài đánh giá</a></li>
+    <li class="active"><a href="/Client/ArcCompare">Bài so sánh</a></li>
     <li><a href="/Client/Video">Video</a></li>
     <li><a href="/Client/Team">Team</a></li>
 
@@ -33,7 +33,7 @@
 <section>
     <div class="container">
         <div class="text-center">
-            <h1>Blog đánh giá xe</h1>
+            <h1>Blog so sánh xe</h1>
 
             <br>
 
@@ -47,7 +47,7 @@
 <section class="section-background">
     <div class="container">
         <div class="row">
-            @using (Ajax.BeginForm("Review", "Client", new AjaxOptions { UpdateTargetId = "resultSearch", InsertionMode = InsertionMode.Replace }))
+            @using (Ajax.BeginForm("ArcCompare", "Client", new AjaxOptions { UpdateTargetId = "resultSearch", InsertionMode = InsertionMode.Replace }))
             {
 
                 <div class="col-lg-3 pull-right col-xs-12">

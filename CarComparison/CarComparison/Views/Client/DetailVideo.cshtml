@@ -1,6 +1,6 @@
 ﻿@using CarComparison.Areas.Admin.Models;
 @model Article_Comment
-    
+
 @{
     ViewBag.Title = "DetailVideo";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -12,6 +12,7 @@
     <li><a href="/Client/Index">Trang chủ</a></li>
     <li><a href="/Client/Comparing">So sánh Xe</a></li>
     <li><a href="/Client/Review">Bài đánh giá</a></li>
+    <li><a href="/Client/ArcCompare">Bài so sánh</a></li>
     <li><a href="/Client/Video">Video</a></li>
     <li><a href="/Client/Team">Team</a></li>
 
@@ -34,15 +35,15 @@
             <br>
             <iframe src="@item.linkvideo_article" height="600" frameborder="0" style="width:80%;display: block; margin-left: auto; margin-right: auto;" allow='autoplay=1'></iframe>
 
-        <br>
-        <div style="width:90%; display: block; margin-left: auto; margin-right: auto;">
-            @Html.Raw(@item.description_article)
-        </div>
+            <br>
+            <div style="width:90%; display: block; margin-left: auto; margin-right: auto;">
+                @Html.Raw(@item.description_article)
+            </div>
 
         }
 
 
-        
+
 
 
 
@@ -104,7 +105,7 @@
                                 </div>
                                 @foreach (var item in Model.Article)
                                 {
-                                <input name="id_art" style="display:none" value="@item.id_article"/>
+                                    <input name="id_art" style="display:none" value="@item.id_article" />
                                 }
                             </div>
                         </form>
@@ -154,15 +155,15 @@
                                         <script>
                                             function funCreate() {
                                                 var str = `  <ul class="comments">
-                                                                                                <li class="clearfix">
-                                                                                                    <img src="" class="avatar" alt="">
-                                                                                                    <div class="post-comments">
-                                                                                                        <textarea name="comment" class="form-control" rows="3"></textarea>
-                                                                                                        <br />
-                                                                                                         <button type="submit" class="btn btn-default pull-right">Gửi</button>
-                                                                                                    </div>
-                                                                                                </li>
-                                                                                            </ul> `;
+                                                                                                                                        <li class="clearfix">
+                                                                                                                                            <img src="" class="avatar" alt="">
+                                                                                                                                            <div class="post-comments">
+                                                                                                                                                <textarea name="comment" class="form-control" rows="3"></textarea>
+                                                                                                                                                <br />
+                                                                                                                                                 <button type="submit" class="btn btn-default pull-right">Gửi</button>
+                                                                                                                                            </div>
+                                                                                                                                        </li>
+                                                                                                                                    </ul> `;
 
                                                 document.getElementById("#abc").innerHTML = str;
                                             }
