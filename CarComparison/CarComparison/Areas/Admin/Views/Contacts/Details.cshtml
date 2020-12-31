@@ -5,7 +5,101 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+@section sidebar{
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+        <!-- Sidebar - Brand -->
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/Admin/Home">
+            <div class="sidebar-brand-icon rotate-n-15">
+                <i class="fas fa-car-side"></i>
+            </div>
+            <div class="sidebar-brand-text mx-3">Car Comparison</div>
+        </a>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider my-0">
+
+        <!-- Nav Item - Dashboard -->
+        <li class="nav-item">
+            <a class="nav-link" href="/Admin/Home/">
+                <!--Sửa đường link tổng quan-->
+                <span>Tổng quan</span>
+            </a>
+        </li>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+
+        <!-- Heading -->
+        <div class="sidebar-heading">
+            Quản lý
+        </div>
+
+        <!-- Nav Item - Xe -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+               aria-expanded="true" aria-controls="collapseTwo">
+                <span>Xe</span>
+            </a>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Tùy chỉnh xe:</h6>
+                    <a class="collapse-item" href="/Admin/Cars">Danh sách xe</a>
+                    <a class="collapse-item" href="/Admin/Cars/Create">Thêm xe</a>
+                </div>
+            </div>
+        </li>
+
+        <!-- Nav Item - Bài viết -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+               aria-expanded="true" aria-controls="collapseUtilities">
+                <span>Bài viết</span>
+            </a>
+            <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+                 data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Tùy chỉnh bài viết:</h6>
+                    <a class="collapse-item" href="/Admin/Articles/">Danh sách các bài viết</a>
+                    <a class="collapse-item" href="/Admin/Articles/Create">Thêm bài viết</a>
+                </div>
+            </div>
+        </li>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+
+        <!-- Nav Item - Dashboard -->
+        <li class="nav-item">
+            <a class="nav-link" href="/Admin/User/">
+                <span>Người dùng</span>
+            </a>
+        </li>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+
+        <!-- Nav Item - Dashboard -->
+        <li class="nav-item active">
+            <a class="nav-link" href="/Admin/Contact/">
+                <span>Liên hệ</span>
+            </a>
+        </li>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider d-none d-md-block" />
+
+        <!-- Sidebar Toggler (Sidebar) -->
+        <div class="text-center d-none d-md-inline">
+            <button class="rounded-circle border-0" id="sidebarToggle"></button>
+        </div>
+    </ul>
+}
+
+<h1 class="h3 mb-2 text-gray-800">Nội dung liên hệ</h1>
+<div>
+    Người viết: @Html.DisplayFor(model => model.name_contact);
+</div>
 
 <div>
     <h4>Contact</h4>

@@ -2661,7 +2661,6 @@
     <Content Include="Areas\Admin\Views\Comments\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Contacts\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\Contacts\Details.cshtml" />
-    <Content Include="Areas\Admin\Views\Contacts\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Cars\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Contacts\Index.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
