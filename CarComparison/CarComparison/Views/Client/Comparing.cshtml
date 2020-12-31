@@ -1,5 +1,5 @@
 ﻿@model CarComparison.Areas.Admin.Models.cascadingmodel
- 
+
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -10,6 +10,7 @@
     <li><a href="/Client/Index">Trang chủ</a></li>
     <li class="active"><a href="/Client/Comparing">So sánh Xe</a></li>
     <li><a href="/Client/Review">Bài đánh giá</a></li>
+    <li><a href="/Client/ArcCompare">Bài so sánh</a></li>
     <li><a href="/Client/Video">Video</a></li>
     <li><a href="/Client/Team">Team</a></li>
 
@@ -108,7 +109,7 @@
 
 
                         <div class="detail-car-1" style="display:none">
-                            <button id="btn-1" class="btn-close"><i class="fa fa-close"></i></button>
+
 
                             <section class="img-car-boder" style="padding:unset;">
 
@@ -278,7 +279,6 @@
                         <hr />
                         <div class="detail-car-2" style="display:none">
 
-                            <button id="btn-2" class="btn-close"><i class="fa fa-close"></i></button>
                             <section class="img-car-boder" style="padding:unset;">
 
 
@@ -451,7 +451,7 @@
                         <br />
                         <hr />
                         <div class="detail-car-3" style="display:none">
-                            <button id="btn-3" class="btn-close"><i class="fa fa-close"></i></button>
+
 
 
                             <section class="img-car-boder" style="padding:unset;">
@@ -618,66 +618,66 @@
 
 
                     });
-                    
+
                 });
             })
 
             $("#modelId").change(function () {
-                        selectedname += $(this).children("option:selected").val();
-                        $.get("/Client/GetVersionList", { idModel: $("#modelId").val() }, function (data) {
-                            $("#versionId").empty();
-                            $("#versionId").append("<option value='no version'>--Select--</option>");
-                            $.each(data, function (index, row) {
-                                $("#versionId").append("<option value='" + row.id_version + "'>" + row.name_version + "</option>")
+                selectedname += $(this).children("option:selected").val();
+                $.get("/Client/GetVersionList", { idModel: $("#modelId").val() }, function (data) {
+                    $("#versionId").empty();
+                    $("#versionId").append("<option value='no version'>--Select--</option>");
+                    $.each(data, function (index, row) {
+                        $("#versionId").append("<option value='" + row.id_version + "'>" + row.name_version + "</option>")
 
-                            });
+                    });
 
 
-                        });
+                });
             })
 
             $("#versionId").change(function () {
 
-                                $(".car-1").hide();
-                                $(".detail-car-1").show();
-                                $.get("/Client/GetCarList", { idVersion: $("#versionId ").val() }, function (data) {
-                                    $("#CarId").empty();
+                $(".car-1").hide();
+                $(".detail-car-1").show();
+                $.get("/Client/GetCarList", { idVersion: $("#versionId ").val() }, function (data) {
+                    $("#CarId").empty();
 
 
-                                    $.each(data, function (i, row) {
+                    $.each(data, function (i, row) {
 
-                                        $('#over').prepend("<dd value='" + row.id_car + "'>" + row.overview_car + "<dd>");
-                                        $('#length').prepend("<dd value='" + row.id_car + "'>" + row.length_car + "<dd>");
-                                        $('#wheels').prepend("<dd value='" + row.id_car + "'>" + row.wheels_car + "<dd>");
-                                        $('#tireparameters').prepend("<dd value='" + row.id_car + "'>" + row.tireparameters_car + "<dd>");
-                                        $('#weight').prepend("<dd value='" + row.id_car + "'>" + row.weight_car + "<dd>");
-                                        $('#capacity').prepend("<dd value='" + row.id_car + "'>" + row.capacity_car + "<dd>");
-                                        $('#horsepower').prepend("<dd value='" + row.id_car + "'>" + row.horsepower_car + "<dd>");
-                                        $('#gear').prepend("<dd value='" + row.id_car + "'>" + row.gear_car + "<dd>");
-                                        $('#torque').prepend("<dd value='" + row.id_car + "'>" + row.torque_car + "<dd>");
-                                        $('#drivetype').prepend("<dd value='" + row.id_car + "'>" + row.drivetype_car + "<dd>");
-                                        $('#frontbrakesystem').prepend("<dd value='" + row.id_car + "'>" + row.frontbrakesystem_car + "<dd>");
-                                        $('#rearbrakesystem').prepend("<dd value='" + row.id_car + "'>" + row.rearbrakesystem_car + "<dd>");
-                                        $('#maximumspeed').prepend("<dd value='" + row.id_car + "'>" + row.maximumspeed_car + "<dd>");
-                                        $('#accelerationtime').prepend("<dd value='" + row.id_car + "'>" + row.accelerationtime_car + "<dd>");
-                                        $('#capacitytank').prepend("<dd value='" + row.id_car + "'>" + row.capacitytank_car + "<dd>");
-                                        $('#numberseat').prepend("<dd value='" + row.id_car + "'>" + row.numberseat_car + "<dd>");
-                                        $('#seat').prepend("<dd value='" + row.id_car + "'>" + row.seat_car + "<dd>");
-                                        $('#airconditioner').prepend("<dd value='" + row.id_car + "'>" + row.airconditioner + "<dd>");
-                                        $('#sunroof').prepend("<dd value='" + row.id_car + "'>" + row.sunroof_car + "<dd>");
-                                        $('#image-detail1').attr('src', row.img_car)
-                                        $('#charge').prepend("<div value='" + row.id_car + "'>" + row.charge_car + " tỷ " + "</div>");
-                                        var selectedname = $("#automakerId option:selected").text() + " " + $("#modelId option:selected").text() + " " + $("#versionId option:selected").text();
-                                        $('#car-head').prepend("<div value='" + row.id_car + "'>" + selectedname + "</div>");
-                                        $('#reset-all').show();
-                                    });
-                                });
+                        $('#over').prepend("<dd value='" + row.id_car + "'>" + row.overview_car + "<dd>");
+                        $('#length').prepend("<dd value='" + row.id_car + "'>" + row.length_car + "<dd>");
+                        $('#wheels').prepend("<dd value='" + row.id_car + "'>" + row.wheels_car + "<dd>");
+                        $('#tireparameters').prepend("<dd value='" + row.id_car + "'>" + row.tireparameters_car + "<dd>");
+                        $('#weight').prepend("<dd value='" + row.id_car + "'>" + row.weight_car + "<dd>");
+                        $('#capacity').prepend("<dd value='" + row.id_car + "'>" + row.capacity_car + "<dd>");
+                        $('#horsepower').prepend("<dd value='" + row.id_car + "'>" + row.horsepower_car + "<dd>");
+                        $('#gear').prepend("<dd value='" + row.id_car + "'>" + row.gear_car + "<dd>");
+                        $('#torque').prepend("<dd value='" + row.id_car + "'>" + row.torque_car + "<dd>");
+                        $('#drivetype').prepend("<dd value='" + row.id_car + "'>" + row.drivetype_car + "<dd>");
+                        $('#frontbrakesystem').prepend("<dd value='" + row.id_car + "'>" + row.frontbrakesystem_car + "<dd>");
+                        $('#rearbrakesystem').prepend("<dd value='" + row.id_car + "'>" + row.rearbrakesystem_car + "<dd>");
+                        $('#maximumspeed').prepend("<dd value='" + row.id_car + "'>" + row.maximumspeed_car + "<dd>");
+                        $('#accelerationtime').prepend("<dd value='" + row.id_car + "'>" + row.accelerationtime_car + "<dd>");
+                        $('#capacitytank').prepend("<dd value='" + row.id_car + "'>" + row.capacitytank_car + "<dd>");
+                        $('#numberseat').prepend("<dd value='" + row.id_car + "'>" + row.numberseat_car + "<dd>");
+                        $('#seat').prepend("<dd value='" + row.id_car + "'>" + row.seat_car + "<dd>");
+                        $('#airconditioner').prepend("<dd value='" + row.id_car + "'>" + row.airconditioner + "<dd>");
+                        $('#sunroof').prepend("<dd value='" + row.id_car + "'>" + row.sunroof_car + "<dd>");
+                        $('#image-detail1').attr('src', row.img_car)
+                        $('#charge').prepend("<div value='" + row.id_car + "'>" + row.charge_car + " tỷ " + "</div>");
+                        var selectedname = $("#automakerId option:selected").text() + " " + $("#modelId option:selected").text() + " " + $("#versionId option:selected").text();
+                        $('#car-head').prepend("<div value='" + row.id_car + "'>" + selectedname + "</div>");
+                        $('#reset-all').show();
+                    });
+                });
             })
 
-           
 
 
-            
+
+
 
 
 
@@ -693,7 +693,7 @@
                         $("#modelId1").append("<option value='" + row.id_model + "'>" + row.name_model + "</option>")
 
                     });
-                   
+
 
                 });
             })
@@ -707,7 +707,7 @@
                     });
                 });
 
-               
+
             })
 
             $("#versionId1").change(function () {
@@ -760,8 +760,8 @@
                     $.each(data, function (index, row) {
                         $("#modelId2").append("<option value='" + row.id_model + "'>" + row.name_model + "</option>")
                     });
-                   
-                }); 
+
+                });
             })
 
             $("#modelId2").change(function () {
@@ -771,7 +771,7 @@
                     $.each(data, function (index, row) {
                         $("#versionId2").append("<option value='" + row.id_version + "'>" + row.name_version + "</option>")
                     });
-                   
+
                 });
             })
 
@@ -818,107 +818,14 @@
 
 
 
-            $("#btn-1").click(function () {
-
-                $("#modelId").empty();
-                $("#modelId").append("<option value='no model'>--Select--</option>");
-                $("#versionId").empty();
-                $("#versionId").append("<option value='no version'>--Select--</option>");
-                $(".car-1").show();
-                $('#over').empty();
-                $('#length').empty();
-                $('#wheels').empty();
-                $('#tireparameters').empty();
-                $('#weight').empty();
-                $('#capacity').empty();
-                $('#horsepower').empty();
-                $('#torque').empty();
-                $('#drivetype').empty();
-                $('#frontbrakesystem').empty();
-                $('#rearbrakesystem').empty();
-                $('#maximumspeed').empty();
-                $('#accelerationtime').empty();
-                $('#capacitytank').empty();
-                $('#numberseat').empty();
-                $('#seat').empty();
-                $('#airconditioner').empty();
-                $('#sunroof').empty();
-                $('#image-detail1').empty();
-                $('#charge').empty();         
-                $('#car-head').empty();
-                $(".detail-car-1").hide();
-
-
-            });
-
-
-            $("#btn-2").click(function () {
-
-                $("#modelId1").empty();
-                $("#modelId1").append("<option value='no model'>--Select--</option>");
-                $("#versionId1").empty();
-                $("#versionId1").append("<option value='no version'>--Select--</option>");
-                $(".car-2").show();
-                $('#over1').empty();
-                $('#length1').empty();
-                $('#wheels1').empty();
-                $('#tireparameters1').empty();
-                $('#weight1').empty();
-                $('#capacity1').empty();
-                $('#horsepower1').empty();
-                $('#torque1').empty();
-                $('#drivetype1').empty();
-                $('#frontbrakesystem1').empty();
-                $('#rearbrakesystem1').empty();
-                $('#maximumspeed1').empty();
-                $('#accelerationtime1').empty();
-                $('#capacitytank1').empty();
-                $('#numberseat1').empty();
-                $('#seat1').empty();
-                $('#airconditioner1').empty();
-                $('#sunroof1').empty();
-                $('#image-detail2').empty();
-                $('#charge1').empty();
-                $('#car-head1').empty();
-                $(".detail-car-2").hide();
-
-
-            });
 
 
 
-            $("#btn-3").click(function () {
-
-                $("#modelId2").empty();
-                $("#modelId2").append("<option value='no model'>--Select--</option>");
-                $("#versionId2").empty();
-                $("#versionId2").append("<option value='no version'>--Select--</option>");
-                $(".car-3").show();
-                $('#over2').empty();
-                $('#length2').empty();
-                $('#wheels2').empty();
-                $('#tireparameters2').empty();
-                $('#weight2').empty();
-                $('#capacity2').empty();
-                $('#horsepower2').empty();
-                $('#torque2').empty();
-                $('#drivetype2').empty();
-                $('#frontbrakesystem2').empty();
-                $('#rearbrakesystem2').empty();
-                $('#maximumspeed2').empty();
-                $('#accelerationtime2').empty();
-                $('#capacitytank2').empty();
-                $('#numberseat2').empty();
-                $('#seat2').empty();
-                $('#airconditioner2').empty();
-                $('#sunroof2').empty();
-                $('#image-detail3').empty();
-                $('#charge2').empty();
-                $('#car-head2').empty();
-                $(".detail-car-3").hide();
 
 
-            });
+
+
+
 
         });
 
