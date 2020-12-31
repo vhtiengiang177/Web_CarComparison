@@ -118,56 +118,63 @@
     </ul>
 }
 
-<div>
-    <div style="color:#B81D22; font-size:21px; text-align:center; font-weight:bold">@Html.DisplayFor(model => model.title_article)</div>
-    <hr />
-    <div class="content-edit">
-        @if (Model.id_category != "CaAr01")
-        {
-            <div style="width:100%;margin-bottom:10px;"><img style="width:70%;display: block; margin-left: auto; margin-right: auto;" class="img-thumbnail" src="@Url.Content(Model.img_article)" alt="" id="img-thumb" /></div>
-        }
-        else
-        {
-            <div style="width:100%;margin-bottom:10px;"><iframe src="@Model.linkvideo_article" height="600" frameborder="0" style="width:70%;display: block; margin-left: auto; margin-right: auto;"></iframe></div>
+    <div>
+        <div style="color:#B81D22; font-size:21px; text-align:center; font-weight:bold">@Html.DisplayFor(model => model.title_article)</div>
+        <hr />
+        <div class="content-edit">
+            @if (Model.id_category != "CaAr01")
+            {
+                <div style="width:100%;margin-bottom:10px;"><img style="width:70%;display: block; margin-left: auto; margin-right: auto;" class="img-thumbnail" src="@Url.Content(Model.img_article)" alt="" id="img-thumb" /></div>
+            }
+            else
+            {
+                <div style="width:100%;margin-bottom:10px;"><iframe src="@Model.linkvideo_article" height="600" frameborder="0" style="width:70%;display: block; margin-left: auto; margin-right: auto;"></iframe></div>
 
-        }
-        <div class="form-car">
-            <div class="form-group">
+            }
+            <div class="form-car">
+                <div class="form-group">
+                    @if (Model.state_article == "1")
+                    {
+                        <div><span style="font-weight:bold">Trạng thái:</span> Đã xuất bản</div>
+                    }
+                    else
+                    {
+                        <div><span style="font-weight:bold">Trạng thái:</span> Chưa xuất bản</div>
+                    }
+                </div>
+            </div>
+            <div style="width:350px;">
+                <span style="font-weight:bold;">Ngày viết:</span> @Html.DisplayFor(model => model.time_write)
+            </div>
+            <div style="width:350px;" ">
                 @if (Model.state_article == "1")
                 {
-                    <div><span style="font-weight:bold">Trạng thái:</span> Đã xuất bản</div>
-                }
-                else
-                {
-                    <div><span style="font-weight:bold">Trạng thái:</span> Chưa xuất bản</div>
+                    <div><span style="font-weight:bold">Ngày xuất bản:</span> @Html.DisplayFor(model => model.time_pulish_article)</div>
                 }
             </div>
+            <div class="form-car">
+                <div><span style="font-weight:bold">Tác giả:</span> @Model.User_.lname_user @Model.User_.fname_user</div>
+            </div>
+            <div style="width:350px;">
+                <div><span style="font-weight:bold">Thể loại:</span> @Model.CategoryArticle.name_category</div>
+            </div>
+            <br />
+            <div style="font-weight:bold">Nội dung:</div>
+            <div style="width:100%; display: block; margin-left: auto; margin-right: auto; border:solid 1px; background-color:#ffffff; padding:10px; margin-bottom:20px; margin-top:20px;">@Html.Raw(Model.description_article)</div>
         </div>
-        <div style="width:350px;">
-            <span style="font-weight:bold;">Ngày viết:</span> @Html.DisplayFor(model => model.time_write)
+        @if (Model.state_article == "0")
+        {
+            <form action="/Article/Publish" method="post">
+                <input name="id_art" style="display:none" value="@Model.id_article" />
+                <input type="submit" class="btn btn-outline-primary" name="action" value="Đăng bài" />
+            </form>
+        }
+        <div class="content-edit">
+            <a href="/Admin/Cars/Edit/@Html.DisplayFor(model => model.id_article)">
+                <input type="button" class="btn btn-primary" id="edit" value="Sửa" />
+            </a>
+            <a href="/Admin/Articles" style="margin-left:5px;">
+                <input type="button" class="btn btn-secondary" value="Quay lại" />
+            </a>
         </div>
-        <div style="width:350px;" ">
-            @if (Model.state_article == "1")
-            {
-                <div><span style="font-weight:bold">Ngày xuất bản:</span> @Html.DisplayFor(model => model.time_pulish_article)</div>
-            }
-        </div>
-        <div class="form-car">
-            <div><span style="font-weight:bold">Tác giả:</span> @Model.User_.lname_user @Model.User_.fname_user</div>
-        </div>
-        <div style="width:350px;">
-            <div><span style="font-weight:bold">Thể loại:</span> @Model.CategoryArticle.name_category</div>
-        </div>
-        <br />
-        <div style="font-weight:bold">Nội dung:</div>
-        <div style="width:100%; display: block; margin-left: auto; margin-right: auto; border:solid 1px; background-color:#ffffff; padding:10px; margin-bottom:20px; margin-top:20px;">@Html.Raw(Model.description_article)</div>
     </div>
-     <div class="content-edit">
-        <a href="/Admin/Cars/Edit/@Html.DisplayFor(model => model.id_article)">
-            <input class="btn btn-primary" id="edit" value="Sửa"/>
-        </a>
-        <a href="/Admin/Articles" style="margin-left:5px;">
-            <input type="button" class="btn btn-secondary" value="Quay lại" />
-        </a>
-    </div>
-</div>

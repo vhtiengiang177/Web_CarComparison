@@ -355,6 +355,18 @@ namespace CarComparison.Areas.Admin.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpPost]
+        public ActionResult Publish(FormCollection f)
+        {
+            string id = f["id_art"];
+            Article art = db.Articles.Find(id);
+            art.state_article = "1";
+
+            db.Entry(art).State = EntityState.Modified;
+            db.SaveChanges();
+            return View("Index", "Articles");
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
