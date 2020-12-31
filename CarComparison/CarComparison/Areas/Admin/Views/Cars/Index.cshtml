@@ -42,10 +42,10 @@
                aria-expanded="true" aria-controls="collapseTwo">
                 <span>Xe</span>
             </a>
-            <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Tùy chỉnh xe:</h6>
-                    <a class="collapse-item active" href="/Admin/Cars">Danh sách xe</a> <!--Sửa đường link-->
+                    <a class="collapse-item active" href="/Admin/Cars">Danh sách xe</a>
                     <a class="collapse-item" href="/Admin/Cars/Create">Thêm xe</a>
                 </div>
             </div>
@@ -61,9 +61,8 @@
                  data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Tùy chỉnh bài viết:</h6>
-                    <a class="collapse-item" href="#">Danh sách các bài viết</a> <!--Sửa đường link-->
-                    <a class="collapse-item" href="#">Thêm bài đánh giá</a>
-                    <a class="collapse-item" href="#">Thêm video</a>
+                    <a class="collapse-item" href="/Admin/Articles/">Danh sách các bài viết</a>
+                    <a class="collapse-item" href="/Admin/Articles/Create">Thêm bài viết</a>
                 </div>
             </div>
         </li>
@@ -71,39 +70,20 @@
         <!-- Divider -->
         <hr class="sidebar-divider">
 
-        <!-- Heading -->
-        <div class="sidebar-heading">
-            Tài khoản
-        </div>
-
-        <!-- Nav Item - Nhân viên -->
+        <!-- Nav Item - Dashboard -->
         <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-               aria-expanded="true" aria-controls="collapsePages">
-                <span>Nhân viên</span>
-            </a>
-            <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Tùy chỉnh nhân viên:</h6>
-                    <a class="collapse-item" href="#">Danh sách nhân viên</a> <!--Sửa đường link-->
-                    <a class="collapse-item" href="#">Thêm nhân viên</a>
-                </div>
-            </div>
-        </li>
-
-        <!-- Nav Item - Người dùng -->
-        <li class="nav-item">
-            <a class="nav-link" href="#">
-                <!--Sửa đường link-->
+            <a class="nav-link" href="/Admin/User/">
                 <span>Người dùng</span>
             </a>
         </li>
 
-        <!-- Nav Item - Loại tài khoản -->
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+
+        <!-- Nav Item - Dashboard -->
         <li class="nav-item">
-            <a class="nav-link" href="/Admin/TypeUsers">
-                <!--Sửa đường link-->
-                <span>Loại tài khoản</span>
+            <a class="nav-link" href="/Admin/Contact/">
+                <span>Liên hệ</span>
             </a>
         </li>
 
@@ -202,6 +182,7 @@
         </div>
     </div>
 </div>
+
 @section scriptTable{
     <script src="~/Asset/Admin/vendor/datatables/jquery.dataTables.js"></script>
     <script src="~/Asset/Admin/vendor/datatables/dataTables.bootstrap4.js"></script>
@@ -223,8 +204,8 @@
                     "sSearch": "Tìm kiếm",
                     "sInfoFiltered": "(được lọc từ tổng _MAX_ mục được nhập)"
                 }
-            
-        });
+
+            });
         });
     </script>
 }

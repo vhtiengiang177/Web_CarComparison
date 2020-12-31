@@ -41,10 +41,10 @@
                aria-expanded="true" aria-controls="collapseTwo">
                 <span>Xe</span>
             </a>
-            <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Tùy chỉnh xe:</h6>
-                    <a class="collapse-item active" href="/Admin/Cars">Danh sách xe</a> <!--Sửa đường link-->
+                    <a class="collapse-item" href="/Admin/Cars">Danh sách xe</a>
                     <a class="collapse-item" href="/Admin/Cars/Create">Thêm xe</a>
                 </div>
             </div>
@@ -60,9 +60,8 @@
                  data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Tùy chỉnh bài viết:</h6>
-                    <a class="collapse-item" href="#">Danh sách các bài viết</a> <!--Sửa đường link-->
-                    <a class="collapse-item" href="#">Thêm bài đánh giá</a>
-                    <a class="collapse-item" href="#">Thêm video</a>
+                    <a class="collapse-item" href="/Admin/Articles/">Danh sách các bài viết</a>
+                    <a class="collapse-item" href="/Admin/Articles/Create">Thêm bài viết</a>
                 </div>
             </div>
         </li>
@@ -70,39 +69,20 @@
         <!-- Divider -->
         <hr class="sidebar-divider">
 
-        <!-- Heading -->
-        <div class="sidebar-heading">
-            Tài khoản
-        </div>
-
-        <!-- Nav Item - Nhân viên -->
+        <!-- Nav Item - Dashboard -->
         <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-               aria-expanded="true" aria-controls="collapsePages">
-                <span>Nhân viên</span>
-            </a>
-            <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Tùy chỉnh nhân viên:</h6>
-                    <a class="collapse-item" href="#">Danh sách nhân viên</a> <!--Sửa đường link-->
-                    <a class="collapse-item" href="#">Thêm nhân viên</a>
-                </div>
-            </div>
-        </li>
-
-        <!-- Nav Item - Người dùng -->
-        <li class="nav-item">
-            <a class="nav-link" href="#">
-                <!--Sửa đường link-->
+            <a class="nav-link" href="/Admin/User/">
                 <span>Người dùng</span>
             </a>
         </li>
 
-        <!-- Nav Item - Loại tài khoản -->
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+
+        <!-- Nav Item - Dashboard -->
         <li class="nav-item">
-            <a class="nav-link" href="/Admin/TypeUsers">
-                <!--Sửa đường link-->
-                <span>Loại tài khoản</span>
+            <a class="nav-link" href="/Admin/Contact/">
+                <span>Liên hệ</span>
             </a>
         </li>
 
@@ -116,6 +96,7 @@
     </ul>
 }
 
+
 <h1 class="h3 mb-2 text-gray-800">Chỉnh sửa</h1>
 <div class="text-lg-right">
     @Html.ActionLink("Quay lại", "Index")
@@ -124,160 +105,160 @@
 @using (Html.BeginForm("Edit", "Cars", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
-<div class="form-horizontal">
-    <hr />
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    <div class="content-edit">
-        <div class="form-car-create">
-            <div class="form-group">
-                <label>Mã Số Xe</label>
-                @Html.EditorFor(model => model.id_car, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                @Html.ValidationMessageFor(model => model.id_car, "", new { @class = "text-danger" })
-            </div>
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="content-edit">
+            <div class="form-car-create">
+                <div class="form-group">
+                    <label>Mã Số Xe</label>
+                    @Html.EditorFor(model => model.id_car, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                    @Html.ValidationMessageFor(model => model.id_car, "", new { @class = "text-danger" })
+                </div>
 
-            <div class="form-group">
-                <label>Hãng xe</label>
-                @Html.EditorFor(model => model.Version.Model.Automaker.name_automaker, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                @Html.ValidationMessageFor(model => model.Version.Model.Automaker.name_automaker, "", new { @class = "text-danger" })
-            </div>
+                <div class="form-group">
+                    <label>Hãng xe</label>
+                    @Html.EditorFor(model => model.Version.Model.Automaker.name_automaker, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                    @Html.ValidationMessageFor(model => model.Version.Model.Automaker.name_automaker, "", new { @class = "text-danger" })
+                </div>
 
-            <div class="form-group">
-                <label>Dòng xe</label>
-                @Html.EditorFor(model => model.Version.Model.name_model, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                @Html.ValidationMessageFor(model => model.Version.Model.name_model, "", new { @class = "text-danger" })
-            </div>
+                <div class="form-group">
+                    <label>Dòng xe</label>
+                    @Html.EditorFor(model => model.Version.Model.name_model, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                    @Html.ValidationMessageFor(model => model.Version.Model.name_model, "", new { @class = "text-danger" })
+                </div>
 
-            <div class="form-group">
-                <label>Phiên bản</label>
-                @Html.EditorFor(model => model.Version.name_version, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                @Html.ValidationMessageFor(model => model.Version.name_version, "", new { @class = "text-danger" })
-            </div>
+                <div class="form-group">
+                    <label>Phiên bản</label>
+                    @Html.EditorFor(model => model.Version.name_version, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                    @Html.ValidationMessageFor(model => model.Version.name_version, "", new { @class = "text-danger" })
+                </div>
 
-            <div class="form-group">
-                <label>Tổng Thể</label>
-                @Html.EditorFor(model => model.overview_car, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.overview_car, "", new { @class = "text-danger" })
-            </div>
+                <div class="form-group">
+                    <label>Tổng Thể</label>
+                    @Html.EditorFor(model => model.overview_car, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.overview_car, "", new { @class = "text-danger" })
+                </div>
 
-            <div class="form-group">
-                <label>Chiều Dài Cơ Sở</label>
-                @Html.EditorFor(model => model.length_car, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.length_car, "", new { @class = "text-danger" })
-            </div>
+                <div class="form-group">
+                    <label>Chiều Dài Cơ Sở</label>
+                    @Html.EditorFor(model => model.length_car, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.length_car, "", new { @class = "text-danger" })
+                </div>
 
-            <div class="form-group">
-                <label>Mâm Xe</label>
-                @Html.EditorFor(model => model.wheels_car, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.wheels_car, "", new { @class = "text-danger" })
-            </div>
+                <div class="form-group">
+                    <label>Mâm Xe</label>
+                    @Html.EditorFor(model => model.wheels_car, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.wheels_car, "", new { @class = "text-danger" })
+                </div>
 
-            <div class="form-group">
-                <label>Thông Số Lốp</label>
-                @Html.EditorFor(model => model.tireparameters_car, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.tireparameters_car, "", new { @class = "text-danger" })
-            </div>
+                <div class="form-group">
+                    <label>Thông Số Lốp</label>
+                    @Html.EditorFor(model => model.tireparameters_car, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.tireparameters_car, "", new { @class = "text-danger" })
+                </div>
 
-            <div class="form-group">
-                <label>Cân Nặng</label>
-                @Html.EditorFor(model => model.weight_car, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.weight_car, "", new { @class = "text-danger" })
-            </div>
+                <div class="form-group">
+                    <label>Cân Nặng</label>
+                    @Html.EditorFor(model => model.weight_car, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.weight_car, "", new { @class = "text-danger" })
+                </div>
 
-            <div class="form-group">
-                <label>Dung Tích Động Cơ</label>
-                @Html.EditorFor(model => model.capacity_car, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.capacity_car, "", new { @class = "text-danger" })
-            </div>
+                <div class="form-group">
+                    <label>Dung Tích Động Cơ</label>
+                    @Html.EditorFor(model => model.capacity_car, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.capacity_car, "", new { @class = "text-danger" })
+                </div>
 
-            <div class="form-group">
-                <label>Mã Lực</label>
-                @Html.EditorFor(model => model.horsepower_car, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.horsepower_car, "", new { @class = "text-danger" })
-            </div>
+                <div class="form-group">
+                    <label>Mã Lực</label>
+                    @Html.EditorFor(model => model.horsepower_car, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.horsepower_car, "", new { @class = "text-danger" })
+                </div>
 
-            <div class="form-group">
-                <label>Hộp Số</label>
-                @Html.EditorFor(model => model.gear_car, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.gear_car, "", new { @class = "text-danger" })
-            </div>
+                <div class="form-group">
+                    <label>Hộp Số</label>
+                    @Html.EditorFor(model => model.gear_car, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.gear_car, "", new { @class = "text-danger" })
+                </div>
 
-            <div class="form-group">
-                <label>Momen Xoắn</label>
-                @Html.EditorFor(model => model.torque_car, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.torque_car, "", new { @class = "text-danger" })
-            </div>
+                <div class="form-group">
+                    <label>Momen Xoắn</label>
+                    @Html.EditorFor(model => model.torque_car, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.torque_car, "", new { @class = "text-danger" })
+                </div>
 
-            <div class="form-group">
-                <label>Hệ Dẫn Động</label>
-                @Html.EditorFor(model => model.drivetype_car, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.drivetype_car, "", new { @class = "text-danger" })
-            </div>
+                <div class="form-group">
+                    <label>Hệ Dẫn Động</label>
+                    @Html.EditorFor(model => model.drivetype_car, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.drivetype_car, "", new { @class = "text-danger" })
+                </div>
 
-            <div class="form-group">
-                <label>Hệ Thống Phanh Trước</label>
-                @Html.EditorFor(model => model.frontbrakesystem_car, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.frontbrakesystem_car, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    <label>Hệ Thống Phanh Trước</label>
+                    @Html.EditorFor(model => model.frontbrakesystem_car, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.frontbrakesystem_car, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
-        <div class="form-car-create">
-            <div class="form-group">
-                <label>Hệ Thống Phanh Sau</label>
-                @Html.EditorFor(model => model.rearbrakesystem_car, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.rearbrakesystem_car, "", new { @class = "text-danger" })
-            </div>
+            <div class="form-car-create">
+                <div class="form-group">
+                    <label>Hệ Thống Phanh Sau</label>
+                    @Html.EditorFor(model => model.rearbrakesystem_car, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.rearbrakesystem_car, "", new { @class = "text-danger" })
+                </div>
 
-            <div class="form-group">
-                <label>Tốc Độ Tối Đa</label>
-                @Html.EditorFor(model => model.maximumspeed_car, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.maximumspeed_car, "", new { @class = "text-danger" })
-            </div>
+                <div class="form-group">
+                    <label>Tốc Độ Tối Đa</label>
+                    @Html.EditorFor(model => model.maximumspeed_car, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.maximumspeed_car, "", new { @class = "text-danger" })
+                </div>
 
-            <div class="form-group">
-                <label>Thời gian tăng tốc từ 0-100km/h</label>
-                @Html.EditorFor(model => model.accelerationtime_car, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.accelerationtime_car, "", new { @class = "text-danger" })
-            </div>
+                <div class="form-group">
+                    <label>Thời gian tăng tốc từ 0-100km/h</label>
+                    @Html.EditorFor(model => model.accelerationtime_car, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.accelerationtime_car, "", new { @class = "text-danger" })
+                </div>
 
-            <div class="form-group">
-                <label>Dung Tích Bình Xăng</label>
-                @Html.EditorFor(model => model.capacitytank_car, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.capacitytank_car, "", new { @class = "text-danger" })
-            </div>
+                <div class="form-group">
+                    <label>Dung Tích Bình Xăng</label>
+                    @Html.EditorFor(model => model.capacitytank_car, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.capacitytank_car, "", new { @class = "text-danger" })
+                </div>
 
-            <div class="form-group">
-                <label>Số Ghế</label>
-                @Html.EditorFor(model => model.numberseat_car, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.numberseat_car, "", new { @class = "text-danger" })
-            </div>
+                <div class="form-group">
+                    <label>Số Ghế</label>
+                    @Html.EditorFor(model => model.numberseat_car, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.numberseat_car, "", new { @class = "text-danger" })
+                </div>
 
-            <div class="form-group">
-                <label>Loại Ghế</label>
-                @Html.EditorFor(model => model.seat_car, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.seat_car, "", new { @class = "text-danger" })
-            </div>
+                <div class="form-group">
+                    <label>Loại Ghế</label>
+                    @Html.EditorFor(model => model.seat_car, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.seat_car, "", new { @class = "text-danger" })
+                </div>
 
-            <div class="form-group">
-                <label>Điều Hòa</label>
-                @Html.EditorFor(model => model.airconditioner_car, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.airconditioner_car, "", new { @class = "text-danger" })
-            </div>
+                <div class="form-group">
+                    <label>Điều Hòa</label>
+                    @Html.EditorFor(model => model.airconditioner_car, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.airconditioner_car, "", new { @class = "text-danger" })
+                </div>
 
-            <div class="form-group">
-                <label>Cửa Sổ Trời</label>
-                @Html.EditorFor(model => model.sunroof_car, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.sunroof_car, "", new { @class = "text-danger" })
-            </div>
+                <div class="form-group">
+                    <label>Cửa Sổ Trời</label>
+                    @Html.EditorFor(model => model.sunroof_car, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.sunroof_car, "", new { @class = "text-danger" })
+                </div>
 
-            <div class="form-group">
-                <label>Giá Xe</label>
-                @Html.EditorFor(model => model.charge_car, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.charge_car, "", new { @class = "text-danger" })
-            </div>
+                <div class="form-group">
+                    <label>Giá Xe</label>
+                    @Html.EditorFor(model => model.charge_car, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.charge_car, "", new { @class = "text-danger" })
+                </div>
 
-            <div class="form-group">
-                <label>Ảnh</label>
-                <input class="btn btn-block" type="file" onchange="funCheck()" accept=".jpg" name="imageFile" id="imageFile" />
-                <script type="text/javascript">
+                <div class="form-group">
+                    <label>Ảnh</label>
+                    <input class="btn btn-block" type="file" onchange="funCheck()" accept=".jpg" name="imageFile" id="imageFile" />
+                    <script type="text/javascript">
                     function funCheck() {
                         var file = document.getElementById("imageFile").value;
                         var idxDot = file.lastIndexOf(".") + 1;
@@ -296,21 +277,21 @@
                             reader.readAsDataURL(document.getElementById("imageFile").files[0]);
                         }
                     }
-                </script>
-                <br />
-                <img class="img-thumbnail" width="70%" src="@Url.Content(Model.img_car)" alt="" id="img-thumb" />
-                @Html.EditorFor(model => model.img_car, new { htmlAttributes = new { @class = "form-control", @style = "opacity:0;" } })
+                    </script>
+                    <br />
+                    <img class="img-thumbnail" width="70%" src="@Url.Content(Model.img_car)" alt="" id="img-thumb" />
+                    @Html.EditorFor(model => model.img_car, new { htmlAttributes = new { @class = "form-control", @style = "opacity:0;" } })
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="form-car">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Lưu" class="btn btn-primary" /> |
-            @Html.ActionLink("Quay lại", "Index")
+        <div class="form-car">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Lưu" class="btn btn-primary" /> |
+                @Html.ActionLink("Quay lại", "Index")
+            </div>
         </div>
-    </div>
 
-</div>
+    </div>
 }
 
