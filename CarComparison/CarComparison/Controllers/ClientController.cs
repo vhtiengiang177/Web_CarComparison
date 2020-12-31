@@ -426,8 +426,7 @@ namespace CarComparison.Controllers
 
             arc.Article = (from c in db.Articles where c.id_article == id_art && c.id_category == "CaAr01" && c.state_article == "1" select c).ToList();
             arc.Comments = (from c in db.Comments where c.id_article == id select c).ToList();
-            //return RedirectToRoute("", "Client/DetailVideo/" + id_art);
-            return View("DetailVideo", arc);
+            return RedirectToAction("DetailVideo", "Client", new { id = id_art});
         }
 
         [HttpPost]
@@ -486,7 +485,7 @@ namespace CarComparison.Controllers
 
             arc.Article = (from c in db.Articles where c.id_article == id_art && c.id_category == "CaAr01" && c.state_article == "1" select c).ToList();
             arc.Comments = (from c in db.Comments where c.id_article == id select c).ToList();
-            return RedirectToRoute("Client/DetailVideo/", id_art);
+            return RedirectToAction("DetailBlog", "Client", new { id = id_art });
         }
 
         //Tìm kiếm theo ajax
