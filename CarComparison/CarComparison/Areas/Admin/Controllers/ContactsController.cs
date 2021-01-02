@@ -12,6 +12,7 @@ using CarComparison.Areas.Admin.Models;
 
 namespace CarComparison.Areas.Admin.Controllers
 {
+    [AuthorizeController]
     public class ContactsController : Controller
     {
         private CompareCarEntities db = new CompareCarEntities();
@@ -37,6 +38,9 @@ namespace CarComparison.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
+            contact.state_contact = "1";
+            db.Entry(contact).State = EntityState.Modified;
+            db.SaveChanges();
             return View(contact);
         }
 

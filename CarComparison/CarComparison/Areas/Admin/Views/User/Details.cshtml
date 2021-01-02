@@ -5,127 +5,113 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<h1 class="h3 mb-2 text-gray-800">Chi tiết tài khoản</h1>
 
 <div>
-    <h4>User_</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.name_user)
-        </dt>
+    <div class="content-edit">
+        <div class="form-car">
+            <div class="form-group">
+                <dt>
+                    Ảnh
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.name_user)
-        </dd>
+                <dd>
+                    <img class="img-thumbnail" style="object-fit:cover" src="@Url.Content(@Model.avt_user)" alt="" />
+                </dd>
+            </div>
+            <div class="form-group">
+                <dt>
+                    Tên tài khoản
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.password_user)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.name_user)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.password_user)
-        </dd>
+            </div>
+            <div class="form-group">
+                <dt>
+                    Họ
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.lname_user)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.lname_user)
+                </dd>
+            </div>
+            <div class="form-group">
+                <dt>
+                    Tên
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.fname_user)
+                </dd>
+            </div>
+        </div>
+        <div class="form-car">
+            <div class="form-group">
+                <dt>
+                    Giới tính
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.lname_user)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.sex_user)
+                </dd>
+            </div>
+            <div class="form-group">
+                <dt>
+                    Số điện thoại
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.fname_user)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.phone_user)
+                </dd>
+            </div>
+            <div class="form-group">
+                <dt>
+                    Loại tài khoản
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.fname_user)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.TypeUser.name_typeuser)
+                </dd>
+            </div>
+            <div class="form-group">
+                <dt>
+                    Địa chỉ
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.email_user)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.address_user)
+                </dd>
+            </div>
+            <div class="form-group">
+                <dt>
+                    Email
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.email_user)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.email_user)
+                </dd>
+            </div>
+        </div>
+    </div>
+    @Html.BeginForm("Block", "User_", FormMethod.Post)
+    {
+        <div class="content-edit">
+            @if (Model.block_state_user == "1")
+            {
+                <input type="submit" class="btn btn-primary" name="action" value="Khóa" />
+            }
+            else
+            {
+                <input type="submit" class="btn btn-primary" name="action" value="Mở khóa" />
+            }
+            </a>
+            <a href="/Admin/Cars" style="margin-left:5px;">
+                <input type="button" class="btn btn-secondary" value="Quay lại" />
+            </a>
+        </div>
+    }
 
-        <dt>
-            @Html.DisplayNameFor(model => model.avt_user)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.avt_user)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.block_state_user)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.block_state_user)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.registerdate_user)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.registerdate_user)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.lastvisitdate_user)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.lastvisitdate_user)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.phone_user)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.phone_user)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.sex_user)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.sex_user)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.birthday_user)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.birthday_user)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.address_user)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.address_user)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.TypeUser.name_typeuser)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TypeUser.name_typeuser)
-        </dd>
-
-    </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.id_user }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

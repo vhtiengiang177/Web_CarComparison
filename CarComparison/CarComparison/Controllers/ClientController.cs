@@ -188,6 +188,13 @@ namespace CarComparison.Controllers
                 //Thông báo không có bài viết đó
                 return HttpNotFound();
             }
+            else
+            {
+                Article art = db.Articles.Find(id);
+                art.view_article += 1;
+                db.Entry(art).State = EntityState.Modified;
+                db.SaveChanges();
+            }
             return View(arc);
             
         }
@@ -293,6 +300,13 @@ namespace CarComparison.Controllers
             {
                 //Thông báo không có bài viết đó
                 return HttpNotFound();
+            }
+            else
+            {
+                Article art = db.Articles.Find(id);
+                art.view_article += 1;
+                db.Entry(art).State = EntityState.Modified;
+                db.SaveChanges();
             }
             return View(arc);
         }

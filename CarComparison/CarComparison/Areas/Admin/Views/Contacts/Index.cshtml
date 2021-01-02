@@ -98,103 +98,109 @@
 
 
 <h1 class="h3 mb-2 text-gray-800">Danh sách liên hệ</h1>
+<div class="card shadow mb-4">
+    <div class="card-header py-0">
 
-@using (Html.BeginForm("ExportToExcel", "Contacts", FormMethod.Post))
-{
+        <div class="card-body text-right">
+            @using (Html.BeginForm("ExportToExcel", "Contacts", FormMethod.Post))
+            {
+                <input type="submit" value="Xuất File Excel" class="button btn btn-primary pull-right" />
+            }
+        </div>
 
-    <input type="submit" value="Xuất File Excel" class="button pull-right" />
-
-}
-
-
-<div class="card-body">
-    <div class="table-responsive">
-        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-            <thead>
-                <tr>
-                    <th>STT</th>
-                    <th>Tên người viết</th>
-                    <th>Email</th>
-                    <th>Ngày liên hệ</th>
-                    <th>Trạng thái</th>
-                    <th>Nội dung</th>
-                </tr>
-            </thead>
-            <tfoot>
-                <tr>
-                    <th>STT</th>
-                    <th>Tên người viết</th>
-                    <th>Email</th>
-                    <th>Ngày liên hệ</th>
-                    <th>Trạng thái</th>
-                    <th>Nội dung</th>
-                </tr>
-            </tfoot>
-            <tbody>
-                @{
-                    int i = 0;
-                }
-                @foreach (var item in Model)
-                {
-                <tr>
-                    <td>
-                        @{
-                            i++;
-                        }
-                        <div>@i</div>
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.name_contact)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.email_contact)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.date_contact)
-                    </td>
-                    <td>
-                        @if (item.state_contact == "1")
-                        {
-                            <div>Đã xem</div>
-                        }
-                        else
-                        {
-                            <div>Chưa xem</div>
-                        }
-                    </td>
-                    <td>
-                        @Html.ActionLink("Chi tiết", "Details", new { id = item.id_contact })
-                    </td>
-                </tr>
-                }
-            </tbody>
-        </table>
     </div>
-</div>
 
-@section scriptTable{
-    <script src="~/Asset/Admin/vendor/datatables/jquery.dataTables.js"></script>
-    <script src="~/Asset/Admin/vendor/datatables/dataTables.bootstrap4.js"></script>
-    <script>
-        $(document).ready(function () {
-            $('#dataTable').DataTable({
-                "language": {
-                    "bLengthChange": true,
-                    "sLengthMenu": "Hiển thị _MENU_ mục",
-                    "zeroRecords": "Lỗi: Không tìm thấy dữ liệu",
-                    "sInfo": "Hiển thị từ _START_ đến  _END_ trong _TOTAL_ mục",
-                    "infoEmpty": "Dữ liệu không có sẵn",
-                    "oPaginate": {
-                        "sFirst": "Đầu",
-                        "sLast": "Cuối",
-                        "sNext": "Tiếp",
-                        "sPrevious": "Trước"
-                    },
-                    "sSearch": "Tìm kiếm",
-                    "sInfoFiltered": "(được lọc từ tổng _MAX_ mục được nhập)"
-                }
 
+
+
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th>Tên người viết</th>
+                        <th>Email</th>
+                        <th>Ngày liên hệ</th>
+                        <th>Trạng thái</th>
+                        <th>Nội dung</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>STT</th>
+                        <th>Tên người viết</th>
+                        <th>Email</th>
+                        <th>Ngày liên hệ</th>
+                        <th>Trạng thái</th>
+                        <th>Nội dung</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    @{
+                        int i = 0;
+                    }
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @{
+                                    i++;
+                                }
+                                <div>@i</div>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.name_contact)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.email_contact)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.date_contact)
+                            </td>
+                            <td>
+                                @if (item.state_contact == "1")
+                                {
+                                    <div>Đã xem</div>
+                                }
+                                else
+                                {
+                                    <div>Chưa xem</div>
+                                }
+                            </td>
+                            <td>
+                                @Html.ActionLink("Chi tiết", "Details", new { id = item.id_contact })
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    @section scriptTable{
+        <script src="~/Asset/Admin/vendor/datatables/jquery.dataTables.js"></script>
+        <script src="~/Asset/Admin/vendor/datatables/dataTables.bootstrap4.js"></script>
+        <script>
+            $(document).ready(function () {
+                $('#dataTable').DataTable({
+                    "language": {
+                        "bLengthChange": true,
+                        "sLengthMenu": "Hiển thị _MENU_ mục",
+                        "zeroRecords": "Lỗi: Không tìm thấy dữ liệu",
+                        "sInfo": "Hiển thị từ _START_ đến  _END_ trong _TOTAL_ mục",
+                        "infoEmpty": "Dữ liệu không có sẵn",
+                        "oPaginate": {
+                            "sFirst": "Đầu",
+                            "sLast": "Cuối",
+                            "sNext": "Tiếp",
+                            "sPrevious": "Trước"
+                        },
+                        "sSearch": "Tìm kiếm",
+                        "sInfoFiltered": "(được lọc từ tổng _MAX_ mục được nhập)"
+                    }
+
+                });
             });
-        });
-    </script>
-}
+        </script>
+    }
