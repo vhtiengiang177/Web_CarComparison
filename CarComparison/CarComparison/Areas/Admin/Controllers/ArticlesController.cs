@@ -1,15 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.Entity;
+using System.Data.OleDb;
+using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using CarComparison.Areas.Admin.Models;
 using Newtonsoft.Json;
+using OfficeOpenXml;
 
 namespace CarComparison.Areas.Admin.Controllers
 {
@@ -375,5 +380,192 @@ namespace CarComparison.Areas.Admin.Controllers
             }
             base.Dispose(disposing);
         }
+
+
+
+
+        [HttpPost]
+        public ActionResult Index(HttpPostedFileBase file)
+        {
+            string filePath = string.Empty;
+            if (file != null)
+            {
+                string path = Server.MapPath("~/Uploads/");
+                if (!Directory.Exists(path))
+                {
+                    Directory.CreateDirectory(path);
+                }
+
+                filePath = path + Path.GetFileName(file.FileName);
+                string extension = Path.GetExtension(file.FileName);
+                file.SaveAs(filePath);
+
+                string conString = string.Empty;
+
+                switch (extension)
+                {
+                    case ".xls": //Excel 97-03.
+                        conString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + filePath + ";Extended Properties='Excel 8.0;HDR=YES'";
+                        break;
+                    case ".xlsx": //Excel 07 and above.
+                        conString = "Provider=Microsoft.ACE.OLEDB.16.0;Data Source=" + filePath + ";Extended Properties='Excel 8.0;HDR=YES'";
+                        break;
+                }
+
+                DataTable dt = new DataTable();
+                conString = string.Format(conString, filePath);
+
+                using (OleDbConnection connExcel = new OleDbConnection(conString))
+                {
+                    using (OleDbCommand cmdExcel = new OleDbCommand())
+                    {
+                        using (OleDbDataAdapter odaExcel = new OleDbDataAdapter())
+                        {
+                            cmdExcel.Connection = connExcel;
+
+                            //Get the name of First Sheet.
+                            connExcel.Open();
+                            DataTable dtExcelSchema;
+                            dtExcelSchema = connExcel.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, null);
+                            string sheetName = dtExcelSchema.Rows[0]["TABLE_NAME"].ToString();
+                            connExcel.Close();
+
+                            //Read Data from First Sheet.
+                            connExcel.Open();
+                            cmdExcel.CommandText = "SELECT * From [" + sheetName + "]";
+                            odaExcel.SelectCommand = cmdExcel;
+                            odaExcel.Fill(dt);
+                            connExcel.Close();
+                        }
+                    }
+                }
+
+                conString = @"Server=localhost;Database=CompareCar;Trusted_Connection=True;";
+                using (SqlConnection con = new SqlConnection(conString))
+                {
+                    using (SqlBulkCopy sqlBulkCopy = new SqlBulkCopy(con))
+                    {
+                        //Set the database table name.
+                        sqlBulkCopy.DestinationTableName = "dbo.Article";
+
+                        // Map the Excel columns with that of the database table, this is optional but good if you do
+                        // 
+                        sqlBulkCopy.ColumnMappings.Add("id_article", "id_article");
+                        sqlBulkCopy.ColumnMappings.Add("id_category", "id_category");
+                        sqlBulkCopy.ColumnMappings.Add("title_article", "title_article");
+                        sqlBulkCopy.ColumnMappings.Add("alias_article", "alias_article");
+                        sqlBulkCopy.ColumnMappings.Add("id_user", "id_user");
+                        sqlBulkCopy.ColumnMappings.Add("description_article", "description_article");
+                        sqlBulkCopy.ColumnMappings.Add("time_pulish_article", "time_pulish_article");
+                        sqlBulkCopy.ColumnMappings.Add("time_write", "time_write");
+
+                        sqlBulkCopy.ColumnMappings.Add("state_article", "state_article");
+                        sqlBulkCopy.ColumnMappings.Add("linkvideo_article", "linkvideo_article");
+                        sqlBulkCopy.ColumnMappings.Add("img_article", "img_article");
+                        sqlBulkCopy.ColumnMappings.Add("view_article", "view_article");
+
+                        con.Open();
+                        sqlBulkCopy.WriteToServer(dt);
+                        con.Close();
+                    }
+                }
+            }
+            //if the code reach here means everthing goes fine and excel data is imported into database
+            ViewBag.Success = "File Imported and excel data saved into database";
+
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Index2(HttpPostedFileBase postedFile)
+        {
+            string filePath = string.Empty;
+            if (postedFile != null)
+            {
+                string path = Server.MapPath("~/Uploads/");
+                if (!Directory.Exists(path))
+                {
+                    Directory.CreateDirectory(path);
+                }
+
+                filePath = path + Path.GetFileName(postedFile.FileName);
+                string extension = Path.GetExtension(postedFile.FileName);
+                postedFile.SaveAs(filePath);
+
+                string conString = string.Empty;
+                switch (extension)
+                {
+                    case ".xls": //Excel 97-03.
+                        conString = ConfigurationManager.ConnectionStrings["Excel03ConString"].ConnectionString;
+                        break;
+                    case ".xlsx": //Excel 07 and above.
+                        conString = ConfigurationManager.ConnectionStrings["Excel07ConString"].ConnectionString;
+                        break;
+                }
+
+                DataTable dtEmployee = new DataTable();
+                conString = string.Format(conString, filePath);
+
+                using (OleDbConnection connExcel = new OleDbConnection(conString))
+                {
+                    using (OleDbCommand cmdExcel = new OleDbCommand())
+                    {
+                        using (OleDbDataAdapter odaExcel = new OleDbDataAdapter())
+                        {
+                            cmdExcel.Connection = connExcel;
+
+                            //Get the name of First Sheet.
+                            connExcel.Open();
+                            DataTable dtExcelSchema;
+                            dtExcelSchema = connExcel.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, null);
+                            string sheetName = dtExcelSchema.Rows[0]["TABLE_NAME"].ToString();
+                            connExcel.Close();
+
+                            //Read Data from First Sheet.
+                            connExcel.Open();
+                            cmdExcel.CommandText = "SELECT * From [" + sheetName + "]";
+                            odaExcel.SelectCommand = cmdExcel;
+                            odaExcel.Fill(dtEmployee);
+                            connExcel.Close();
+                        }
+                    }
+                }
+
+                conString = ConfigurationManager.ConnectionStrings["Constring"].ConnectionString;
+                using (SqlConnection con = new SqlConnection(conString))
+                {
+                    using (SqlBulkCopy sqlBulkCopy = new SqlBulkCopy(con))
+                    {
+                        //Set the database table name.
+                        sqlBulkCopy.DestinationTableName = "dbo.Article";
+
+                        //[OPTIONAL]: Map the Excel columns with that of the database table
+                        sqlBulkCopy.ColumnMappings.Add("id_article", "id_article");
+                        sqlBulkCopy.ColumnMappings.Add("id_category", "id_category");
+                        sqlBulkCopy.ColumnMappings.Add("title_article", "title_article");
+                        sqlBulkCopy.ColumnMappings.Add("alias_article", "alias_article");
+                        sqlBulkCopy.ColumnMappings.Add("id_user", "id_user");
+                        sqlBulkCopy.ColumnMappings.Add("description_article", "description_article");
+                        sqlBulkCopy.ColumnMappings.Add("time_pulish_article", "time_pulish_article");
+                        sqlBulkCopy.ColumnMappings.Add("time_write", "time_write");
+                        sqlBulkCopy.ColumnMappings.Add("state_article", "state_article");
+                        sqlBulkCopy.ColumnMappings.Add("linkvideo_article", "linkvideo_article");
+                        sqlBulkCopy.ColumnMappings.Add("img_article", "img_article");
+                        sqlBulkCopy.ColumnMappings.Add("view_article", "view_article");
+
+                        con.Open();
+                        sqlBulkCopy.WriteToServer(dtEmployee);
+                        con.Close();
+                    }
+                }
+            }
+            ViewBag.Success = "File Imported and excel data saved into database";
+
+            return View();
+        }
+
+        
+
+
     }
 }
