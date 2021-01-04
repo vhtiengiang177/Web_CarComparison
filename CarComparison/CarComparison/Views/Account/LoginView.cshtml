@@ -55,7 +55,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 <div class="w3_info">
                     <h2>ĐĂNG NHẬP</h2>
                     <br />
-                    <form action="/Account/Login"  method="post">
+                    <form action="/Account/Login" method="post">
                         @Html.ValidationSummary(true)
 
                         @Html.AntiForgeryToken()
@@ -69,9 +69,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                             <span class="fa fa-lock" aria-hidden="true"></span>
                             <input type="password" placeholder="Enter Password" name="password" required="">
                         </div>
-                        @*<div class="login-check">
-                            <label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i> </i> Ghi nhớ đăng nhập</label>
-                        </div>*@
+                        <a href="/Account/ForgotPassword" style="font-size:15px; text-decoration:none; color:black; font-weight:normal">Quên mật khẩu</a>
                         <div>
                             @Html.ValidationMessage("LoginError", new { @class = "text-danger", @style = "color: crimson;" })
                         </div>

@@ -224,6 +224,7 @@
     <Compile Include="Areas\Admin\Models\Permission.cs">
       <DependentUpon>CarModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Areas\Admin\Models\ResetPasswordModel.cs" />
     <Compile Include="Areas\Admin\Models\TypeUser.cs">
       <DependentUpon>CarModel.tt</DependentUpon>
     </Compile>
@@ -240,7 +241,6 @@
       <DependentUpon>CarModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ClientController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Global.asax.cs">
@@ -2703,8 +2703,6 @@
     <Content Include="Views\Client\Index.cshtml" />
     <Content Include="Views\Client\Review.cshtml" />
     <Content Include="Views\Client\Team.cshtml" />
-    <Content Include="Views\Login\RegisterView.cshtml" />
-    <Content Include="Views\Login\LoginView.cshtml" />
     <Content Include="Views\Client\blogPartial.cshtml" />
     <Content Include="Views\Client\videoPartial.cshtml" />
     <Content Include="Views\Client\Video.cshtml" />
@@ -2718,6 +2716,8 @@
     <Content Include="Views\Account\RegisterView.cshtml" />
     <Content Include="Views\Account\AccountInformation.cshtml" />
     <Content Include="Views\Client\ArcCompare.cshtml" />
+    <Content Include="Views\Account\ForgotPassword.cshtml" />
+    <Content Include="Views\Account\ResetPassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

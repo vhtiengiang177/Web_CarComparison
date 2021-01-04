@@ -47,7 +47,6 @@ E:\TienGiang\Nam3Ky1\Lập trình Web\Web_CarComparison\CarComparison\CarCompari
 E:\TienGiang\Nam3Ky1\Lập trình Web\Web_CarComparison\CarComparison\CarComparison\bin\roslyn\vbc.rsp
 E:\TienGiang\Nam3Ky1\Lập trình Web\Web_CarComparison\CarComparison\CarComparison\bin\roslyn\VBCSCompiler.exe
 E:\TienGiang\Nam3Ky1\Lập trình Web\Web_CarComparison\CarComparison\CarComparison\bin\roslyn\VBCSCompiler.exe.config
-E:\TienGiang\Nam3Ky1\Lập trình Web\Web_CarComparison\CarComparison\CarComparison\obj\Debug\CarComparison.csprojAssemblyReference.cache
 E:\TienGiang\Nam3Ky1\Lập trình Web\Web_CarComparison\CarComparison\CarComparison\obj\Debug\CarComparison.csproj.CoreCompileInputs.cache
 E:\TienGiang\Nam3Ky1\Lập trình Web\Web_CarComparison\CarComparison\CarComparison\obj\Debug\CarComparison.csproj.CopyComplete
 E:\TienGiang\Nam3Ky1\Lập trình Web\Web_CarComparison\CarComparison\CarComparison\obj\Debug\CarComparison.dll
