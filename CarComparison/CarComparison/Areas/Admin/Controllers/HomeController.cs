@@ -46,7 +46,7 @@ namespace CarComparison.Areas.Admin.Controllers
           
             List<DataPoint> dataPointsArticle = new List<DataPoint>();
             var lst = from p in db.Articles
-                      
+                      where p.state_article=="1"
                       orderby p.view_article descending
 
                       select new
