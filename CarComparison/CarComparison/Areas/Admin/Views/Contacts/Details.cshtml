@@ -81,7 +81,7 @@
 
         <!-- Nav Item - Dashboard -->
         <li class="nav-item active">
-            <a class="nav-link" href="/Admin/Contact/">
+            <a class="nav-link" href="/Admin/Contacts">
                 <span>Liên hệ</span>
             </a>
         </li>
@@ -98,56 +98,53 @@
 
 <h1 class="h3 mb-2 text-gray-800">Nội dung liên hệ</h1>
 <div>
-    Người viết: @Html.DisplayFor(model => model.name_contact);
+    Người viết: @Html.DisplayFor(model => model.name_contact)
 </div>
-
 <div>
-    <h4>Contact</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.name_contact)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.name_contact)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.email_contact)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.email_contact)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.state_contact)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.state_contact)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.date_contact)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.date_contact)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.subject_contact)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.subject_contact)
-        </dd>
-
-    </dl>
+    Email: @Html.DisplayFor(model => model.email_contact)
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.id_contact }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+<div>
+    Ngày gửi: @Html.DisplayFor(model => model.date_contact)
+</div>
+<hr />
+<div style="width:100%; display: block; margin-left: auto; margin-right: auto; border:solid 1px; padding:10px; margin-bottom:20px; margin-top:20px;">
+    @Html.DisplayFor(model => model.subject_contact)
+</div>
+<div class="content-edit">
+    <a href="#" data-toggle="modal" data-target="#confirmDelete">
+        <input type="button" class="btn btn-primary" value="Xóa" />
+    </a>
+
+    <a href="/Admin/Contacts" style="margin-left:5px;">
+        <input type="button" class="btn btn-secondary" value="Quay lại" />
+    </a>
+</div>
+
+<!-- Logout Modal-->
+<div class="modal fade" id="confirmDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Thông báo</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">Chọn "Xóa" bên dưới nếu bạn đã chắc chắn xóa nội dung liên hệ này.</div>
+            <div class="modal-footer">
+                @using (Html.BeginForm("Delete", "Contacts", Model.id_contact, FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="form-actions no-color">
+                        <input type="submit" value="Xóa" class="btn btn-primary" id="confirmDelete" />
+                        <input class="btn btn-secondary" type="button" data-dismiss="modal" aria-label="Close"
+                               value="Hủy" />
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+

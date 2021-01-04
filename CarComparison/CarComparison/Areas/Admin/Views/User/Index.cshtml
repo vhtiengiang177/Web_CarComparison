@@ -10,103 +10,94 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.name_user)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.password_user)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.lname_user)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.fname_user)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.email_user)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.avt_user)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.block_state_user)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.registerdate_user)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.lastvisitdate_user)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.phone_user)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.sex_user)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.birthday_user)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.address_user)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TypeUser.name_typeuser)
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.name_user)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.password_user)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.lname_user)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.fname_user)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.email_user)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.avt_user)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.block_state_user)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.registerdate_user)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.lastvisitdate_user)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.phone_user)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.sex_user)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.birthday_user)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.address_user)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TypeUser.name_typeuser)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id_user }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id_user }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id_user })
-        </td>
-    </tr>
+<div class="card-body">
+    <div class="table-responsive">
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>STT</th>
+                    <th>Tên tài khoản</th>
+                    <th>Ngày đăng ký</th>
+                    <th>Ngày đăng nhập gần đây</th>
+                    <th>Hành động</th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <th>STT</th>
+                    <th>Tên tài khoản</th>
+                    <th>Ngày đăng ký</th>
+                    <th>Ngày đăng nhập gần đây</th>
+                    <th>Hành động</th>
+                </tr>
+            </tfoot>
+            <tbody>
+                @{
+                    int i = 0;
+                }
+                @foreach (var item in Model)
+                {
+                    @Html.BeginForm("Block", "User_", FormMethod.Post)
+                    {
+                        <tr>
+                            <td>
+                                @{
+                                    i++;
+                                }
+                                <div>@i</div>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.name_user)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.registerdate_user)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.lastvisitdate_user)
+                            </td>
+                            <td>
+                                @if (item.block_state_user == "1")
+                                {
+                                    <input type="submit" class="text-danger" name="action" value="Khóa" /> 
+                                }
+                                else
+                                {
+                                    <input type="submit" class="" name="action" value="Mở khóa" /> 
+                                }
+                                | @Html.ActionLink("Chi tiết", "Detail", new { id = item.id_user})
+                            </td>
+                        </tr>
+                    }
+                 }
+                </tbody>
+        </table>
+    </div>
+</div>
+
+@section scriptTable{
+    <script src="~/Asset/Admin/vendor/datatables/jquery.dataTables.js"></script>
+    <script src="~/Asset/Admin/vendor/datatables/dataTables.bootstrap4.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#dataTable').DataTable({
+                "language": {
+                    "bLengthChange": true,
+                    "sLengthMenu": "Hiển thị _MENU_ mục",
+                    "zeroRecords": "Lỗi: Không tìm thấy dữ liệu",
+                    "sInfo": "Hiển thị từ _START_ đến  _END_ trong _TOTAL_ mục",
+                    "infoEmpty": "Dữ liệu không có sẵn",
+                    "oPaginate": {
+                        "sFirst": "Đầu",
+                        "sLast": "Cuối",
+                        "sNext": "Tiếp",
+                        "sPrevious": "Trước"
+                    },
+                    "sSearch": "Tìm kiếm",
+                    "sInfoFiltered": "(được lọc từ tổng _MAX_ mục được nhập)"
+                }
+
+            });
+        });
+    </script>
 }
-
-</table>
