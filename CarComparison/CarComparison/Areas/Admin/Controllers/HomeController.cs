@@ -66,8 +66,49 @@ namespace CarComparison.Areas.Admin.Controllers
             return View();
         }
 
+        [ChildActionOnly] // action cannot be requested directly via URL
+        public ActionResult CountContact()
+        {
+            var con = db.Contacts.Where(c => c.state_contact == "0").ToList();
+            return Content(con.Count().ToString());
+        }
 
-        
-        
+        [ChildActionOnly] // action cannot be requested directly via URL
+        public ActionResult Notification()
+        {
+            var lstnew = (from c in db.Contacts orderby c.date_contact descending select c).ToList();
+            var lstnew3 = new List<Contact>();
+            if (lstnew.Count() >= 4)
+            {
+                lstnew3.Add(lstnew[0]);
+                lstnew3.Add(lstnew[1]);
+                lstnew3.Add(lstnew[2]);
+                lstnew3.Add(lstnew[3]);
+                ViewBag.lstnew3 = lstnew3;
+            }
+            else if (lstnew.Count() == 3)
+            {
+                lstnew3.Add(lstnew[0]);
+                lstnew3.Add(lstnew[1]);
+                lstnew3.Add(lstnew[2]);
+                ViewBag.lstnew3 = lstnew3;
+            }
+            else if (lstnew.Count() == 2)
+            {
+                lstnew3.Add(lstnew[0]);
+                lstnew3.Add(lstnew[1]);
+                ViewBag.lstnew3 = lstnew3;
+            }
+            else if (lstnew.Count() == 1)
+            {
+                lstnew3.Add(lstnew[0]);
+                ViewBag.lstnew3 = lstnew3;
+            }
+            else if (lstnew.Count() == 0)
+            {
+                ViewBag.lstnew3 = null;
+            }
+            return PartialView("~/Areas/Admin/Views/Home/NotificationPartialView.cshtml", ViewBag.lstnew3);
+        }
     }
 }

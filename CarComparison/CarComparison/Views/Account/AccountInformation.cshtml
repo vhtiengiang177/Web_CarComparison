@@ -37,6 +37,7 @@
     <li><a href="/Client/Index">Trang chủ</a></li>
     <li><a href="/Client/Comparing">So sánh Xe</a></li>
     <li><a href="/Client/Review">Bài đánh giá</a></li>
+    <li><a href="/Client/ArcCompare">Bài so sánh</a></li>
     <li><a href="/Client/Video">Video</a></li>
     <li><a href="/Client/Team">Team</a></li>
     <li><a href="/Client/Contact">Liên hệ</a></li>
@@ -48,7 +49,7 @@
         <div class="col-sm-3">
             <!-- cột bên trái -->
             <div class="text-center">
-                <img src=@user.avt_user class="avatar" style="object-fit:cover; height: 18rem; width: 18rem; border-radius: 50% !important;" alt="avatar" id="img-thumb">
+                <img src=@Model.avt_user class="avatar" style="object-fit:cover; height: 18rem; width: 18rem; border-radius: 50% !important;" alt="avatar" id="img-thumb">
                 <br>
                 <div style="font-size:18px; margin-bottom:5px; margin-top:10px;">@Html.DisplayFor(model => model.name_user)</div>
                 <hr />
@@ -58,16 +59,10 @@
         <div class="col-sm-9">
             <!-- cột bên phải-->
             <ul class="nav nav-tabs">
-                    <li id="li_info"><a data-toggle="tab" href="#info" onclick="funInfo()">Thông tin</a></li>
-                    <li id="li_edit"><a data-toggle="tab" href="#edit" onclick="funEdit()">Sửa thông tin</a></li>
-                    <li id="li_changepass"><a data-toggle="tab" href="#changepass" onclick="funChangePass()">Đổi mật khẩu</a></li>
+                <li id="li_info"><a data-toggle="tab" href="#info" onclick="funInfo()">Thông tin</a></li>
+                <li id="li_edit"><a data-toggle="tab" href="#edit" onclick="funEdit()">Sửa thông tin</a></li>
+                <li id="li_changepass"><a data-toggle="tab" href="#changepass" onclick="funChangePass()">Đổi mật khẩu</a></li>
             </ul>
-            <script>
-                function myFunction() {
-                    var element = document.getElementById("myDIV");
-                    element.classList.add("mystyle");
-                }
-            </script>
             <div class="tab-content">
                 <div class="tab-pane" id="info">
                     <br />
@@ -83,7 +78,7 @@
                             <div style="width:60%;">
                                 <div class="form-group">
                                     <div style="font-size:18px; margin-bottom:10px;"><span style="font-weight:bold;">Số điện thoại:</span> @Html.DisplayFor(model => model.phone_user)</div>
-                                    <div style="font-size:18px; margin-bottom:10px;"><span style="font-weight:bold;">Ngày sinh:</span> @user.birthday_user.Value.ToShortDateString()</div>
+                                    <div style="font-size:18px; margin-bottom:10px;"><span style="font-weight:bold;">Ngày sinh:</span> @Model.birthday_user.Value.ToShortDateString()</div>
                                     <div style="font-size:18px; margin-bottom:10px;"><span style="font-weight:bold;">Địa chỉ:</span> @Html.DisplayFor(model => model.address_user)</div>
                                 </div>
                             </div>
@@ -144,7 +139,7 @@
                                         <div style="font-weight:bold; padding-bottom:5px;">
                                             Ngày sinh:
                                         </div>
-                                        <input type="date" class="form-control" name="birthday_us" id="birthday_us" value="@user.birthday_user.Value.ToString("yyyy-MM-dd")" />
+                                        <input type="date" class="form-control" name="birthday_us" id="birthday_us" value="@Model.birthday_user.Value.ToString("yyyy-MM-dd")" />
                                     </div>
                                 </div>
                             </div>
@@ -154,11 +149,11 @@
                                         <div style="font-weight:bold; padding-bottom:5px;">
                                             Giới tính:
                                         </div>
-                                        @if (user.sex_user == "Nam")
+                                        @if (Model.sex_user == "Nam")
                                         {
                                             <span style="font-family:inherit; font-size:15px;">Nam&nbsp;&nbsp;<input type="radio" name="sex" value="1" checked />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;Nữ&nbsp;&nbsp;<input type="radio" name="sex" value="2" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;Khác&nbsp;&nbsp;<input type="radio" name="sex" value="3" /></span>
                                         }
-                                        else if (user.sex_user == "Nữ")
+                                        else if (Model.sex_user == "Nữ")
                                         {
                                             <span style="font-family:inherit; font-size:15px;">Nam&nbsp;&nbsp;<input type="radio" name="sex" value="1" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;Nữ&nbsp;&nbsp;<input type="radio" name="sex" value="2" checked />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;Khác&nbsp;&nbsp;<input type="radio" name="sex" value="3" /></span>
                                         }
@@ -170,7 +165,7 @@
                                 </div>
                                 <div class="form-group">
                                     <div id="change_avt" style="font-size:18px; margin-bottom:10px;font-weight:bold; padding-bottom:5px;">Đổi avatar</div>
-                                    <input type="file" class="text-center center-block btn btn-block" onchange="funCheck()" accept=".jpg" name="imageFile" id="imageFile" style="display:none;">
+                                    <input type="file" class="text-center center-block btn btn-block" onchange="funCheck()" accept=".jpg" name="imageFile" id="imageFile">
 
                                 </div>
                             </div>
@@ -229,7 +224,7 @@
                                 alert("Mật khẩu cũ không đúng hoặc mật khẩu mới nhập không trùng khớp!!");
                             </script>
                         }
-                        else if(ViewBag.tabactive == "changepasst")
+                        else if (ViewBag.tabactive == "changepasst")
                         {
                             <script>
                                 alert("Lưu thành công!!");
@@ -245,15 +240,15 @@
     function funEdit() {
         $("#change_avt").show();
         $("#imageFile").show();
-                        }
-                        function funInfo() {
+    }
+    function funInfo() {
         $("#change_avt").hide();
         $("#imageFile").hide();
-                        }
-                        function funChangePass() {
+    }
+    function funChangePass() {
         $("#change_avt").hide();
         $("#imageFile").hide();
-                        }
+    }
 </script>
 
 <script>

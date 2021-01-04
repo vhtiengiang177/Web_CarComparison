@@ -604,27 +604,19 @@ namespace CarComparison.Controllers
             string id_comment = f["id_comment"];
             string cat = f["category"];
             Comment cmt = db.Comments.Find(id_comment);
+            string idart = cmt.id_article;
             db.Comments.Remove(cmt);
             db.SaveChanges();
 
             if (cat == "Video")
             {
-                return RedirectToAction("DetailVideo", "Client", new { id = cmt.id_article });
-            }
-            else if(cat == "Đánh giá")
-            {
-                return RedirectToAction("DetailVideo", "Client", new { id = cmt.id_article });
+                return RedirectToAction("DetailVideo", "Client", new { id = idart });
             }
             else
             {
-                return RedirectToAction("DetailVideo", "Client", new { id = cmt.id_article });
+                return RedirectToAction("DetailBlog", "Client", new { id = idart });
             }
         }
-
-
-       
-
-       
-
+        
     }
 }

@@ -1,0 +1,27 @@
+﻿@model IEnumerable<CarComparison.Areas.Admin.Models.Contact>
+
+@foreach (var item in Model.Take(3))
+{
+<a class="dropdown-item d-flex align-items-center" href="/Admin/Contacts/Details/@item.id_contact">
+    @if (item.state_contact == "1")
+    {
+        <div>
+            <div class="text-truncate">
+                @item.subject_contact
+            </div>
+            <div class="small text-gray-500">@item.name_contact · @item.date_contact.Value.ToShortDateString()</div>
+        </div>
+    }
+    else
+    {
+        <div class="font-weight-bold">
+            <div class="text-truncate">
+                @item.subject_contact
+            </div>
+            <div class="small text-gray-500">@item.name_contact · @item.date_contact.Value.ToShortDateString()</div>
+        </div>
+    }
+
+</a>
+}
+

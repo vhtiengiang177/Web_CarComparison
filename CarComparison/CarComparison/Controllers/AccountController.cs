@@ -216,7 +216,7 @@ namespace CarComparison.Controllers
                 return RedirectToAction("Index", "Client");
             }
             ViewBag.tabactive = tab;
-            if(id_user != "")
+            if (id_user != "")
             {
                 User_ user = db.User_.Find(id_user);
                 return View(user);
