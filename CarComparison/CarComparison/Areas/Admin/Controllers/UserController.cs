@@ -62,8 +62,45 @@ namespace CarComparison.Areas.Admin.Controllers
         // GET: Admin/User/Create
         public ActionResult Create()
         {
+            // Tạo id user tự động
+            var createID = (from c in db.User_ select c.id_user).ToList();
+            string id = "";
+            if (createID.Count == 0) // nếu danh sách rỗng
+            {
+                id = "Us01";
+            }
+            else
+            {
+                for (int i = 0; i < createID.Count(); i++)
+                {
+                    if (int.Parse(createID[i].Substring(2, 2)) != (i + 1))
+                    {
+                        if (i + 1 >= 0 && i + 1 < 9)
+                            id = "Us0" + (i + 1).ToString();
+                        else if (i + 1 > 9)
+                            id = "Us" + (i + 1).ToString();
+                        break;
+                    }
+                }
+                if (id == "")
+                {
+                    id = createID[createID.Count - 1].Substring(2, 2);
+                    if (int.Parse(id) >= 0 && int.Parse(id) < 9)
+                    {
+                        id = "Us0" + (int.Parse(id) + 1).ToString();
+                    }
+                    else if (int.Parse(id) >= 9)
+                    {
+                        id = "Us" + (int.Parse(id) + 1).ToString();
+                    }
+                }
+            }
+            User_ us = new User_
+            {
+                id_user = id
+            };
             ViewBag.id_typeuser = new SelectList(db.TypeUsers, "id_typeuser", "name_typeuser");
-            return View();
+            return View(us);
         }
 
         // POST: Admin/User/Create
@@ -73,7 +110,8 @@ namespace CarComparison.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "id_user,name_user,password_user,id_typeuser,lname_user,fname_user,email_user,avt_user,block_state_user,registerdate_user,lastvisitdate_user,phone_user,sex_user,birthday_user,address_user")] User_ user_)
         {
-            if (user_.name_user == "" || user_.lname_user == "" || user_.fname_user == "" || user_.password_user == "" || user_.birthday_user == null || user_.id_typeuser == "")
+            string bday = Request["birthday"];
+            if (user_.name_user == "" || user_.lname_user == "" || user_.fname_user == "" || user_.password_user == "" || bday == null || user_.id_typeuser == "")
             {
                 if(user_.name_user == "")
                 {
@@ -91,7 +129,7 @@ namespace CarComparison.Areas.Admin.Controllers
                 {
                     ModelState.AddModelError("pass", "Không được để trống mật khẩu");
                 }
-                if (user_.birthday_user == null)
+                if (bday == null)
                 {
                     ModelState.AddModelError("bday", "Không được để trống ngày sinh");
                 }
@@ -112,40 +150,6 @@ namespace CarComparison.Areas.Admin.Controllers
                 user_.password_user = GetMD5(user_.password_user);
                 string sex = Request["sex"];
                 DateTime birthday = Convert.ToDateTime(Request["birthday"]);
-                // Tạo id user tự động
-                var createID = (from c in db.User_ select c.id_user).ToList();
-                string id = "";
-                if (createID.Count == 0) // nếu danh sách rỗng
-                {
-                    id = "Us01";
-                }
-                else
-                {
-                    for (int i = 0; i < createID.Count(); i++)
-                    {
-                        if (int.Parse(createID[i].Substring(2, 2)) != (i + 1))
-                        {
-                            if (i + 1 >= 0 && i + 1 < 9)
-                                id = "Us0" + (i + 1).ToString();
-                            else if (i + 1 > 9)
-                                id = "Us" + (i + 1).ToString();
-                            break;
-                        }
-                    }
-                    if (id == "")
-                    {
-                        id = createID[createID.Count - 1].Substring(2, 2);
-                        if (int.Parse(id) >= 0 && int.Parse(id) < 9)
-                        {
-                            id = "Us0" + (int.Parse(id) + 1).ToString();
-                        }
-                        else if (int.Parse(id) >= 9)
-                        {
-                            id = "Us" + (int.Parse(id) + 1).ToString();
-                        }
-                    }
-                }
-                user_.id_user = id;
                 if (sex == "1")
                 {
                     user_.sex_user = "Nam";
@@ -161,7 +165,7 @@ namespace CarComparison.Areas.Admin.Controllers
                 user_.birthday_user = birthday;
                 user_.block_state_user = "1";
                 user_.registerdate_user = DateTime.Now;
-
+                user_.avt_user = "/Asset/Image/User/Default.jpg";
                 db.User_.Add(user_);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -172,9 +176,10 @@ namespace CarComparison.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult Block([Bind(Include = "name_user,block_state_user")] User_ user_)
+        public ActionResult Block()
         {
-            User_ us = db.User_.Find(user_.name_user);
+            string id = Request["id"];
+            User_ us = db.User_.Find(id);
             string action = Request["action"];
             if(action == "Khóa")
             {
@@ -186,34 +191,34 @@ namespace CarComparison.Areas.Admin.Controllers
             }
             db.Entry(us).State = EntityState.Modified;
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "User", new { area = "Admin" });
         }
 
-        // GET: Admin/User/Delete/5
-        public ActionResult Delete(string id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            User_ user_ = db.User_.Find(id);
-            if (user_ == null)
-            {
-                return HttpNotFound();
-            }
-            return View(user_);
-        }
+        //// GET: Admin/User/Delete/5
+        //public ActionResult Delete(string id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    User_ user_ = db.User_.Find(id);
+        //    if (user_ == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(user_);
+        //}
 
-        // POST: Admin/User/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string id)
-        {
-            User_ user_ = db.User_.Find(id);
-            db.User_.Remove(user_);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
+        //// POST: Admin/User/Delete/5
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult DeleteConfirmed(string id)
+        //{
+        //    User_ user_ = db.User_.Find(id);
+        //    db.User_.Remove(user_);
+        //    db.SaveChanges();
+        //    return RedirectToAction("Index");
+        //}
 
         protected override void Dispose(bool disposing)
         {

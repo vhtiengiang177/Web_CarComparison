@@ -2334,6 +2334,7 @@
     <Content Include="Asset\Image\User\Default.JPG" />
     <Content Include="Asset\Image\User\Us01.jpg" />
     <Content Include="Asset\Image\User\Us02.jpg" />
+    <Content Include="Asset\Image\User\Us03.jpg" />
     <Content Include="Asset\Login\css\font-awesome.min.css" />
     <Content Include="Asset\Login\css\style.css" />
     <Content Include="Asset\Login\images\image.jpg" />
@@ -2662,7 +2663,6 @@
     <Content Include="Asset\Admin\js\ckeditor\samples\toolbarconfigurator\lib\codemirror\LICENSE" />
     <Content Include="Asset\Admin\js\ckeditor\skins\moono-lisa\readme.md" />
     <Content Include="Areas\Admin\Views\User\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\User\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\User\Details.cshtml" />
     <Content Include="Areas\Admin\Views\User\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Contacts\Delete.cshtml" />
