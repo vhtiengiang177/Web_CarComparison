@@ -5,6 +5,7 @@ using System.Data.Entity;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Mail;
 using System.Security.Cryptography;
 using System.Text;
 using System.Web;
@@ -344,6 +345,120 @@ namespace CarComparison.Controllers
                 return RedirectToAction("Logout"); // Thoát khỏi trang
             }
             return RedirectToAction("AccountInformation", "Account", new { us.id_user });
+        }
+
+        public ActionResult ForgotPassword()
+        {
+            ViewBag.Message = "";
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult ForgotPassword(string EmailID)
+        {
+            string resetCode = Guid.NewGuid().ToString();
+            var verifyUrl = "/Account/ResetPassword/" + resetCode;
+            var link = Request.Url.AbsoluteUri.Replace(Request.Url.PathAndQuery, verifyUrl);
+            var getUser = (from s in db.User_ where s.email_user == EmailID select s).FirstOrDefault();
+            if (getUser != null)
+            {
+                getUser.resetPassCode = resetCode;
+
+                //This line I have added here to avoid confirm password not match issue , as we had added a confirm password property 
+
+                db.Entry(getUser).State = EntityState.Modified;
+                db.SaveChanges();
+
+                var subject = "[CAR COMPARISON] Yêu cầu đặt lại mật khẩu";
+                var body = "Xin chào " + getUser.fname_user + ", <br/> Gần đây bạn đã yêu cầu đặt lại mật khẩu cho tài khoản của mình. Nhấp vào liên kết dưới đây để đặt lại mật khẩu." +
+
+                     " <br/><br/><a href='" + link + "'>" + link + "</a> <br/><br/>" +
+                     "Nếu bạn không yêu cầu đặt lại mật khẩu, vui lòng bỏ qua email này hoặc trả lời cho chúng tôi biết. Xin cảm ơn. <br/><br/>Trân trọng.<br/> Đội ngũ Car Comparison.";
+
+                SendEmail(getUser.email_user, body, subject);
+
+                ViewBag.Message = "Liên kết đặt lại mật khẩu đã được gửi đến id email của bạn.";
+            }
+            else
+            {
+                ViewBag.Message = "Tài khoản không tồn tại.";
+                return View();
+            }
+            return View();
+        }
+
+        private void SendEmail(string emailAddress, string body, string subject)
+        {
+            using (MailMessage mm = new MailMessage("vhtiengiang177@gmail.com", emailAddress))
+            {
+                mm.Subject = subject;
+                mm.Body = body;
+
+                mm.IsBodyHtml = true;
+                SmtpClient smtp = new SmtpClient();
+                smtp.Host = "smtp.gmail.com";
+                smtp.EnableSsl = true;
+                smtp.UseDefaultCredentials = false;
+                NetworkCredential NetworkCred = new NetworkCredential("vhtiengiang177@gmail.com", "ji@n554!");
+ 
+                smtp.Credentials = NetworkCred;
+                smtp.Port = 587;
+                smtp.Send(mm);
+
+            }
+        }
+
+        public ActionResult ResetPassword(string id)
+        {
+            //Verify the reset password link
+            //Find account associated with this link
+            //redirect to reset password page
+            if (string.IsNullOrWhiteSpace(id))
+            {
+                return HttpNotFound();
+            }
+
+            var user = (from c in db.User_ where c.resetPassCode == id select c).FirstOrDefault();
+            if (user != null)
+            {
+                ResetPasswordModel model = new ResetPasswordModel();
+                model.ResetCode = id;
+                return View(model);
+            }
+            else
+            {
+                return HttpNotFound();
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ResetPassword(ResetPasswordModel model)
+        {
+            var message = "";
+            if (ModelState.IsValid)
+            {
+                var user = db.User_.Where(a => a.resetPassCode == model.ResetCode).FirstOrDefault();
+                if (user != null)
+                {
+                    //you can encrypt password here, we are not doing it
+                    user.password_user = GetMD5(model.NewPassword);
+                    //make resetpasswordcode empty string now
+                    user.resetPassCode = "";
+                    //to avoid validation issues, disable it
+                    db.Configuration.ValidateOnSaveEnabled = false;
+                    db.SaveChanges();
+                    message = "Đã cập nhật mật khẩu mới thành công.";
+                    Session["user"] = user;
+                    return RedirectToAction("Index", "Client");
+                }
+            }
+            else
+            {
+                message = "Không hợp lệ.";
+            }
+            ViewBag.Message = message;
+            return View(model);
         }
 
         protected override void Dispose(bool disposing)

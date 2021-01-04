@@ -37,6 +37,7 @@ namespace CarComparison.Areas.Admin.Models
         public string sex_user { get; set; }
         public Nullable<System.DateTime> birthday_user { get; set; }
         public string address_user { get; set; }
+        public string resetPassCode { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Article> Articles { get; set; }

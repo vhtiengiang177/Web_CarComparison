@@ -153,16 +153,16 @@
                                 @Html.DisplayFor(modelItem => item.lastvisitdate_user)
                             </td>
                             <td>
-                                @if (item.block_state_user == "1")
+                                @if (item.block_state_user == "1" && item.id_user != "Us01")
                                 {
-                                    <input type="submit" class="text-danger" name="action" value="Khóa" />
+                                    <span><input type="submit" class="text-danger" name="action" value="Khóa" /> | </span>
                                 }
-                                else
+                                else if(item.block_state_user == "0" && item.id_user != "Us01")
                                 {
-                                    <input type="submit" class="" name="action" value="Mở khóa" />
+                                    <span><input type="submit" class="" name="action" value="Mở khóa" /> | </span>
                                 }
                                 <input style="display:none;" name="id" value=@Html.DisplayFor(modelItem => item.id_user) />
-                                | @Html.ActionLink("Chi tiết", "Details", new { id = item.id_user })
+                                @Html.ActionLink("Chi tiết", "Details", new { id = item.id_user })
                             </td>
                         </form>
                     </tr>

@@ -326,6 +326,7 @@
     <NavigationProperty Name="Articles" Relationship="CompareCarModel.FK_Article_id_user" FromRole="User_" ToRole="Article" />
     <NavigationProperty Name="Comments" Relationship="CompareCarModel.FK_Comment_id_commenter" FromRole="User_" ToRole="Comment" />
     <NavigationProperty Name="TypeUser" Relationship="CompareCarModel.FK_User_id_typeuser" FromRole="User_" ToRole="TypeUser" />
+    <Property Name="resetPassCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
   </EntityType>
   <Association Name="FK_Article_id_user">
     <End Type="CompareCarModel.User_" Role="User_" Multiplicity="0..1" />

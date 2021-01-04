@@ -131,6 +131,7 @@
           <Property Name="sex_user" Type="nvarchar" MaxLength="50" />
           <Property Name="birthday_user" Type="date" />
           <Property Name="address_user" Type="ntext" />
+          <Property Name="resetPassCode" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="User_Permission">
           <Key>
@@ -670,6 +671,7 @@
           <NavigationProperty Name="Articles" Relationship="CompareCarModel.FK_Article_id_user" FromRole="User_" ToRole="Article" />
           <NavigationProperty Name="Comments" Relationship="CompareCarModel.FK_Comment_id_commenter" FromRole="User_" ToRole="Comment" />
           <NavigationProperty Name="TypeUser" Relationship="CompareCarModel.FK_User_id_typeuser" FromRole="User_" ToRole="TypeUser" />
+          <Property Name="resetPassCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_Article_id_user">
           <End Type="CompareCarModel.User_" Role="User_" Multiplicity="0..1" />
@@ -850,6 +852,7 @@
           <EntitySetMapping Name="User_">
             <EntityTypeMapping TypeName="CompareCarModel.User_">
               <MappingFragment StoreEntitySet="User_">
+                <ScalarProperty Name="resetPassCode" ColumnName="resetPassCode" />
                 <ScalarProperty Name="address_user" ColumnName="address_user" />
                 <ScalarProperty Name="birthday_user" ColumnName="birthday_user" />
                 <ScalarProperty Name="sex_user" ColumnName="sex_user" />

@@ -138,6 +138,7 @@
     <EntitySetMapping Name="User_">
       <EntityTypeMapping TypeName="CompareCarModel.User_">
         <MappingFragment StoreEntitySet="User_">
+          <ScalarProperty Name="resetPassCode" ColumnName="resetPassCode" />
           <ScalarProperty Name="address_user" ColumnName="address_user" />
           <ScalarProperty Name="birthday_user" ColumnName="birthday_user" />
           <ScalarProperty Name="sex_user" ColumnName="sex_user" />

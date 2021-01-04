@@ -126,6 +126,7 @@
     <Property Name="sex_user" Type="nvarchar" MaxLength="50" />
     <Property Name="birthday_user" Type="date" />
     <Property Name="address_user" Type="ntext" />
+    <Property Name="resetPassCode" Type="nvarchar(max)" />
   </EntityType>
   <EntityType Name="User_Permission">
     <Key>
