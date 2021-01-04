@@ -2669,6 +2669,7 @@
     <Content Include="Areas\Admin\Views\Contacts\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Cars\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Contacts\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Home\NotificationPartialView.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />

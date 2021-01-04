@@ -97,28 +97,31 @@
 }
 
 <h1 class="h3 mb-2 text-gray-800">Nội dung liên hệ</h1>
-<div>
-    Người viết: @Html.DisplayFor(model => model.name_contact)
-</div>
-<div>
-    Email: @Html.DisplayFor(model => model.email_contact)
-</div>
-<div>
-    Ngày gửi: @Html.DisplayFor(model => model.date_contact)
-</div>
-<hr />
-<div style="width:100%; display: block; margin-left: auto; margin-right: auto; border:solid 1px; padding:10px; margin-bottom:20px; margin-top:20px;">
-    @Html.DisplayFor(model => model.subject_contact)
-</div>
-<div class="content-edit">
-    <a href="#" data-toggle="modal" data-target="#confirmDelete">
-        <input type="button" class="btn btn-primary" value="Xóa" />
-    </a>
+<div class="form-horizontal">
+    <div>
+        Người viết: @Html.DisplayFor(model => model.name_contact)
+    </div>
+    <div>
+        Email: @Html.DisplayFor(model => model.email_contact)
+    </div>
+    <div>
+        Ngày gửi: @Html.DisplayFor(model => model.date_contact)
+    </div>
+    <hr />
+    <div style="width:100%; display: block; margin-left: auto; margin-right: auto; border:solid 1px; padding:10px; margin-bottom:20px; margin-top:20px;">
+        @Html.DisplayFor(model => model.subject_contact)
+    </div>
+    <div class="content-edit">
+        <a href="#" data-toggle="modal" data-target="#confirmDelete">
+            <input type="button" class="btn btn-primary" value="Xóa" />
+        </a>
 
-    <a href="/Admin/Contacts" style="margin-left:5px;">
-        <input type="button" class="btn btn-secondary" value="Quay lại" />
-    </a>
+        <a href="/Admin/Contacts" style="margin-left:5px;">
+            <input type="button" class="btn btn-secondary" value="Quay lại" />
+        </a>
+    </div>
 </div>
+
 
 <!-- Logout Modal-->
 <div class="modal fade" id="confirmDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
