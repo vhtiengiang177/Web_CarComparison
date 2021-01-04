@@ -102,101 +102,119 @@
 <div class="card shadow mb-4">
     <div class="card-header py-0">
 
-        <div class="card-body text-right">
-            <a href="@Url.Action("Create", "Articles")" class="btn btn-primary btn-icon-split btn-sm">
-                <span class="text">Thêm bài viết</span>
-            </a>
+
+
+        <div class="card-body text-left">
+            <br />
+            @using (Html.BeginForm("Index", "Articles", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <input type="file" name="file" /><br />
+                <hr />
+                <input type="submit" value="Import to database" class="btn btn-primary" />
+            }
+            <br />
+            <div>
+                @ViewBag.Success
+            </div>
+
         </div>
 
-    </div>
-    @section search{
-        @using (Html.BeginForm("Index", "Articles", FormMethod.Get))
-        {
-            <!-- Topbar Search -->
-            <div class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                <div class="input-group">
-                    @Html.TextBox("searchname")
-                    <div class="input-group-append">
-                        <button class="btn btn-primary" type="submit" value="submit">
-                            <i class="fas fa-search fa-sm"></i>
-                        </button>
+        
+            <div class="card-body text-right">
+                <a href="@Url.Action("Create", "Articles")" class="btn btn-primary btn-icon-split btn-sm">
+                    <span class="text">Thêm bài viết</span>
+
+                </a>
+            </div>
+        </div>
+        @section search{
+            @using (Html.BeginForm("Index", "Articles", FormMethod.Get))
+            {
+                <!-- Topbar Search -->
+                <div class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                    <div class="input-group">
+                        @Html.TextBox("searchname")
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="submit" value="submit">
+                                <i class="fas fa-search fa-sm"></i>
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </div>
+            }
         }
-    }
-    <div class="card-body">
-        <div class="table-responsive">
-            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                <thead>
-                    <tr>
-                        <th>STT</th>
-                        <th>Thể loại</th>
-                        <th>Tiêu đề</th>
-                        <th>Tác giả</th>
-                        <th>Lượt xem</th>
-                        <th>Trạng thái</th>
-                        <th>Hành động</th>
-                    </tr>
-                </thead>
-                <tfoot>
-                    <tr>
-                        <th>STT</th>
-                        <th>Thể loại</th>
-                        <th>Tiêu đề</th>
-                        <th>Tác giả</th>
-                        <th>Lượt xem</th>
-                        <th>Trạng thái</th>
-                        <th>Hành động</th>
-                    </tr>
-                </tfoot>
-                <tbody>
-                    @{
-                        int i = 0;
-                    }
-                    @foreach (var item in Model)
-                    {
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
                         <tr>
-                            <td>
-                                @{
-                                    i++;
-                                }
-                                <div>@i</div>
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.CategoryArticle.name_category)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.title_article)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.User_.lname_user) @Html.DisplayFor(modelItem => item.User_.fname_user)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.view_article)
-                            </td>
-                            <td>
-                                @if (item.state_article == "1")
-                                {
-                                    <div>Đã xuất bản</div>
-                                }
-                                else
-                                {
-                                    <div>Bản nháp</div>
-                                }
-                            </td>
-                            <td>
-                                @Html.ActionLink("Chi tiết", "Details", new { id = item.id_article }) |
-                                @Html.ActionLink("Sửa", "Edit", new { id = item.id_article }) |
-                                @Html.ActionLink("Xóa", "Delete", new { id = item.id_article })
-                            </td>
+                            <th>STT</th>
+                            <th>Thể loại</th>
+                            <th>Tiêu đề</th>
+                            <th>Tác giả</th>
+                            <th>Lượt xem</th>
+                            <th>Trạng thái</th>
+                            <th>Hành động</th>
                         </tr>
-                    }
-                </tbody>
-            </table>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>STT</th>
+                            <th>Thể loại</th>
+                            <th>Tiêu đề</th>
+                            <th>Tác giả</th>
+                            <th>Lượt xem</th>
+                            <th>Trạng thái</th>
+                            <th>Hành động</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        @{
+                            int i = 0;
+                        }
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @{
+                                        i++;
+                                    }
+                                    <div>@i</div>
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CategoryArticle.name_category)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.title_article)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.User_.lname_user) @Html.DisplayFor(modelItem => item.User_.fname_user)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.view_article)
+                                </td>
+                                <td>
+                                    @if (item.state_article == "1")
+                                    {
+                                        <div>Đã xuất bản</div>
+                                    }
+                                    else
+                                    {
+                                        <div>Bản nháp</div>
+                                    }
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Chi tiết", "Details", new { id = item.id_article }) |
+                                    @Html.ActionLink("Sửa", "Edit", new { id = item.id_article }) |
+                                    @Html.ActionLink("Xóa", "Delete", new { id = item.id_article })
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
-</div>
 @section scriptTable{
     <script src="~/Asset/Admin/vendor/datatables/jquery.dataTables.js"></script>
     <script src="~/Asset/Admin/vendor/datatables/dataTables.bootstrap4.js"></script>
