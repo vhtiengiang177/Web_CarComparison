@@ -2,7 +2,6 @@
     ViewBag.Title = "Register";
     Layout = null;
 }
-
 <!--
 Author: W3layouts
 Author URL: http://w3layouts.com
@@ -56,10 +55,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         <label>Tài khoản</label>
                         <div class="input-group">
                             <input type="text" placeholder="Nhập tài khoản" name="username" required>
+                            @Html.ValidationMessage("RegisterError", new { @class = "text-danger", @style = "color: crimson;" })
                         </div>
                         <label>Mật khẩu</label>
                         <div class="input-group">
-                            <input type="password" placeholder="Nhập mật khẩu" name="password" required="">
+                            <input class="form-control" type="password" name="password_user" id="password_user" />
+                            @Html.ValidationMessage("PassError", new { @class = "text-danger", @style = "color: crimson;" })
                         </div>
                         <label>Họ</label>
                         <div class="input-group">

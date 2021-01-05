@@ -109,20 +109,27 @@ namespace CarComparison.Controllers
             return View();
         }
 
-
+        [HttpPost]
         public ActionResult Register(FormCollection f)
         {
             try
             {
                 string userName = f["username"].ToString();
+                string passWord = f["password_user"].ToString();
                 var checkUserName = (from c in db.User_ where c.name_user == userName select c).ToList();
-                if (checkUserName.Count() != 0)
+                if (checkUserName.Count() != 0 || passWord.Length < 8)
                 {
-                    ModelState.AddModelError("RegisterError", "Tên tài khoản đã tổn tại!");
+                    if (checkUserName.Count() != 0)
+                    {
+                        ModelState.AddModelError("RegisterError", "Tên tài khoản đã tồn tại!");
+                    }
+                    if (passWord.Length < 8)
+                    {
+                        ModelState.AddModelError("PassError", "Mật khẩu phải từ 8 ký tự trở lên!");
+                    }
                 }
                 else
                 {
-                    string passWord = f["password"].ToString();
                     string passWordmd5 = GetMD5(passWord);
                     string lastName = f["lname"].ToString();
                     string firstName = f["fname"].ToString();
@@ -186,13 +193,14 @@ namespace CarComparison.Controllers
                     us_new.password_user = passWordmd5;
                     us_new.registerdate_user = DateTime.Now;
                     us_new.lastvisitdate_user = DateTime.Now;
-                    us_new.address_user = us_new.avt_user = us_new.phone_user = "";
+                    us_new.address_user = us_new.phone_user = "";
+                    us_new.avt_user = "/Asset/Image/User/Default.jpg";
                     db.User_.Add(us_new);
                     db.SaveChanges();
                     Session["user"] = us_new;
                     return RedirectToAction("Index", "Client");
                 }
-                return View();
+                return View("RegisterView");
             }
             catch (Exception ex)
             {

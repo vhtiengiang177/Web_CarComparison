@@ -180,7 +180,6 @@
     <Compile Include="Areas\Admin\Controllers\ContactsController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserController.cs" />
-    <Compile Include="Areas\Admin\Models\Arc_Car_User.cs" />
     <Compile Include="Areas\Admin\Models\Article.cs">
       <DependentUpon>CarModel.tt</DependentUpon>
     </Compile>
