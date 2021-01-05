@@ -2717,6 +2717,7 @@
     <Content Include="Views\Client\ArcCompare.cshtml" />
     <Content Include="Views\Account\ForgotPassword.cshtml" />
     <Content Include="Views\Account\ResetPassword.cshtml" />
+    <Content Include="Uploads\book2.xlsx" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
