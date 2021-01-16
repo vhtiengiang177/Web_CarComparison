@@ -19,6 +19,12 @@ namespace CarComparison
                 defaults: new { controller = "Client", action = "Index", id = UrlParameter.Optional }
             );
 
+            routes.MapRoute(
+                name: "sosanh",
+                url: "Comparison",
+                defaults: new { controller = "Client", action = "Comparing", id = UrlParameter.Optional }
+            );
+
 
             routes.MapRoute(
                 name: "Default",

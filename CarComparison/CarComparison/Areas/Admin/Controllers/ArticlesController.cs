@@ -102,13 +102,13 @@ namespace CarComparison.Areas.Admin.Controllers
         public ActionResult Create([Bind(Include = "id_article,id_category,title_article,description_article,img_article,linkvideo_article,imageFile")] Article article)
         {
             string value = Request["action"]; // Lấy nút submit
-            if((article.id_category == "CaAr01" && article.linkvideo_article == "") || article.title_article == "" || article.description_article == "") 
+            if((article.id_category == "CaAr01" && article.linkvideo_article == "") || article.title_article == "" || article.description_article == "" || article.title_article == null) 
             {
                 if(article.linkvideo_article == "")
                 {
                     ModelState.AddModelError("linkError", "Không để trống link video");
                 }
-                if (article.title_article == "")
+                if (article.title_article == "" || article.title_article == null)
                 {
                     ModelState.AddModelError("titleError", "Không để trống tiêu đề");
                 }
