@@ -344,6 +344,12 @@ namespace CarComparison.Areas.Admin.Controllers
         public ActionResult DeleteConfirmed(string id)
         {
             Article article = db.Articles.Find(id);
+            var lstCom = (from c in db.Comments where c.id_article == id select c).ToList();
+            for (int i = 0; i < lstCom.Count; i++)
+            {
+                db.Comments.Remove(lstCom[i]);
+                db.SaveChanges();
+            }
             // Xóa hình của bài viết
             if (article.img_article != null && article.img_article != "")
             {
