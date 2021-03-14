@@ -1,1 +1,1 @@
-<?php include("../CarComparison/CarComparison/Views/Client/Index.cshtml"); ?>
+<?php include("./CarComparison/Views/Client/Index.cshtml"); ?>
