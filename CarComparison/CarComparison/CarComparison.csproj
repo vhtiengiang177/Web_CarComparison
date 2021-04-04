@@ -264,6 +264,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\CarComparison_db.mdf" />
+    <Content Include="App_Data\CarComparison_db_log.ldf">
+      <DependentUpon>CarComparison_db.mdf</DependentUpon>
+    </Content>
     <Content Include="Areas\Admin\Models\CarModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>CarModel.edmx</DependentUpon>
@@ -2760,6 +2764,7 @@
     <Content Include="Areas\Admin\Views\Cars\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Contacts\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Home\NotificationPartialView.cshtml" />
+    <Content Include="App_Data\CompareCar.bak" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -2810,7 +2815,6 @@
     <Content Include="Uploads\book2.xlsx" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="Asset\Client\styles\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Review\" />
