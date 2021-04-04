@@ -26,6 +26,8 @@ These instructions will get you a copy of the project up and running on your loc
 Login to Admin:
   - Username: Admin
   - Password: 123456
+
+Or you can register new account.
   
 ## Function
 - Compare cars.
