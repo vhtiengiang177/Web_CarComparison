@@ -9,8 +9,8 @@ These instructions will get you a copy of the project up and running on your loc
 - Entity Framework 6.0
 - ASP.NET MVC (Model - View - Controller)
 - Front-end:
-  - User Interface: Bootstrap v3.3.6
-  - Administration Interface: [Bootstrap v4.5.3](https://getbootstrap.com/) ([SB Admin 2 v4.1.3](https://startbootstrap.com/theme/sb-admin-2))
+  - User Interface: [Bootstrap](https://getbootstrap.com/) v3.3.6
+  - Administration Interface: Bootstrap v4.5.3 ([SB Admin 2 v4.1.3](https://startbootstrap.com/theme/sb-admin-2))
   - AJAX
   - ASP.NET Razor C# Syntax v3.0.0.0
 - [CKEditor 4](https://ckeditor.com/ckeditor-4/) (**Note:** Currently the registered account has expired.)
