@@ -226,3 +226,4 @@ E:\TienGiang\Nam3Ky1\Lập trình Web\Web_CarComparison\CarComparison\CarCompari
 E:\TienGiang\Nam3Ky1\Lập trình Web\Web_CarComparison\CarComparison\CarComparison\bin\System.ComponentModel.Annotations.dll
 E:\TienGiang\Nam3Ky1\Lập trình Web\Web_CarComparison\CarComparison\CarComparison\bin\EPPlus.xml
 E:\TienGiang\Nam3Ky1\Lập trình Web\Web_CarComparison\CarComparison\CarComparison\bin\Microsoft.IO.RecyclableMemoryStream.xml
+E:\TienGiang\Nam3Ky1\Lập trình Web\Web_CarComparison\CarComparison\CarComparison\obj\Debug\CarComparison.csprojAssemblyReference.cache

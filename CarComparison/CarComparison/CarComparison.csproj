@@ -43,6 +43,18 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <FilesToIncludeForPublish>AllFilesInTheProject</FilesToIncludeForPublish>
+    <PublishDatabaseSettings>
+      <Objects>
+        <ObjectGroup Name="CompareCarEntities-Deployment" Order="1">
+          <Destination Path="workstation id=CarComparison.mssql.somee.com%3bpacket size=4096%3buser id=vhtiengiang177_db%3bpwd=123456aA%3bdata source=CarComparison.mssql.somee.com%3bpersist security info=False%3binitial catalog=CarComparison" />
+          <Object Type="DbFullSql">
+            <PreSource Path="Data Source=localhost%3bInitial Catalog=CompareCar%3bIntegrated Security=True%3bApplication Name=EntityFramework" ScriptSchema="True" ScriptData="False" CopyAllFullTextCatalogs="False" DriDefaults="True" />
+            <Source Path="obj\Release\AutoScripts\CompareCarEntities-Deployment_SchemaOnly.sql" Transacted="True" />
+          </Object>
+        </ObjectGroup>
+      </Objects>
+    </PublishDatabaseSettings>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
@@ -246,13 +258,16 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Global.cs" />
-    <Compile Include="obj\Debug\.NETFramework,Version=v4.7.2.AssemblyAttributes.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\CarComparison_db.mdf" />
+    <Content Include="App_Data\CarComparison_db_log.ldf">
+      <DependentUpon>CarComparison_db.mdf</DependentUpon>
+    </Content>
     <Content Include="Areas\Admin\Models\CarModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>CarModel.edmx</DependentUpon>
@@ -2331,6 +2346,85 @@
     <Content Include="Asset\Image\Car\Ca10.jpg" />
     <Content Include="Asset\Image\Car\Ca11.jpg" />
     <Content Include="Asset\Image\Car\Ca12.jpg" />
+    <Content Include="Asset\Image\Car\Ca13.jpg" />
+    <Content Include="Asset\Image\Car\Ca14.jpg" />
+    <Content Include="Asset\Image\Car\Ca15.jpg" />
+    <Content Include="Asset\Image\Car\Ca16.jpg" />
+    <Content Include="Asset\Image\Car\Ca17.jpg" />
+    <Content Include="Asset\Image\Car\Ca18.jpg" />
+    <Content Include="Asset\Image\Car\Ca19.jpg" />
+    <Content Include="Asset\Image\Car\Ca20.jpg" />
+    <Content Include="Asset\Image\Car\Ca21.jpg" />
+    <Content Include="Asset\Image\Car\Ca22.jpg" />
+    <Content Include="Asset\Image\Car\Ca23.jpg" />
+    <Content Include="Asset\Image\Car\Ca24.jpg" />
+    <Content Include="Asset\Image\Car\Ca25.jpg" />
+    <Content Include="Asset\Image\Car\Ca26.jpg" />
+    <Content Include="Asset\Image\Car\Ca27.jpg" />
+    <Content Include="Asset\Image\Car\Ca28.jpg" />
+    <Content Include="Asset\Image\Car\Ca29.jpg" />
+    <Content Include="Asset\Image\Car\Ca30.jpg" />
+    <Content Include="Asset\Image\Car\Ca31.jpg" />
+    <Content Include="Asset\Image\Car\Ca32.jpg" />
+    <Content Include="Asset\Image\Car\Ca33.jpg" />
+    <Content Include="Asset\Image\Car\Ca34.jpg" />
+    <Content Include="Asset\Image\Car\Ca35.jpg" />
+    <Content Include="Asset\Image\Car\Ca36.jpg" />
+    <Content Include="Asset\Image\Car\Ca37.jpg" />
+    <Content Include="Asset\Image\Car\Ca38.jpg" />
+    <Content Include="Asset\Image\Car\Ca39.jpg" />
+    <Content Include="Asset\Image\Car\Ca40.jpg" />
+    <Content Include="Asset\Image\Car\Ca41.jpg" />
+    <Content Include="Asset\Image\Car\Ca42.jpg" />
+    <Content Include="Asset\Image\Car\Ca43.jpg" />
+    <Content Include="Asset\Image\Car\Ca44.jpg" />
+    <Content Include="Asset\Image\Car\Ca45.jpg" />
+    <Content Include="Asset\Image\Car\Ca46.jpg" />
+    <Content Include="Asset\Image\Car\Ca47.jpg" />
+    <Content Include="Asset\Image\Car\Ca48.jpg" />
+    <Content Include="Asset\Image\Car\Ca49.jpg" />
+    <Content Include="Asset\Image\Car\Ca50.jpg" />
+    <Content Include="Asset\Image\Car\Ca51.jpg" />
+    <Content Include="Asset\Image\Car\Ca52.jpg" />
+    <Content Include="Asset\Image\Car\Ca53.jpg" />
+    <Content Include="Asset\Image\Car\Ca54.jpg" />
+    <Content Include="Asset\Image\Car\Ca55.jpg" />
+    <Content Include="Asset\Image\Car\Ca56.jpg" />
+    <Content Include="Asset\Image\Car\Ca57.jpg" />
+    <Content Include="Asset\Image\Car\Ca58.jpg" />
+    <Content Include="Asset\Image\Car\Ca59.jpg" />
+    <Content Include="Asset\Image\Car\Ca60.jpg" />
+    <Content Include="Asset\Image\Car\Ca61.jpg" />
+    <Content Include="Asset\Image\Car\Ca62.jpg" />
+    <Content Include="Asset\Image\Car\Ca63.jpg" />
+    <Content Include="Asset\Image\Car\Ca64.jpg" />
+    <Content Include="Asset\Image\Car\Ca65.jpg" />
+    <Content Include="Asset\Image\Car\Ca66.jpg" />
+    <Content Include="Asset\Image\Car\Ca67.jpg" />
+    <Content Include="Asset\Image\Car\Ca68.jpg" />
+    <Content Include="Asset\Image\Car\Ca69.jpg" />
+    <Content Include="Asset\Image\Car\Ca70.jpg" />
+    <Content Include="Asset\Image\Car\Ca71.jpg" />
+    <Content Include="Asset\Image\Car\Ca72.jpg" />
+    <Content Include="Asset\Image\Car\Ca73.jpg" />
+    <Content Include="Asset\Image\Car\Ca74.jpg" />
+    <Content Include="Asset\Image\Car\Ca75.jpg" />
+    <Content Include="Asset\Image\Car\Ca76.jpg" />
+    <Content Include="Asset\Image\Car\Ca77.jpg" />
+    <Content Include="Asset\Image\Car\Ca78.jpg" />
+    <Content Include="Asset\Image\Car\Ca79.jpg" />
+    <Content Include="Asset\Image\Car\Ca80.jpg" />
+    <Content Include="Asset\Image\Car\Ca81.jpg" />
+    <Content Include="Asset\Image\Car\Ca82.jpg" />
+    <Content Include="Asset\Image\Car\Ca83.jpg" />
+    <Content Include="Asset\Image\Car\Ca84.jpg" />
+    <Content Include="Asset\Image\Car\Ca85.jpg" />
+    <Content Include="Asset\Image\Car\Ca86.jpg" />
+    <Content Include="Asset\Image\Car\Ca87.jpg" />
+    <Content Include="Asset\Image\Car\Ca88.jpg" />
+    <Content Include="Asset\Image\Car\Ca89.jpg" />
+    <Content Include="Asset\Image\Car\Ca90.jpg" />
+    <Content Include="Asset\Image\Car\Ca91.jpg" />
     <Content Include="Asset\Image\User\Default.JPG" />
     <Content Include="Asset\Image\User\Us01.jpg" />
     <Content Include="Asset\Image\User\Us02.jpg" />
@@ -2670,6 +2764,7 @@
     <Content Include="Areas\Admin\Views\Cars\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Contacts\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Home\NotificationPartialView.cshtml" />
+    <Content Include="App_Data\CompareCar.bak" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -2720,7 +2815,6 @@
     <Content Include="Uploads\book2.xlsx" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="Asset\Client\styles\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Review\" />
@@ -2744,6 +2838,9 @@
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>favicon.ico</ApplicationIcon>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />

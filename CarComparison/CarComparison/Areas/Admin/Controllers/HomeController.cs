@@ -37,7 +37,7 @@ namespace CarComparison.Areas.Admin.Controllers
             }
             foreach (var item in query)
             {
-                double pecent = (item.count/total)*100;
+                double pecent = Math.Round((item.count/total)*100);
                 dataPoints.Add(new DataPoint(item.name, pecent));
             }
             ViewBag.DataPoints = JsonConvert.SerializeObject(dataPoints);

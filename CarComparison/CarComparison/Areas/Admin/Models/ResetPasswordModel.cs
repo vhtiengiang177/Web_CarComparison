@@ -9,6 +9,7 @@ namespace CarComparison.Areas.Admin.Models
     public class ResetPasswordModel
     {
         [Required(ErrorMessage = "Bắt buộc nhập mật khẩu mới", AllowEmptyStrings = false)]
+        [StringLength(255, MinimumLength = 6, ErrorMessage = "{0} cần nhập từ {2} đến {1} ký tự.")]
         [DataType(DataType.Password)]
         public string NewPassword { get; set; }
 
