@@ -226,7 +226,7 @@ namespace CarComparison.Controllers
         }
 
         [AuthorizeController]
-        public ActionResult AccountInformation(string id_user = "", string tab = "")
+        public ActionResult AccountInformation(string tab = "")
         {
             User_ us = Session["user"] as User_;
             if (us == null)
@@ -234,9 +234,9 @@ namespace CarComparison.Controllers
                 return RedirectToAction("Index", "Client");
             }
             ViewBag.tabactive = tab;
-            if (id_user != "")
+            if (us != null)
             {
-                User_ user = db.User_.Find(id_user);
+                User_ user = db.User_.Find(us.id_user);
                 return View(user);
             }
             return View(us);
@@ -249,8 +249,8 @@ namespace CarComparison.Controllers
             try
             {
                 string action = f["action"];
-                string formID = f["id_user"];
-                User_ us = db.User_.Find(formID);
+                //string formID = f["id_user"];
+                User_ us = db.User_.Find((Session["user"] as User_).id_user);
                 if (us == null)
                 {
                     return HttpNotFound();
@@ -313,27 +313,29 @@ namespace CarComparison.Controllers
 
                     db.Entry(us).State = EntityState.Modified;
                     db.SaveChanges();
+                    return RedirectToAction("AccountInformation", "Account", new { tab = "edit" });
                 }
                 else if (action == "Hủy")
                 {
                     db.Entry(us).State = EntityState.Unchanged;
                     db.SaveChanges();
+                    return RedirectToAction("AccountInformation", "Account", new { tab = "editfalse" });
                 }
-                return RedirectToAction("AccountInformation", "Account", new { us.id_user, tab = "edit" });
+                return RedirectToAction("AccountInformation", "Account", new { tab = "editfalse" });
             }
             catch(DbEntityValidationException e)
             {
                  foreach (var eve in e.EntityValidationErrors)
-    {
-        Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
-            eve.Entry.Entity.GetType().Name, eve.Entry.State);
-        foreach (var ve in eve.ValidationErrors)
-        {
-            Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
-                ve.PropertyName, ve.ErrorMessage);
-        }
-    }
-    throw;
+                 {
+                     Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                         eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                     foreach (var ve in eve.ValidationErrors)
+                     {
+                         Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
+                            ve.PropertyName, ve.ErrorMessage);
+                     }
+                 }
+                 throw;
             }
             
         }
@@ -342,8 +344,8 @@ namespace CarComparison.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult ChangePassword(FormCollection f)
         {
-            string formID = f["id_user"];
-            User_ us = db.User_.Find(formID);
+            //string formID = f["id_user"];
+            User_ us = db.User_.Find((Session["user"] as User_).id_user);
             if (us == null)
             {
                 return HttpNotFound();
@@ -386,8 +388,8 @@ namespace CarComparison.Controllers
         public ActionResult DisableAccount(FormCollection f)
         {
             string action = f["action"];
-            string formID = f["id_user"];
-            User_ us = db.User_.Find(formID);
+            //string formID = f["id_user"];
+            User_ us = db.User_.Find((Session["user"] as User_).id_user);
             if (us == null)
             {
                 return HttpNotFound();

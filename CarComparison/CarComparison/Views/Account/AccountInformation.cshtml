@@ -19,7 +19,7 @@
                 changepass.classList.add("active");
                 li_changepass.classList.add("active");
             }
-            else if (value == "edit") {
+            else if (value == "edit" || value == "editfalse") {
                 edit.classList.add("active");
                 li_edit.classList.add("active");
             }
@@ -66,8 +66,8 @@
             <div class="tab-content">
                 <div class="tab-pane" id="info">
                     <br />
-                    @Html.AntiForgeryToken()
                     <form action="/Account/DisableAccount" method="post">
+                        @Html.AntiForgeryToken()
                         <div style="display: flex;flex-wrap: wrap;">
                             <div style="width:40%;">
                                 <div class="form-group">
@@ -89,7 +89,6 @@
                                 <br>
                                 @if (user.id_user != "Us01")
                                 {
-                                    <input name="id_user" style="display:none" value="@user.id_user" />
                                     <input class="btn btn-danger" type="submit" name="action" value="Vô hiệu hóa tài khoản" />
                                 }
                             </div>
@@ -98,96 +97,95 @@
                 </div><!--/tab-pane-->
                 <div class="tab-pane" id="edit">
                     <br />
+                <form action="/Account/EditInfo" method="post" enctype="multipart/form-data">
                     @Html.AntiForgeryToken()
-                    <form action="/Account/EditInfo" method="post" enctype="multipart/form-data">
-                        <div style="display: flex;flex-wrap: wrap;">
-                            <div style="width:40%; margin-left:20px;">
-                                <div class="form-group">
-                                    <div style="font-size:18px; margin-bottom:10px;">
-                                        <div style="font-weight:bold; padding-bottom:5px;">
-                                            Họ:
-                                        </div>
-                                        @Html.EditorFor(model => model.lname_user, new { htmlAttributes = new { @class = "form-control" } })
+                    <div style="display: flex;flex-wrap: wrap;">
+                        <div style="width:40%; margin-left:20px;">
+                            <div class="form-group">
+                                <div style="font-size:18px; margin-bottom:10px;">
+                                    <div style="font-weight:bold; padding-bottom:5px;">
+                                        Họ:
                                     </div>
-                                    <div style="font-size:18px; margin-bottom:10px;">
-                                        <div style="font-weight:bold; padding-bottom:5px;">
-                                            Email:
-                                        </div>
-                                        @Html.EditorFor(model => model.email_user, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.EditorFor(model => model.lname_user, new { htmlAttributes = new { @class = "form-control" } })
+                                </div>
+                                <div style="font-size:18px; margin-bottom:10px;">
+                                    <div style="font-weight:bold; padding-bottom:5px;">
+                                        Email:
                                     </div>
-                                    <div style="font-size:18px; margin-bottom:10px;">
-                                        <div style="font-weight:bold; padding-bottom:5px;">
-                                            Số điện thoại:
-                                        </div>
-                                        @Html.EditorFor(model => model.phone_user, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.EditorFor(model => model.email_user, new { htmlAttributes = new { @class = "form-control" } })
+                                </div>
+                                <div style="font-size:18px; margin-bottom:10px;">
+                                    <div style="font-weight:bold; padding-bottom:5px;">
+                                        Số điện thoại:
                                     </div>
+                                    @Html.EditorFor(model => model.phone_user, new { htmlAttributes = new { @class = "form-control" } })
                                 </div>
                             </div>
-                            <div style="width:40%; margin-left:20px;">
-                                <div class="form-group">
-                                    <div style="font-size:18px; margin-bottom:10px;">
-                                        <div style="font-weight:bold; padding-bottom:5px;">
-                                            Tên:
-                                        </div>
-                                        @Html.EditorFor(model => model.fname_user, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                        <div style="width:40%; margin-left:20px;">
+                            <div class="form-group">
+                                <div style="font-size:18px; margin-bottom:10px;">
+                                    <div style="font-weight:bold; padding-bottom:5px;">
+                                        Tên:
                                     </div>
-                                    <div style="font-size:18px; margin-bottom:10px;">
-                                        <div style="font-weight:bold; padding-bottom:5px;">
-                                            Địa chỉ:
-                                        </div>
-                                        @Html.EditorFor(model => model.address_user, new { htmlAttributes = new { @class = "form-control" } })
-                                    </div>
-                                    <div style="font-size:18px; margin-bottom:10px;">
-                                        <div style="font-weight:bold; padding-bottom:5px;">
-                                            Ngày sinh:
-                                        </div>
-                                        <input type="date" class="form-control" name="birthday_us" id="birthday_us" value="@Model.birthday_user.Value.ToString("yyyy-MM-dd")" />
-
-                                    </div>
+                                    @Html.EditorFor(model => model.fname_user, new { htmlAttributes = new { @class = "form-control" } })
                                 </div>
-                            </div>
-                            <div style="width:40%; margin-left:20px;">
-                                <div class="form-group">
-                                    <div style="font-size:18px; margin-bottom:10px;">
-                                        <div style="font-weight:bold; padding-bottom:5px;">
-                                            Giới tính:
-                                        </div>
-                                        @if (Model.sex_user == "Nam")
-                                        {
-                                            <span style="font-family:inherit; font-size:15px;">Nam&nbsp;&nbsp;<input type="radio" name="sex" value="1" checked />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;Nữ&nbsp;&nbsp;<input type="radio" name="sex" value="2" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;Khác&nbsp;&nbsp;<input type="radio" name="sex" value="3" /></span>
-                                        }
-                                        else if (Model.sex_user == "Nữ")
-                                        {
-                                            <span style="font-family:inherit; font-size:15px;">Nam&nbsp;&nbsp;<input type="radio" name="sex" value="1" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;Nữ&nbsp;&nbsp;<input type="radio" name="sex" value="2" checked />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;Khác&nbsp;&nbsp;<input type="radio" name="sex" value="3" /></span>
-                                        }
-                                        else
-                                        {
-                                            <span style="font-family:inherit; font-size:15px;">Nam&nbsp;&nbsp;<input type="radio" name="sex" value="1" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;Nữ&nbsp;&nbsp;<input type="radio" name="sex" value="2" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;Khác&nbsp;&nbsp;<input type="radio" name="sex" value="3" checked /></span>
-                                        }
+                                <div style="font-size:18px; margin-bottom:10px;">
+                                    <div style="font-weight:bold; padding-bottom:5px;">
+                                        Địa chỉ:
                                     </div>
+                                    @Html.EditorFor(model => model.address_user, new { htmlAttributes = new { @class = "form-control" } })
                                 </div>
-                                <div class="form-group">
-                                    <div id="change_avt" style="font-size:18px; margin-bottom:10px;font-weight:bold; padding-bottom:5px;">Đổi avatar</div>
-                                    <input type="file" class="text-center center-block btn btn-block" onchange="funCheck()" accept=".jpg" name="imageFile" id="imageFile">
+                                <div style="font-size:18px; margin-bottom:10px;">
+                                    <div style="font-weight:bold; padding-bottom:5px;">
+                                        Ngày sinh:
+                                    </div>
+                                    <input type="date" class="form-control" name="birthday_us" id="birthday_us" value="@Model.birthday_user.Value.ToString("yyyy-MM-dd")" />
 
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <div class="col-xs-12">
-                                <br>
-                                <input name="id_user" style="display:none" value="@user.id_user" />
-                                <input class="btn btn-danger" type="submit" name="action" value="Lưu" />
-                                <input class="btn btn-default" type="submit" name="action" value="Hủy">
+                        <div style="width:40%; margin-left:20px;">
+                            <div class="form-group">
+                                <div style="font-size:18px; margin-bottom:10px;">
+                                    <div style="font-weight:bold; padding-bottom:5px;">
+                                        Giới tính:
+                                    </div>
+                                    @if (Model.sex_user == "Nam")
+                                    {
+                                        <span style="font-family:inherit; font-size:15px;">Nam&nbsp;&nbsp;<input type="radio" name="sex" value="1" checked />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;Nữ&nbsp;&nbsp;<input type="radio" name="sex" value="2" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;Khác&nbsp;&nbsp;<input type="radio" name="sex" value="3" /></span>
+                                    }
+                                    else if (Model.sex_user == "Nữ")
+                                    {
+                                        <span style="font-family:inherit; font-size:15px;">Nam&nbsp;&nbsp;<input type="radio" name="sex" value="1" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;Nữ&nbsp;&nbsp;<input type="radio" name="sex" value="2" checked />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;Khác&nbsp;&nbsp;<input type="radio" name="sex" value="3" /></span>
+                                    }
+                                    else
+                                    {
+                                        <span style="font-family:inherit; font-size:15px;">Nam&nbsp;&nbsp;<input type="radio" name="sex" value="1" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;Nữ&nbsp;&nbsp;<input type="radio" name="sex" value="2" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;Khác&nbsp;&nbsp;<input type="radio" name="sex" value="3" checked /></span>
+                                    }
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div id="change_avt" style="font-size:18px; margin-bottom:10px;font-weight:bold; padding-bottom:5px;">Đổi avatar</div>
+                                <input type="file" class="text-center center-block btn btn-block" onchange="funCheck()" accept=".jpg" name="imageFile" id="imageFile">
+
                             </div>
                         </div>
-                        @if (ViewBag.tabactive == "edit")
-                        {
-                            <script>
-                                alert("Cập nhật thông tin thành công!!");
-                            </script>
-                        }
-                    </form>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <br>
+                            <input class="btn btn-danger" type="submit" name="action" value="Lưu" />
+                            <input class="btn btn-default" type="submit" name="action" value="Hủy">
+                        </div>
+                    </div>
+                    @if (ViewBag.tabactive == "edit")
+                    {
+                        <script>
+                            alert("Cập nhật thông tin thành công!!");
+                        </script>
+                    }
+                </form>
                 </div><!--/tab-pane-->
                 <div class="tab-pane" id="changepass">
                     <hr>
@@ -218,7 +216,6 @@
                         <div class="form-group">
                             <div class="col-xs-12">
                                 <br>
-                                <input name="id_user" style="display:none" value="@user.id_user" />
                                 <input class="btn btn-danger" type="submit" name="action" value="Đổi mật khẩu" />
                             </div>
                         </div>
