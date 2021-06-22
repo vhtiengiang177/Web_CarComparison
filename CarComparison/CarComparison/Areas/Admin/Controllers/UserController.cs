@@ -176,6 +176,7 @@ namespace CarComparison.Areas.Admin.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Block()
         {
             string id = Request["id"];

@@ -66,6 +66,7 @@
             <div class="tab-content">
                 <div class="tab-pane" id="info">
                     <br />
+                    @Html.AntiForgeryToken()
                     <form action="/Account/DisableAccount" method="post">
                         <div style="display: flex;flex-wrap: wrap;">
                             <div style="width:40%;">
@@ -97,6 +98,7 @@
                 </div><!--/tab-pane-->
                 <div class="tab-pane" id="edit">
                     <br />
+                    @Html.AntiForgeryToken()
                     <form action="/Account/EditInfo" method="post" enctype="multipart/form-data">
                         <div style="display: flex;flex-wrap: wrap;">
                             <div style="width:40%; margin-left:20px;">
@@ -140,6 +142,7 @@
                                             Ngày sinh:
                                         </div>
                                         <input type="date" class="form-control" name="birthday_us" id="birthday_us" value="@Model.birthday_user.Value.ToString("yyyy-MM-dd")" />
+
                                     </div>
                                 </div>
                             </div>
@@ -189,6 +192,7 @@
                 <div class="tab-pane" id="changepass">
                     <hr>
                     <form action="/Account/ChangePassword" method="post">
+                    @Html.AntiForgeryToken()
                         <div style="width:40%; margin-left:20px;">
                             <div class="form-group">
                                 <div style="font-size:18px; margin-bottom:10px;">

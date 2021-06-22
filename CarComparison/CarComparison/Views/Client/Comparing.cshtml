@@ -76,8 +76,9 @@
             <div class="col-lg-3 col-xs-12">
                 <div class="form">
 
+                    
+                    
 
-                    <form action="#">
                         <div class="car-1">
 
 
@@ -85,7 +86,7 @@
                                 <label>Hãng xe</label>
                                 @if (ViewBag.AutoList != null)
                                 {
-                                    @Html.DropDownListFor(model => model.automakerId, ViewBag.AutoList as SelectList, "--Select--", new { @class = "form-control" })
+                                    @Html.DropDownListFor(model => model.automakerId, ViewBag.AutoList as SelectList, "Select", new { @class = "form-control" })
                                 }
 
 
@@ -93,13 +94,13 @@
 
                             <div class="form-group">
                                 <label>Dòng xe</label>
-                                @Html.DropDownListFor(model => model.modelId, new SelectList(" "), "--Select--", new { @class = "form-control" })
+                                @Html.DropDownListFor(model => model.modelId, new SelectList(" "), "Select", new { @class = "form-control" })
 
                             </div>
 
                             <div class="form-group">
                                 <label>Phiên bản</label>
-                                @Html.DropDownListFor(model => model.versionId, new SelectList(" "), "--Select--", new { @class = "form-control" })
+                                @Html.DropDownListFor(model => model.versionId, new SelectList(" "), "Select", new { @class = "form-control" })
 
 
                             </div>
@@ -239,15 +240,15 @@
 
                         </div>
 
-                    </form>
+                    
                 </div>
             </div>
 
             <div class="col-lg-3 col-xs-12">
                 <div class="form">
+                    
 
-
-                    <form action="#">
+                   
                         <div class="car-2">
                             <div class="form-group">
                                 <label>Hãng xe</label>
@@ -406,7 +407,7 @@
 
 
 
-                    </form>
+                   
                 </div>
             </div>
 
@@ -414,7 +415,8 @@
                 <div class="form">
 
 
-                    <form action="#">
+                    
+                        
                         <div class="car-3">
                             <div class="form-group">
                                 <label>Hãng xe</label>
@@ -579,7 +581,7 @@
 
                         </div>
 
-                    </form>
+                    
 
 
 

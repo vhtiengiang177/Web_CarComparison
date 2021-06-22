@@ -2,12 +2,14 @@
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Validation;
 using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 
@@ -57,6 +59,7 @@ namespace CarComparison.Controllers
 
         [HttpPost]
         //xử lý đăng nhập
+        [ValidateAntiForgeryToken]
         public ActionResult Login(FormCollection f)
         {
             string userName = f["username"].ToString();
@@ -110,6 +113,7 @@ namespace CarComparison.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Register(FormCollection f)
         {
             try
@@ -117,15 +121,21 @@ namespace CarComparison.Controllers
                 string userName = f["username"].ToString();
                 string passWord = f["password_user"].ToString();
                 var checkUserName = (from c in db.User_ where c.name_user == userName select c).ToList();
-                if (checkUserName.Count() != 0 || passWord.Length < 8)
+                var hasNumber = new Regex(@"[0-9]+");
+                var hasUpperChar = new Regex(@"[A-Z]+");
+                var hasMinimum8Chars = new Regex(@".{8,}");
+                var hasCharSpecial = new Regex(@"[#?!@$%^&*-]+");
+
+                var isValidated = hasNumber.IsMatch(passWord) && hasUpperChar.IsMatch(passWord) && hasMinimum8Chars.IsMatch(passWord) && hasCharSpecial.IsMatch(passWord);
+                if (checkUserName.Count() != 0 || !isValidated)
                 {
                     if (checkUserName.Count() != 0)
                     {
                         ModelState.AddModelError("RegisterError", "Tên tài khoản đã tồn tại!");
                     }
-                    if (passWord.Length < 8)
+                    if (!isValidated)
                     {
-                        ModelState.AddModelError("PassError", "Mật khẩu phải từ 8 ký tự trở lên!");
+                        ModelState.AddModelError("PassError", "Mật khẩu phải chứa ít nhất một số, một chữ hoa, một ký tự đặc biệt, dài hơn 8 ký tự!");
                     }
                 }
                 else
@@ -208,7 +218,6 @@ namespace CarComparison.Controllers
             }
             return View();
         }
-
         public ActionResult Logout()
         {
             Session.Remove("user");
@@ -234,74 +243,103 @@ namespace CarComparison.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult EditInfo(FormCollection f, [Bind(Include = "imageFile" )] User_ user)
         {
-            string action = f["action"];
-            string formID = f["id_user"];
-            User_ us = db.User_.Find(formID);
-            if (us == null)
+            try
             {
-                return HttpNotFound();
-            }
-            if (action == "Lưu")
-            {
-                string lname = f["lname_user"];
-                string fname = f["fname_user"];
-                string email = f["email_user"];
-                string phone = f["phone_user"];
-                string sex = f["sex"];
-                DateTime birthday = Convert.ToDateTime(f["birthday_us"]);
-                string address = f["address_user"];
-                us.lname_user = lname;
-                us.fname_user = fname;
-                us.email_user = email;
-                us.phone_user = phone;
-                if (sex == "1")
+                string action = f["action"];
+                string formID = f["id_user"];
+                User_ us = db.User_.Find(formID);
+                if (us == null)
                 {
-                    us.sex_user = "Nam";
+                    return HttpNotFound();
                 }
-                else if (sex == "2")
+                if (action == "Lưu")
                 {
-                    us.sex_user = "Nữ";
-                }
-                else
-                {
-                    us.sex_user = "Khác";
-                }
-                us.birthday_user = birthday;
-                us.address_user = address;
-                us.imageFile = user.imageFile;
-                if (us.imageFile != null)
-                {
-                    if (us.avt_user != null && us.avt_user != "" && us.avt_user != "/Asset/Image/User/Default.jpg")
+                    string lname = f["lname_user"];
+                    string fname = f["fname_user"];
+                    string email = f["email_user"];
+                    string phone = f["phone_user"];
+                    string sex = f["sex"];
+                    try
                     {
-                        string fullpath = Server.MapPath(us.avt_user);
-                        FileInfo fi = new FileInfo(fullpath);
-                        if (fi != null)
-                        {
-                            System.IO.File.Delete(fullpath);
-                            fi.Delete();
-                        }
+                        DateTime birthday = Convert.ToDateTime(f["birthday_us"]);
+                        us.birthday_user = birthday;
                     }
-                    string fileName = Path.GetFileNameWithoutExtension(us.imageFile.FileName);
-                    string extension = Path.GetExtension(us.imageFile.FileName);
-                    us.avt_user = "/Asset/Image/User/" + us.id_user + extension;
-                    fileName = Path.Combine(Server.MapPath("/Asset/Image/User/"), us.id_user + extension);
-                    us.imageFile.SaveAs(fileName);
-                }
+                    catch 
+                    {
+                        ModelState.AddModelError("BirthdayError", "Không đúng định dạng");
+                    }
+                    
+                    string address = f["address_user"];
+                    us.lname_user = lname;
+                    us.fname_user = fname;
+                    us.email_user = email;
+                    us.phone_user = phone;
+                    if (sex == "1")
+                    {
+                        us.sex_user = "Nam";
+                    }
+                    else if (sex == "2")
+                    {
+                        us.sex_user = "Nữ";
+                    }
+                    else
+                    {
+                        us.sex_user = "Khác";
+                    }
+                    
+                    us.address_user = address;
+                    us.imageFile = user.imageFile;
+                    if (us.imageFile != null)
+                    {
+                        if (us.avt_user != null && us.avt_user != "" && us.avt_user != "/Asset/Image/User/Default.jpg")
+                        {
+                            string fullpath = Server.MapPath(us.avt_user);
+                            FileInfo fi = new FileInfo(fullpath);
+                            if (fi != null)
+                            {
+                                System.IO.File.Delete(fullpath);
+                                fi.Delete();
+                            }
+                        }
+                        string fileName = Path.GetFileNameWithoutExtension(us.imageFile.FileName);
+                        string extension = Path.GetExtension(us.imageFile.FileName);
+                        us.avt_user = "/Asset/Image/User/" + us.id_user + extension;
+                        fileName = Path.Combine(Server.MapPath("/Asset/Image/User/"), us.id_user + extension);
+                        us.imageFile.SaveAs(fileName);
+                    }
 
-                db.Entry(us).State = EntityState.Modified;
-                db.SaveChanges();
+                    db.Entry(us).State = EntityState.Modified;
+                    db.SaveChanges();
+                }
+                else if (action == "Hủy")
+                {
+                    db.Entry(us).State = EntityState.Unchanged;
+                    db.SaveChanges();
+                }
+                return RedirectToAction("AccountInformation", "Account", new { us.id_user, tab = "edit" });
             }
-            else if (action == "Hủy")
+            catch(DbEntityValidationException e)
             {
-                db.Entry(us).State = EntityState.Unchanged;
-                db.SaveChanges();
+                 foreach (var eve in e.EntityValidationErrors)
+    {
+        Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+            eve.Entry.Entity.GetType().Name, eve.Entry.State);
+        foreach (var ve in eve.ValidationErrors)
+        {
+            Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
+                ve.PropertyName, ve.ErrorMessage);
+        }
+    }
+    throw;
             }
-            return RedirectToAction("AccountInformation", "Account", new { us.id_user, tab = "edit" });
+            
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult ChangePassword(FormCollection f)
         {
             string formID = f["id_user"];
@@ -310,19 +348,27 @@ namespace CarComparison.Controllers
             {
                 return HttpNotFound();
             }
-            //string ol = f["password_old"];
-            //string ne = f["password_new"];
-            //string re_ne = f["repassword_new"];
+            string passWordNew = f["password_new"];
             string olmd5 = GetMD5(f["password_old"]);
-            string nemd5 = GetMD5(f["password_new"]);
+            string nemd5 = GetMD5(passWordNew);
             string re_nemd5 = GetMD5(f["repassword_new"]);
-            if (nemd5 != re_nemd5 || olmd5 != us.password_user)
+            var hasNumber = new Regex(@"[0-9]+");
+            var hasUpperChar = new Regex(@"[A-Z]+");
+            var hasMinimum8Chars = new Regex(@".{8,}");
+            var hasCharSpecial = new Regex(@"[#?!@$%^&*-]+");
+
+            var isValidated = hasNumber.IsMatch(passWordNew) && hasUpperChar.IsMatch(passWordNew) && hasMinimum8Chars.IsMatch(passWordNew) && hasCharSpecial.IsMatch(passWordNew);
+            if (nemd5 != re_nemd5 || olmd5 != us.password_user || !isValidated)
             {
-                if (nemd5 != re_nemd5)
+                if (!isValidated)
+                {
+                    ModelState.AddModelError("errorChange", "Mật khẩu phải chứa ít nhất một số, một chữ hoa, một ký tự đặc biệt, dài hơn 8 ký tự!");
+                }
+                else if (nemd5 != re_nemd5)
                 {
                     ModelState.AddModelError("errorChange", "Mật khẩu mới và nhập lại mật khẩu không trùng nhau!");
                 }
-                else
+                if (olmd5 != us.password_user)
                 {
                     ModelState.AddModelError("errorChange2", "Mật khẩu cũ không đúng!");
                 }
@@ -336,6 +382,7 @@ namespace CarComparison.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult DisableAccount(FormCollection f)
         {
             string action = f["action"];
@@ -362,6 +409,7 @@ namespace CarComparison.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult ForgotPassword(string EmailID)
         {
             string resetCode = Guid.NewGuid().ToString();

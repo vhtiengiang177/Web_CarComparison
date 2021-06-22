@@ -105,6 +105,7 @@ namespace CarComparison.Areas.Admin.Controllers
 
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult ExportToExcel()
         {
            

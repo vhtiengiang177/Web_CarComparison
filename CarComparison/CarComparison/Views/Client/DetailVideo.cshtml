@@ -25,6 +25,7 @@
 
         @foreach (var item in Model.Article)
         {
+            
             <h2 style="color:#B81D22; text-align:center;"> @item.title_article</h2>
 
             <p class="lead">
@@ -68,19 +69,19 @@
                 <h4>Video gợi ý:</h4>
 
                 @*<ul class="list">
-                    @if (ViewBag.lstnew3video == null)
+                @if (ViewBag.lstnew3video == null)
+                {
+                    <li>Chưa có video mới.</li>
+                }
+                else
+                {
+                    foreach (var item in ViewBag.lstnew3video)
                     {
-                        <li>Chưa có video mới.</li>
+                        <li><a href="@Url.Action("DetailVideo","Client",new { id=item.id_article})">@item.title_article</a></li>
                     }
-                    else
-                    {
-                        foreach (var item in ViewBag.lstnew3video)
-                        {
-                            <li><a href="@Url.Action("DetailVideo","Client",new { id=item.id_article})">@item.title_article</a></li>
-                        }
-                    }
+                }
 
-                    </ul>*@
+                </ul>*@
             </div>
 
             <div class="col-md-8 col-xs-12">
@@ -154,15 +155,15 @@
                                         <script>
                                             function funCreate() {
                                                 var str = `  <ul class="comments">
-                                                                                                                                        <li class="clearfix">
-                                                                                                                                            <img src="" class="avatar" alt="">
-                                                                                                                                            <div class="post-comments">
-                                                                                                                                                <textarea name="comment" class="form-control" rows="3"></textarea>
-                                                                                                                                                <br />
-                                                                                                                                                 <button type="submit" class="btn btn-default pull-right">Gửi</button>
-                                                                                                                                            </div>
-                                                                                                                                        </li>
-                                                                                                                                    </ul> `;
+                                                                                                                                                                                <li class="clearfix">
+                                                                                                                                                                                    <img src="" class="avatar" alt="">
+                                                                                                                                                                                    <div class="post-comments">
+                                                                                                                                                                                        <textarea name="comment" class="form-control" rows="3"></textarea>
+                                                                                                                                                                                        <br />
+                                                                                                                                                                                         <button type="submit" class="btn btn-default pull-right">Gửi</button>
+                                                                                                                                                                                    </div>
+                                                                                                                                                                                </li>
+                                                                                                                                                                            </ul> `;
 
                                                 document.getElementById("#abc").innerHTML = str;
                                             }

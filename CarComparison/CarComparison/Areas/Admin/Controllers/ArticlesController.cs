@@ -99,12 +99,13 @@ namespace CarComparison.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateInput(false)]
+        [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "id_article,id_category,title_article,description_article,img_article,linkvideo_article,imageFile")] Article article)
         {
             string value = Request["action"]; // Lấy nút submit
-            if((article.id_category == "CaAr01" && article.linkvideo_article == "") || article.title_article == "" || article.description_article == "" || article.title_article == null) 
+            if ((article.id_category == "CaAr01" && article.linkvideo_article == "") || article.title_article == "" || article.description_article == "" || article.title_article == null)
             {
-                if(article.linkvideo_article == "")
+                if (article.linkvideo_article == "")
                 {
                     ModelState.AddModelError("linkError", "Không để trống link video");
                 }
@@ -119,10 +120,10 @@ namespace CarComparison.Areas.Admin.Controllers
                 ViewBag.id_category = new SelectList(db.CategoryArticles, "id_category", "name_category", article.id_category);
                 return View(article);
             }
-            if(article.linkvideo_article != "" && article.linkvideo_article != null)
+            if (article.linkvideo_article != "" && article.linkvideo_article != null)
             {
                 var uri = new Uri(article.linkvideo_article);
-                if(uri.Host != "www.youtube.com" && uri.Host != "https://youtu.be/")
+                if (uri.Host != "www.youtube.com" && uri.Host != "https://youtu.be/")
                 {
                     ModelState.AddModelError("linkError", "Lưu ý: Chỉ nhận đường dẫn youtube!");
                     article.id_category = "CaAr01";
@@ -313,7 +314,7 @@ namespace CarComparison.Areas.Admin.Controllers
                     fileName = Path.Combine(Server.MapPath("/Asset/Image/Article/"), article.id_article + extension);
                     article.imageFile.SaveAs(fileName);
                 }
-                
+
                 db.Entry(article).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -367,6 +368,7 @@ namespace CarComparison.Areas.Admin.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Publish(FormCollection f)
         {
             string id = f["id_art"];
@@ -391,6 +393,7 @@ namespace CarComparison.Areas.Admin.Controllers
 
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Index(HttpPostedFileBase file)
         {
             string filePath = string.Empty;
@@ -483,6 +486,7 @@ namespace CarComparison.Areas.Admin.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Index2(HttpPostedFileBase postedFile)
         {
             string filePath = string.Empty;
@@ -570,7 +574,7 @@ namespace CarComparison.Areas.Admin.Controllers
             return View();
         }
 
-        
+
 
 
     }

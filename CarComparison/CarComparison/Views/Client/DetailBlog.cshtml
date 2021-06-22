@@ -28,6 +28,7 @@
 
 <section>
     <div class="container">
+        
 
         @foreach (var item in Model.Article)
         {
@@ -65,19 +66,19 @@
 
                 @*<h4>Bài viết gợi ý</h4>
 
-                    @*<ul class="list">
-                        @if (ViewBag.lstnew3 == null)
+                @*<ul class="list">
+                    @if (ViewBag.lstnew3 == null)
+                    {
+                        <li>Chưa có bài viết mới.</li>
+                    }
+                    else
+                    {
+                        foreach (var item in ViewBag.lstnew3)
                         {
-                            <li>Chưa có bài viết mới.</li>
+                            <li><a href="@Url.Action("DetailBlog","Client",new { id=item.id_article})">@item.title_article</a></li>
                         }
-                        else
-                        {
-                            foreach (var item in ViewBag.lstnew3)
-                            {
-                                <li><a href="@Url.Action("DetailBlog","Client",new { id=item.id_article})">@item.title_article</a></li>
-                            }
-                        }
-                    </ul>*@
+                    }
+                </ul>*@
             </div>
 
             <div class="col-md-8 col-xs-12">
@@ -92,20 +93,21 @@
 
                     @if (user != null)
                     {
-                        <form class="clearfix" action="/Client/DetailBlog" method="post">
-                            <div class="form-group">
-                                <img src="@user.avt_user" class="avatar" alt="">
-                                <div class="post-comments">
-                                    <textarea name="comment" class="form-control" rows="3"></textarea>
-                                    <br />
-                                    <button type="submit" class="btn btn-default pull-right">Gửi</button>
-                                </div>
-                            </div>
-                            @foreach (var item in Model.Article)
-                            {
-                                <input name="id_art" style="display:none" value="@item.id_article" />
-                            }
-                        </form>
+                <form class="clearfix" action="/Client/DetailBlog" method="post">
+                    @Html.AntiForgeryToken()
+                    <div class="form-group">
+                        <img src="@user.avt_user" class="avatar" alt="">
+                        <div class="post-comments">
+                            <textarea name="comment" class="form-control" rows="3"></textarea>
+                            <br />
+                            <button type="submit" class="btn btn-default pull-right">Gửi</button>
+                        </div>
+                    </div>
+                    @foreach (var item in Model.Article)
+                    {
+                        <input name="id_art" style="display:none" value="@item.id_article" />
+                    }
+                </form>
                     }
                     else
                     {
@@ -152,15 +154,15 @@
                                         <script>
                                             function funCreate() {
                                                 var str = `  <ul class="comments">
-                                                                                                <li class="clearfix">
-                                                                                                    <img src="" class="avatar" alt="">
-                                                                                                    <div class="post-comments">
-                                                                                                        <textarea name="comment" class="form-control" rows="3"></textarea>
-                                                                                                        <br />
-                                                                                                         <button type="submit" class="btn btn-default pull-right">Gửi</button>
-                                                                                                    </div>
-                                                                                                </li>
-                                                                                            </ul> `;
+                                                                                                                                        <li class="clearfix">
+                                                                                                                                            <img src="" class="avatar" alt="">
+                                                                                                                                            <div class="post-comments">
+                                                                                                                                                <textarea name="comment" class="form-control" rows="3"></textarea>
+                                                                                                                                                <br />
+                                                                                                                                                 <button type="submit" class="btn btn-default pull-right">Gửi</button>
+                                                                                                                                            </div>
+                                                                                                                                        </li>
+                                                                                                                                    </ul> `;
 
                                                 document.getElementById("#abc").innerHTML = str;
                                             }

@@ -37,6 +37,7 @@ namespace CarComparison.Areas.Admin.Models
         public Nullable<System.DateTime> lastvisitdate_user { get; set; }
         public string phone_user { get; set; }
         public string sex_user { get; set; }
+
         public Nullable<System.DateTime> birthday_user { get; set; }
         public string address_user { get; set; }
         public string resetPassCode { get; set; }

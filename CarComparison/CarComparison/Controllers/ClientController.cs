@@ -183,7 +183,7 @@ namespace CarComparison.Controllers
             ////Nếu không thì truy xuất csdl lấy ra bài viết tương ứng
             //var art = (from c in arc.Article where c.id_article == id select c).ToList();
             //ViewBag.art = art;
-            if (arc== null)
+            if (arc.Article== null || arc.Article.Count==0)
             {
                 //Thông báo không có bài viết đó
                 return HttpNotFound();
@@ -191,6 +191,7 @@ namespace CarComparison.Controllers
             else
             {
                 Article art = db.Articles.Find(id);
+              
                 art.view_article += 1;
                 db.Entry(art).State = EntityState.Modified;
                 db.SaveChanges();
@@ -296,7 +297,7 @@ namespace CarComparison.Controllers
             ////Nếu không thì truy xuất csdl lấy ra bài viết tương ứng
             //var art = (from c in arc.Article where c.id_article == id select c).ToList();
             //ViewBag.art = art;
-            if (arc == null)
+            if (arc.Article == null || arc.Article.Count ==0)
             {
                 //Thông báo không có bài viết đó
                 return HttpNotFound();
@@ -389,6 +390,8 @@ namespace CarComparison.Controllers
         }
 
         [HttpPost]
+        [ValidateInput(false)]
+        [ValidateAntiForgeryToken]
         public ActionResult Contact(FormCollection f)
         {
             string name = f["name"];
@@ -436,8 +439,8 @@ namespace CarComparison.Controllers
             con.date_contact = DateTime.Now;
 
             db.Contacts.Add(con);
-            db.SaveChanges();
-            Response.Write("<script>alert('Gửi thành công!');</script>");
+            //db.SaveChanges();
+            //Response.Write("<script>alert('Gửi thành công!');</script>");
             return View();
         }
 
@@ -447,6 +450,8 @@ namespace CarComparison.Controllers
         }
 
         [HttpPost]
+        [ValidateInput(false)]
+        [ValidateAntiForgeryToken]
         public ActionResult DetailVideo(FormCollection f, string id_art = "")
         {
             id_art = f["id_art"];
@@ -506,6 +511,8 @@ namespace CarComparison.Controllers
         }
 
         [HttpPost]
+        [ValidateInput(false)]
+        [ValidateAntiForgeryToken]
         public ActionResult DetailBlog(FormCollection f, string id_art = "")
         {
             id_art = f["id_art"];
@@ -599,6 +606,7 @@ namespace CarComparison.Controllers
         //}
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult DeleteComment(FormCollection f)
         {
             string id_comment = f["id_comment"];

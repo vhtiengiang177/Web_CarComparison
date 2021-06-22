@@ -49,11 +49,11 @@
         <div class="row">
             @using (Ajax.BeginForm("ArcCompare", "Client", new AjaxOptions { UpdateTargetId = "resultSearch", InsertionMode = InsertionMode.Replace }))
             {
-
+                @Html.AntiForgeryToken()
                 <div class="col-lg-3 pull-right col-xs-12">
                     <div class="form">
 
-                        <form action="#">
+                        
                             <div class="form-group">
                                 <label class="control-label">Blog Search</label>
 
@@ -64,7 +64,7 @@
                                     </span>
                                 </div>
                             </div>
-                        </form>
+                        
                     </div>
 
 
