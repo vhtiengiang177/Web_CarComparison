@@ -120,7 +120,9 @@ namespace CarComparison.Controllers
             {
                 string userName = f["username"].ToString();
                 string passWord = f["password_user"].ToString();
+                string email = f["email"].ToString();
                 var checkUserName = (from c in db.User_ where c.name_user == userName select c).ToList();
+                var checkEmail = (from c in db.User_ where c.email_user == email select c).ToList();
                 var hasNumber = new Regex(@"[0-9]+");
                 var hasUpperChar = new Regex(@"[A-Z]+");
                 var hasMinimum8Chars = new Regex(@".{8,}");
@@ -138,12 +140,15 @@ namespace CarComparison.Controllers
                         ModelState.AddModelError("PassError", "Mật khẩu phải chứa ít nhất một số, một chữ hoa, một ký tự đặc biệt, dài hơn 8 ký tự!");
                     }
                 }
+                else if(checkEmail.Count != 0)
+                {
+                    ModelState.AddModelError("EmailError", "Email đã tồn tại!");
+                }
                 else
                 {
                     string passWordmd5 = GetMD5(passWord);
                     string lastName = f["lname"].ToString();
                     string firstName = f["fname"].ToString();
-                    string email = f["email"].ToString();
                     string sex = f["sex"];
                     DateTime birthday = Convert.ToDateTime(f["birthday"]);
                     User_ us_new = new User_();
@@ -270,9 +275,27 @@ namespace CarComparison.Controllers
                     catch 
                     {
                         ModelState.AddModelError("BirthdayError", "Không đúng định dạng");
+                        ViewBag.tabactive = "editfalse";
+                        return View("AccountInformation", us);
                     }
                     
                     string address = f["address_user"];
+                    var regex = new Regex(@"^[\w!#$%&'*+\-/=?\^_`{|}~]+(\.[\w!#$%&'*+\-/=?\^_`{|}~]+)*"
+                                   + "@"
+                                   + @"((([\-\w]+\.)+[a-zA-Z]{2,4})|(([0-9]{1,3}\.){3}[0-9]{1,3}))\z");
+                    var checkEmail = (from c in db.User_ where c.email_user == email select c).ToList();
+                    if (!regex.IsMatch(email))
+                    {
+                        ModelState.AddModelError("errorEdit", "Định dạng email không hợp lệ!");
+                        ViewBag.tabactive = "editfalse";
+                        return View("AccountInformation", us);
+                    }
+                    else if(checkEmail.Count == 1 && us.email_user != email)
+                    {
+                        ModelState.AddModelError("errorEdit", "Email đã tồn tại!");
+                        ViewBag.tabactive = "editfalse";
+                        return View("AccountInformation", us);
+                    }
                     us.lname_user = lname;
                     us.fname_user = fname;
                     us.email_user = email;
@@ -313,15 +336,18 @@ namespace CarComparison.Controllers
 
                     db.Entry(us).State = EntityState.Modified;
                     db.SaveChanges();
-                    return RedirectToAction("AccountInformation", "Account", new { tab = "edit" });
+                    ViewBag.tabactive = "edit";
+                    return View("AccountInformation", us);
                 }
                 else if (action == "Hủy")
                 {
                     db.Entry(us).State = EntityState.Unchanged;
                     db.SaveChanges();
-                    return RedirectToAction("AccountInformation", "Account", new { tab = "editfalse" });
+                    ViewBag.tabactive = "editfalse";
+                    return View("AccountInformation", us);
                 }
-                return RedirectToAction("AccountInformation", "Account", new { tab = "editfalse" });
+                ViewBag.tabactive = "editfalse";
+                return View("AccountInformation", us);
             }
             catch(DbEntityValidationException e)
             {
@@ -364,17 +390,18 @@ namespace CarComparison.Controllers
             {
                 if (!isValidated)
                 {
-                    ModelState.AddModelError("errorChange", "Mật khẩu phải chứa ít nhất một số, một chữ hoa, một ký tự đặc biệt, dài hơn 8 ký tự!");
+                    ModelState.AddModelError("errorChange1", "Mật khẩu phải chứa ít nhất một số, một chữ hoa, một ký tự đặc biệt, dài hơn 8 ký tự!");
                 }
                 else if (nemd5 != re_nemd5)
                 {
-                    ModelState.AddModelError("errorChange", "Mật khẩu mới và nhập lại mật khẩu không trùng nhau!");
+                    ModelState.AddModelError("errorChange2", "Mật khẩu mới và nhập lại mật khẩu không trùng nhau!");
                 }
                 if (olmd5 != us.password_user)
                 {
-                    ModelState.AddModelError("errorChange2", "Mật khẩu cũ không đúng!");
+                    ModelState.AddModelError("errorChange3", "Mật khẩu cũ không đúng!");
                 }
-                return RedirectToAction("AccountInformation", "Account", new { us.id_user, tab = "changepassf" });
+                ViewBag.tabactive = "changepassf";
+                return View("AccountInformation", us);
             }
             us.password_user = nemd5;
             db.Entry(us).State = EntityState.Modified;
@@ -447,7 +474,7 @@ namespace CarComparison.Controllers
 
         private void SendEmail(string emailAddress, string body, string subject)
         {
-            using (MailMessage mm = new MailMessage("vhtiengiang177@gmail.com", emailAddress))
+            using (MailMessage mm = new MailMessage("learnetogether7@gmail.com", emailAddress))
             {
                 mm.Subject = subject;
                 mm.Body = body;
@@ -457,7 +484,7 @@ namespace CarComparison.Controllers
                 smtp.Host = "smtp.gmail.com";
                 smtp.EnableSsl = true;
                 smtp.UseDefaultCredentials = false;
-                NetworkCredential NetworkCred = new NetworkCredential("vhtiengiang177@gmail.com", "ji@n554!");
+                NetworkCredential NetworkCred = new NetworkCredential("learnetogether7@gmail.com", "Hoctienganh161707");
  
                 smtp.Credentials = NetworkCred;
                 smtp.Port = 587;

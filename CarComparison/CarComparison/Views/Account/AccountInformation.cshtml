@@ -113,6 +113,7 @@
                                         Email:
                                     </div>
                                     @Html.EditorFor(model => model.email_user, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessage("errorEdit", new { @class = "text-danger", @style = "color: crimson;" })
                                 </div>
                                 <div style="font-size:18px; margin-bottom:10px;">
                                     <div style="font-weight:bold; padding-bottom:5px;">
@@ -141,7 +142,7 @@
                                         Ngày sinh:
                                     </div>
                                     <input type="date" class="form-control" name="birthday_us" id="birthday_us" value="@Model.birthday_user.Value.ToString("yyyy-MM-dd")" />
-
+                                    @Html.ValidationMessage("BirthdayError", new { @class = "text-danger", @style = "color: crimson;" })
                                 </div>
                             </div>
                         </div>
@@ -198,18 +199,21 @@
                                         Mật khẩu cũ:
                                     </div>
                                     <input type="password" class="form-control" name="password_old" id="password_old" title="Nhập mật khẩu cũ." required>
+                                    @Html.ValidationMessage("errorChange3", new { @class = "text-danger", @style = "color: crimson;" })
                                 </div>
                                 <div style="font-size:18px; margin-bottom:10px;">
                                     <div style="font-weight:bold; padding-bottom:5px;">
                                         Mật khẩu mới:
                                     </div>
                                     <input type="password" class="form-control" name="password_new" id="password_new" title="Nhập mật khẩu mới." required>
+                                    @Html.ValidationMessage("errorChange1", new { @class = "text-danger", @style = "color: crimson;" })
                                 </div>
                                 <div style="font-size:18px; margin-bottom:10px;">
                                     <div style="font-weight:bold; padding-bottom:5px;">
                                         Nhập lại mật khẩu mới:
                                     </div>
                                     <input type="password" class="form-control" name="repassword_new" id="repassword_new" title="Nhập lại mật khẩu mới để xác nhận." required>
+                                    @Html.ValidationMessage("errorChange2", new { @class = "text-danger", @style = "color: crimson;" })
                                 </div>
                             </div>
                         </div>
@@ -219,13 +223,7 @@
                                 <input class="btn btn-danger" type="submit" name="action" value="Đổi mật khẩu" />
                             </div>
                         </div>
-                        @if (ViewBag.tabactive == "changepassf")
-                        {
-                            <script>
-                                alert("Mật khẩu cũ không đúng hoặc mật khẩu mới nhập không trùng khớp!!");
-                            </script>
-                        }
-                        else if (ViewBag.tabactive == "changepasst")
+                        @if (ViewBag.tabactive == "changepasst")
                         {
                             <script>
                                 alert("Lưu thành công!!");

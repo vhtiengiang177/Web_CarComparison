@@ -74,6 +74,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         <label>Email</label>
                         <div class="input-group">
                             <input type="text" placeholder="Email" name="email" required>
+                            @Html.ValidationMessage("EmailError", new { @class = "text-danger", @style = "color: crimson;" })
                         </div>
                         <label>Giới tính</label>
                         <div class="input-group">
