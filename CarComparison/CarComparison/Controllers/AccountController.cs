@@ -12,6 +12,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI;
 
 namespace CarComparison.Controllers
 {
@@ -438,7 +439,6 @@ namespace CarComparison.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult ForgotPassword(string EmailID)
         {
             string resetCode = Guid.NewGuid().ToString();
@@ -461,8 +461,8 @@ namespace CarComparison.Controllers
                      "Nếu bạn không yêu cầu đặt lại mật khẩu, vui lòng bỏ qua email này hoặc trả lời cho chúng tôi biết. Xin cảm ơn. <br/><br/>Trân trọng.<br/> Đội ngũ Car Comparison.";
 
                 SendEmail(getUser.email_user, body, subject);
-
-                ViewBag.Message = "Liên kết đặt lại mật khẩu đã được gửi đến id email của bạn.";
+                EmailID = "";
+                ViewBag.Message = "1";
             }
             else
             {
@@ -520,30 +520,36 @@ namespace CarComparison.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult ResetPassword(ResetPasswordModel model)
         {
-            var message = "";
-            if (ModelState.IsValid)
+            var user = db.User_.Where(a => a.resetPassCode == model.ResetCode).FirstOrDefault();
+            if (user != null)
             {
-                var user = db.User_.Where(a => a.resetPassCode == model.ResetCode).FirstOrDefault();
-                if (user != null)
+                //you can encrypt password here, we are not doing it
+                var hasNumber = new Regex(@"[0-9]+");
+                var hasUpperChar = new Regex(@"[A-Z]+");
+                var hasMinimum8Chars = new Regex(@".{8,}");
+                var hasCharSpecial = new Regex(@"[#?!@$%^&*-]+");
+
+                var isValidated = hasNumber.IsMatch(model.NewPassword) && hasUpperChar.IsMatch(model.NewPassword) && hasMinimum8Chars.IsMatch(model.NewPassword) && hasCharSpecial.IsMatch(model.NewPassword);
+                if (!isValidated)
                 {
-                    //you can encrypt password here, we are not doing it
-                    user.password_user = GetMD5(model.NewPassword);
-                    //make resetpasswordcode empty string now
-                    user.resetPassCode = "";
-                    //to avoid validation issues, disable it
-                    db.Configuration.ValidateOnSaveEnabled = false;
-                    db.SaveChanges();
-                    message = "Đã cập nhật mật khẩu mới thành công.";
-                    Session["user"] = user;
-                    return RedirectToAction("Index", "Client");
+                    ModelState.AddModelError("PassError", "Mật khẩu phải chứa ít nhất một số, một chữ hoa, một ký tự đặc biệt, dài hơn 8 ký tự!");
+                    return View("ResetPassword", model);
                 }
+                if(model.NewPassword != model.ConfirmPassword)
+                {
+                    ModelState.AddModelError("PassError1", "Mật khẩu mới và nhập lại mật khẩu không trùng khớp!");
+                    return View("ResetPassword", model);
+                }
+                user.password_user = GetMD5(model.NewPassword);
+                //make resetpasswordcode empty string now
+                user.resetPassCode = "";
+                //to avoid validation issues, disable it
+                db.Configuration.ValidateOnSaveEnabled = false;
+                db.SaveChanges();
+                // Chuyển sang đăng nhập lại
+                return RedirectToAction("LoginView", "Account");
             }
-            else
-            {
-                message = "Không hợp lệ.";
-            }
-            ViewBag.Message = message;
-            return View(model);
+            return View("ResetPassword", model); ;
         }
 
         protected override void Dispose(bool disposing)
