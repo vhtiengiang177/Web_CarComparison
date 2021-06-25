@@ -25,7 +25,7 @@ These instructions will get you a copy of the project up and running on your loc
 ### Usage
 Login to Admin:
   - Username: Admin
-  - Password: 123456
+  - Password: L@ptrinhWeb123
 
 Or you can register new account.
   
@@ -33,3 +33,4 @@ Or you can register new account.
 - Compare cars.
 - View comparisons, reviews and videos.
 - Comment articles.
+- Contact
