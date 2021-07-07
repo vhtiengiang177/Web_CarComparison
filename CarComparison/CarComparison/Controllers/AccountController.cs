@@ -474,7 +474,7 @@ namespace CarComparison.Controllers
 
         private void SendEmail(string emailAddress, string body, string subject)
         {
-            using (MailMessage mm = new MailMessage("learnetogether7@gmail.com", emailAddress))
+            using (MailMessage mm = new MailMessage("abc@gmail.com", emailAddress))
             {
                 mm.Subject = subject;
                 mm.Body = body;
@@ -484,7 +484,7 @@ namespace CarComparison.Controllers
                 smtp.Host = "smtp.gmail.com";
                 smtp.EnableSsl = true;
                 smtp.UseDefaultCredentials = false;
-                NetworkCredential NetworkCred = new NetworkCredential("learnetogether7@gmail.com", "Hoctienganh161707");
+                NetworkCredential NetworkCred = new NetworkCredential("abc@gmail.com", "password");
  
                 smtp.Credentials = NetworkCred;
                 smtp.Port = 587;
